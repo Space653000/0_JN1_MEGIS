@@ -4,13 +4,13 @@
 
 2026-09-16 已針對目前本機工作樹完成驗證。
 
-機器可讀的命令結果、瀏覽器稽核與建置檔雜湊記錄於 [`execution/ui0/last-verification.json`](../execution/ui0/last-verification.json)。本次驗證來源 commit 為 `853bf87daaa46f568df9a53a4533efcd9c3c5a59`。
+機器可讀的命令結果、瀏覽器稽核與建置檔雜湊記錄於 [`execution/ui0/last-verification.json`](../execution/ui0/last-verification.json)。本次驗證來源 commit 為 `aa8c815bedf8d8bea166fb876a0bce44ce0f7194`。
 
 | 檢查項目 | 結果 |
 |---|---|
 | ESLint 程式規範檢查 | 通過 |
 | TypeScript 型別檢查 | 通過 |
-| Vitest 自動化測試 | 7／7 通過 |
+| Vitest 自動化測試 | 8／8 通過 |
 | 正式環境建置 | 通過 |
 | 進度狀態單一有效來源 | 通過 |
 | 無效證據拒絕機制 | 通過 |
@@ -34,6 +34,8 @@
 | 非必要英文文案殘留 | 0（必要識別碼、工程縮寫與強制安全標示除外） |
 | 431 px 行動視窗水平溢出 | 無 |
 | 行動版導覽入口 | 可見 |
+| UI-0D 驗收條件按鈕 | 可展開，顯示證據與責任邊界 |
+| G0 鎖定狀態 | 清楚顯示，未解鎖 |
 | UI-0D 自動化驗收條件 | 已通過，證據已連結 |
 | UI-0D 使用者驗收條件 | 待使用者確認 |
 
