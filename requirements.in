@@ -1,4 +1,5 @@
 # G0-ENV-001 direct Python dependencies.
 # Resolve only with the Python and platform envelope in environment/toolchain.lock.json.
 cadquery==2.8.0
+jsonschema==4.26.0
 pytest==9.1.1

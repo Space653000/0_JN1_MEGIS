@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v2/primitives.schema.json",
+  "title": "MEGIS V2 Engineering Primitives",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "unitSystem", "coordinateSystem", "entityIds", "quantities", "provenance", "knowledgeStates"],
+  "properties": {
+    "schemaVersion": { "const": "2.0.0" },
+    "unitSystem": { "$ref": "#/$defs/unitSystem" },
+    "coordinateSystem": { "$ref": "#/$defs/coordinateSystem" },
+    "entityIds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/entityId" }
+    },
+    "quantities": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/quantity" }
+    },
+    "provenance": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/provenance" }
+    },
+    "knowledgeStates": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/knowledgeState" }
+    }
+  },
+  "$defs": {
+    "entityId": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*$",
+      "minLength": 3,
+      "maxLength": 96
+    },
+    "unit": {
+      "type": "string",
+      "enum": ["mm", "deg", "kg", "s", "N", "N_mm", "Pa", "Hz", "dB", "m_s", "V", "A", "W"]
+    },
+    "unitSystem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["length", "angle", "mass", "time"],
+      "properties": {
+        "length": { "const": "mm" },
+        "angle": { "const": "deg" },
+        "mass": { "const": "kg" },
+        "time": { "const": "s" }
+      }
+    },
+    "coordinateSystem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["handedness", "axes"],
+      "properties": {
+        "handedness": { "const": "right" },
+        "axes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["x", "y", "z"],
+          "properties": {
+            "x": { "type": "string", "minLength": 1, "maxLength": 40 },
+            "y": { "type": "string", "minLength": 1, "maxLength": 40 },
+            "z": { "type": "string", "minLength": 1, "maxLength": 40 }
+          }
+        }
+      }
+    },
+    "quantity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "unit"],
+      "properties": {
+        "id": { "$ref": "#/$defs/entityId" },
+        "unit": { "$ref": "#/$defs/unit" },
+        "nominal": { "type": "number" },
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "tolerance": { "type": "number", "minimum": 0 }
+      },
+      "anyOf": [
+        { "required": ["nominal"] },
+        { "required": ["min", "max"] }
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "subjectId", "field", "source", "recordedAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/entityId" },
+        "subjectId": { "$ref": "#/$defs/entityId" },
+        "field": { "type": "string", "pattern": "^/(?:[^/~]|~0|~1)+(?:/(?:[^/~]|~0|~1)+)*$" },
+        "source": { "enum": ["user", "derived", "defaulted", "database", "engineer_override"] },
+        "sourceRef": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "actor": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "rationale": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "recordedAt": { "type": "string", "format": "date-time" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "source": { "enum": ["derived", "database"] } }, "required": ["source"] },
+          "then": { "required": ["sourceRef"] }
+        },
+        {
+          "if": { "properties": { "source": { "enum": ["user", "engineer_override"] } }, "required": ["source"] },
+          "then": { "required": ["actor"] }
+        },
+        {
+          "if": { "properties": { "source": { "enum": ["defaulted", "engineer_override"] } }, "required": ["source"] },
+          "then": { "required": ["rationale"] }
+        }
+      ]
+    },
+    "knowledgeState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subjectId", "field", "status"],
+      "properties": {
+        "subjectId": { "$ref": "#/$defs/entityId" },
+        "field": { "type": "string", "pattern": "^/(?:[^/~]|~0|~1)+(?:/(?:[^/~]|~0|~1)+)*$" },
+        "status": { "enum": ["known", "derived", "defaulted", "unknown", "unsafe_to_default"] },
+        "value": {}
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "enum": ["known", "derived", "defaulted"] } }, "required": ["status"] },
+          "then": { "required": ["value"] }
+        },
+        {
+          "if": { "properties": { "status": { "enum": ["unknown", "unsafe_to_default"] } }, "required": ["status"] },
+          "then": { "not": { "required": ["value"] } }
+        }
+      ]
+    }
+  }
+}

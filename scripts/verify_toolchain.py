@@ -46,6 +46,7 @@ def main() -> None:
     assert importlib.metadata.version("cadquery") == cad["cadquery"]
     assert importlib.metadata.version("cadquery-ocp") == cad["cadqueryOcpDistribution"]
     assert importlib.metadata.version("vtk") == cad["vtk"]
+    assert importlib.metadata.version("jsonschema") == lock["contracts"]["jsonschema"]
 
     solid = cq.Workplane("XY").box(10, 20, 30).val()
     assert solid.isValid()

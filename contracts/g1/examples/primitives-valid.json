@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "2.0.0",
+  "unitSystem": {
+    "length": "mm",
+    "angle": "deg",
+    "mass": "kg",
+    "time": "s"
+  },
+  "coordinateSystem": {
+    "handedness": "right",
+    "axes": { "x": "width", "y": "depth", "z": "height" }
+  },
+  "entityIds": ["PROJECT-0001", "DIM-HOLE-001", "DIM-WALL-001"],
+  "quantities": [
+    { "id": "DIM-HOLE-001", "unit": "mm", "nominal": 3.4, "tolerance": 0.05 },
+    { "id": "DIM-WALL-001", "unit": "mm", "min": 2.0, "max": 2.5 }
+  ],
+  "provenance": [
+    {
+      "id": "PROV-001",
+      "subjectId": "DIM-HOLE-001",
+      "field": "/nominal",
+      "source": "user",
+      "actor": "reference-case-owner",
+      "recordedAt": "2026-09-17T00:00:00Z"
+    },
+    {
+      "id": "PROV-002",
+      "subjectId": "DIM-WALL-001",
+      "field": "/min",
+      "source": "derived",
+      "sourceRef": "rule:CNC-WALL-MIN@1.0.0",
+      "recordedAt": "2026-09-17T00:00:00Z"
+    }
+  ],
+  "knowledgeStates": [
+    { "subjectId": "DIM-HOLE-001", "field": "/nominal", "status": "known", "value": 3.4 },
+    { "subjectId": "PROJECT-0001", "field": "/maximumLoad", "status": "unsafe_to_default" }
+  ]
+}

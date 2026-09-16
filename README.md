@@ -39,6 +39,7 @@ UI-0 已完成驗收，但仍只是使用者體驗原型；G0 不會把其合成
 - [G0 FreeCAD TechDraw fallback 決策](docs/G0_FREECAD_DECISION.md)
 - [G0 COMSOL 可行性決策](docs/G0_COMSOL_DECISION.md)
 - [G0 Baseline CI](docs/G0_BASELINE_CI.md)
+- [G1 Engineering Primitives](docs/G1_PRIMITIVES.md)
 
 ## 本機啟動
 

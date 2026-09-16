@@ -68,8 +68,8 @@
     {
       "id": "G1-IR-001", "title": "定義 unit、coordinate、ID 與 provenance primitives", "gate": "G1", "status": "in_progress", "dependsOn": ["G0-CAD-001", "G0-DRW-001", "G0-SIM-001", "G0-CI-001"],
       "inputs": ["G0 feasibility decisions"], "outputs": ["primitive schemas"],
-      "acceptance": ["單位、座標、識別碼與來源語意具有正反向 schema tests"], "acceptanceResults": [{ "criterion": "單位、座標、識別碼與來源語意具有正反向 schema tests", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "acceptance": ["單位、座標、識別碼與來源語意具有正反向 schema tests"], "acceptanceResults": [{ "criterion": "單位、座標、識別碼與來源語意具有正反向 schema tests", "status": "passed", "evidence": ["schemas/v2/primitives.schema.json", "contracts/g1/examples/primitives-valid.json", "tests/test_g1_primitives.py", "artifacts/g1-ir-001/verification.json", "docs/G1_PRIMITIVES.md"] }],
+      "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_g1_primitives.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["schemas/v2/primitives.schema.json", "megis/contracts/validation.py", "contracts/g1/examples/primitives-valid.json", "tests/test_g1_primitives.py", "artifacts/g1-ir-001/verification.json", "docs/G1_PRIMITIVES.md", "requirements.in", "requirements.lock"], "verification": "passed", "commitSha": null
     },
     {
       "id": "G1-IR-002", "title": "定義 Engineering IR schema", "gate": "G1", "status": "planned", "dependsOn": ["G1-IR-001"],

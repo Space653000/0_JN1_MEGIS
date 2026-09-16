@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G1-IR-001",
+  "verifiedAt": "2026-09-17T01:18:00+08:00",
+  "validator": {
+    "library": "jsonschema",
+    "version": "4.26.0",
+    "draft": "2020-12"
+  },
+  "schema": {
+    "path": "schemas/v2/primitives.schema.json",
+    "bytes": 4896,
+    "sha256": "3c97ea097fa651f7024ca4096aa615f4e2b29a02a141ba57fb4f656750ba9434"
+  },
+  "positiveFixture": {
+    "path": "contracts/g1/examples/primitives-valid.json",
+    "bytes": 1125,
+    "sha256": "38f06d656e358e36f52bfbd4d824a154ea9c6e28e47c4a36961f73c968210b11"
+  },
+  "contractTests": {
+    "passed": 13,
+    "failed": 0,
+    "positiveCases": 1,
+    "negativeCases": 12
+  },
+  "scope": "unit, coordinate, ID/reference, provenance, knowledge-state and quantity primitives",
+  "fullEngineeringIrClaimed": false
+}
