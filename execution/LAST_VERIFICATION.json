@@ -1,12 +1,13 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-16T21:00:49+08:00",
-  "sourceCommit": "629c02831b6b3eae30fb8a8ef8f9519f3bfbafaf",
+  "verifiedAt": "2026-09-17T00:28:49+08:00",
+  "sourceCommit": "b8a0dddd2f3ab763cde4a466e851f3a733f3099a",
   "status": "passed",
   "commands": [
     { "command": ".venv/Scripts/python.exe -m pip check", "status": "passed" },
     { "command": ".venv/Scripts/python.exe scripts/verify_toolchain.py", "status": "passed", "solidValid": true, "solidVolume": 6000.0 },
-    { "command": ".venv/Scripts/python.exe -m pytest", "status": "passed", "testsPassed": 1, "testsFailed": 0 },
+    { "command": ".venv/Scripts/python.exe -m pytest", "status": "passed", "testsPassed": 2, "testsFailed": 0 },
+    { "command": ".venv/Scripts/python.exe -m spikes.g0_cad.reference_case --output-dir artifacts/g0-cad", "status": "passed", "stepValid": true, "stlValid": true, "dxfValid": true },
     { "command": "clean .temp/g0-env-rebuild install from requirements.lock", "status": "passed", "pipCheck": "passed", "solidValid": true, "solidVolume": 6000.0 },
     { "command": "node scripts/verify-control-plane.mjs", "status": "passed", "workItems": 30, "gates": 14 },
     { "command": "npm --prefix apps/web run lint", "status": "passed" },
@@ -17,7 +18,7 @@
   "browser": {
     "path": "/progress",
     "currentGate": "G0",
-    "currentWorkItem": "G0-CAD-001",
+    "currentWorkItem": "G0-DRW-001",
     "ui0dAccepted": true,
     "acceptanceDisclosure": true,
     "horizontalOverflow": false,
@@ -25,15 +26,17 @@
     "consoleWarningsAndErrors": 0
   },
   "buildArtifacts": [
-    { "path": "apps/web/dist/assets/index-DmCZ6xAL.js", "bytes": 247901, "sha256": "c93bc2643ca0fd9c5b6b394a4ac7cf1163b1602928a88f165c737c1607727cd0" },
+    { "path": "apps/web/dist/assets/index-Bskq-aD-.js", "bytes": 248444, "sha256": "109923bdc2c87a6c6672e16f036959f371cafb42ca6dfbe98aaf626efda5da47" },
     { "path": "apps/web/dist/assets/index-lbw2QEtU.css", "bytes": 23096, "sha256": "79805929f2f915e4070c63d27849f610baee8f314085af5d6acb707245509f1a" },
     { "path": "apps/web/dist/favicon.svg", "bytes": 288, "sha256": "6b2c8c18b45392bb97dad145479898477ddce9bc7bfcf987d257dccec9676704" },
-    { "path": "apps/web/dist/index.html", "bytes": 590, "sha256": "239b40271db15abd2a8b80e8ef41dbd30292c56689b1a90ee68980fd9c3d773f" }
+    { "path": "apps/web/dist/index.html", "bytes": 590, "sha256": "6550851b6f7c2eae5b6028b4fe3b0076b1e5d5afa444d24a810ecf0b0fb62384" }
   ],
   "boundaries": {
     "workspaceRoot": "C:/0_JN1_MEGIS",
     "localOnly": true,
     "otherProjectDirectoriesModified": false,
-    "engineeringArtifactsGenerated": false
+    "engineeringArtifactsGenerated": true,
+    "engineeringArtifactsClassification": "FEASIBILITY_SPIKE",
+    "releaseArtifactsGenerated": false
   }
 }

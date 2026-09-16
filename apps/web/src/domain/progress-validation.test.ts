@@ -48,7 +48,9 @@ describe("Project progress truthfulness contract", () => {
 
   it("rejects more than one in-progress item", () => {
     const state = structuredClone(loadState());
-    getWorkItem(state, "G0-DRW-001").status = "in_progress";
+    const secondItem = state.workItems.find((item) => item.id !== state.currentWorkItem && item.status !== "in_progress");
+    if (!secondItem) throw new Error("Missing a second work item for WIP validation");
+    secondItem.status = "in_progress";
     expect(validateProgressState(state)).toContain("Expected exactly one in-progress item, found 2");
   });
 });
