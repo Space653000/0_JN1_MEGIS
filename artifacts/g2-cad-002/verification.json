@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G2-CAD-002",
+  "verifiedAt": "2026-09-17T07:35:32+08:00",
+  "input": "contracts/g1/golden/reference-fixture.json",
+  "backend": { "id": "cadquery", "version": "2.8.0", "deterministic": true, "supportedOperations": ["box"] },
+  "result": {
+    "planId": "PLAN-FIXTURE-REFERENCE-001-A-BASE",
+    "componentIds": ["COMP-FIXTURE-BASE"],
+    "modelToken": "cadquery:cad7cc128d8fc13a4b19a55a",
+    "valid": true,
+    "solidCount": 1,
+    "boundingBoxMm": { "width": 120.0, "depth": 80.0, "height": 20.0 },
+    "volumeMm3": 192000.0
+  },
+  "topology": { "valid": true, "solids": 1, "shells": 1, "faces": 6, "edges": 12, "vertices": 8 },
+  "contractTests": { "passed": 4, "failed": 0 },
+  "engineeringArtifactGenerated": false,
+  "releaseArtifactGenerated": false
+}

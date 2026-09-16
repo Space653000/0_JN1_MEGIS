@@ -44,6 +44,7 @@ UI-0 已完成驗收，但仍只是使用者體驗原型；G0 不會把其合成
 - [G1 Golden Cases](docs/G1_GOLDEN_CASES.md)
 - [G1 Schema Migration Contract](docs/G1_SCHEMA_MIGRATION.md)
 - [G2 Geometry Capability Contract](docs/G2_GEOMETRY_CONTRACT.md)
+- [G2 Fixture Base](docs/G2_FIXTURE_BASE.md)
 
 ## 本機啟動
 
