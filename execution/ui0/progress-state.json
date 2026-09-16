@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "0.1.0",
+  "updatedAt": "2026-09-16T15:30:00+08:00",
+  "baselineCommit": "2448b7ac7d1074fed9707884e9ab05a7a5a28eec",
+  "currentWorkItem": "UI0-FND-001",
+  "gates": [
+    { "id": "UI-0A", "title": "Minimal Foundation", "status": "active", "dependsOn": [] },
+    { "id": "UI-0B", "title": "Construction Progress Center", "status": "planned", "dependsOn": ["UI-0A"] },
+    { "id": "UI-0C", "title": "Guided User Experience Prototype", "status": "planned", "dependsOn": ["UI-0B"] },
+    { "id": "UI-0D", "title": "Verification and User Acceptance", "status": "planned", "dependsOn": ["UI-0C"] },
+    { "id": "G0", "title": "Foundation & Feasibility", "status": "planned", "dependsOn": ["UI-0D"] },
+    { "id": "G1", "title": "Engineering Contracts & Golden Cases", "status": "planned", "dependsOn": ["G0"] },
+    { "id": "G2", "title": "Fixture Geometry Vertical Slice", "status": "planned", "dependsOn": ["G1"] },
+    { "id": "G3", "title": "Rules & Validation", "status": "planned", "dependsOn": ["G2"] },
+    { "id": "G4", "title": "Module & Constraint Composition", "status": "planned", "dependsOn": ["G3"] },
+    { "id": "G5", "title": "Prototype Package & Reproducibility", "status": "planned", "dependsOn": ["G4"] },
+    { "id": "G6", "title": "Guided UI Engineering Integration", "status": "planned", "dependsOn": ["G5"] },
+    { "id": "G7", "title": "Acoustic Thin Slice", "status": "planned", "dependsOn": ["G6"] },
+    { "id": "G8", "title": "Robot Thin Slice", "status": "planned", "dependsOn": ["G6"] },
+    { "id": "G9", "title": "Hardening & Expansion", "status": "planned", "dependsOn": ["G7", "G8"] }
+  ],
+  "workItems": [
+    {
+      "id": "UI0-FND-001",
+      "title": "Bootstrap isolated repository and UI toolchain",
+      "gate": "UI-0A",
+      "status": "in_progress",
+      "dependsOn": [],
+      "acceptance": ["Remote history is preserved", "All project caches remain inside the repository", "Local commits only"],
+      "evidence": ["docs/UI0_PLAN.md", "AGENTS.md"],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "UI0-PRG-001",
+      "title": "Build evidence-driven construction progress center",
+      "gate": "UI-0B",
+      "status": "planned",
+      "dependsOn": ["UI0-FND-001"],
+      "acceptance": ["Progress comes from one schema-validated source", "Invalid done states fail verification"],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "UI0-UX-001",
+      "title": "Build guided Fixture UX prototype",
+      "gate": "UI-0C",
+      "status": "planned",
+      "dependsOn": ["UI0-PRG-001"],
+      "acceptance": ["Fixture flow reaches synthetic results", "All non-engineering outputs remain permanently labeled"],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "UI0-VER-001",
+      "title": "Verify and present UI-0 for user acceptance",
+      "gate": "UI-0D",
+      "status": "planned",
+      "dependsOn": ["UI0-UX-001"],
+      "acceptance": ["Automated verification passes", "User performs acceptance review"],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    }
+  ],
+  "blockers": [],
+  "risks": [
+    { "id": "R-UI0-001", "title": "Prototype mistaken for engineering output", "impact": "high", "mitigation": "Permanent synthetic-data and no-artifact labels plus automated assertions" },
+    { "id": "R-UI0-002", "title": "Mock model hardens into an invalid IR contract", "impact": "high", "mitigation": "Versioned PrototypeViewModel behind a replaceable adapter seam" },
+    { "id": "R-UI0-003", "title": "Tooling writes outside the workspace", "impact": "high", "mitigation": "Repository-local cache, temp, browser, test, and build paths with boundary audit" }
+  ]
+}

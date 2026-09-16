@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/ui0-progress-state.schema.json",
+  "title": "MEGIS UI-0 Progress State",
+  "type": "object",
+  "required": ["schemaVersion", "updatedAt", "baselineCommit", "currentWorkItem", "gates", "workItems", "blockers", "risks"],
+  "properties": {
+    "schemaVersion": { "const": "0.1.0" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "baselineCommit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "currentWorkItem": { "type": "string", "minLength": 1 },
+    "gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "status", "dependsOn"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "status": { "enum": ["planned", "active", "blocked", "accepted"] },
+          "dependsOn": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "workItems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "gate", "status", "dependsOn", "acceptance", "evidence", "verification", "commitSha"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "gate": { "type": "string" },
+          "status": { "enum": ["planned", "ready", "in_progress", "blocked", "done"] },
+          "dependsOn": { "type": "array", "items": { "type": "string" } },
+          "acceptance": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "evidence": { "type": "array", "items": { "type": "string" } },
+          "verification": { "enum": ["not_run", "passed", "failed"] },
+          "commitSha": { "type": ["string", "null"], "pattern": "^[0-9a-f]{40}$" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "blockers": { "type": "array", "items": { "type": "object", "required": ["id", "title", "owner", "fallback"], "additionalProperties": true } },
+    "risks": { "type": "array", "items": { "type": "object", "required": ["id", "title", "impact", "mitigation"], "additionalProperties": true } }
+  },
+  "additionalProperties": false
+}
+
