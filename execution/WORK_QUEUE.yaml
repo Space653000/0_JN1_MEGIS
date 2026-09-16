@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-16T20:28:02+08:00",
-  "baselineCommit": "5baf870e254c799ee8421fb37fef14972e34505f",
-  "currentWorkItem": "G0-REP-001",
+  "updatedAt": "2026-09-16T20:38:59+08:00",
+  "baselineCommit": "09f19ea3633189bdbb58e254d8e5798736950bfb",
+  "currentWorkItem": "G0-ENV-001",
   "gates": [
     { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
     { "id": "UI-0B", "title": "施工進度中心", "status": "accepted", "dependsOn": ["UI-0A"] },
@@ -21,7 +21,7 @@
   ],
   "workItems": [
     {
-      "id": "G0-REP-001", "title": "建立 repository 與狀態檔", "gate": "G0", "status": "in_progress", "dependsOn": [],
+      "id": "G0-REP-001", "title": "建立 repository 與狀態檔", "gate": "G0", "status": "done", "dependsOn": [],
       "inputs": ["MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v2.0 Codex.md", "docs/UI0_ACCEPTANCE.md"],
       "outputs": ["execution/PROJECT_STATE.md", "execution/WORK_QUEUE.yaml", "execution/BLOCKERS.yaml", "execution/LAST_VERIFICATION.json"],
       "acceptance": ["UI-0 驗收已遷移至正式控制面", "初始工作清單具有依賴與驗收條件", "控制面可由自動化命令驗證"],
@@ -33,10 +33,10 @@
       "verificationCommands": ["node scripts/verify-control-plane.mjs", "npm --prefix apps/web test -- --run"],
       "rollbackBoundary": "commit", "blockedBy": [],
       "evidence": ["docs/UI0_ACCEPTANCE.md", "execution/PROJECT_STATE.md", "execution/WORK_QUEUE.yaml", "execution/BLOCKERS.yaml", "execution/LAST_VERIFICATION.json"],
-      "verification": "passed", "commitSha": null
+      "verification": "passed", "commitSha": "09f19ea3633189bdbb58e254d8e5798736950bfb"
     },
     {
-      "id": "G0-ENV-001", "title": "鎖定 Python、Node 與 CAD dependencies", "gate": "G0", "status": "planned", "dependsOn": ["G0-REP-001"],
+      "id": "G0-ENV-001", "title": "鎖定 Python、Node 與 CAD dependencies", "gate": "G0", "status": "in_progress", "dependsOn": ["G0-REP-001"],
       "inputs": ["execution/PROJECT_STATE.md"], "outputs": ["environment lockfiles", "docs/decisions/toolchain.md"],
       "acceptance": ["支援版本與依賴均可重現且有鎖定證據"], "acceptanceResults": [{ "criterion": "支援版本與依賴均可重現且有鎖定證據", "status": "pending", "evidence": [] }],
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null

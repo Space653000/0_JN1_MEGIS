@@ -1,10 +1,10 @@
 # MEGIS Project State
 
 - Current gate: `G0 — Foundation & Feasibility`
-- Current work item: `G0-REP-001 — 建立 repository 與狀態檔`
-- Last green commit: `5baf870e254c799ee8421fb37fef14972e34505f`
+- Current work item: `G0-ENV-001 — 鎖定 Python、Node 與 CAD dependencies`
+- Last green commit: `09f19ea3633189bdbb58e254d8e5798736950bfb`
 - Control-plane schema: `1.0.0`
-- Updated at: `2026-09-16T20:28:02+08:00`
+- Updated at: `2026-09-16T20:38:59+08:00`
 
 ## Accepted capabilities
 
@@ -17,11 +17,11 @@ UI-0 驗收只涵蓋使用者體驗原型；沒有工程生成能力或工程製
 
 ## Active scope
 
-目前只施工 `G0-REP-001`。目標是建立藍圖第 5 章正式控制面、將初始工作清單轉成具依賴與驗收條件的佇列，並讓進度網站改讀正式資料源。
+`G0-REP-001` 已完成並由 commit `09f19ea` 固定。現在只施工 `G0-ENV-001`，目標是鎖定 Python、Node、CadQuery、OpenCascade 與 FreeCAD 的支援版本及可重現安裝邊界。
 
 ## Next work item
 
-`G0-ENV-001` 在 `G0-REP-001` 完成並同步後才可轉為 `ready`。
+`G0-CAD-001`、`G0-DRW-001` 與 `G0-SIM-001` 只有在 `G0-ENV-001` 完成後才能轉為 `ready`；一次仍只施工一個工作單元。
 
 ## Boundaries
 

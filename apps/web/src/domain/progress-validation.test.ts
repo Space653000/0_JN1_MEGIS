@@ -30,8 +30,7 @@ describe("Project progress truthfulness contract", () => {
 
   it("rejects an illegal transition when dependencies are incomplete", () => {
     const state = structuredClone(loadState());
-    state.workItems[1].status = "in_progress";
-    state.currentWorkItem = state.workItems[1].id;
+    state.workItems[0].status = "planned";
     expect(validateProgressState(state)).toContain("G0-ENV-001 cannot be in_progress before G0-REP-001 is done");
   });
 
@@ -47,7 +46,7 @@ describe("Project progress truthfulness contract", () => {
 
   it("rejects more than one in-progress item", () => {
     const state = structuredClone(loadState());
-    state.workItems[1].status = "in_progress";
+    state.workItems[2].status = "in_progress";
     expect(validateProgressState(state)).toContain("Expected exactly one in-progress item, found 2");
   });
 });

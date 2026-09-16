@@ -1,14 +1,14 @@
 {
   "schemaVersion": "0.2.0",
-  "updatedAt": "2026-09-16T19:30:24+08:00",
+  "updatedAt": "2026-09-16T20:38:59+08:00",
   "baselineCommit": "2448b7ac7d1074fed9707884e9ab05a7a5a28eec",
   "currentWorkItem": "UI0-VER-001",
   "gates": [
     { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
     { "id": "UI-0B", "title": "施工進度中心", "status": "accepted", "dependsOn": ["UI-0A"] },
     { "id": "UI-0C", "title": "引導式使用者體驗原型", "status": "accepted", "dependsOn": ["UI-0B"] },
-    { "id": "UI-0D", "title": "驗證與使用者驗收", "status": "active", "dependsOn": ["UI-0C"] },
-    { "id": "G0", "title": "基礎建設與可行性", "status": "planned", "dependsOn": ["UI-0D"] },
+    { "id": "UI-0D", "title": "驗證與使用者驗收", "status": "accepted", "dependsOn": ["UI-0C"] },
+    { "id": "G0", "title": "基礎建設與可行性", "status": "active", "dependsOn": ["UI-0D"] },
     { "id": "G1", "title": "工程契約與黃金案例", "status": "planned", "dependsOn": ["G0"] },
     { "id": "G2", "title": "治具幾何垂直切片", "status": "planned", "dependsOn": ["G1"] },
     { "id": "G3", "title": "規則與驗證", "status": "planned", "dependsOn": ["G2"] },
@@ -70,16 +70,16 @@
       "id": "UI0-VER-001",
       "title": "驗證並展示 UI-0 供使用者驗收",
       "gate": "UI-0D",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": ["UI0-UX-001"],
       "acceptance": ["自動化驗證通過", "使用者完成驗收檢視"],
       "acceptanceResults": [
         { "criterion": "自動化驗證通過", "status": "passed", "evidence": ["docs/UI0_VERIFICATION.md", "execution/ui0/last-verification.json"] },
-        { "criterion": "使用者完成驗收檢視", "status": "pending", "evidence": [] }
+        { "criterion": "使用者完成驗收檢視", "status": "passed", "evidence": ["docs/UI0_ACCEPTANCE.md"] }
       ],
-      "evidence": ["docs/UI0_VERIFICATION.md", "execution/ui0/last-verification.json"],
+      "evidence": ["docs/UI0_VERIFICATION.md", "docs/UI0_ACCEPTANCE.md", "execution/ui0/last-verification.json"],
       "verification": "passed",
-      "commitSha": null
+      "commitSha": "09f19ea3633189bdbb58e254d8e5798736950bfb"
     }
   ],
   "blockers": [],

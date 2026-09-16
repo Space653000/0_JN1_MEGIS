@@ -1,13 +1,30 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-16T20:26:18+08:00",
-  "sourceCommit": "5baf870e254c799ee8421fb37fef14972e34505f",
+  "verifiedAt": "2026-09-16T20:38:59+08:00",
+  "sourceCommit": "09f19ea3633189bdbb58e254d8e5798736950bfb",
   "status": "passed",
   "commands": [
+    { "command": "node scripts/verify-control-plane.mjs", "status": "passed", "workItems": 30, "gates": 14 },
     { "command": "npm --prefix apps/web run lint", "status": "passed" },
     { "command": "npm --prefix apps/web run typecheck", "status": "passed" },
-    { "command": "npm --prefix apps/web test -- --run", "status": "passed", "testsPassed": 8, "testsFailed": 0 },
+    { "command": "npm --prefix apps/web test -- --run", "status": "passed", "testsPassed": 9, "testsFailed": 0 },
     { "command": "npm --prefix apps/web run build", "status": "passed" }
+  ],
+  "browser": {
+    "path": "/progress",
+    "currentGate": "G0",
+    "currentWorkItem": "G0-REP-001",
+    "ui0dAccepted": true,
+    "acceptanceDisclosure": true,
+    "horizontalOverflow": false,
+    "externalResources": 0,
+    "consoleWarningsAndErrors": 0
+  },
+  "buildArtifacts": [
+    { "path": "apps/web/dist/assets/index-C_LMo1Nk.js", "bytes": 247367, "sha256": "13f55e561eeb9a3ec96a6d4e77a959a3eda5aac50feb912ba48b7304c6177ec5" },
+    { "path": "apps/web/dist/assets/index-lbw2QEtU.css", "bytes": 23096, "sha256": "79805929f2f915e4070c63d27849f610baee8f314085af5d6acb707245509f1a" },
+    { "path": "apps/web/dist/favicon.svg", "bytes": 288, "sha256": "6b2c8c18b45392bb97dad145479898477ddce9bc7bfcf987d257dccec9676704" },
+    { "path": "apps/web/dist/index.html", "bytes": 590, "sha256": "f4beb00de4a919313d6c8afde5b24e20e28bf3fab2ec4ded1a82b20d637b2d4d" }
   ],
   "boundaries": {
     "workspaceRoot": "C:/0_JN1_MEGIS",
