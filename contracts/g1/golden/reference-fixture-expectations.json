@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0.0",
+  "designId": "FIXTURE-REFERENCE-001",
+  "expectedGraph": {
+    "componentIds": ["COMP-FIXTURE-BASE", "COMP-FIXTURE-COVER", "COMP-FIXTURE-PCB"],
+    "relationshipIds": ["REL-FIXTURE-COVER", "REL-FIXTURE-PCB"]
+  },
+  "expectedArtifactMetadata": {
+    "classification": "GOLDEN_EXPECTATION_ONLY",
+    "artifactsGenerated": false,
+    "futureOutputs": ["fixture-base.step", "fixture-cover.step", "fixture-assembly.step"],
+    "baseEnvelopeMm": { "width": 120.0, "depth": 80.0, "height": 20.0 },
+    "minimumWallMm": 2.0
+  }
+}

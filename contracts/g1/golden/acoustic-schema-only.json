@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "2.0.0",
+  "designId": "ACOUSTIC-GOLDEN-001",
+  "revision": "A",
+  "maturity": "CONCEPT",
+  "unitSystem": { "length": "mm", "angle": "deg", "mass": "kg", "time": "s" },
+  "coordinateSystem": { "handedness": "right", "axes": { "x": "width", "y": "depth", "z": "height" } },
+  "requirements": [
+    { "id": "REQ-ACOUSTIC-001", "statement": "Represent a driver and sealed enclosure without claiming solver output.", "priority": "must", "verificationMethod": "inspection", "provenanceIds": ["PROV-ACOUSTIC-001"] }
+  ],
+  "components": [
+    { "id": "COMP-ACOUSTIC-ENCLOSURE", "name": "Sealed enclosure", "domain": "acoustic", "componentType": "sealed_enclosure", "dimensions": [], "provenanceIds": ["PROV-ACOUSTIC-001"] },
+    { "id": "COMP-ACOUSTIC-DRIVER", "name": "Acoustic driver", "domain": "acoustic", "componentType": "driver", "dimensions": [], "provenanceIds": ["PROV-ACOUSTIC-001"] }
+  ],
+  "interfaces": [
+    { "id": "INT-ACOUSTIC-DRIVER", "name": "Driver acoustic opening", "interfaceType": "acoustic", "participantIds": ["COMP-ACOUSTIC-ENCLOSURE", "COMP-ACOUSTIC-DRIVER"] }
+  ],
+  "relationships": [
+    { "id": "REL-ACOUSTIC-ENCLOSES", "relationshipType": "encloses", "sourceId": "COMP-ACOUSTIC-ENCLOSURE", "targetId": "COMP-ACOUSTIC-DRIVER", "constraintIds": ["CON-ACOUSTIC-SEALED"] }
+  ],
+  "materials": [],
+  "manufacturing": [],
+  "constraints": [
+    { "id": "CON-ACOUSTIC-SEALED", "constraintType": "interface", "severity": "hard", "targetIds": ["COMP-ACOUSTIC-ENCLOSURE", "COMP-ACOUSTIC-DRIVER"], "expression": "sealed_volume_requires_verified_connectivity", "provenanceIds": ["PROV-ACOUSTIC-001"] }
+  ],
+  "assumptions": [],
+  "unknowns": [
+    { "id": "UNK-ACOUSTIC-BOUNDARY", "subjectId": "ACOUSTIC-GOLDEN-001", "field": "/solverBoundary", "unsafeToDefault": true, "question": "Which solver boundary conditions are engineer-approved?" },
+    { "id": "UNK-ACOUSTIC-LEAK", "subjectId": "COMP-ACOUSTIC-ENCLOSURE", "field": "/leakModel", "unsafeToDefault": true, "question": "What leakage model and evidence apply?" }
+  ],
+  "provenance": [
+    { "id": "PROV-ACOUSTIC-001", "subjectId": "ACOUSTIC-GOLDEN-001", "field": "/requirements", "source": "user", "actor": "schema-golden-owner", "recordedAt": "2026-09-17T00:00:00Z" }
+  ]
+}

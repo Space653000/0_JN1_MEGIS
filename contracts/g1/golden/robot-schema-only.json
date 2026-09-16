@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "2.0.0",
+  "designId": "ROBOT-GOLDEN-001",
+  "revision": "A",
+  "maturity": "CONCEPT",
+  "unitSystem": { "length": "mm", "angle": "deg", "mass": "kg", "time": "s" },
+  "coordinateSystem": { "handedness": "right", "axes": { "x": "forward", "y": "left", "z": "up" } },
+  "requirements": [
+    { "id": "REQ-ROBOT-001", "statement": "Represent robot layout relationships without claiming kinematics or safety validation.", "priority": "must", "verificationMethod": "inspection", "provenanceIds": ["PROV-ROBOT-001"] }
+  ],
+  "components": [
+    { "id": "COMP-ROBOT-CHASSIS", "name": "Chassis", "domain": "robot", "componentType": "chassis", "dimensions": [], "provenanceIds": ["PROV-ROBOT-001"] },
+    { "id": "COMP-ROBOT-MOTOR", "name": "Drive motor", "domain": "robot", "componentType": "motor", "dimensions": [], "provenanceIds": ["PROV-ROBOT-001"] },
+    { "id": "COMP-ROBOT-WHEEL", "name": "Drive wheel", "domain": "robot", "componentType": "wheel", "dimensions": [], "provenanceIds": ["PROV-ROBOT-001"] },
+    { "id": "COMP-ROBOT-CONTROLLER", "name": "Motor controller", "domain": "robot", "componentType": "controller", "dimensions": [], "provenanceIds": ["PROV-ROBOT-001"] }
+  ],
+  "interfaces": [
+    { "id": "INT-ROBOT-DRIVE", "name": "Motor to wheel interface", "interfaceType": "kinematic", "participantIds": ["COMP-ROBOT-MOTOR", "COMP-ROBOT-WHEEL"] },
+    { "id": "INT-ROBOT-CONTROL", "name": "Controller to motor interface", "interfaceType": "electrical", "participantIds": ["COMP-ROBOT-CONTROLLER", "COMP-ROBOT-MOTOR"] }
+  ],
+  "relationships": [
+    { "id": "REL-ROBOT-MOTOR-MOUNT", "relationshipType": "mounts_to", "sourceId": "COMP-ROBOT-MOTOR", "targetId": "COMP-ROBOT-CHASSIS", "constraintIds": ["CON-ROBOT-MOUNT"] },
+    { "id": "REL-ROBOT-WHEEL-CONNECT", "relationshipType": "connects_to", "sourceId": "COMP-ROBOT-WHEEL", "targetId": "COMP-ROBOT-MOTOR", "constraintIds": [] },
+    { "id": "REL-ROBOT-CONTROL-CONNECT", "relationshipType": "connects_to", "sourceId": "COMP-ROBOT-CONTROLLER", "targetId": "COMP-ROBOT-MOTOR", "constraintIds": [] }
+  ],
+  "materials": [],
+  "manufacturing": [],
+  "constraints": [
+    { "id": "CON-ROBOT-MOUNT", "constraintType": "interface", "severity": "hard", "targetIds": ["COMP-ROBOT-CHASSIS", "COMP-ROBOT-MOTOR"], "expression": "mounting_zone_must_be_verified", "provenanceIds": ["PROV-ROBOT-001"] }
+  ],
+  "assumptions": [],
+  "unknowns": [
+    { "id": "UNK-ROBOT-KINEMATICS", "subjectId": "ROBOT-GOLDEN-001", "field": "/kinematics", "unsafeToDefault": true, "question": "Which kinematic model has been engineer-approved?" },
+    { "id": "UNK-ROBOT-CABLING", "subjectId": "ROBOT-GOLDEN-001", "field": "/cabling", "unsafeToDefault": true, "question": "What cable routing and bend constraints apply?" },
+    { "id": "UNK-ROBOT-SAFETY", "subjectId": "ROBOT-GOLDEN-001", "field": "/safetyValidation", "unsafeToDefault": true, "question": "Which safety requirements and reviews apply?" }
+  ],
+  "provenance": [
+    { "id": "PROV-ROBOT-001", "subjectId": "ROBOT-GOLDEN-001", "field": "/requirements", "source": "user", "actor": "schema-golden-owner", "recordedAt": "2026-09-17T00:00:00Z" }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G1-IR-003",
+  "verifiedAt": "2026-09-17T07:07:40+08:00",
+  "goldenInputs": [
+    { "path": "contracts/g1/golden/reference-fixture.json", "bytes": 4012, "sha256": "d37b314e8a049d72aae1d92897b0a3032873c0f6ff4ffb014e86ca8497d30733", "maturity": "PROTOTYPE", "validation": "passed" },
+    { "path": "contracts/g1/golden/acoustic-schema-only.json", "bytes": 2269, "sha256": "20fe210c28126ea3634fedaf14a37d67330b5570a13010dad43e9c5ee797976a", "maturity": "CONCEPT", "validation": "passed" },
+    { "path": "contracts/g1/golden/robot-schema-only.json", "bytes": 3164, "sha256": "6c43cc6e834975fa77dafc74bd9abb457a431e3e75aef666e6565dfa497d2916", "maturity": "CONCEPT", "validation": "passed" }
+  ],
+  "expectations": {
+    "path": "contracts/g1/golden/reference-fixture-expectations.json",
+    "bytes": 553,
+    "sha256": "b499d1649d9d4e7a7f576b529b2ae35555e6e10d51b16ae808bbd09852d20e90",
+    "artifactsGenerated": false
+  },
+  "roundTrip": {
+    "status": "passed",
+    "canonicalBytes": 3504,
+    "canonicalSha256": "529b1119f94f6a408f6ccb3095a46f0358cd6cb685bb92f9a4c2d20cdac76cd1",
+    "stableAfterSecondSerialization": true
+  },
+  "downstreamConsumer": {
+    "status": "passed",
+    "entryPoint": "megis.contracts.summarize_engineering_ir",
+    "reads": ["designId", "revision", "maturity", "components", "domains", "relationships", "unsafe unknowns"]
+  },
+  "contractTests": { "passed": 8, "failed": 0 },
+  "engineeringArtifactGenerated": false
+}

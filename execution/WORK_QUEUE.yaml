@@ -80,8 +80,8 @@
     {
       "id": "G1-IR-003", "title": "建立 Reference Fixture golden case", "gate": "G1", "status": "in_progress", "dependsOn": ["G1-IR-002"],
       "inputs": ["Engineering IR schema"], "outputs": ["Fixture golden input", "Acoustic schema input", "Robot schema input"],
-      "acceptance": ["三個 golden inputs 通過 schema 且 Fixture 完成 round trip"], "acceptanceResults": [{ "criterion": "三個 golden inputs 通過 schema 且 Fixture 完成 round trip", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "acceptance": ["三個 golden inputs 通過 schema 且 Fixture 完成 round trip"], "acceptanceResults": [{ "criterion": "三個 golden inputs 通過 schema 且 Fixture 完成 round trip", "status": "passed", "evidence": ["contracts/g1/golden/reference-fixture.json", "contracts/g1/golden/acoustic-schema-only.json", "contracts/g1/golden/robot-schema-only.json", "contracts/g1/golden/reference-fixture-expectations.json", "tests/test_g1_golden_cases.py", "artifacts/g1-ir-003/verification.json", "docs/G1_GOLDEN_CASES.md"] }],
+      "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_g1_golden_cases.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["megis/contracts/serialization.py", "megis/contracts/consumer.py", "contracts/g1/golden/reference-fixture.json", "contracts/g1/golden/acoustic-schema-only.json", "contracts/g1/golden/robot-schema-only.json", "contracts/g1/golden/reference-fixture-expectations.json", "tests/test_g1_golden_cases.py", "artifacts/g1-ir-003/verification.json", "docs/G1_GOLDEN_CASES.md"], "verification": "passed", "commitSha": null
     },
     {
       "id": "G1-MIG-001", "title": "建立 schema migration contract", "gate": "G1", "status": "planned", "dependsOn": ["G1-IR-003"],

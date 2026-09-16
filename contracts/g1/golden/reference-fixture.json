@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "2.0.0",
+  "designId": "FIXTURE-REFERENCE-001",
+  "revision": "A",
+  "maturity": "PROTOTYPE",
+  "unitSystem": { "length": "mm", "angle": "deg", "mass": "kg", "time": "s" },
+  "coordinateSystem": { "handedness": "right", "axes": { "x": "width", "y": "depth", "z": "height" } },
+  "requirements": [
+    { "id": "REQ-FIXTURE-001", "statement": "Locate and protect the reference PCB within the supported CNC envelope.", "priority": "must", "verificationMethod": "inspection", "provenanceIds": ["PROV-FIXTURE-001"] }
+  ],
+  "components": [
+    {
+      "id": "COMP-FIXTURE-BASE", "name": "Fixture base", "domain": "fixture", "componentType": "fixture_base",
+      "dimensions": [
+        { "name": "width", "dimension": "length", "quantity": { "id": "DIM-FIXTURE-WIDTH", "unit": "mm", "nominal": 120.0, "tolerance": 0.1 } },
+        { "name": "depth", "dimension": "length", "quantity": { "id": "DIM-FIXTURE-DEPTH", "unit": "mm", "nominal": 80.0, "tolerance": 0.1 } },
+        { "name": "height", "dimension": "length", "quantity": { "id": "DIM-FIXTURE-HEIGHT", "unit": "mm", "nominal": 20.0, "tolerance": 0.1 } }
+      ],
+      "materialId": "MAT-FIXTURE-AL6061", "provenanceIds": ["PROV-FIXTURE-001"]
+    },
+    { "id": "COMP-FIXTURE-COVER", "name": "Fixture cover", "domain": "fixture", "componentType": "cover", "dimensions": [], "materialId": "MAT-FIXTURE-AL6061", "provenanceIds": ["PROV-FIXTURE-001"] },
+    { "id": "COMP-FIXTURE-PCB", "name": "Reference PCB", "domain": "fixture", "componentType": "pcb", "dimensions": [], "provenanceIds": ["PROV-FIXTURE-001"] }
+  ],
+  "interfaces": [
+    { "id": "INT-FIXTURE-PCB", "name": "PCB mounting interface", "interfaceType": "mount", "participantIds": ["COMP-FIXTURE-BASE", "COMP-FIXTURE-PCB"] },
+    { "id": "INT-FIXTURE-COVER", "name": "Cover mounting interface", "interfaceType": "mount", "participantIds": ["COMP-FIXTURE-BASE", "COMP-FIXTURE-COVER"] }
+  ],
+  "relationships": [
+    { "id": "REL-FIXTURE-PCB", "relationshipType": "mounts_to", "sourceId": "COMP-FIXTURE-PCB", "targetId": "COMP-FIXTURE-BASE", "constraintIds": ["CON-FIXTURE-WALL"] },
+    { "id": "REL-FIXTURE-COVER", "relationshipType": "mounts_to", "sourceId": "COMP-FIXTURE-COVER", "targetId": "COMP-FIXTURE-BASE", "constraintIds": ["CON-FIXTURE-WALL"] }
+  ],
+  "materials": [
+    { "id": "MAT-FIXTURE-AL6061", "name": "Aluminum 6061", "designation": "AA 6061", "properties": [], "provenanceIds": ["PROV-FIXTURE-002"] }
+  ],
+  "manufacturing": [
+    { "id": "MFG-FIXTURE-CNC", "process": "3_axis_cnc", "componentIds": ["COMP-FIXTURE-BASE", "COMP-FIXTURE-COVER"] }
+  ],
+  "constraints": [
+    { "id": "CON-FIXTURE-WALL", "constraintType": "wall", "severity": "hard", "targetIds": ["COMP-FIXTURE-BASE", "COMP-FIXTURE-COVER"], "measurement": { "name": "minimum wall", "dimension": "length", "quantity": { "id": "DIM-FIXTURE-WALL", "unit": "mm", "min": 2.0, "max": 3.0 } }, "provenanceIds": ["PROV-FIXTURE-002"] }
+  ],
+  "assumptions": [
+    { "id": "ASM-FIXTURE-SETUP", "subjectId": "COMP-FIXTURE-BASE", "field": "/manufacturingSetup", "status": "defaulted", "rationale": "Golden case uses the fixed three-axis setup.", "provenanceIds": ["PROV-FIXTURE-003"] }
+  ],
+  "unknowns": [
+    { "id": "UNK-FIXTURE-LOAD", "subjectId": "FIXTURE-REFERENCE-001", "field": "/maximumLoad", "unsafeToDefault": true, "question": "What maximum applied load must the fixture withstand?" }
+  ],
+  "provenance": [
+    { "id": "PROV-FIXTURE-001", "subjectId": "FIXTURE-REFERENCE-001", "field": "/requirements", "source": "user", "actor": "golden-case-owner", "recordedAt": "2026-09-17T00:00:00Z" },
+    { "id": "PROV-FIXTURE-002", "subjectId": "COMP-FIXTURE-BASE", "field": "/constraints", "source": "derived", "sourceRef": "rule:CNC-WALL-MIN@1.0.0", "recordedAt": "2026-09-17T00:00:00Z" },
+    { "id": "PROV-FIXTURE-003", "subjectId": "COMP-FIXTURE-BASE", "field": "/manufacturingSetup", "source": "defaulted", "rationale": "Reference Fixture baseline", "recordedAt": "2026-09-17T00:00:00Z" }
+  ]
+}

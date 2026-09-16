@@ -4,3 +4,4 @@
 *.dxf -text
 *.FCStd -text
 artifacts/**/*.svg -text
+contracts/g1/golden/*.json -text

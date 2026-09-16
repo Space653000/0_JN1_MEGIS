@@ -3,9 +3,12 @@ from __future__ import annotations
 from hashlib import sha256
 import json
 from pathlib import Path
-
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from megis.contracts import load_engineering_ir, serialize_engineering_ir  # noqa: E402
 
 
 def load_json(relative_path: str) -> dict:
@@ -62,8 +65,30 @@ def verify_simulation_decision() -> int:
     return 2
 
 
+def verify_golden_contracts() -> int:
+    evidence = load_json("artifacts/g1-ir-003/verification.json")
+    count = 0
+    for record in evidence["goldenInputs"]:
+        assert_file(record["path"], record["bytes"], record["sha256"])
+        load_engineering_ir(ROOT / record["path"])
+        count += 1
+    expectations = evidence["expectations"]
+    assert_file(expectations["path"], expectations["bytes"], expectations["sha256"])
+    assert expectations["artifactsGenerated"] is False
+    reference = load_engineering_ir(ROOT / evidence["goldenInputs"][0]["path"])
+    canonical = serialize_engineering_ir(reference).encode("utf-8")
+    assert len(canonical) == evidence["roundTrip"]["canonicalBytes"]
+    assert sha256(canonical).hexdigest() == evidence["roundTrip"]["canonicalSha256"]
+    return count + 1
+
+
 def main() -> None:
-    verified = verify_cad_artifacts() + verify_drawing_artifacts() + verify_simulation_decision()
+    verified = (
+        verify_cad_artifacts()
+        + verify_drawing_artifacts()
+        + verify_simulation_decision()
+        + verify_golden_contracts()
+    )
     print(f"Artifact smoke test passed: {verified} records verified")
 
 
