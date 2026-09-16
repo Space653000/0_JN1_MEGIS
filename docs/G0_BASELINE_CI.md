@@ -23,7 +23,7 @@ powershell -ExecutionPolicy Bypass -File scripts\run-baseline-ci.ps1
 
 `.github/workflows/baseline-ci.yml` 使用 `windows-latest`，精確鎖定 Python 3.11.9、Node.js 24.17.0、pip 26.2.1 與 npm 11.13.0。三個官方 setup actions 以不可變 commit SHA 固定，workflow 只有 `contents: read` 權限，checkout 不保留 credentials。
 
-所有專案 dependency、cache、TEMP 與 npm CLI 都寫入 `${{ github.workspace }}` 內。FreeCAD runtime 不存在於 Git，CI 只驗證已版控 FCStd/SVG 及其 hashes；重新產生圖面仍由隔離的 FreeCAD spike 負責。
+setup-python 只提供建立環境的 bootstrap interpreter；workflow 隨即建立 `${{ github.workspace }}\.venv-ci`，其後所有 Python dependency 與驗證都由該 repository-local interpreter 執行。其餘 dependency、cache、TEMP 與 npm CLI 也都寫入 `${{ github.workspace }}` 內。FreeCAD runtime 不存在於 Git，CI 只驗證已版控 FCStd/SVG 及其 hashes；重新產生圖面仍由隔離的 FreeCAD spike 負責。
 
 ## 結果語意
 
