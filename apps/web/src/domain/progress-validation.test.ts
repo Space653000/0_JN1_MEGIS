@@ -6,6 +6,11 @@ import { validateProgressState } from "./progress-validation";
 
 const repoRoot = resolve(process.cwd(), "../..");
 const loadState = () => JSON.parse(readFileSync(resolve(repoRoot, "execution/WORK_QUEUE.yaml"), "utf8")) as ProgressState;
+const getWorkItem = (state: ProgressState, id: string) => {
+  const item = state.workItems.find((candidate) => candidate.id === id);
+  if (!item) throw new Error(`Missing test work item: ${id}`);
+  return item;
+};
 
 describe("Project progress truthfulness contract", () => {
   it("accepts the repository progress source with working evidence", () => {
@@ -14,39 +19,36 @@ describe("Project progress truthfulness contract", () => {
 
   it("rejects a done item with broken evidence", () => {
     const state = structuredClone(loadState());
-    state.workItems[0].status = "done";
-    state.workItems[0].acceptanceResults[2] = {
+    const repositoryItem = getWorkItem(state, "G0-REP-001");
+    repositoryItem.acceptanceResults[2] = {
       criterion: "控制面可由自動化命令驗證",
       status: "passed",
       evidence: ["scripts/verify-control-plane.mjs"],
     };
-    state.workItems[0].verification = "passed";
-    state.workItems[0].commitSha = "a".repeat(40);
-    state.workItems[0].evidence = ["missing/evidence.txt"];
-    state.workItems[1].status = "in_progress";
-    state.currentWorkItem = state.workItems[1].id;
+    repositoryItem.evidence = ["missing/evidence.txt"];
     expect(validateProgressState(state, { evidenceExists: (path) => existsSync(resolve(repoRoot, path)) })).toContain("G0-REP-001 has broken evidence: missing/evidence.txt");
   });
 
   it("rejects an illegal transition when dependencies are incomplete", () => {
     const state = structuredClone(loadState());
-    state.workItems[0].status = "planned";
+    getWorkItem(state, "G0-REP-001").status = "planned";
+    getWorkItem(state, "G0-ENV-001").status = "in_progress";
+    getWorkItem(state, "G0-CAD-001").status = "planned";
+    state.currentWorkItem = "G0-ENV-001";
     expect(validateProgressState(state)).toContain("G0-ENV-001 cannot be in_progress before G0-REP-001 is done");
   });
 
   it("rejects a done item with pending acceptance", () => {
     const state = structuredClone(loadState());
-    state.workItems[0].status = "done";
-    state.workItems[0].acceptanceResults[0].status = "pending";
-    state.workItems[0].acceptanceResults[0].evidence = [];
-    state.workItems[0].verification = "passed";
-    state.workItems[0].commitSha = "a".repeat(40);
+    const repositoryItem = getWorkItem(state, "G0-REP-001");
+    repositoryItem.acceptanceResults[0].status = "pending";
+    repositoryItem.acceptanceResults[0].evidence = [];
     expect(validateProgressState(state)).toContain("G0-REP-001 is done with pending acceptance");
   });
 
   it("rejects more than one in-progress item", () => {
     const state = structuredClone(loadState());
-    state.workItems[2].status = "in_progress";
+    getWorkItem(state, "G0-DRW-001").status = "in_progress";
     expect(validateProgressState(state)).toContain("Expected exactly one in-progress item, found 2");
   });
 });

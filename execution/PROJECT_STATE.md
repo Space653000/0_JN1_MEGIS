@@ -1,10 +1,10 @@
 # MEGIS Project State
 
 - Current gate: `G0 — Foundation & Feasibility`
-- Current work item: `G0-ENV-001 — 鎖定 Python、Node 與 CAD dependencies`
-- Last green commit: `09f19ea3633189bdbb58e254d8e5798736950bfb`
+- Current work item: `G0-CAD-001 — CadQuery Reference Case spike`
+- Last green commit: `629c02831b6b3eae30fb8a8ef8f9519f3bfbafaf`
 - Control-plane schema: `1.0.0`
-- Updated at: `2026-09-16T20:38:59+08:00`
+- Updated at: `2026-09-16T20:56:16+08:00`
 
 ## Accepted capabilities
 
@@ -12,16 +12,18 @@
 - UI-0B：證據驅動的施工進度中心
 - UI-0C：引導式治具使用者體驗原型
 - UI-0D：自動化驗證與使用者驗收
+- G0-REP-001：正式施工控制面
+- G0-ENV-001：可重現 Python、Node 與 CAD 工具鏈
 
 UI-0 驗收只涵蓋使用者體驗原型；沒有工程生成能力或工程製品獲得驗收。
 
 ## Active scope
 
-`G0-REP-001` 已完成並由 commit `09f19ea` 固定。現在只施工 `G0-ENV-001`，目標是鎖定 Python、Node、CadQuery、OpenCascade 與 FreeCAD 的支援版本及可重現安裝邊界。
+`G0-ENV-001` 已完成並由 commit `629c028` 固定。現在只施工 `G0-CAD-001`，目標是以固定 CadQuery／OpenCascade 工具鏈建立 Reference Case，輸出 STEP、STL 與 2D DXF section，並以自動化檢查證明製品有效。
 
 ## Next work item
 
-`G0-CAD-001`、`G0-DRW-001` 與 `G0-SIM-001` 只有在 `G0-ENV-001` 完成後才能轉為 `ready`；一次仍只施工一個工作單元。
+`G0-CAD-001` 完成後依序處理 `G0-DRW-001`、`G0-SIM-001` 與 `G0-CI-001`；一次仍只施工一個工作單元。
 
 ## Boundaries
 

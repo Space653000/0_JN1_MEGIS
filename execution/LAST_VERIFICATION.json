@@ -1,9 +1,13 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-16T20:38:59+08:00",
-  "sourceCommit": "09f19ea3633189bdbb58e254d8e5798736950bfb",
+  "verifiedAt": "2026-09-16T21:00:49+08:00",
+  "sourceCommit": "629c02831b6b3eae30fb8a8ef8f9519f3bfbafaf",
   "status": "passed",
   "commands": [
+    { "command": ".venv/Scripts/python.exe -m pip check", "status": "passed" },
+    { "command": ".venv/Scripts/python.exe scripts/verify_toolchain.py", "status": "passed", "solidValid": true, "solidVolume": 6000.0 },
+    { "command": ".venv/Scripts/python.exe -m pytest", "status": "passed", "testsPassed": 1, "testsFailed": 0 },
+    { "command": "clean .temp/g0-env-rebuild install from requirements.lock", "status": "passed", "pipCheck": "passed", "solidValid": true, "solidVolume": 6000.0 },
     { "command": "node scripts/verify-control-plane.mjs", "status": "passed", "workItems": 30, "gates": 14 },
     { "command": "npm --prefix apps/web run lint", "status": "passed" },
     { "command": "npm --prefix apps/web run typecheck", "status": "passed" },
@@ -13,7 +17,7 @@
   "browser": {
     "path": "/progress",
     "currentGate": "G0",
-    "currentWorkItem": "G0-REP-001",
+    "currentWorkItem": "G0-CAD-001",
     "ui0dAccepted": true,
     "acceptanceDisclosure": true,
     "horizontalOverflow": false,
@@ -21,10 +25,10 @@
     "consoleWarningsAndErrors": 0
   },
   "buildArtifacts": [
-    { "path": "apps/web/dist/assets/index-C_LMo1Nk.js", "bytes": 247367, "sha256": "13f55e561eeb9a3ec96a6d4e77a959a3eda5aac50feb912ba48b7304c6177ec5" },
+    { "path": "apps/web/dist/assets/index-DmCZ6xAL.js", "bytes": 247901, "sha256": "c93bc2643ca0fd9c5b6b394a4ac7cf1163b1602928a88f165c737c1607727cd0" },
     { "path": "apps/web/dist/assets/index-lbw2QEtU.css", "bytes": 23096, "sha256": "79805929f2f915e4070c63d27849f610baee8f314085af5d6acb707245509f1a" },
     { "path": "apps/web/dist/favicon.svg", "bytes": 288, "sha256": "6b2c8c18b45392bb97dad145479898477ddce9bc7bfcf987d257dccec9676704" },
-    { "path": "apps/web/dist/index.html", "bytes": 590, "sha256": "f4beb00de4a919313d6c8afde5b24e20e28bf3fab2ec4ded1a82b20d637b2d4d" }
+    { "path": "apps/web/dist/index.html", "bytes": 590, "sha256": "239b40271db15abd2a8b80e8ef41dbd30292c56689b1a90ee68980fd9c3d773f" }
   ],
   "boundaries": {
     "workspaceRoot": "C:/0_JN1_MEGIS",
