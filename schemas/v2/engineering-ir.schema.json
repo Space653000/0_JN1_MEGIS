@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v2/engineering-ir.schema.json",
+  "title": "MEGIS V2 Engineering IR",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "designId", "revision", "maturity", "unitSystem", "coordinateSystem",
+    "requirements", "components", "interfaces", "relationships", "materials", "manufacturing",
+    "constraints", "assumptions", "unknowns", "provenance"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "2.0.0" },
+    "designId": { "$ref": "https://megis.local/schemas/v2/primitives.schema.json#/$defs/entityId" },
+    "revision": { "type": "string", "pattern": "^[A-Z](?:[0-9]+)?$" },
+    "maturity": { "enum": ["CONCEPT", "PROTOTYPE", "ENGINEERING_REVIEWED", "RELEASED"] },
+    "unitSystem": { "$ref": "https://megis.local/schemas/v2/primitives.schema.json#/$defs/unitSystem" },
+    "coordinateSystem": { "$ref": "https://megis.local/schemas/v2/primitives.schema.json#/$defs/coordinateSystem" },
+    "requirements": { "type": "array", "items": { "$ref": "#/$defs/requirement" } },
+    "components": { "type": "array", "items": { "$ref": "#/$defs/component" } },
+    "interfaces": { "type": "array", "items": { "$ref": "#/$defs/interface" } },
+    "relationships": { "type": "array", "items": { "$ref": "#/$defs/relationship" } },
+    "materials": { "type": "array", "items": { "$ref": "#/$defs/material" } },
+    "manufacturing": { "type": "array", "items": { "$ref": "#/$defs/manufacturing" } },
+    "constraints": { "type": "array", "items": { "$ref": "#/$defs/constraint" } },
+    "assumptions": { "type": "array", "items": { "$ref": "#/$defs/assumption" } },
+    "unknowns": { "type": "array", "items": { "$ref": "#/$defs/unknown" } },
+    "provenance": {
+      "type": "array",
+      "items": { "$ref": "https://megis.local/schemas/v2/primitives.schema.json#/$defs/provenance" }
+    }
+  },
+  "$defs": {
+    "entityId": { "$ref": "https://megis.local/schemas/v2/primitives.schema.json#/$defs/entityId" },
+    "provenanceIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/entityId" }
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "dimension", "quantity"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "dimension": {
+          "enum": ["length", "angle", "mass", "time", "force", "torque", "pressure", "frequency", "sound_pressure_level", "speed", "voltage", "current", "power"]
+        },
+        "quantity": { "$ref": "https://megis.local/schemas/v2/primitives.schema.json#/$defs/quantity" }
+      }
+    },
+    "requirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "statement", "priority", "verificationMethod", "provenanceIds"],
+      "properties": {
+        "id": { "$ref": "#/$defs/entityId" },
+        "statement": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "priority": { "enum": ["must", "should", "could"] },
+        "verificationMethod": { "enum": ["inspection", "test", "analysis", "demonstration"] },
+        "provenanceIds": { "$ref": "#/$defs/provenanceIds" }
+      }
+    },
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "domain", "componentType", "dimensions", "provenanceIds"],
+      "properties": {
+        "id": { "$ref": "#/$defs/entityId" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "domain": { "enum": ["fixture", "acoustic", "robot", "shared"] },
+        "componentType": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$", "maxLength": 80 },
+        "dimensions": { "type": "array", "items": { "$ref": "#/$defs/measurement" } },
+        "materialId": { "$ref": "#/$defs/entityId" },
+        "provenanceIds": { "$ref": "#/$defs/provenanceIds" }
+      }
+    },
+    "interface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "interfaceType", "participantIds"],
+      "properties": {
+        "id": { "$ref": "#/$defs/entityId" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "interfaceType": { "enum": ["mount", "opening", "electrical", "acoustic", "kinematic"] },
+        "participantIds": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "$ref": "#/$defs/entityId" } }
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "relationshipType", "sourceId", "targetId", "constraintIds"],
+      "properties": {
+        "id": { "$ref": "#/$defs/entityId" },
+        "relationshipType": { "enum": ["contains", "mounts_to", "fastened_by", "connects_to", "clearance_to", "encloses"] },
+        "sourceId": { "$ref": "#/$defs/entityId" },
+        "targetId": { "$ref": "#/$defs/entityId" },
+        "constraintIds": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/entityId" } }
+      }
+    },
+    "material": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "designation", "properties", "provenanceIds"],
+      "properties": {
+        "id": { "$ref": "#/$defs/entityId" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "designation": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "properties": { "type": "array", "items": { "$ref": "#/$defs/measurement" } },
+        "provenanceIds": { "$ref": "#/$defs/provenanceIds" }
+      }
+    },
+    "manufacturing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "process", "componentIds"],
+      "properties": {
+        "id": { "$ref": "#/$defs/entityId" },
+        "process": { "enum": ["3_axis_cnc", "additive", "manual", "unknown"] },
+        "componentIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/entityId" } }
+      }
+    },
+    "constraint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "constraintType", "severity", "targetIds", "provenanceIds"],
+      "properties": {
+        "id": { "$ref": "#/$defs/entityId" },
+        "constraintType": { "enum": ["dimension", "clearance", "wall", "collision", "manufacturing", "interface"] },
+        "severity": { "enum": ["hard", "soft", "advisory"] },
+        "targetIds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/entityId" } },
+        "measurement": { "$ref": "#/$defs/measurement" },
+        "expression": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "provenanceIds": { "$ref": "#/$defs/provenanceIds" }
+      },
+      "anyOf": [{ "required": ["measurement"] }, { "required": ["expression"] }]
+    },
+    "assumption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "subjectId", "field", "status", "rationale", "provenanceIds"],
+      "properties": {
+        "id": { "$ref": "#/$defs/entityId" },
+        "subjectId": { "$ref": "#/$defs/entityId" },
+        "field": { "type": "string", "pattern": "^/" },
+        "status": { "enum": ["derived", "defaulted"] },
+        "rationale": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "provenanceIds": { "$ref": "#/$defs/provenanceIds" }
+      }
+    },
+    "unknown": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "subjectId", "field", "unsafeToDefault", "question"],
+      "properties": {
+        "id": { "$ref": "#/$defs/entityId" },
+        "subjectId": { "$ref": "#/$defs/entityId" },
+        "field": { "type": "string", "pattern": "^/" },
+        "unsafeToDefault": { "type": "boolean" },
+        "question": { "type": "string", "minLength": 1, "maxLength": 1000 }
+      }
+    }
+  }
+}

@@ -74,8 +74,8 @@
     {
       "id": "G1-IR-002", "title": "定義 Engineering IR schema", "gate": "G1", "status": "in_progress", "dependsOn": ["G1-IR-001"],
       "inputs": ["primitive schemas"], "outputs": ["Engineering IR schema"],
-      "acceptance": ["IR schema 拒絕 unit mismatch、dangling reference、duplicate ID 與 invalid range"], "acceptanceResults": [{ "criterion": "IR schema 拒絕 unit mismatch、dangling reference、duplicate ID 與 invalid range", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "acceptance": ["IR schema 拒絕 unit mismatch、dangling reference、duplicate ID 與 invalid range"], "acceptanceResults": [{ "criterion": "IR schema 拒絕 unit mismatch、dangling reference、duplicate ID 與 invalid range", "status": "passed", "evidence": ["schemas/v2/engineering-ir.schema.json", "contracts/g1/examples/engineering-ir-valid.json", "tests/test_g1_engineering_ir.py", "artifacts/g1-ir-002/verification.json", "docs/G1_ENGINEERING_IR.md"] }],
+      "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_g1_engineering_ir.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["schemas/v2/engineering-ir.schema.json", "megis/contracts/validation.py", "contracts/g1/examples/engineering-ir-valid.json", "tests/test_g1_engineering_ir.py", "artifacts/g1-ir-002/verification.json", "docs/G1_ENGINEERING_IR.md"], "verification": "passed", "commitSha": null
     },
     {
       "id": "G1-IR-003", "title": "建立 Reference Fixture golden case", "gate": "G1", "status": "planned", "dependsOn": ["G1-IR-002"],

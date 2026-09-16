@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G1-IR-002",
+  "verifiedAt": "2026-09-17T06:53:12+08:00",
+  "schema": {
+    "path": "schemas/v2/engineering-ir.schema.json",
+    "bytes": 7906,
+    "sha256": "998510f0cf1d37d4b08002c2ff6cd2219d577067adefdca7f4483b33528a600e"
+  },
+  "positiveFixture": {
+    "path": "contracts/g1/examples/engineering-ir-valid.json",
+    "bytes": 3053,
+    "sha256": "f30cbff6131a936860dce57b6cadbfb616269f0821908a50f1b970feebde3fac"
+  },
+  "contractTests": {
+    "passed": 9,
+    "failed": 0,
+    "requiredNegativeCases": ["unit_mismatch", "dangling_reference", "duplicate_id", "invalid_range"]
+  },
+  "fullEngineeringIrSchema": true,
+  "engineeringArtifactGenerated": false
+}

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "2.0.0",
+  "designId": "PROJECT-0001",
+  "revision": "A",
+  "maturity": "PROTOTYPE",
+  "unitSystem": { "length": "mm", "angle": "deg", "mass": "kg", "time": "s" },
+  "coordinateSystem": { "handedness": "right", "axes": { "x": "width", "y": "depth", "z": "height" } },
+  "requirements": [
+    { "id": "REQ-001", "statement": "Enclose the reference PCB.", "priority": "must", "verificationMethod": "inspection", "provenanceIds": ["PROV-001"] }
+  ],
+  "components": [
+    {
+      "id": "COMP-BASE-001",
+      "name": "Fixture base",
+      "domain": "fixture",
+      "componentType": "fixture_base",
+      "dimensions": [
+        { "name": "width", "dimension": "length", "quantity": { "id": "DIM-WIDTH-001", "unit": "mm", "nominal": 120.0, "tolerance": 0.1 } },
+        { "name": "depth", "dimension": "length", "quantity": { "id": "DIM-DEPTH-001", "unit": "mm", "min": 79.9, "max": 80.1 } }
+      ],
+      "materialId": "MAT-AL6061-001",
+      "provenanceIds": ["PROV-001"]
+    },
+    { "id": "COMP-PCB-001", "name": "Reference PCB", "domain": "fixture", "componentType": "pcb", "dimensions": [], "provenanceIds": ["PROV-001"] }
+  ],
+  "interfaces": [
+    { "id": "INT-MOUNT-001", "name": "PCB mounting interface", "interfaceType": "mount", "participantIds": ["COMP-BASE-001", "COMP-PCB-001"] }
+  ],
+  "relationships": [
+    { "id": "REL-MOUNT-001", "relationshipType": "mounts_to", "sourceId": "COMP-PCB-001", "targetId": "COMP-BASE-001", "constraintIds": ["CON-WALL-001"] }
+  ],
+  "materials": [
+    { "id": "MAT-AL6061-001", "name": "Aluminum 6061", "designation": "AA 6061", "properties": [], "provenanceIds": ["PROV-002"] }
+  ],
+  "manufacturing": [
+    { "id": "MFG-CNC-001", "process": "3_axis_cnc", "componentIds": ["COMP-BASE-001"] }
+  ],
+  "constraints": [
+    {
+      "id": "CON-WALL-001",
+      "constraintType": "wall",
+      "severity": "hard",
+      "targetIds": ["COMP-BASE-001"],
+      "measurement": { "name": "minimum wall", "dimension": "length", "quantity": { "id": "DIM-WALL-001", "unit": "mm", "min": 2.0, "max": 3.0 } },
+      "provenanceIds": ["PROV-002"]
+    }
+  ],
+  "assumptions": [
+    { "id": "ASM-001", "subjectId": "COMP-BASE-001", "field": "/manufacturingSetup", "status": "defaulted", "rationale": "Reference Case fixed setup", "provenanceIds": ["PROV-003"] }
+  ],
+  "unknowns": [
+    { "id": "UNK-001", "subjectId": "PROJECT-0001", "field": "/maximumLoad", "unsafeToDefault": true, "question": "What is the maximum applied load?" }
+  ],
+  "provenance": [
+    { "id": "PROV-001", "subjectId": "PROJECT-0001", "field": "/requirements", "source": "user", "actor": "reference-case-owner", "recordedAt": "2026-09-17T00:00:00Z" },
+    { "id": "PROV-002", "subjectId": "COMP-BASE-001", "field": "/constraints", "source": "derived", "sourceRef": "rule:CNC-WALL-MIN@1.0.0", "recordedAt": "2026-09-17T00:00:00Z" },
+    { "id": "PROV-003", "subjectId": "COMP-BASE-001", "field": "/manufacturingSetup", "source": "defaulted", "rationale": "Reference Case baseline", "recordedAt": "2026-09-17T00:00:00Z" }
+  ]
+}
