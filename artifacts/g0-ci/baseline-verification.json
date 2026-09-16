@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G0-CI-001",
+  "verifiedAt": "2026-09-17T00:55:13+08:00",
+  "platform": "Windows x64-compatible",
+  "toolchain": {
+    "python": "3.11.9",
+    "node": "24.17.0",
+    "pip": "26.2.1",
+    "npm": "11.13.0"
+  },
+  "results": {
+    "controlPlane": "passed",
+    "dependencyIntegrity": "passed",
+    "cadToolchainSmoke": "passed",
+    "pythonTests": { "status": "passed", "count": 7 },
+    "artifactSmoke": { "status": "passed", "records": 7 },
+    "frontendLint": "passed",
+    "frontendTypecheck": "passed",
+    "frontendTests": { "status": "passed", "count": 9 },
+    "frontendBuild": "passed"
+  },
+  "entrypoint": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+  "engineeringRelease": false
+}

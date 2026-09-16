@@ -62,8 +62,8 @@
     {
       "id": "G0-CI-001", "title": "建立 baseline CI", "gate": "G0", "status": "in_progress", "dependsOn": ["G0-REP-001", "G0-ENV-001"],
       "inputs": ["locked toolchain", "control-plane verifier"], "outputs": ["CI workflow", "baseline evidence"],
-      "acceptance": ["lint、typecheck、unit、schema 與 artifact smoke test 可重跑且全綠"], "acceptanceResults": [{ "criterion": "lint、typecheck、unit、schema 與 artifact smoke test 可重跑且全綠", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "acceptance": ["lint、typecheck、unit、schema 與 artifact smoke test 可重跑且全綠"], "acceptanceResults": [{ "criterion": "lint、typecheck、unit、schema 與 artifact smoke test 可重跑且全綠", "status": "passed", "evidence": [".github/workflows/baseline-ci.yml", "scripts/run-baseline-ci.ps1", "scripts/verify_artifacts.py", "artifacts/g0-ci/baseline-verification.json", "docs/G0_BASELINE_CI.md"] }],
+      "verificationCommands": ["powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [".github/workflows/baseline-ci.yml", "scripts/run-baseline-ci.ps1", "scripts/verify_artifacts.py", "tests/test_g0_artifact_smoke.py", "tests/test_g0_ci_contract.py", "artifacts/g0-ci/README.md", "artifacts/g0-ci/baseline-verification.json", "docs/G0_BASELINE_CI.md"], "verification": "passed", "commitSha": null
     },
     {
       "id": "G1-IR-001", "title": "定義 unit、coordinate、ID 與 provenance primitives", "gate": "G1", "status": "planned", "dependsOn": ["G0-CAD-001", "G0-DRW-001", "G0-SIM-001", "G0-CI-001"],

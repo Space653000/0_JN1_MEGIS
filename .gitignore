@@ -5,6 +5,7 @@ coverage/
 .temp/
 .venv/
 .venv-*/
+.tools/
 .pip-cache/
 .pytest_cache/
 __pycache__/
