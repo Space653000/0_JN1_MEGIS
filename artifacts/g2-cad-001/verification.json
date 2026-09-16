@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G2-CAD-001",
+  "verifiedAt": "2026-09-17T07:27:05+08:00",
+  "input": "contracts/g1/golden/reference-fixture.json",
+  "plan": {
+    "planId": "PLAN-FIXTURE-REFERENCE-001-A-BASE",
+    "componentId": "COMP-FIXTURE-BASE",
+    "operation": "box",
+    "dimensionsMm": { "width": 120.0, "depth": 80.0, "height": 20.0 },
+    "coordinateAxes": ["width", "depth", "height"]
+  },
+  "contract": {
+    "protocol": "megis.geometry.GeometryBackend",
+    "capabilityNegotiation": true,
+    "kernelTypesCrossBoundary": false,
+    "stableErrorCodes": ["INVALID_IR", "UNSUPPORTED_OPERATION", "INVALID_DIMENSION", "BACKEND_CONTRACT_VIOLATION"]
+  },
+  "recordingAdapter": {
+    "status": "passed",
+    "opaqueModelToken": true,
+    "solidCount": 1,
+    "volumeMm3": 192000.0
+  },
+  "contractTests": { "passed": 7, "failed": 0 },
+  "engineeringArtifactGenerated": false
+}
