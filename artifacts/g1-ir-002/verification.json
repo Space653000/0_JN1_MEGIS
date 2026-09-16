@@ -17,6 +17,13 @@
     "failed": 0,
     "requiredNegativeCases": ["unit_mismatch", "dangling_reference", "duplicate_id", "invalid_range"]
   },
+  "githubActions": {
+    "runId": 35159901148,
+    "headSha": "c05af93d16e064dd939753fb1b7ac6d108ac01bc",
+    "status": "passed",
+    "durationSeconds": 109,
+    "url": "https://github.com/Space653000/0_JN1_MEGIS/actions/runs/35159901148"
+  },
   "fullEngineeringIrSchema": true,
   "engineeringArtifactGenerated": false
 }
