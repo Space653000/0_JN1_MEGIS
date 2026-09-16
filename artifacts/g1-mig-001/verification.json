@@ -22,5 +22,12 @@
   "rollback": { "status": "passed", "exactSourceRestored": true, "tamperDetection": "passed" },
   "unsupportedVersionsRejected": ["0.9.0", "2.0.0", "3.0.0", null],
   "contractTests": { "passed": 8, "failed": 0 },
+  "githubActions": {
+    "runId": 35161744809,
+    "headSha": "be573a0c8dc151ba9a199770146855a10b64540f",
+    "status": "passed",
+    "durationSeconds": 116,
+    "url": "https://github.com/Space653000/0_JN1_MEGIS/actions/runs/35161744809"
+  },
   "engineeringArtifactGenerated": false
 }

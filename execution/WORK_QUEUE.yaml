@@ -1,16 +1,16 @@
 {
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-17T07:12:15+08:00",
-  "baselineCommit": "6160784f8b3280152bef6d006baf0fd033e9097a",
-  "currentWorkItem": "G1-MIG-001",
+  "updatedAt": "2026-09-17T07:21:07+08:00",
+  "baselineCommit": "be573a0c8dc151ba9a199770146855a10b64540f",
+  "currentWorkItem": "G2-CAD-001",
   "gates": [
     { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
     { "id": "UI-0B", "title": "施工進度中心", "status": "accepted", "dependsOn": ["UI-0A"] },
     { "id": "UI-0C", "title": "引導式使用者體驗原型", "status": "accepted", "dependsOn": ["UI-0B"] },
     { "id": "UI-0D", "title": "驗證與使用者驗收", "status": "accepted", "dependsOn": ["UI-0C"] },
     { "id": "G0", "title": "基礎建設與可行性", "status": "accepted", "dependsOn": ["UI-0D"] },
-    { "id": "G1", "title": "工程契約與黃金案例", "status": "active", "dependsOn": ["G0"] },
-    { "id": "G2", "title": "治具幾何垂直切片", "status": "planned", "dependsOn": ["G1"] },
+    { "id": "G1", "title": "工程契約與黃金案例", "status": "accepted", "dependsOn": ["G0"] },
+    { "id": "G2", "title": "治具幾何垂直切片", "status": "active", "dependsOn": ["G1"] },
     { "id": "G3", "title": "規則與驗證", "status": "planned", "dependsOn": ["G2"] },
     { "id": "G4", "title": "模組與限制條件組合", "status": "planned", "dependsOn": ["G3"] },
     { "id": "G5", "title": "原型套件與可重現性", "status": "planned", "dependsOn": ["G4"] },
@@ -84,13 +84,13 @@
       "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_g1_golden_cases.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["megis/contracts/serialization.py", "megis/contracts/consumer.py", "contracts/g1/golden/reference-fixture.json", "contracts/g1/golden/acoustic-schema-only.json", "contracts/g1/golden/robot-schema-only.json", "contracts/g1/golden/reference-fixture-expectations.json", "tests/test_g1_golden_cases.py", "artifacts/g1-ir-003/verification.json", "docs/G1_GOLDEN_CASES.md"], "verification": "passed", "commitSha": "6160784f8b3280152bef6d006baf0fd033e9097a"
     },
     {
-      "id": "G1-MIG-001", "title": "建立 schema migration contract", "gate": "G1", "status": "in_progress", "dependsOn": ["G1-IR-003"],
+      "id": "G1-MIG-001", "title": "建立 schema migration contract", "gate": "G1", "status": "done", "dependsOn": ["G1-IR-003"],
       "inputs": ["versioned golden input"], "outputs": ["migration interface", "rollback fixture"],
       "acceptance": ["至少一個前版 fixture 可遷移並通過 rollback test"], "acceptanceResults": [{ "criterion": "至少一個前版 fixture 可遷移並通過 rollback test", "status": "passed", "evidence": ["schemas/v1/engineering-ir.schema.json", "contracts/g1/migrations/reference-fixture-v1.json", "megis/contracts/migration.py", "tests/test_g1_migration.py", "artifacts/g1-mig-001/verification.json", "docs/G1_SCHEMA_MIGRATION.md"] }],
-      "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_g1_migration.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["schemas/v1/engineering-ir.schema.json", "contracts/g1/migrations/reference-fixture-v1.json", "megis/contracts/migration.py", "tests/test_g1_migration.py", "artifacts/g1-mig-001/verification.json", "docs/G1_SCHEMA_MIGRATION.md"], "verification": "passed", "commitSha": null
+      "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_g1_migration.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["schemas/v1/engineering-ir.schema.json", "contracts/g1/migrations/reference-fixture-v1.json", "megis/contracts/migration.py", "tests/test_g1_migration.py", "artifacts/g1-mig-001/verification.json", "docs/G1_SCHEMA_MIGRATION.md"], "verification": "passed", "commitSha": "be573a0c8dc151ba9a199770146855a10b64540f"
     },
     {
-      "id": "G2-CAD-001", "title": "實作 geometry capability contract", "gate": "G2", "status": "planned", "dependsOn": ["G1-MIG-001"],
+      "id": "G2-CAD-001", "title": "實作 geometry capability contract", "gate": "G2", "status": "in_progress", "dependsOn": ["G1-MIG-001"],
       "inputs": ["Engineering IR", "CadQuery spike"], "outputs": ["geometry capability contract"],
       "acceptance": ["幾何 adapter 介面可由 golden IR 驅動且不洩漏核心實作"], "acceptanceResults": [{ "criterion": "幾何 adapter 介面可由 golden IR 驅動且不洩漏核心實作", "status": "pending", "evidence": [] }],
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
