@@ -29,11 +29,10 @@ export interface PrototypeViewModel {
 }
 
 export interface DemoResult {
-  maturity: "UX PROTOTYPE";
+  maturity: "使用者體驗原型";
   dimensions: string;
-  material: "Aluminum 6061";
-  process: "3-axis CNC";
+  material: "6061 鋁合金";
+  process: "三軸 CNC";
   checks: Array<{ name: string; state: "demo-pass" | "needs-review"; note: string }>;
   bom: Array<{ item: string; quantity: number; note: string }>;
 }
-

@@ -1,65 +1,65 @@
 {
   "schemaVersion": "0.1.0",
-  "updatedAt": "2026-09-16T16:14:00+08:00",
+  "updatedAt": "2026-09-16T15:20:00+08:00",
   "baselineCommit": "2448b7ac7d1074fed9707884e9ab05a7a5a28eec",
   "currentWorkItem": "UI0-VER-001",
   "gates": [
-    { "id": "UI-0A", "title": "Minimal Foundation", "status": "accepted", "dependsOn": [] },
-    { "id": "UI-0B", "title": "Construction Progress Center", "status": "accepted", "dependsOn": ["UI-0A"] },
-    { "id": "UI-0C", "title": "Guided User Experience Prototype", "status": "accepted", "dependsOn": ["UI-0B"] },
-    { "id": "UI-0D", "title": "Verification and User Acceptance", "status": "active", "dependsOn": ["UI-0C"] },
-    { "id": "G0", "title": "Foundation & Feasibility", "status": "planned", "dependsOn": ["UI-0D"] },
-    { "id": "G1", "title": "Engineering Contracts & Golden Cases", "status": "planned", "dependsOn": ["G0"] },
-    { "id": "G2", "title": "Fixture Geometry Vertical Slice", "status": "planned", "dependsOn": ["G1"] },
-    { "id": "G3", "title": "Rules & Validation", "status": "planned", "dependsOn": ["G2"] },
-    { "id": "G4", "title": "Module & Constraint Composition", "status": "planned", "dependsOn": ["G3"] },
-    { "id": "G5", "title": "Prototype Package & Reproducibility", "status": "planned", "dependsOn": ["G4"] },
-    { "id": "G6", "title": "Guided UI Engineering Integration", "status": "planned", "dependsOn": ["G5"] },
-    { "id": "G7", "title": "Acoustic Thin Slice", "status": "planned", "dependsOn": ["G6"] },
-    { "id": "G8", "title": "Robot Thin Slice", "status": "planned", "dependsOn": ["G6"] },
-    { "id": "G9", "title": "Hardening & Expansion", "status": "planned", "dependsOn": ["G7", "G8"] }
+    { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
+    { "id": "UI-0B", "title": "施工進度中心", "status": "accepted", "dependsOn": ["UI-0A"] },
+    { "id": "UI-0C", "title": "引導式使用者體驗原型", "status": "accepted", "dependsOn": ["UI-0B"] },
+    { "id": "UI-0D", "title": "驗證與使用者驗收", "status": "active", "dependsOn": ["UI-0C"] },
+    { "id": "G0", "title": "基礎建設與可行性", "status": "planned", "dependsOn": ["UI-0D"] },
+    { "id": "G1", "title": "工程契約與黃金案例", "status": "planned", "dependsOn": ["G0"] },
+    { "id": "G2", "title": "治具幾何垂直切片", "status": "planned", "dependsOn": ["G1"] },
+    { "id": "G3", "title": "規則與驗證", "status": "planned", "dependsOn": ["G2"] },
+    { "id": "G4", "title": "模組與限制條件組合", "status": "planned", "dependsOn": ["G3"] },
+    { "id": "G5", "title": "原型套件與可重現性", "status": "planned", "dependsOn": ["G4"] },
+    { "id": "G6", "title": "引導式介面工程整合", "status": "planned", "dependsOn": ["G5"] },
+    { "id": "G7", "title": "聲學垂直切片", "status": "planned", "dependsOn": ["G6"] },
+    { "id": "G8", "title": "機器人垂直切片", "status": "planned", "dependsOn": ["G6"] },
+    { "id": "G9", "title": "強化與擴充", "status": "planned", "dependsOn": ["G7", "G8"] }
   ],
   "workItems": [
     {
       "id": "UI0-FND-001",
-      "title": "Bootstrap isolated repository and UI toolchain",
+      "title": "建立隔離的儲存庫與使用者介面工具鏈",
       "gate": "UI-0A",
       "status": "done",
       "dependsOn": [],
-      "acceptance": ["Remote history is preserved", "All project caches remain inside the repository", "Local commits only"],
+      "acceptance": ["保留遠端歷史", "所有專案快取均留在儲存庫內", "僅建立本機提交"],
       "evidence": ["docs/UI0_PLAN.md", "docs/UI0_FEASIBILITY.md", "AGENTS.md"],
       "verification": "passed",
       "commitSha": "0967c6719573e4a847343252f6dce32d714cb3a8"
     },
     {
       "id": "UI0-PRG-001",
-      "title": "Build evidence-driven construction progress center",
+      "title": "建立證據驅動的施工進度中心",
       "gate": "UI-0B",
       "status": "done",
       "dependsOn": ["UI0-FND-001"],
-      "acceptance": ["Progress comes from one schema-validated source", "Invalid done states fail verification"],
+      "acceptance": ["進度來自單一且通過資料結構驗證的來源", "無效的完成狀態必須無法通過驗證"],
       "evidence": ["apps/web/src/pages/ProgressPage.tsx", "apps/web/src/domain/progress-validation.test.ts"],
       "verification": "passed",
       "commitSha": "cefb1a05b7c477a56c25c975951c9732bf70fb29"
     },
     {
       "id": "UI0-UX-001",
-      "title": "Build guided Fixture UX prototype",
+      "title": "建立引導式治具使用者體驗原型",
       "gate": "UI-0C",
       "status": "done",
       "dependsOn": ["UI0-PRG-001"],
-      "acceptance": ["Fixture flow reaches synthetic results", "All non-engineering outputs remain permanently labeled"],
+      "acceptance": ["治具流程可抵達合成結果頁", "所有非工程輸出皆永久保留明確標示"],
       "evidence": ["apps/web/src/pages/DesignPage.tsx", "apps/web/src/pages/ReviewPage.tsx", "apps/web/src/pages/ResultsPage.tsx", "apps/web/src/pages/prototype-flow.test.tsx"],
       "verification": "passed",
       "commitSha": "cefb1a05b7c477a56c25c975951c9732bf70fb29"
     },
     {
       "id": "UI0-VER-001",
-      "title": "Verify and present UI-0 for user acceptance",
+      "title": "驗證並展示 UI-0 供使用者驗收",
       "gate": "UI-0D",
       "status": "in_progress",
       "dependsOn": ["UI0-UX-001"],
-      "acceptance": ["Automated verification passes", "User performs acceptance review"],
+      "acceptance": ["自動化驗證通過", "使用者完成驗收檢視"],
       "evidence": [],
       "verification": "not_run",
       "commitSha": null
@@ -67,8 +67,8 @@
   ],
   "blockers": [],
   "risks": [
-    { "id": "R-UI0-001", "title": "Prototype mistaken for engineering output", "impact": "high", "mitigation": "Permanent synthetic-data and no-artifact labels plus automated assertions" },
-    { "id": "R-UI0-002", "title": "Mock model hardens into an invalid IR contract", "impact": "high", "mitigation": "Versioned PrototypeViewModel behind a replaceable adapter seam" },
-    { "id": "R-UI0-003", "title": "Tooling writes outside the workspace", "impact": "high", "mitigation": "Repository-local cache, temp, browser, test, and build paths with boundary audit" }
+    { "id": "R-UI0-001", "title": "原型被誤認為工程輸出", "impact": "high", "mitigation": "永久顯示合成資料與無工程製品標示，並以自動化斷言驗證" },
+    { "id": "R-UI0-002", "title": "模擬模型固化為無效的 IR 契約", "impact": "high", "mitigation": "使用有版本的原型檢視模型，並置於可替換的轉接器介面後方" },
+    { "id": "R-UI0-003", "title": "工具寫入工作區之外", "impact": "high", "mitigation": "快取、暫存、瀏覽器、測試與建置路徑均留在儲存庫內，並執行邊界稽核" }
   ]
 }

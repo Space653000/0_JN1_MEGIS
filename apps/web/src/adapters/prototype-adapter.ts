@@ -34,10 +34,10 @@ function buildReview(model: PrototypeViewModel): PrototypeViewModel {
       { id: "outer-size", label: "外形尺寸", value: `${input.width} × ${input.depth} × ${input.height} mm`, provenance: "user" },
       { id: "pcb-count", label: "PCB 數量", value: `${input.pcbCount} 片`, provenance: "user" },
       { id: "interface", label: "外部介面", value: input.connector, provenance: "user" },
-      { id: "material", label: "材料", value: "Aluminum 6061", provenance: "demo-default" },
-      { id: "process", label: "製程", value: "3-axis CNC", provenance: "demo-default" },
+      { id: "material", label: "材料", value: "6061 鋁合金", provenance: "demo-default" },
+      { id: "process", label: "製程", value: "三軸 CNC", provenance: "demo-default" },
       { id: "wall", label: "最小壁厚", value: "2 mm", provenance: "demo-default" },
-      { id: "pcb-envelope", label: "PCB 詳細尺寸與安裝孔位", value: "Unknown — 進入真實生成前必須提供", provenance: "unknown", critical: true },
+      { id: "pcb-envelope", label: "PCB 詳細尺寸與安裝孔位", value: "未知——進入真實生成前必須提供", provenance: "unknown", critical: true },
     ],
   };
 }
@@ -61,21 +61,20 @@ export const browserPrototypeAdapter: PrototypeAdapter = {
   createDemoResult(model) {
     const { input } = model;
     return {
-      maturity: "UX PROTOTYPE",
+      maturity: "使用者體驗原型",
       dimensions: `${input.width} × ${input.depth} × ${input.height} mm`,
-      material: "Aluminum 6061",
-      process: "3-axis CNC",
+      material: "6061 鋁合金",
+      process: "三軸 CNC",
       checks: [
-        { name: "Supported envelope", state: "demo-pass", note: "尺寸位於 50–300 mm demo 範圍內" },
-        { name: "Minimum wall", state: "demo-pass", note: "展示值 2 mm；未執行 geometry validation" },
-        { name: "PCB clearance", state: "needs-review", note: "缺少 PCB envelope 與安裝孔位" },
+        { name: "支援的外形範圍", state: "demo-pass", note: "尺寸位於 50–300 mm 展示範圍內" },
+        { name: "最小壁厚", state: "demo-pass", note: "展示值 2 mm；未執行幾何驗證" },
+        { name: "PCB 間隙", state: "needs-review", note: "缺少 PCB 外形範圍與安裝孔位" },
       ],
       bom: [
-        { item: "Base — demo record", quantity: 1, note: "No CAD artifact" },
-        { item: "Removable cover — demo record", quantity: 1, note: "No CAD artifact" },
-        { item: "M3 fastener — demo record", quantity: 4, note: "Quantity is synthetic" },
+        { item: "底座——展示記錄", quantity: 1, note: "未產生 CAD 製品" },
+        { item: "可拆上蓋——展示記錄", quantity: 1, note: "未產生 CAD 製品" },
+        { item: "M3 緊固件——展示記錄", quantity: 4, note: "數量為合成資料" },
       ],
     };
   },
 };
-

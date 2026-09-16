@@ -1,52 +1,47 @@
-# UI-0 Verification Report
+# UI-0 驗證報告
 
-## Automated verification
+## 自動化驗證
 
-Verified on 2026-09-16 against local commit `cefb1a05b7c477a56c25c975951c9732bf70fb29`.
+2026-09-16 已針對目前本機工作樹完成驗證。
 
-| Check | Result |
+| 檢查項目 | 結果 |
 |---|---|
-| ESLint | Passed |
-| TypeScript type-check | Passed |
-| Vitest | 6 / 6 passed |
-| Production build | Passed |
-| Progress-state valid source | Passed |
-| Broken evidence rejection | Passed |
-| Illegal status transition rejection | Passed |
-| Adapter replacement seam | Passed |
-| Prototype acknowledgement gate | Passed |
-| Permanent synthetic-result warning | Passed |
+| ESLint 程式規範檢查 | 通過 |
+| TypeScript 型別檢查 | 通過 |
+| Vitest 自動化測試 | 6／6 通過 |
+| 正式環境建置 | 通過 |
+| 進度狀態單一有效來源 | 通過 |
+| 無效證據拒絕機制 | 通過 |
+| 非法狀態轉換拒絕機制 | 通過 |
+| 可替換轉接器介面 | 通過 |
+| 原型確認閘門 | 通過 |
+| 合成結果永久警示 | 通過 |
 
-## Browser verification
+## 瀏覽器驗證
 
-| Scenario | Result |
+| 情境 | 結果 |
 |---|---|
-| Construction progress route responds | HTTP 200 |
-| Guided Fixture flow reaches results | Passed |
-| Generate remains disabled before acknowledgement | Passed |
-| Critical unknown remains visible | Passed |
-| Artifact download links | 0 |
-| External resource elements | 0 |
-| Browser console errors/warnings in clean flow | 0 |
-| Desktop horizontal overflow | None |
-| Mobile 390 px horizontal overflow | None |
-| Mobile navigation affordance | Visible |
+| 施工進度頁可正常回應 | 通過 |
+| 引導式治具流程可抵達結果頁 | 通過 |
+| 未勾選確認前，執行按鈕維持停用 | 通過 |
+| 關鍵未知項目保持可見 | 通過 |
+| 工程製品下載連結 | 0 |
+| 外部資源元素 | 0 |
+| 瀏覽器錯誤／警告 | 0 |
+| 進度、設計、確認、結果、路線圖的英文文案殘留 | 0（必要識別碼與工程縮寫除外） |
+| 671 px 視窗水平溢出 | 無 |
+| 行動版導覽入口 | 可見 |
 
-The initial development tab recorded one stale Vite HMR error while `App.tsx`
-was replaced during authoring. A new clean browser session was created after the
-build; the complete acceptance flow then produced zero console errors or
-warnings.
+進度資料透過 Vite 虛擬模組載入，JSON 變更後需要重新啟動開發伺服器才會取得新快照。本次已重啟伺服器，並重新完成全部頁面檢查。
 
-## Truthfulness checks
+## 真實性檢查
 
-- Results permanently display `NO ENGINEERING ARTIFACT GENERATED`.
-- Geometry is labeled `SCHEMATIC — NOT CAD`.
-- Demo values carry `user`, `demo-default`, or `unknown` provenance.
-- STEP, Drawing PDF, BOM CSV, and release manifest downloads are unavailable.
-- Acoustic and Robot are roadmap-only and labeled unsupported.
+- 結果永久顯示「未產生任何工程製品」。
+- 幾何圖永久標示「示意圖——非 CAD」。
+- 展示值會區分「使用者提供」、「展示預設」與「未知」。
+- STEP、圖面 PDF、BOM CSV 與發布清單下載均未開放。
+- 聲學與機器人能力僅列於路線圖，並標示為尚未支援。
 
-## Pending human acceptance
+## 待使用者驗收
 
-UI-0D remains `in_progress` until the user completes a non-CAD usability review
-and explicitly accepts or requests changes. G0 must not start before that
-decision.
+UI-0D 維持「施工中」，直到使用者完成非 CAD 的可用性檢視，並明確驗收或提出修改要求。在完成這項決定前，不得開始 G0。

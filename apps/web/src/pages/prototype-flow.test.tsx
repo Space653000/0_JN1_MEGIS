@@ -11,14 +11,14 @@ describe("Fixture prototype flow", () => {
     const alternate: PrototypeViewModel = { ...initialPrototypeModel, input: { ...initialPrototypeModel.input, width: 240, pcbCount: 1 } };
     render(<DesignPage model={alternate} setModel={vi.fn()} onNext={vi.fn()} />);
     expect(screen.getByText("240 × 80 × 35 mm")).toBeInTheDocument();
-    expect(screen.getByText("1 PCB + USB-C")).toBeInTheDocument();
+    expect(screen.getByText("1 片 PCB + USB-C")).toBeInTheDocument();
   });
 
   it("requires explicit acknowledgement before prototype simulation", () => {
     const onRun = vi.fn();
     const model = { ...initialPrototypeModel, review: [{ id: "unknown", label: "PCB envelope", value: "Unknown", provenance: "unknown" as const, critical: true }] };
     render(<ReviewPage model={model} onBack={vi.fn()} onRun={onRun} />);
-    const run = screen.getByRole("button", { name: /執行 prototype simulation/i });
+    const run = screen.getByRole("button", { name: /執行原型模擬/i });
     expect(run).toBeDisabled();
     fireEvent.click(screen.getByRole("checkbox"));
     fireEvent.click(run);
@@ -26,10 +26,10 @@ describe("Fixture prototype flow", () => {
   });
 
   it("permanently labels synthetic results and exposes no artifact download", () => {
-    const result: DemoResult = { maturity: "UX PROTOTYPE", dimensions: "120 × 80 × 35 mm", material: "Aluminum 6061", process: "3-axis CNC", checks: [], bom: [] };
+    const result: DemoResult = { maturity: "使用者體驗原型", dimensions: "120 × 80 × 35 mm", material: "6061 鋁合金", process: "三軸 CNC", checks: [], bom: [] };
     render(<ResultsPage result={result} onRestart={vi.fn()} />);
-    expect(screen.getByText("NO ENGINEERING ARTIFACT GENERATED")).toBeInTheDocument();
-    expect(screen.getByText(/STEP、Drawing PDF、BOM CSV/)).toBeInTheDocument();
+    expect(screen.getByText("未產生任何工程製品")).toBeInTheDocument();
+    expect(screen.getByText(/STEP、圖面 PDF、BOM CSV/)).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /download/i })).not.toBeInTheDocument();
   });
 });
