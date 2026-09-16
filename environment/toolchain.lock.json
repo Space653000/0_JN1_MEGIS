@@ -22,7 +22,9 @@
   },
   "constraints": {
     "nativeWindowsArm64OcpWheel": false,
-    "freeCadInstalled": false,
+    "freeCadInstalled": true,
+    "freeCadDecision": "fallback",
+    "freeCadRuntime": "tools/freecad/FreeCAD_1.1.3-Windows-x86_64-py311",
     "freeCadDecisionWorkItem": "G0-DRW-001",
     "comsolDecisionWorkItem": "G0-SIM-001"
   }

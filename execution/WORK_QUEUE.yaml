@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-17T00:27:22+08:00",
+  "updatedAt": "2026-09-17T00:41:23+08:00",
   "baselineCommit": "b8a0dddd2f3ab763cde4a466e851f3a733f3099a",
   "currentWorkItem": "G0-DRW-001",
   "gates": [
@@ -50,8 +50,8 @@
     {
       "id": "G0-DRW-001", "title": "FreeCAD TechDraw headless spike", "gate": "G0", "status": "in_progress", "dependsOn": ["G0-ENV-001"],
       "inputs": ["locked FreeCAD toolchain"], "outputs": ["fixed-template drawing", "feasibility decision"],
-      "acceptance": ["FreeCAD 圖面路徑具有 pass、fallback 或 out_of_scope 決策"], "acceptanceResults": [{ "criterion": "FreeCAD 圖面路徑具有 pass、fallback 或 out_of_scope 決策", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "acceptance": ["FreeCAD 圖面路徑具有 pass、fallback 或 out_of_scope 決策"], "acceptanceResults": [{ "criterion": "FreeCAD 圖面路徑具有 pass、fallback 或 out_of_scope 決策", "status": "passed", "evidence": ["environment/freecad.lock.json", "artifacts/g0-freecad/verification.json", "artifacts/g0-freecad/browser-verification.json", "artifacts/g0-freecad/reference_case_techdraw.FCStd", "artifacts/g0-freecad/reference_case_techdraw_fallback.svg", "docs/G0_FREECAD_DECISION.md"] }],
+      "verificationCommands": ["powershell -ExecutionPolicy Bypass -File scripts/run-freecad-spike.ps1", ".venv/Scripts/python.exe -m pytest tests/test_g0_freecad_fallback.py"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["environment/freecad.lock.json", "spikes/g0_freecad/techdraw_spike.py", "spikes/g0_freecad/templates/a4_landscape_megis.svg", "scripts/run-freecad-spike.ps1", "tests/test_g0_freecad_fallback.py", "artifacts/g0-freecad/verification.json", "docs/G0_FREECAD_DECISION.md"], "verification": "passed", "commitSha": null
     },
     {
       "id": "G0-SIM-001", "title": "COMSOL license、API 與 batch feasibility decision", "gate": "G0", "status": "planned", "dependsOn": ["G0-ENV-001"],

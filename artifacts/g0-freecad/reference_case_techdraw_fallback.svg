@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="297mm" height="210mm" viewBox="0 0 297 210">
+  <rect x="5" y="5" width="287" height="200" fill="white" stroke="black" stroke-width="0.5"/>
+  <g id="reference-case-top-view" fill="none" stroke="black" stroke-width="0.35">
+        <polyline points="85.0000,60.0000 85.0000,140.0000"/>
+    <polyline points="85.0000,60.0000 205.0000,60.0000"/>
+    <polyline points="205.0000,60.0000 205.0000,140.0000"/>
+    <polyline points="85.0000,140.0000 205.0000,140.0000"/>
+    <polyline points="203.0000,62.0000 87.0000,62.0000"/>
+    <polyline points="87.0000,62.0000 87.0000,138.0000"/>
+    <polyline points="203.0000,138.0000 87.0000,138.0000"/>
+    <polyline points="203.0000,62.0000 203.0000,138.0000"/>
+    <polyline points="96.7000,70.0000 96.3753,69.0008 95.5253,68.3832 94.4747,68.3832 93.6247,69.0008 93.3000,70.0000 93.6247,70.9992 94.4747,71.6168 95.5253,71.6168 96.3753,70.9992 96.7000,70.0000"/>
+    <polyline points="196.7000,70.0000 196.3753,69.0008 195.5253,68.3832 194.4747,68.3832 193.6247,69.0008 193.3000,70.0000 193.6247,70.9992 194.4747,71.6168 195.5253,71.6168 196.3753,70.9992 196.7000,70.0000"/>
+    <polyline points="96.7000,130.0000 96.3753,129.0008 95.5253,128.3832 94.4747,128.3832 93.6247,129.0008 93.3000,130.0000 93.6247,130.9992 94.4747,131.6168 95.5253,131.6168 96.3753,130.9992 96.7000,130.0000"/>
+    <polyline points="196.7000,130.0000 196.3753,129.0008 195.5253,128.3832 194.4747,128.3832 193.6247,129.0008 193.3000,130.0000 193.6247,130.9992 194.4747,131.6168 195.5253,131.6168 196.3753,130.9992 196.7000,130.0000"/>
+  </g>
+  <text x="145" y="20" text-anchor="middle" font-family="sans-serif" font-size="5">MEGIS G0 REFERENCE CASE — TOP VIEW</text>
+  <g id="title-block" font-family="sans-serif" fill="black">
+    <rect x="145" y="170" width="147" height="35" fill="none" stroke="black" stroke-width="0.35"/>
+    <line x1="145" y1="182" x2="292" y2="182" stroke="black" stroke-width="0.35"/>
+    <line x1="145" y1="193" x2="292" y2="193" stroke="black" stroke-width="0.35"/>
+    <text x="149" y="178" font-size="4">MEGIS — FEASIBILITY SPIKE</text>
+    <text x="149" y="189" font-size="4">120 × 80 × 35 mm | TOP VIEW | SCALE 1:1</text>
+    <text x="149" y="201" font-size="4.3" font-weight="bold">DRAFT - ENGINEERING REVIEW REQUIRED</text>
+  </g>
+  <text x="8" y="202" font-family="sans-serif" font-size="3.2">NOT FOR MANUFACTURING | Generated from FreeCAD TechDraw visible edges</text>
+</svg>

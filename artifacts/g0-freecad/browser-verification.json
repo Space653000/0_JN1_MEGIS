@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0.0",
+  "verifiedAt": "2026-09-17T00:41:57+08:00",
+  "artifact": "reference_case_techdraw_fallback.svg",
+  "status": "passed",
+  "checks": {
+    "svgDocument": true,
+    "polylineElements": 12,
+    "reviewNoticePresent": true,
+    "notForManufacturingPresent": true,
+    "externalResources": 0,
+    "visualLayout": "passed"
+  },
+  "visualInspection": [
+    "A4 border and title block are visible",
+    "outer and inner top-view profiles are visible",
+    "four M3 clearance holes are visible",
+    "draft and not-for-manufacturing notices are readable"
+  ],
+  "browserHarnessObservation": {
+    "message": "Uncaught (in promise) TypeError: Cannot use 'in' operator to search for 'animation' in undefined",
+    "classification": "browser harness",
+    "rationale": "The standalone SVG contains no script or external resource; XML, geometry, text and visual checks passed."
+  }
+}

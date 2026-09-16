@@ -9,6 +9,7 @@ coverage/
 .pytest_cache/
 __pycache__/
 *.py[cod]
+tools/freecad/
 .sites-runtime/
 test-results/
 playwright-report/
