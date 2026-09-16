@@ -15,7 +15,7 @@ V2.0 採 Gate-driven construction，不以日期或推測百分比宣稱完成�
 
 ## 目前施工狀態
 
-目前位於 **G0：基礎建設與可行性**；`G0-REP-001`、`G0-ENV-001`、`G0-CAD-001`、`G0-DRW-001` 與 `G0-SIM-001` 已完成，唯一在製項目為 `G0-CI-001`。
+**G0：基礎建設與可行性已完成並通過驗收**。目前位於 **G1：工程契約與黃金案例**，唯一在製項目為 `G1-IR-001`。
 
 UI-0 是本機端使用者體驗原型，用來先確認施工進度中心與治具／電子外殼引導流程。它使用有版本的 `PrototypeViewModel` 展示資料，不是藍圖中的 G6 工程能力，也不會產生 STEP、工程圖面、BOM、Prototype Package 或可供製造的工程製品。
 
@@ -26,7 +26,7 @@ UI-0 是本機端使用者體驗原型，用來先確認施工進度中心與治
 - UI-0C：引導式使用者體驗原型
 - UI-0D：自動化、瀏覽器與使用者驗收皆已通過
 
-UI-0 已完成驗收，但仍只是使用者體驗原型；G0 不會把其合成展示資料當作工程輸出。CadQuery 可行性已通過，FreeCAD 圖面路徑採固定模板 SVG fallback，COMSOL 在本機則正式決策為非阻塞的 `out_of_scope`；目前正在建立 baseline CI。最新狀態與驗證證據：
+UI-0 已完成驗收，但仍只是使用者體驗原型；G0 不會把其合成展示資料當作工程輸出。CadQuery 可行性已通過，FreeCAD 圖面路徑採固定模板 SVG fallback，COMSOL 在本機則正式決策為非阻塞的 `out_of_scope`。本機與 GitHub Actions baseline CI 均已全綠，目前正在建立 G1 的工程資料 primitives。最新狀態與驗證證據：
 
 - [UI-0 施工計畫](docs/UI0_PLAN.md)
 - [UI-0 可行性紀錄](docs/UI0_FEASIBILITY.md)

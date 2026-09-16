@@ -4,4 +4,3 @@
 *.dxf -text
 *.FCStd -text
 artifacts/**/*.svg -text
-

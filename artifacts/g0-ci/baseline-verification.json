@@ -21,5 +21,11 @@
     "frontendBuild": "passed"
   },
   "entrypoint": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+  "githubActions": {
+    "runId": 35126277676,
+    "headSha": "86b9b67513822538e8bd3147d403f24521bb0815",
+    "status": "passed",
+    "url": "https://github.com/Space653000/0_JN1_MEGIS/actions/runs/35126277676"
+  },
   "engineeringRelease": false
 }
