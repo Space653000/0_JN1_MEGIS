@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "verifiedAt": "2026-09-16T20:54:35+08:00",
+  "workItem": "G0-ENV-001",
+  "status": "passed",
+  "commands": [
+    { "command": ".venv/Scripts/python.exe -m pip check", "status": "passed" },
+    { "command": ".venv/Scripts/python.exe scripts/verify_toolchain.py", "status": "passed", "solidValid": true, "solidVolume": 6000.0 },
+    { "command": ".venv/Scripts/python.exe -m pytest", "status": "passed", "testsPassed": 1, "testsFailed": 0 },
+    { "command": "node scripts/verify-control-plane.mjs", "status": "passed", "workItems": 30, "gates": 14 },
+    { "command": "npm --prefix apps/web run lint", "status": "passed" },
+    { "command": "npm --prefix apps/web run typecheck", "status": "passed" },
+    { "command": "npm --prefix apps/web test -- --run", "status": "passed", "testsPassed": 9, "testsFailed": 0 },
+    { "command": "npm --prefix apps/web run build", "status": "passed" },
+    { "command": "clean .temp/g0-env-rebuild install from requirements.lock", "status": "passed", "pipCheck": "passed", "solidValid": true, "solidVolume": 6000.0 }
+  ],
+  "resolved": {
+    "python": "3.11.9",
+    "pythonArchitecture": "AMD64",
+    "pip": "26.2.1",
+    "node": "24.17.0",
+    "npm": "11.13.0",
+    "cadquery": "2.8.0",
+    "cadqueryOcp": "7.9.3.1.1",
+    "openCascadeModule": "7.9.3.1",
+    "vtk": "9.6.2"
+  },
+  "boundaries": {
+    "workspaceRoot": "C:/0_JN1_MEGIS",
+    "allProjectEnvironmentsAndCachesInsideWorkspace": true,
+    "otherProjectDirectoriesModified": false,
+    "freeCadInstalled": false,
+    "engineeringArtifactsGenerated": false
+  }
+}

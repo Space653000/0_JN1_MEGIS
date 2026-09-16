@@ -1,0 +1,10 @@
+[project]
+name = "megis"
+version = "0.0.0"
+description = "MEGIS deterministic engineering runtime"
+requires-python = "==3.11.*"
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+cache_dir = ".pytest_cache"

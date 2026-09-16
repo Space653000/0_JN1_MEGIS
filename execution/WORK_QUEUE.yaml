@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-16T20:38:59+08:00",
+  "updatedAt": "2026-09-16T20:54:35+08:00",
   "baselineCommit": "09f19ea3633189bdbb58e254d8e5798736950bfb",
   "currentWorkItem": "G0-ENV-001",
   "gates": [
@@ -38,8 +38,8 @@
     {
       "id": "G0-ENV-001", "title": "鎖定 Python、Node 與 CAD dependencies", "gate": "G0", "status": "in_progress", "dependsOn": ["G0-REP-001"],
       "inputs": ["execution/PROJECT_STATE.md"], "outputs": ["environment lockfiles", "docs/decisions/toolchain.md"],
-      "acceptance": ["支援版本與依賴均可重現且有鎖定證據"], "acceptanceResults": [{ "criterion": "支援版本與依賴均可重現且有鎖定證據", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "acceptance": ["支援版本與依賴均可重現且有鎖定證據"], "acceptanceResults": [{ "criterion": "支援版本與依賴均可重現且有鎖定證據", "status": "passed", "evidence": ["requirements.lock", "environment/toolchain.lock.json", "environment/G0_ENV_VERIFICATION.json", "docs/decisions/toolchain.md"] }],
+      "verificationCommands": [".venv/Scripts/python.exe -m pip check", ".venv/Scripts/python.exe scripts/verify_toolchain.py", ".venv/Scripts/python.exe -m pytest"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["requirements.in", "requirements.lock", "pyproject.toml", "environment/toolchain.lock.json", "environment/G0_ENV_VERIFICATION.json", "scripts/verify_toolchain.py", "tests/test_toolchain.py", "docs/decisions/toolchain.md"], "verification": "passed", "commitSha": null
     },
     {
       "id": "G0-CAD-001", "title": "CadQuery Reference Case spike", "gate": "G0", "status": "planned", "dependsOn": ["G0-ENV-001"],
