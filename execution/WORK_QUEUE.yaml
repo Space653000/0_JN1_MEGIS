@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-16T20:56:16+08:00",
+  "updatedAt": "2026-09-16T21:08:46+08:00",
   "baselineCommit": "629c02831b6b3eae30fb8a8ef8f9519f3bfbafaf",
   "currentWorkItem": "G0-CAD-001",
   "gates": [
@@ -44,8 +44,8 @@
     {
       "id": "G0-CAD-001", "title": "CadQuery Reference Case spike", "gate": "G0", "status": "in_progress", "dependsOn": ["G0-ENV-001"],
       "inputs": ["locked CadQuery toolchain"], "outputs": ["STEP", "STL", "2D DXF section", "spike evidence"],
-      "acceptance": ["Reference Case 產出三種格式且通過自動有效性檢查"], "acceptanceResults": [{ "criterion": "Reference Case 產出三種格式且通過自動有效性檢查", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "acceptance": ["Reference Case 產出三種格式且通過自動有效性檢查"], "acceptanceResults": [{ "criterion": "Reference Case 產出三種格式且通過自動有效性檢查", "status": "passed", "evidence": ["artifacts/g0-cad/reference_case.step", "artifacts/g0-cad/reference_case.stl", "artifacts/g0-cad/reference_case_section_z10.dxf", "artifacts/g0-cad/manifest.json", "docs/G0_CAD_VERIFICATION.md"] }],
+      "verificationCommands": [".venv/Scripts/python.exe -m spikes.g0_cad.reference_case --output-dir artifacts/g0-cad", ".venv/Scripts/python.exe -m pytest tests/test_g0_cad_reference_case.py"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["spikes/g0_cad/reference_case.py", "spikes/g0_cad/README.md", "tests/test_g0_cad_reference_case.py", "artifacts/g0-cad/manifest.json", "docs/G0_CAD_VERIFICATION.md"], "verification": "passed", "commitSha": null
     },
     {
       "id": "G0-DRW-001", "title": "FreeCAD TechDraw headless spike", "gate": "G0", "status": "planned", "dependsOn": ["G0-ENV-001"],

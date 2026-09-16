@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G0-CAD-001",
+  "classification": "FEASIBILITY_SPIKE",
+  "maturity": "PROTOTYPE",
+  "engineeringReviewRequired": true,
+  "specification": {
+    "length_mm": 120.0,
+    "width_mm": 80.0,
+    "height_mm": 35.0,
+    "minimum_wall_mm": 2.0,
+    "m3_clearance_diameter_mm": 3.4,
+    "material": "Aluminum 6061",
+    "process": "3-axis CNC",
+    "section_height_mm": 10.0
+  },
+  "toolchain": {
+    "cadquery": "2.8.0",
+    "cadqueryOcp": "7.9.3.1.1"
+  },
+  "source": {
+    "valid": true,
+    "solids": 1,
+    "volumeMm3": 44999.36637784899,
+    "boundingBoxMm": {
+      "xlen": 120.0,
+      "ylen": 80.0,
+      "zlen": 35.0
+    }
+  },
+  "verification": {
+    "step": {
+      "valid": true,
+      "solids": 1,
+      "volumeMm3": 44999.366377848964,
+      "boundingBoxMm": {
+        "xlen": 120.0,
+        "ylen": 80.0,
+        "zlen": 35.0
+      }
+    },
+    "stl": {
+      "valid": true,
+      "faces": 2060,
+      "boundingBoxMm": {
+        "xlen": 120.0,
+        "ylen": 80.0,
+        "zlen": 35.0
+      }
+    },
+    "dxf": {
+      "valid": true,
+      "edges": 8,
+      "wires": 2,
+      "wireBoundingBoxesMm": [
+        {
+          "xlen": 120.0,
+          "ylen": 80.0
+        },
+        {
+          "xlen": 116.0,
+          "ylen": 76.0
+        }
+      ],
+      "boundingBoxMm": {
+        "xlen": 120.0,
+        "ylen": 80.0,
+        "zlen": 0.0
+      }
+    }
+  },
+  "artifacts": {
+    "step": {
+      "path": "reference_case.step",
+      "bytes": 48862,
+      "sha256": "b2cb6f95bc10e6c49c7a0c28f6f524d89b9967d50b9729578eb1d7208bdcb1d0"
+    },
+    "stl": {
+      "path": "reference_case.stl",
+      "bytes": 535618,
+      "sha256": "7b8b714e3d6650847a9a90b92f5c81fda4a9ec9ddebb22bff63cc209d80cd574"
+    },
+    "dxf": {
+      "path": "reference_case_section_z10.dxf",
+      "bytes": 19537,
+      "sha256": "167b2928dfcf478a6c0289e5184502d7b4e6d0bc81c01654c80060006320b73b"
+    }
+  },
+  "limitations": [
+    "This spike proves export and reload feasibility only.",
+    "It is not the G2 production geometry backend or a manufacturing release.",
+    "Material and process are declared Reference Case metadata, not solver-verified properties."
+  ]
+}

@@ -5,6 +5,6 @@ description = "MEGIS deterministic engineering runtime"
 requires-python = "==3.11.*"
 
 [tool.pytest.ini_options]
-addopts = "-ra"
+addopts = "-ra --basetemp=.temp/pytest"
 testpaths = ["tests"]
 cache_dir = ".pytest_cache"

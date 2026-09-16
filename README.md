@@ -35,6 +35,7 @@ UI-0 已完成驗收，但仍只是使用者體驗原型；G0 不會把其合成
 - [正式專案狀態](execution/PROJECT_STATE.md)
 - [正式工作佇列](execution/WORK_QUEUE.yaml)
 - [G0 工具鏈版本決策](docs/decisions/toolchain.md)
+- [G0 CadQuery 可行性驗證](docs/G0_CAD_VERIFICATION.md)
 
 ## 本機啟動
 
