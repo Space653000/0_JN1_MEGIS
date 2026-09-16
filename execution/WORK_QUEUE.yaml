@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-17T00:44:06+08:00",
-  "baselineCommit": "426e6f6ce87ba116b24c5dd430f1c763c4dc900c",
-  "currentWorkItem": "G0-SIM-001",
+  "updatedAt": "2026-09-17T00:55:00+08:00",
+  "baselineCommit": "28a415ea4c4457daef2bed5f3d72f1be1f67bb0f",
+  "currentWorkItem": "G0-CI-001",
   "gates": [
     { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
     { "id": "UI-0B", "title": "施工進度中心", "status": "accepted", "dependsOn": ["UI-0A"] },
@@ -54,13 +54,13 @@
       "verificationCommands": ["powershell -ExecutionPolicy Bypass -File scripts/run-freecad-spike.ps1", ".venv/Scripts/python.exe -m pytest tests/test_g0_freecad_fallback.py"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["environment/freecad.lock.json", "spikes/g0_freecad/techdraw_spike.py", "spikes/g0_freecad/templates/a4_landscape_megis.svg", "scripts/run-freecad-spike.ps1", "tests/test_g0_freecad_fallback.py", "artifacts/g0-freecad/verification.json", "docs/G0_FREECAD_DECISION.md"], "verification": "passed", "commitSha": "ed81af5ac3f55c72285010afec0091a36f3fc92f"
     },
     {
-      "id": "G0-SIM-001", "title": "COMSOL license、API 與 batch feasibility decision", "gate": "G0", "status": "in_progress", "dependsOn": ["G0-ENV-001"],
+      "id": "G0-SIM-001", "title": "COMSOL license、API 與 batch feasibility decision", "gate": "G0", "status": "done", "dependsOn": ["G0-ENV-001"],
       "inputs": ["local license and installation inventory"], "outputs": ["COMSOL feasibility decision"],
       "acceptance": ["COMSOL 路徑具有 pass、fallback 或 out_of_scope 決策且不阻塞核心 Gate"], "acceptanceResults": [{ "criterion": "COMSOL 路徑具有 pass、fallback 或 out_of_scope 決策且不阻塞核心 Gate", "status": "passed", "evidence": ["environment/comsol.decision.json", "artifacts/g0-sim/inventory.json", "docs/G0_COMSOL_DECISION.md"] }],
-      "verificationCommands": ["powershell -ExecutionPolicy Bypass -File scripts/inventory-comsol.ps1", ".venv/Scripts/python.exe -m pytest tests/test_g0_comsol_decision.py"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["scripts/inventory-comsol.ps1", "environment/comsol.decision.json", "artifacts/g0-sim/inventory.json", "artifacts/g0-sim/README.md", "docs/G0_COMSOL_DECISION.md", "tests/test_g0_comsol_decision.py"], "verification": "passed", "commitSha": null
+      "verificationCommands": ["powershell -ExecutionPolicy Bypass -File scripts/inventory-comsol.ps1", ".venv/Scripts/python.exe -m pytest tests/test_g0_comsol_decision.py"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["scripts/inventory-comsol.ps1", "environment/comsol.decision.json", "artifacts/g0-sim/inventory.json", "artifacts/g0-sim/README.md", "docs/G0_COMSOL_DECISION.md", "tests/test_g0_comsol_decision.py"], "verification": "passed", "commitSha": "28a415ea4c4457daef2bed5f3d72f1be1f67bb0f"
     },
     {
-      "id": "G0-CI-001", "title": "建立 baseline CI", "gate": "G0", "status": "planned", "dependsOn": ["G0-REP-001", "G0-ENV-001"],
+      "id": "G0-CI-001", "title": "建立 baseline CI", "gate": "G0", "status": "in_progress", "dependsOn": ["G0-REP-001", "G0-ENV-001"],
       "inputs": ["locked toolchain", "control-plane verifier"], "outputs": ["CI workflow", "baseline evidence"],
       "acceptance": ["lint、typecheck、unit、schema 與 artifact smoke test 可重跑且全綠"], "acceptanceResults": [{ "criterion": "lint、typecheck、unit、schema 與 artifact smoke test 可重跑且全綠", "status": "pending", "evidence": [] }],
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
