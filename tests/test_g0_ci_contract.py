@@ -22,8 +22,8 @@ def test_baseline_workflow_is_read_only_and_pinned() -> None:
     assert len(action_refs) == 3
     assert all(re.fullmatch(r"[0-9a-f]{40}", ref) for ref in action_refs)
     assert "github.workspace" in text
-    assert "python -m venv .venv-ci" in text
-    assert "-PythonExecutable .\\.venv-ci\\Scripts\\python.exe" in text
+    assert "python -m venv .venv" in text
+    assert "-PythonExecutable .\\.venv\\Scripts\\python.exe" in text
     assert "run-baseline-ci.ps1" in text
 
 

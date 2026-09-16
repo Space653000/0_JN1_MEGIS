@@ -48,9 +48,9 @@ jobs:
       - name: Create repository-local Python environment
         shell: pwsh
         run: |
-          python -m venv .venv-ci
-          .\.venv-ci\Scripts\python.exe -m pip install --cache-dir .cache\pip pip==26.2.1
-          .\.venv-ci\Scripts\python.exe -m pip install --cache-dir .cache\pip --requirement requirements.lock
+          python -m venv .venv
+          .\.venv\Scripts\python.exe -m pip install --cache-dir .cache\pip pip==26.2.1
+          .\.venv\Scripts\python.exe -m pip install --cache-dir .cache\pip --requirement requirements.lock
 
       - name: Install repository-local npm CLI and dependencies
         shell: pwsh
@@ -60,4 +60,4 @@ jobs:
 
       - name: Run baseline verification
         shell: pwsh
-        run: .\scripts\run-baseline-ci.ps1 -PythonExecutable .\.venv-ci\Scripts\python.exe -NpmCli .tools\npm\node_modules\npm\bin\npm-cli.js
+        run: .\scripts\run-baseline-ci.ps1 -PythonExecutable .\.venv\Scripts\python.exe -NpmCli .tools\npm\node_modules\npm\bin\npm-cli.js
