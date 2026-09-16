@@ -15,6 +15,11 @@ export interface WorkItem {
   status: WorkStatus;
   dependsOn: string[];
   acceptance: string[];
+  acceptanceResults: Array<{
+    criterion: string;
+    status: "pending" | "passed";
+    evidence: string[];
+  }>;
   evidence: string[];
   verification: "not_run" | "passed" | "failed";
   commitSha: string | null;
@@ -30,4 +35,3 @@ export interface ProgressState {
   blockers: Array<{ id: string; title: string; owner: string; fallback: string }>;
   risks: Array<{ id: string; title: string; impact: string; mitigation: string }>;
 }
-

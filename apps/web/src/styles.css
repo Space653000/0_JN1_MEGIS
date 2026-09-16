@@ -79,6 +79,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--cyan); outline-
 .current-work > h3 { margin: 22px 22px 8px; font-size: 1.2rem; } .current-work > p { margin: 0 22px; color: var(--muted); font-size: .83rem; line-height: 1.6; }
 .acceptance-list { display: grid; gap: 10px; margin: 19px 22px; }
 .acceptance-list > div { display: flex; align-items: center; gap: 10px; color: #bac9cd; font-size: .79rem; }
+.acceptance-list > div.passed { color: #8fd8b7; }
+.acceptance-check { flex: 0 0 auto; color: #6bddad; }
 .empty-check { width: 15px; height: 15px; border: 1px solid #49626a; border-radius: 4px; background: #0a171b; }
 .work-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 15px 21px; border-top: 1px solid var(--line); }
 .work-footer > span { display: inline-flex; align-items: center; gap: 7px; color: #647b82; font-family: ui-monospace, monospace; font-size: .7rem; }

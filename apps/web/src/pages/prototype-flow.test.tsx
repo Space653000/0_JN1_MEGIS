@@ -28,7 +28,8 @@ describe("Fixture prototype flow", () => {
   it("permanently labels synthetic results and exposes no artifact download", () => {
     const result: DemoResult = { maturity: "使用者體驗原型", dimensions: "120 × 80 × 35 mm", material: "6061 鋁合金", process: "三軸 CNC", checks: [], bom: [] };
     render(<ResultsPage result={result} onRestart={vi.fn()} />);
-    expect(screen.getByText("未產生任何工程製品")).toBeInTheDocument();
+    expect(screen.getByText(/Synthetic demo data/)).toBeInTheDocument();
+    expect(screen.getByText(/No engineering artifact generated/)).toBeInTheDocument();
     expect(screen.getByText(/STEP、圖面 PDF、BOM CSV/)).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /download/i })).not.toBeInTheDocument();
   });

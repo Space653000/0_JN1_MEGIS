@@ -24,4 +24,10 @@ describe("UI-0 progress truthfulness contract", () => {
     state.workItems[1].status = "in_progress";
     expect(validateProgressState(state)).toContain("UI0-PRG-001 cannot be in_progress before UI0-FND-001 is done");
   });
+
+  it("rejects a done item with pending acceptance", () => {
+    const state = structuredClone(loadState());
+    state.workItems[0].acceptanceResults[0].status = "pending";
+    expect(validateProgressState(state)).toContain("UI0-FND-001 is done with pending acceptance");
+  });
 });

@@ -1,6 +1,6 @@
 {
-  "schemaVersion": "0.1.0",
-  "updatedAt": "2026-09-16T15:20:00+08:00",
+  "schemaVersion": "0.2.0",
+  "updatedAt": "2026-09-16T15:43:26+08:00",
   "baselineCommit": "2448b7ac7d1074fed9707884e9ab05a7a5a28eec",
   "currentWorkItem": "UI0-VER-001",
   "gates": [
@@ -27,6 +27,11 @@
       "status": "done",
       "dependsOn": [],
       "acceptance": ["保留遠端歷史", "所有專案快取均留在儲存庫內", "僅建立本機提交"],
+      "acceptanceResults": [
+        { "criterion": "保留遠端歷史", "status": "passed", "evidence": ["docs/UI0_PLAN.md"] },
+        { "criterion": "所有專案快取均留在儲存庫內", "status": "passed", "evidence": ["docs/UI0_FEASIBILITY.md"] },
+        { "criterion": "僅建立本機提交", "status": "passed", "evidence": ["docs/UI0_PLAN.md"] }
+      ],
       "evidence": ["docs/UI0_PLAN.md", "docs/UI0_FEASIBILITY.md", "AGENTS.md"],
       "verification": "passed",
       "commitSha": "0967c6719573e4a847343252f6dce32d714cb3a8"
@@ -38,6 +43,10 @@
       "status": "done",
       "dependsOn": ["UI0-FND-001"],
       "acceptance": ["進度來自單一且通過資料結構驗證的來源", "無效的完成狀態必須無法通過驗證"],
+      "acceptanceResults": [
+        { "criterion": "進度來自單一且通過資料結構驗證的來源", "status": "passed", "evidence": ["execution/ui0/progress-state.schema.json"] },
+        { "criterion": "無效的完成狀態必須無法通過驗證", "status": "passed", "evidence": ["apps/web/src/domain/progress-validation.test.ts"] }
+      ],
       "evidence": ["apps/web/src/pages/ProgressPage.tsx", "apps/web/src/domain/progress-validation.test.ts"],
       "verification": "passed",
       "commitSha": "cefb1a05b7c477a56c25c975951c9732bf70fb29"
@@ -49,6 +58,10 @@
       "status": "done",
       "dependsOn": ["UI0-PRG-001"],
       "acceptance": ["治具流程可抵達合成結果頁", "所有非工程輸出皆永久保留明確標示"],
+      "acceptanceResults": [
+        { "criterion": "治具流程可抵達合成結果頁", "status": "passed", "evidence": ["apps/web/src/pages/prototype-flow.test.tsx"] },
+        { "criterion": "所有非工程輸出皆永久保留明確標示", "status": "passed", "evidence": ["apps/web/src/pages/prototype-flow.test.tsx"] }
+      ],
       "evidence": ["apps/web/src/pages/DesignPage.tsx", "apps/web/src/pages/ReviewPage.tsx", "apps/web/src/pages/ResultsPage.tsx", "apps/web/src/pages/prototype-flow.test.tsx"],
       "verification": "passed",
       "commitSha": "cefb1a05b7c477a56c25c975951c9732bf70fb29"
@@ -60,8 +73,12 @@
       "status": "in_progress",
       "dependsOn": ["UI0-UX-001"],
       "acceptance": ["自動化驗證通過", "使用者完成驗收檢視"],
-      "evidence": [],
-      "verification": "not_run",
+      "acceptanceResults": [
+        { "criterion": "自動化驗證通過", "status": "passed", "evidence": ["docs/UI0_VERIFICATION.md"] },
+        { "criterion": "使用者完成驗收檢視", "status": "pending", "evidence": [] }
+      ],
+      "evidence": ["docs/UI0_VERIFICATION.md"],
+      "verification": "passed",
       "commitSha": null
     }
   ],
