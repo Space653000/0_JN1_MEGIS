@@ -5,3 +5,5 @@
 *.FCStd -text
 artifacts/**/*.svg -text
 contracts/g1/golden/*.json -text
+contracts/g1/migrations/*.json -text
+schemas/v1/*.json -text

@@ -8,7 +8,13 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from megis.contracts import load_engineering_ir, serialize_engineering_ir  # noqa: E402
+from megis.contracts import (  # noqa: E402
+    canonical_hash,
+    load_engineering_ir,
+    migrate_engineering_ir,
+    rollback_engineering_ir,
+    serialize_engineering_ir,
+)
 
 
 def load_json(relative_path: str) -> dict:
@@ -82,12 +88,27 @@ def verify_golden_contracts() -> int:
     return count + 1
 
 
+def verify_migration_contracts() -> int:
+    evidence = load_json("artifacts/g1-mig-001/verification.json")
+    legacy_schema = evidence["legacySchema"]
+    legacy_fixture = evidence["legacyFixture"]
+    assert_file(legacy_schema["path"], legacy_schema["bytes"], legacy_schema["sha256"])
+    assert_file(legacy_fixture["path"], legacy_fixture["bytes"], legacy_fixture["sha256"])
+    source = load_json(legacy_fixture["path"])
+    assert canonical_hash(source) == legacy_fixture["canonicalSha256"]
+    result = migrate_engineering_ir(source)
+    assert canonical_hash(result.document) == evidence["migratedDocument"]["canonicalSha256"]
+    assert rollback_engineering_ir(result) == source
+    return 2
+
+
 def main() -> None:
     verified = (
         verify_cad_artifacts()
         + verify_drawing_artifacts()
         + verify_simulation_decision()
         + verify_golden_contracts()
+        + verify_migration_contracts()
     )
     print(f"Artifact smoke test passed: {verified} records verified")
 

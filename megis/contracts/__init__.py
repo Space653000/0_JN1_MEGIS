@@ -1,6 +1,15 @@
 """Versioned engineering contracts, deterministic codecs, and consumers."""
 
 from .consumer import EngineeringIrSummary, summarize_engineering_ir
+from .migration import (
+    CURRENT_SCHEMA_VERSION,
+    MigrationError,
+    MigrationReceipt,
+    MigrationResult,
+    canonical_hash,
+    migrate_engineering_ir,
+    rollback_engineering_ir,
+)
 from .serialization import (
     deserialize_engineering_ir,
     load_engineering_ir,
@@ -10,9 +19,16 @@ from .validation import ContractValidationError, validate_engineering_ir, valida
 
 __all__ = [
     "ContractValidationError",
+    "CURRENT_SCHEMA_VERSION",
     "EngineeringIrSummary",
+    "MigrationError",
+    "MigrationReceipt",
+    "MigrationResult",
+    "canonical_hash",
     "deserialize_engineering_ir",
     "load_engineering_ir",
+    "migrate_engineering_ir",
+    "rollback_engineering_ir",
     "serialize_engineering_ir",
     "summarize_engineering_ir",
     "validate_engineering_ir",

@@ -56,5 +56,7 @@ def test_hash_verified_engineering_artifacts_disable_text_normalization() -> Non
         "*.FCStd",
         "artifacts/**/*.svg",
         "contracts/g1/golden/*.json",
+        "contracts/g1/migrations/*.json",
+        "schemas/v1/*.json",
     ):
         assert f"{pattern} -text" in attributes

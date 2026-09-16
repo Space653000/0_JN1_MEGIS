@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G1-MIG-001",
+  "verifiedAt": "2026-09-17T07:17:50+08:00",
+  "migrationPath": { "sourceVersion": "1.0.0", "targetVersion": "2.0.0", "status": "passed" },
+  "legacySchema": {
+    "path": "schemas/v1/engineering-ir.schema.json",
+    "bytes": 1428,
+    "sha256": "95f8704e0d197b69298e69959da0dc0fe20043ec2051251d9653d69f4fe4dabb"
+  },
+  "legacyFixture": {
+    "path": "contracts/g1/migrations/reference-fixture-v1.json",
+    "bytes": 411,
+    "sha256": "3afe8210ec7f837a3170f3cd1401e47e4a0085e5aee5785de948aacfcd0a4940",
+    "canonicalSha256": "47eab3944e2d89b4becfdf5ca00b221e5a7d32ed297a2fc639c948e8aad3350e"
+  },
+  "migratedDocument": {
+    "matches": "contracts/g1/golden/reference-fixture.json",
+    "canonicalSha256": "df200f455c10b782dd1d3d2d1e2693f8d4bfe37825168d5c86d99ee964757bf3",
+    "v2Validation": "passed"
+  },
+  "rollback": { "status": "passed", "exactSourceRestored": true, "tamperDetection": "passed" },
+  "unsupportedVersionsRejected": ["0.9.0", "2.0.0", "3.0.0", null],
+  "contractTests": { "passed": 8, "failed": 0 },
+  "engineeringArtifactGenerated": false
+}

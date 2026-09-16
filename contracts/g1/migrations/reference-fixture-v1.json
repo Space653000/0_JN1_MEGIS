@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "designId": "FIXTURE-REFERENCE-001",
+  "revision": "A",
+  "productType": "reference_fixture",
+  "units": "mm",
+  "coordinateConvention": "XYZ_RIGHT_HANDED",
+  "sizeMm": { "width": 120.0, "depth": 80.0, "height": 20.0 },
+  "minimumWallMm": 2.0,
+  "material": "AA 6061",
+  "manufacturingProcess": "3_axis_cnc",
+  "maximumLoadKnown": false,
+  "recordedAt": "2026-09-17T00:00:00Z"
+}

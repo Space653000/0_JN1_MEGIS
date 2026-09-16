@@ -42,6 +42,7 @@ UI-0 已完成驗收，但仍只是使用者體驗原型；G0 不會把其合成
 - [G1 Engineering Primitives](docs/G1_PRIMITIVES.md)
 - [G1 Engineering IR](docs/G1_ENGINEERING_IR.md)
 - [G1 Golden Cases](docs/G1_GOLDEN_CASES.md)
+- [G1 Schema Migration Contract](docs/G1_SCHEMA_MIGRATION.md)
 
 ## 本機啟動
 

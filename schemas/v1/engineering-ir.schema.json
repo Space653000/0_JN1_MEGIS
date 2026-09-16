@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v1/engineering-ir.schema.json",
+  "title": "MEGIS V1 Reference Fixture Migration Input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "designId", "revision", "productType", "units", "coordinateConvention", "sizeMm", "minimumWallMm", "material", "manufacturingProcess", "maximumLoadKnown", "recordedAt"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "designId": { "type": "string", "pattern": "^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*$" },
+    "revision": { "type": "string", "pattern": "^[A-Z](?:[0-9]+)?$" },
+    "productType": { "const": "reference_fixture" },
+    "units": { "const": "mm" },
+    "coordinateConvention": { "const": "XYZ_RIGHT_HANDED" },
+    "sizeMm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "depth", "height"],
+      "properties": {
+        "width": { "type": "number", "exclusiveMinimum": 0 },
+        "depth": { "type": "number", "exclusiveMinimum": 0 },
+        "height": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "minimumWallMm": { "type": "number", "exclusiveMinimum": 0 },
+    "material": { "const": "AA 6061" },
+    "manufacturingProcess": { "const": "3_axis_cnc" },
+    "maximumLoadKnown": { "const": false },
+    "recordedAt": { "type": "string", "format": "date-time" }
+  }
+}

@@ -86,8 +86,8 @@
     {
       "id": "G1-MIG-001", "title": "建立 schema migration contract", "gate": "G1", "status": "in_progress", "dependsOn": ["G1-IR-003"],
       "inputs": ["versioned golden input"], "outputs": ["migration interface", "rollback fixture"],
-      "acceptance": ["至少一個前版 fixture 可遷移並通過 rollback test"], "acceptanceResults": [{ "criterion": "至少一個前版 fixture 可遷移並通過 rollback test", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "acceptance": ["至少一個前版 fixture 可遷移並通過 rollback test"], "acceptanceResults": [{ "criterion": "至少一個前版 fixture 可遷移並通過 rollback test", "status": "passed", "evidence": ["schemas/v1/engineering-ir.schema.json", "contracts/g1/migrations/reference-fixture-v1.json", "megis/contracts/migration.py", "tests/test_g1_migration.py", "artifacts/g1-mig-001/verification.json", "docs/G1_SCHEMA_MIGRATION.md"] }],
+      "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_g1_migration.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["schemas/v1/engineering-ir.schema.json", "contracts/g1/migrations/reference-fixture-v1.json", "megis/contracts/migration.py", "tests/test_g1_migration.py", "artifacts/g1-mig-001/verification.json", "docs/G1_SCHEMA_MIGRATION.md"], "verification": "passed", "commitSha": null
     },
     {
       "id": "G2-CAD-001", "title": "實作 geometry capability contract", "gate": "G2", "status": "planned", "dependsOn": ["G1-MIG-001"],
