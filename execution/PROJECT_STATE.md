@@ -1,10 +1,10 @@
 # MEGIS Project State
 
 - Current gate: `G1 — Engineering Contracts & Golden Cases`
-- Current work item: `G1-IR-003 — 建立 Reference Fixture golden case`
-- Last green commit: `c05af93d16e064dd939753fb1b7ac6d108ac01bc`
+- Current work item: `G1-MIG-001 — 建立 schema migration contract`
+- Last green commit: `6160784f8b3280152bef6d006baf0fd033e9097a`
 - Control-plane schema: `1.0.0`
-- Updated at: `2026-09-17T06:58:18+08:00`
+- Updated at: `2026-09-17T07:12:15+08:00`
 
 ## Accepted capabilities
 
@@ -20,16 +20,17 @@
 - G0-CI-001：本機與 GitHub Actions baseline CI，含跨 checkout artifact hash 穩定性
 - G1-IR-001：unit、coordinate、ID/reference、provenance 與 knowledge-state primitives
 - G1-IR-002：完整 Engineering IR schema、語意參照完整性與負向契約測試
+- G1-IR-003：Fixture、Acoustic、Robot golden inputs、deterministic round trip 與下游 consumer
 
 UI-0 驗收只涵蓋使用者體驗原型；沒有工程生成能力或工程製品獲得驗收。
 
 ## Active scope
 
-`G1-IR-002` 已完成；GitHub Actions run `35159901148` 對 commit `c05af93` 全綠。現在只施工 `G1-IR-003`，建立 Fixture、Acoustic、Robot 三組 golden inputs，並證明 Reference Fixture 可 round trip 且能被下游程式實際消費。
+`G1-IR-003` 已完成；GitHub Actions run `35161077538` 對 commit `6160784` 全綠。現在只施工 `G1-MIG-001`，建立版本 migration 介面、前版 fixture 與可驗證 rollback。
 
 ## Next work item
 
-`G1-IR-003` 完成後依相依關係處理 `G1-MIG-001`；一次仍只施工一個工作單元。
+`G1-MIG-001` 完成後依相依關係進入 `G2-CAD-001`；一次仍只施工一個工作單元。
 
 ## Boundaries
 

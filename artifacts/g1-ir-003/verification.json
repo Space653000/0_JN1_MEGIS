@@ -25,5 +25,12 @@
     "reads": ["designId", "revision", "maturity", "components", "domains", "relationships", "unsafe unknowns"]
   },
   "contractTests": { "passed": 8, "failed": 0 },
+  "githubActions": {
+    "runId": 35161077538,
+    "headSha": "6160784f8b3280152bef6d006baf0fd033e9097a",
+    "status": "passed",
+    "durationSeconds": 108,
+    "url": "https://github.com/Space653000/0_JN1_MEGIS/actions/runs/35161077538"
+  },
   "engineeringArtifactGenerated": false
 }
