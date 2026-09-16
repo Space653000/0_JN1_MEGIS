@@ -1,0 +1,7 @@
+# Engineering evidence is hash-verified byte for byte. Never normalize its line endings.
+*.step -text
+*.stl -text
+*.dxf -text
+*.FCStd -text
+artifacts/**/*.svg -text
+

@@ -45,3 +45,9 @@ def test_local_baseline_evidence_is_green() -> None:
         for result in evidence["results"].values()
     )
     assert evidence["engineeringRelease"] is False
+
+
+def test_hash_verified_engineering_artifacts_disable_text_normalization() -> None:
+    attributes = (ROOT / ".gitattributes").read_text(encoding="utf-8")
+    for pattern in ("*.step", "*.stl", "*.dxf", "*.FCStd", "artifacts/**/*.svg"):
+        assert f"{pattern} -text" in attributes

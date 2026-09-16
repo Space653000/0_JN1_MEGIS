@@ -13,7 +13,7 @@
     "controlPlane": "passed",
     "dependencyIntegrity": "passed",
     "cadToolchainSmoke": "passed",
-    "pythonTests": { "status": "passed", "count": 7 },
+    "pythonTests": { "status": "passed", "count": 8 },
     "artifactSmoke": { "status": "passed", "records": 7 },
     "frontendLint": "passed",
     "frontendTypecheck": "passed",

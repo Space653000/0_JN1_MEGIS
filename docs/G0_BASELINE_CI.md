@@ -28,3 +28,7 @@ setup-python 只提供建立環境的 bootstrap interpreter；workflow 隨即建
 ## 結果語意
 
 CI 全綠只證明目前 baseline 可重跑與 versioned evidence 未漂移，不把 feasibility spike 升級成量產能力，也不代表 COMSOL、工程簽核或製造放行已完成。
+
+## Artifact byte stability
+
+STEP、STL、DXF、FCStd 與版控 artifact SVG 都以 SHA-256 逐位元驗證。`.gitattributes` 對這些格式停用 Git text normalization，避免 Windows checkout 自動改寫換行而破壞 manifest hash；任何內容差異都必須由產生器與 manifest 明確更新。
