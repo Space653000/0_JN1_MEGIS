@@ -21,7 +21,7 @@ describe("UI-0 progress truthfulness contract", () => {
   it("rejects an illegal transition when dependencies are incomplete", () => {
     const state = structuredClone(loadState());
     state.workItems[0].status = "planned";
+    state.workItems[1].status = "in_progress";
     expect(validateProgressState(state)).toContain("UI0-PRG-001 cannot be in_progress before UI0-FND-001 is done");
   });
 });
-
