@@ -1,12 +1,12 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-17T01:10:55+08:00",
-  "sourceCommit": "86b9b67513822538e8bd3147d403f24521bb0815",
+  "verifiedAt": "2026-09-17T01:22:54+08:00",
+  "sourceCommit": "a2229343e453301ca2aee8053be4509e43514964",
   "status": "passed",
   "commands": [
     { "command": ".venv/Scripts/python.exe -m pip check", "status": "passed" },
     { "command": ".venv/Scripts/python.exe scripts/verify_toolchain.py", "status": "passed", "solidValid": true, "solidVolume": 6000.0 },
-    { "command": ".venv/Scripts/python.exe -m pytest", "status": "passed", "testsPassed": 8, "testsFailed": 0 },
+    { "command": ".venv/Scripts/python.exe -m pytest", "status": "passed", "testsPassed": 21, "testsFailed": 0 },
     { "command": ".venv/Scripts/python.exe -m spikes.g0_cad.reference_case --output-dir artifacts/g0-cad", "status": "passed", "stepValid": true, "stlValid": true, "dxfValid": true },
     { "command": "powershell -ExecutionPolicy Bypass -File scripts/run-freecad-spike.ps1", "status": "passed", "decision": "fallback", "visibleEdges": 12 },
     { "command": "powershell -ExecutionPolicy Bypass -File scripts/inventory-comsol.ps1", "status": "passed", "decision": "out_of_scope", "blocksCoreGate": false },
@@ -16,12 +16,12 @@
     { "command": "npm --prefix apps/web run typecheck", "status": "passed" },
     { "command": "npm --prefix apps/web test -- --run", "status": "passed", "testsPassed": 9, "testsFailed": 0 },
     { "command": "npm --prefix apps/web run build", "status": "passed" },
-    { "command": "GitHub Actions Baseline CI run 35126277676", "status": "passed", "headSha": "86b9b67513822538e8bd3147d403f24521bb0815", "durationSeconds": 133 }
+    { "command": "GitHub Actions Baseline CI run 35127626931", "status": "passed", "headSha": "a2229343e453301ca2aee8053be4509e43514964", "durationSeconds": 92 }
   ],
   "browser": {
     "path": "/progress",
     "currentGate": "G1",
-    "currentWorkItem": "G1-IR-001",
+    "currentWorkItem": "G1-IR-002",
     "ui0dAccepted": true,
     "acceptanceDisclosure": true,
     "horizontalOverflow": false,
@@ -29,10 +29,10 @@
     "consoleWarningsAndErrors": 0
   },
   "buildArtifacts": [
-    { "path": "apps/web/dist/assets/index-CcqN4LCV.js", "bytes": 250134, "sha256": "8e62d417709f3693c1f18a4b07778af4667e17e525ac319bb6d82edb989ff138" },
+    { "path": "apps/web/dist/assets/index-BbODQvIt.js", "bytes": 250722, "sha256": "a55154a6daa1046cf1ff4aafa44047142b521ad2a8512429a7781d494ad3fb7d" },
     { "path": "apps/web/dist/assets/index-lbw2QEtU.css", "bytes": 23096, "sha256": "79805929f2f915e4070c63d27849f610baee8f314085af5d6acb707245509f1a" },
     { "path": "apps/web/dist/favicon.svg", "bytes": 288, "sha256": "6b2c8c18b45392bb97dad145479898477ddce9bc7bfcf987d257dccec9676704" },
-    { "path": "apps/web/dist/index.html", "bytes": 590, "sha256": "7b5798aec6c480707ee46ebeff4970a91998875b6f33a71f8485052b7d5a1961" }
+    { "path": "apps/web/dist/index.html", "bytes": 590, "sha256": "4d2030a3a04b09e4ecbf5295a7a19b9cf608b5622e2b36102ed969db4a785235" }
   ],
   "boundaries": {
     "workspaceRoot": "C:/0_JN1_MEGIS",

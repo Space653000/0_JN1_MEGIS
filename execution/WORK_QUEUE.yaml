@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-17T01:10:55+08:00",
-  "baselineCommit": "86b9b67513822538e8bd3147d403f24521bb0815",
-  "currentWorkItem": "G1-IR-001",
+  "updatedAt": "2026-09-17T01:22:54+08:00",
+  "baselineCommit": "a2229343e453301ca2aee8053be4509e43514964",
+  "currentWorkItem": "G1-IR-002",
   "gates": [
     { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
     { "id": "UI-0B", "title": "施工進度中心", "status": "accepted", "dependsOn": ["UI-0A"] },
@@ -66,13 +66,13 @@
       "verificationCommands": ["powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [".github/workflows/baseline-ci.yml", "scripts/run-baseline-ci.ps1", "scripts/verify_artifacts.py", "tests/test_g0_artifact_smoke.py", "tests/test_g0_ci_contract.py", "artifacts/g0-ci/README.md", "artifacts/g0-ci/baseline-verification.json", "docs/G0_BASELINE_CI.md"], "verification": "passed", "commitSha": "86b9b67513822538e8bd3147d403f24521bb0815"
     },
     {
-      "id": "G1-IR-001", "title": "定義 unit、coordinate、ID 與 provenance primitives", "gate": "G1", "status": "in_progress", "dependsOn": ["G0-CAD-001", "G0-DRW-001", "G0-SIM-001", "G0-CI-001"],
+      "id": "G1-IR-001", "title": "定義 unit、coordinate、ID 與 provenance primitives", "gate": "G1", "status": "done", "dependsOn": ["G0-CAD-001", "G0-DRW-001", "G0-SIM-001", "G0-CI-001"],
       "inputs": ["G0 feasibility decisions"], "outputs": ["primitive schemas"],
       "acceptance": ["單位、座標、識別碼與來源語意具有正反向 schema tests"], "acceptanceResults": [{ "criterion": "單位、座標、識別碼與來源語意具有正反向 schema tests", "status": "passed", "evidence": ["schemas/v2/primitives.schema.json", "contracts/g1/examples/primitives-valid.json", "tests/test_g1_primitives.py", "artifacts/g1-ir-001/verification.json", "docs/G1_PRIMITIVES.md"] }],
-      "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_g1_primitives.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["schemas/v2/primitives.schema.json", "megis/contracts/validation.py", "contracts/g1/examples/primitives-valid.json", "tests/test_g1_primitives.py", "artifacts/g1-ir-001/verification.json", "docs/G1_PRIMITIVES.md", "requirements.in", "requirements.lock"], "verification": "passed", "commitSha": null
+      "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_g1_primitives.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["schemas/v2/primitives.schema.json", "megis/contracts/validation.py", "contracts/g1/examples/primitives-valid.json", "tests/test_g1_primitives.py", "artifacts/g1-ir-001/verification.json", "docs/G1_PRIMITIVES.md", "requirements.in", "requirements.lock"], "verification": "passed", "commitSha": "a2229343e453301ca2aee8053be4509e43514964"
     },
     {
-      "id": "G1-IR-002", "title": "定義 Engineering IR schema", "gate": "G1", "status": "planned", "dependsOn": ["G1-IR-001"],
+      "id": "G1-IR-002", "title": "定義 Engineering IR schema", "gate": "G1", "status": "in_progress", "dependsOn": ["G1-IR-001"],
       "inputs": ["primitive schemas"], "outputs": ["Engineering IR schema"],
       "acceptance": ["IR schema 拒絕 unit mismatch、dangling reference、duplicate ID 與 invalid range"], "acceptanceResults": [{ "criterion": "IR schema 拒絕 unit mismatch、dangling reference、duplicate ID 與 invalid range", "status": "pending", "evidence": [] }],
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null

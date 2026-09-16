@@ -24,5 +24,11 @@
     "negativeCases": 12
   },
   "scope": "unit, coordinate, ID/reference, provenance, knowledge-state and quantity primitives",
+  "githubActions": {
+    "runId": 35127626931,
+    "headSha": "a2229343e453301ca2aee8053be4509e43514964",
+    "status": "passed",
+    "url": "https://github.com/Space653000/0_JN1_MEGIS/actions/runs/35127626931"
+  },
   "fullEngineeringIrClaimed": false
 }
