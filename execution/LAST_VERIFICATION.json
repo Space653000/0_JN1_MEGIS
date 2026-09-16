@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0.0",
+  "verifiedAt": "2026-09-16T20:26:18+08:00",
+  "sourceCommit": "5baf870e254c799ee8421fb37fef14972e34505f",
+  "status": "passed",
+  "commands": [
+    { "command": "npm --prefix apps/web run lint", "status": "passed" },
+    { "command": "npm --prefix apps/web run typecheck", "status": "passed" },
+    { "command": "npm --prefix apps/web test -- --run", "status": "passed", "testsPassed": 8, "testsFailed": 0 },
+    { "command": "npm --prefix apps/web run build", "status": "passed" }
+  ],
+  "boundaries": {
+    "workspaceRoot": "C:/0_JN1_MEGIS",
+    "localOnly": true,
+    "otherProjectDirectoriesModified": false,
+    "engineeringArtifactsGenerated": false
+  }
+}

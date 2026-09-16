@@ -8,6 +8,9 @@ export function validateProgressState(state: ProgressState, options: ProgressVal
   const errors: string[] = [];
   const ids = new Set(state.workItems.map((item) => item.id));
   if (!ids.has(state.currentWorkItem)) errors.push(`Unknown current work item: ${state.currentWorkItem}`);
+  const inProgress = state.workItems.filter((item) => item.status === "in_progress");
+  if (inProgress.length !== 1) errors.push(`Expected exactly one in-progress item, found ${inProgress.length}`);
+  if (inProgress[0]?.id !== state.currentWorkItem) errors.push("Current work item does not match the in-progress item");
   for (const item of state.workItems) {
     for (const dependency of item.dependsOn) {
       const dependencyItem = state.workItems.find((candidate) => candidate.id === dependency);

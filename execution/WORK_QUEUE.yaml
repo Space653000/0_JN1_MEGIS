@@ -1,0 +1,219 @@
+{
+  "schemaVersion": "1.0.0",
+  "updatedAt": "2026-09-16T20:28:02+08:00",
+  "baselineCommit": "5baf870e254c799ee8421fb37fef14972e34505f",
+  "currentWorkItem": "G0-REP-001",
+  "gates": [
+    { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
+    { "id": "UI-0B", "title": "施工進度中心", "status": "accepted", "dependsOn": ["UI-0A"] },
+    { "id": "UI-0C", "title": "引導式使用者體驗原型", "status": "accepted", "dependsOn": ["UI-0B"] },
+    { "id": "UI-0D", "title": "驗證與使用者驗收", "status": "accepted", "dependsOn": ["UI-0C"] },
+    { "id": "G0", "title": "基礎建設與可行性", "status": "active", "dependsOn": ["UI-0D"] },
+    { "id": "G1", "title": "工程契約與黃金案例", "status": "planned", "dependsOn": ["G0"] },
+    { "id": "G2", "title": "治具幾何垂直切片", "status": "planned", "dependsOn": ["G1"] },
+    { "id": "G3", "title": "規則與驗證", "status": "planned", "dependsOn": ["G2"] },
+    { "id": "G4", "title": "模組與限制條件組合", "status": "planned", "dependsOn": ["G3"] },
+    { "id": "G5", "title": "原型套件與可重現性", "status": "planned", "dependsOn": ["G4"] },
+    { "id": "G6", "title": "引導式介面工程整合", "status": "planned", "dependsOn": ["G5"] },
+    { "id": "G7", "title": "聲學垂直切片", "status": "planned", "dependsOn": ["G6"] },
+    { "id": "G8", "title": "機器人垂直切片", "status": "planned", "dependsOn": ["G6"] },
+    { "id": "G9", "title": "強化與擴充", "status": "planned", "dependsOn": ["G7", "G8"] }
+  ],
+  "workItems": [
+    {
+      "id": "G0-REP-001", "title": "建立 repository 與狀態檔", "gate": "G0", "status": "in_progress", "dependsOn": [],
+      "inputs": ["MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v2.0 Codex.md", "docs/UI0_ACCEPTANCE.md"],
+      "outputs": ["execution/PROJECT_STATE.md", "execution/WORK_QUEUE.yaml", "execution/BLOCKERS.yaml", "execution/LAST_VERIFICATION.json"],
+      "acceptance": ["UI-0 驗收已遷移至正式控制面", "初始工作清單具有依賴與驗收條件", "控制面可由自動化命令驗證"],
+      "acceptanceResults": [
+        { "criterion": "UI-0 驗收已遷移至正式控制面", "status": "passed", "evidence": ["docs/UI0_ACCEPTANCE.md", "execution/PROJECT_STATE.md"] },
+        { "criterion": "初始工作清單具有依賴與驗收條件", "status": "passed", "evidence": ["execution/WORK_QUEUE.yaml"] },
+        { "criterion": "控制面可由自動化命令驗證", "status": "passed", "evidence": ["scripts/verify-control-plane.mjs", "execution/schemas/work-queue.schema.json"] }
+      ],
+      "verificationCommands": ["node scripts/verify-control-plane.mjs", "npm --prefix apps/web test -- --run"],
+      "rollbackBoundary": "commit", "blockedBy": [],
+      "evidence": ["docs/UI0_ACCEPTANCE.md", "execution/PROJECT_STATE.md", "execution/WORK_QUEUE.yaml", "execution/BLOCKERS.yaml", "execution/LAST_VERIFICATION.json"],
+      "verification": "passed", "commitSha": null
+    },
+    {
+      "id": "G0-ENV-001", "title": "鎖定 Python、Node 與 CAD dependencies", "gate": "G0", "status": "planned", "dependsOn": ["G0-REP-001"],
+      "inputs": ["execution/PROJECT_STATE.md"], "outputs": ["environment lockfiles", "docs/decisions/toolchain.md"],
+      "acceptance": ["支援版本與依賴均可重現且有鎖定證據"], "acceptanceResults": [{ "criterion": "支援版本與依賴均可重現且有鎖定證據", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G0-CAD-001", "title": "CadQuery Reference Case spike", "gate": "G0", "status": "planned", "dependsOn": ["G0-ENV-001"],
+      "inputs": ["locked CadQuery toolchain"], "outputs": ["STEP", "STL", "2D DXF section", "spike evidence"],
+      "acceptance": ["Reference Case 產出三種格式且通過自動有效性檢查"], "acceptanceResults": [{ "criterion": "Reference Case 產出三種格式且通過自動有效性檢查", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G0-DRW-001", "title": "FreeCAD TechDraw headless spike", "gate": "G0", "status": "planned", "dependsOn": ["G0-ENV-001"],
+      "inputs": ["locked FreeCAD toolchain"], "outputs": ["fixed-template drawing", "feasibility decision"],
+      "acceptance": ["FreeCAD 圖面路徑具有 pass、fallback 或 out_of_scope 決策"], "acceptanceResults": [{ "criterion": "FreeCAD 圖面路徑具有 pass、fallback 或 out_of_scope 決策", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G0-SIM-001", "title": "COMSOL license、API 與 batch feasibility decision", "gate": "G0", "status": "planned", "dependsOn": ["G0-ENV-001"],
+      "inputs": ["local license and installation inventory"], "outputs": ["COMSOL feasibility decision"],
+      "acceptance": ["COMSOL 路徑具有 pass、fallback 或 out_of_scope 決策且不阻塞核心 Gate"], "acceptanceResults": [{ "criterion": "COMSOL 路徑具有 pass、fallback 或 out_of_scope 決策且不阻塞核心 Gate", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G0-CI-001", "title": "建立 baseline CI", "gate": "G0", "status": "planned", "dependsOn": ["G0-REP-001", "G0-ENV-001"],
+      "inputs": ["locked toolchain", "control-plane verifier"], "outputs": ["CI workflow", "baseline evidence"],
+      "acceptance": ["lint、typecheck、unit、schema 與 artifact smoke test 可重跑且全綠"], "acceptanceResults": [{ "criterion": "lint、typecheck、unit、schema 與 artifact smoke test 可重跑且全綠", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G1-IR-001", "title": "定義 unit、coordinate、ID 與 provenance primitives", "gate": "G1", "status": "planned", "dependsOn": ["G0-CAD-001", "G0-DRW-001", "G0-SIM-001", "G0-CI-001"],
+      "inputs": ["G0 feasibility decisions"], "outputs": ["primitive schemas"],
+      "acceptance": ["單位、座標、識別碼與來源語意具有正反向 schema tests"], "acceptanceResults": [{ "criterion": "單位、座標、識別碼與來源語意具有正反向 schema tests", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G1-IR-002", "title": "定義 Engineering IR schema", "gate": "G1", "status": "planned", "dependsOn": ["G1-IR-001"],
+      "inputs": ["primitive schemas"], "outputs": ["Engineering IR schema"],
+      "acceptance": ["IR schema 拒絕 unit mismatch、dangling reference、duplicate ID 與 invalid range"], "acceptanceResults": [{ "criterion": "IR schema 拒絕 unit mismatch、dangling reference、duplicate ID 與 invalid range", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G1-IR-003", "title": "建立 Reference Fixture golden case", "gate": "G1", "status": "planned", "dependsOn": ["G1-IR-002"],
+      "inputs": ["Engineering IR schema"], "outputs": ["Fixture golden input", "Acoustic schema input", "Robot schema input"],
+      "acceptance": ["三個 golden inputs 通過 schema 且 Fixture 完成 round trip"], "acceptanceResults": [{ "criterion": "三個 golden inputs 通過 schema 且 Fixture 完成 round trip", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G1-MIG-001", "title": "建立 schema migration contract", "gate": "G1", "status": "planned", "dependsOn": ["G1-IR-003"],
+      "inputs": ["versioned golden input"], "outputs": ["migration interface", "rollback fixture"],
+      "acceptance": ["至少一個前版 fixture 可遷移並通過 rollback test"], "acceptanceResults": [{ "criterion": "至少一個前版 fixture 可遷移並通過 rollback test", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G2-CAD-001", "title": "實作 geometry capability contract", "gate": "G2", "status": "planned", "dependsOn": ["G1-MIG-001"],
+      "inputs": ["Engineering IR", "CadQuery spike"], "outputs": ["geometry capability contract"],
+      "acceptance": ["幾何 adapter 介面可由 golden IR 驅動且不洩漏核心實作"], "acceptanceResults": [{ "criterion": "幾何 adapter 介面可由 golden IR 驅動且不洩漏核心實作", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G2-CAD-002", "title": "產生 fixture base", "gate": "G2", "status": "planned", "dependsOn": ["G2-CAD-001"],
+      "inputs": ["Fixture golden IR"], "outputs": ["fixture base model"],
+      "acceptance": ["base 幾何、尺寸與拓樸通過自動驗證"], "acceptanceResults": [{ "criterion": "base 幾何、尺寸與拓樸通過自動驗證", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G2-CAD-003", "title": "產生 cover、fasteners 與 cutout", "gate": "G2", "status": "planned", "dependsOn": ["G2-CAD-002"],
+      "inputs": ["fixture base model", "Fixture golden IR"], "outputs": ["cover", "fasteners", "cutout", "assembly"],
+      "acceptance": ["組立關係與必要間隙通過自動驗證"], "acceptanceResults": [{ "criterion": "組立關係與必要間隙通過自動驗證", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G2-CAD-004", "title": "輸出與重新載入 artifacts", "gate": "G2", "status": "planned", "dependsOn": ["G2-CAD-003"],
+      "inputs": ["fixture assembly"], "outputs": ["STEP", "STL", "DXF", "reload evidence"],
+      "acceptance": ["輸出檔可重新載入且幾何不為空"], "acceptanceResults": [{ "criterion": "輸出檔可重新載入且幾何不為空", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G3-RUL-001", "title": "建立 rule schema、governance 與 waiver", "gate": "G3", "status": "planned", "dependsOn": ["G2-CAD-004"],
+      "inputs": ["Engineering IR", "fixture artifacts"], "outputs": ["rule schema", "waiver contract"],
+      "acceptance": ["規則、嚴重度、來源、版本與 waiver 均可追溯"], "acceptanceResults": [{ "criterion": "規則、嚴重度、來源、版本與 waiver 均可追溯", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G3-VAL-001", "title": "建立 geometry、collision 與 clearance validators", "gate": "G3", "status": "planned", "dependsOn": ["G3-RUL-001"],
+      "inputs": ["rule schema", "fixture assembly"], "outputs": ["geometry validators"],
+      "acceptance": ["已知 pass/fail cases 產生可追溯驗證結果"], "acceptanceResults": [{ "criterion": "已知 pass/fail cases 產生可追溯驗證結果", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G3-VAL-002", "title": "建立 CNC DFM rule pack", "gate": "G3", "status": "planned", "dependsOn": ["G3-VAL-001"],
+      "inputs": ["rule governance", "fixture artifacts"], "outputs": ["CNC DFM rule pack"],
+      "acceptance": ["CNC 規則對 golden cases 產生預期結果且來源可追溯"], "acceptanceResults": [{ "criterion": "CNC 規則對 golden cases 產生預期結果且來源可追溯", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G3-BEN-001", "title": "建立 benchmark metrics", "gate": "G3", "status": "planned", "dependsOn": ["G3-VAL-002"],
+      "inputs": ["validation results"], "outputs": ["benchmark metrics", "baseline"],
+      "acceptance": ["正確性、可重現性與執行成本具有固定基準"], "acceptanceResults": [{ "criterion": "正確性、可重現性與執行成本具有固定基準", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G4-MOD-001", "title": "建立 Module capability levels", "gate": "G4", "status": "planned", "dependsOn": ["G3-BEN-001"],
+      "inputs": ["Engineering IR", "validation contracts"], "outputs": ["module capability schema"],
+      "acceptance": ["模組能力等級可被 schema 與測試消費"], "acceptanceResults": [{ "criterion": "模組能力等級可被 schema 與測試消費", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G4-MOD-002", "title": "PCB、USB-C 與 M3 composition", "gate": "G4", "status": "planned", "dependsOn": ["G4-MOD-001"],
+      "inputs": ["module capability schema", "Fixture golden IR"], "outputs": ["module composition"],
+      "acceptance": ["PCB、USB-C 與 M3 模組可組合並保留限制條件"], "acceptanceResults": [{ "criterion": "PCB、USB-C 與 M3 模組可組合並保留限制條件", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G4-IMP-001", "title": "建立 safe STEP 與 DXF metadata extraction", "gate": "G4", "status": "planned", "dependsOn": ["G4-MOD-002"],
+      "inputs": ["untrusted sample artifacts"], "outputs": ["safe metadata extraction"],
+      "acceptance": ["匯入只擷取允許的 metadata 且拒絕不安全輸入"], "acceptanceResults": [{ "criterion": "匯入只擷取允許的 metadata 且拒絕不安全輸入", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G5-PKG-001", "title": "建立 manifest 與 content hashes", "gate": "G5", "status": "planned", "dependsOn": ["G4-IMP-001"],
+      "inputs": ["validated artifacts"], "outputs": ["package manifest", "content hashes"],
+      "acceptance": ["manifest 可重建且所有 artifact hash 可驗證"], "acceptanceResults": [{ "criterion": "manifest 可重建且所有 artifact hash 可驗證", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G5-BOM-001", "title": "建立 BOM exporter", "gate": "G5", "status": "planned", "dependsOn": ["G5-PKG-001"],
+      "inputs": ["module composition", "package manifest"], "outputs": ["BOM"],
+      "acceptance": ["BOM 內容、數量、來源與 hash 可重現"], "acceptanceResults": [{ "criterion": "BOM 內容、數量、來源與 hash 可重現", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G5-DRW-001", "title": "建立 fixed-template draft drawing", "gate": "G5", "status": "planned", "dependsOn": ["G5-BOM-001"],
+      "inputs": ["validated geometry", "drawing feasibility decision"], "outputs": ["draft drawing"],
+      "acceptance": ["固定模板圖面具有尺寸、版本與人工 QA 邊界"], "acceptanceResults": [{ "criterion": "固定模板圖面具有尺寸、版本與人工 QA 邊界", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G5-REP-001", "title": "Clean-environment reproducibility test", "gate": "G5", "status": "planned", "dependsOn": ["G5-DRW-001"],
+      "inputs": ["locked environment", "prototype package"], "outputs": ["clean rebuild evidence"],
+      "acceptance": ["乾淨環境可依 README 重建相同內容 hash"], "acceptanceResults": [{ "criterion": "乾淨環境可依 README 重建相同內容 hash", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G6-UI-001", "title": "建立 capability-driven guided flow", "gate": "G6", "status": "planned", "dependsOn": ["G5-REP-001"],
+      "inputs": ["capability contracts", "Engineering IR"], "outputs": ["engineering guided flow"],
+      "acceptance": ["介面只呈現後端已證明的能力並可產生合法 IR"], "acceptanceResults": [{ "criterion": "介面只呈現後端已證明的能力並可產生合法 IR", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G6-QST-001", "title": "建立 question ordering 與 abstention", "gate": "G6", "status": "planned", "dependsOn": ["G6-UI-001"],
+      "inputs": ["guided flow", "assumption vocabulary"], "outputs": ["question ordering", "abstention behavior"],
+      "acceptance": ["unsafe unknown 不會被預設且會產生可追溯問題"], "acceptanceResults": [{ "criterion": "unsafe unknown 不會被預設且會產生可追溯問題", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G6-E2E-001", "title": "UI-to-IR-to-package end-to-end test", "gate": "G6", "status": "planned", "dependsOn": ["G6-QST-001"],
+      "inputs": ["guided flow", "engineering pipeline"], "outputs": ["end-to-end evidence"],
+      "acceptance": ["UI 輸入可追溯至 IR、驗證與 package，失敗狀態不遺失"], "acceptanceResults": [{ "criterion": "UI 輸入可追溯至 IR、驗證與 package，失敗狀態不遺失", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G7-ACO-001", "title": "Acoustic graph 與 sealed-volume thin slice", "gate": "G7", "status": "planned", "dependsOn": ["G6-E2E-001"],
+      "inputs": ["Acoustic golden input", "core contracts"], "outputs": ["acoustic graph", "sealed-volume geometry", "validation evidence"],
+      "acceptance": ["聲學關係圖與封閉體積幾何可驗證且不宣稱未完成求解能力"], "acceptanceResults": [{ "criterion": "聲學關係圖與封閉體積幾何可驗證且不宣稱未完成求解能力", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G8-ROB-001", "title": "Robot layout 與 assembly-relationship thin slice", "gate": "G8", "status": "planned", "dependsOn": ["G6-E2E-001"],
+      "inputs": ["Robot golden input", "core contracts"], "outputs": ["robot layout", "assembly relationships", "validation evidence"],
+      "acceptance": ["機器人配置與組立關係可驗證且不宣稱未完成安全能力"], "acceptanceResults": [{ "criterion": "機器人配置與組立關係可驗證且不宣稱未完成安全能力", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    }
+  ],
+  "blockers": [],
+  "risks": [
+    { "id": "R-G0-001", "title": "外部 CAD 工具不可用或版本不相容", "impact": "high", "mitigation": "先做隔離 spike；保留 evidence 並切換明確 fallback，不讓失敗 adapter 進入核心" },
+    { "id": "R-G0-002", "title": "控制面與實際 Git 狀態漂移", "impact": "high", "mitigation": "每個完成狀態都要求 commit SHA、存在的證據與可重跑驗證" },
+    { "id": "R-G0-003", "title": "工具寫入核准工作區之外", "impact": "high", "mitigation": "所有 cache、environment、artifact 與 temporary path 固定在 C:/0_JN1_MEGIS" }
+  ]
+}

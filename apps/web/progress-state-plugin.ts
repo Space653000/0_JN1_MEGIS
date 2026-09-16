@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const progressModuleId = "virtual:ui0-progress";
+const progressModuleId = "virtual:project-progress";
 const resolvedProgressModuleId = `\0${progressModuleId}`;
 
 export function createProgressStatePlugin() {
@@ -13,7 +13,7 @@ export function createProgressStatePlugin() {
     load(id: string) {
       if (id !== resolvedProgressModuleId) return undefined;
       const source = readFileSync(
-        resolve(process.cwd(), "../../execution/ui0/progress-state.json"),
+        resolve(process.cwd(), "../../execution/WORK_QUEUE.yaml"),
         "utf8",
       );
       return `export default ${source}`;

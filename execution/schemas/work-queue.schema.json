@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/work-queue.schema.json",
+  "title": "MEGIS Work Queue",
+  "type": "object",
+  "required": ["schemaVersion", "updatedAt", "baselineCommit", "currentWorkItem", "gates", "workItems", "blockers", "risks"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "baselineCommit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "currentWorkItem": { "type": "string", "minLength": 1 },
+    "gates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "status", "dependsOn"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["planned", "active", "blocked", "accepted"] },
+          "dependsOn": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "workItems": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "gate", "status", "dependsOn", "inputs", "outputs", "acceptance", "acceptanceResults", "verificationCommands", "rollbackBoundary", "blockedBy", "evidence", "verification", "commitSha"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "gate": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["planned", "ready", "in_progress", "blocked", "done"] },
+          "dependsOn": { "type": "array", "items": { "type": "string" } },
+          "inputs": { "type": "array", "items": { "type": "string" } },
+          "outputs": { "type": "array", "items": { "type": "string" } },
+          "acceptance": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+          "acceptanceResults": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["criterion", "status", "evidence"],
+              "properties": {
+                "criterion": { "type": "string", "minLength": 1 },
+                "status": { "enum": ["pending", "passed"] },
+                "evidence": { "type": "array", "items": { "type": "string" } }
+              },
+              "additionalProperties": false
+            }
+          },
+          "verificationCommands": { "type": "array", "items": { "type": "string" } },
+          "rollbackBoundary": { "type": "string", "minLength": 1 },
+          "blockedBy": { "type": "array", "items": { "type": "string" } },
+          "evidence": { "type": "array", "items": { "type": "string" } },
+          "verification": { "enum": ["not_run", "passed", "failed"] },
+          "commitSha": { "type": ["string", "null"], "pattern": "^[0-9a-f]{40}$" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "blockers": { "type": "array" },
+    "risks": { "type": "array" }
+  },
+  "additionalProperties": false
+}

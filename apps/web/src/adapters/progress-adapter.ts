@@ -1,4 +1,4 @@
-import source from "virtual:ui0-progress";
+import source from "virtual:project-progress";
 import type { ProgressState } from "../types/progress";
 
 export interface ProgressAdapter {
@@ -8,4 +8,3 @@ export interface ProgressAdapter {
 export const repositoryProgressAdapter: ProgressAdapter = {
   getSnapshot: () => source,
 };
-
