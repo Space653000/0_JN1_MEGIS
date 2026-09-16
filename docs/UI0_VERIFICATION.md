@@ -4,6 +4,8 @@
 
 2026-09-16 已針對目前本機工作樹完成驗證。
 
+機器可讀的命令結果、瀏覽器稽核與建置檔雜湊記錄於 [`execution/ui0/last-verification.json`](../execution/ui0/last-verification.json)。本次驗證來源 commit 為 `853bf87daaa46f568df9a53a4533efcd9c3c5a59`。
+
 | 檢查項目 | 結果 |
 |---|---|
 | ESLint 程式規範檢查 | 通過 |

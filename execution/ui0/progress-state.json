@@ -1,6 +1,6 @@
 {
   "schemaVersion": "0.2.0",
-  "updatedAt": "2026-09-16T15:43:26+08:00",
+  "updatedAt": "2026-09-16T19:30:24+08:00",
   "baselineCommit": "2448b7ac7d1074fed9707884e9ab05a7a5a28eec",
   "currentWorkItem": "UI0-VER-001",
   "gates": [
@@ -74,10 +74,10 @@
       "dependsOn": ["UI0-UX-001"],
       "acceptance": ["自動化驗證通過", "使用者完成驗收檢視"],
       "acceptanceResults": [
-        { "criterion": "自動化驗證通過", "status": "passed", "evidence": ["docs/UI0_VERIFICATION.md"] },
+        { "criterion": "自動化驗證通過", "status": "passed", "evidence": ["docs/UI0_VERIFICATION.md", "execution/ui0/last-verification.json"] },
         { "criterion": "使用者完成驗收檢視", "status": "pending", "evidence": [] }
       ],
-      "evidence": ["docs/UI0_VERIFICATION.md"],
+      "evidence": ["docs/UI0_VERIFICATION.md", "execution/ui0/last-verification.json"],
       "verification": "passed",
       "commitSha": null
     }

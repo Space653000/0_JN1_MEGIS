@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "0.1.0",
+  "verifiedAt": "2026-09-16T19:37:45+08:00",
+  "sourceCommit": "853bf87daaa46f568df9a53a4533efcd9c3c5a59",
+  "status": "passed",
+  "environment": {
+    "node": "24.17.0",
+    "npm": "11.13.0",
+    "bindAddress": "127.0.0.1",
+    "port": 4173
+  },
+  "commands": [
+    { "command": "npm run lint", "status": "passed" },
+    { "command": "npm run typecheck", "status": "passed" },
+    { "command": "npm run test", "status": "passed", "testsPassed": 7, "testsFailed": 0 },
+    { "command": "npm run build", "status": "passed" }
+  ],
+  "browser": {
+    "viewportWidth": 431,
+    "consoleWarningsAndErrors": 0,
+    "routes": [
+      { "path": "/progress", "horizontalOverflow": false, "externalResources": 0, "artifactDownloadLinks": 0 },
+      { "path": "/design", "horizontalOverflow": false, "externalResources": 0, "artifactDownloadLinks": 0 },
+      { "path": "/review", "horizontalOverflow": false, "externalResources": 0, "artifactDownloadLinks": 0 },
+      { "path": "/results", "horizontalOverflow": false, "externalResources": 0, "artifactDownloadLinks": 0, "syntheticWarning": true, "noArtifactWarning": true },
+      { "path": "/roadmap", "horizontalOverflow": false, "externalResources": 0, "artifactDownloadLinks": 0 }
+    ]
+  },
+  "buildArtifacts": [
+    { "path": "apps/web/dist/assets/index-CVs4lXwB.css", "bytes": 21889, "sha256": "29bfaab41fa764d684a664ae4710d16e3b5786a5c947d58b8a6be3857601a3af" },
+    { "path": "apps/web/dist/assets/index-DXScTMzv.js", "bytes": 232256, "sha256": "a482a626c870101001dd36cb00e03c81c4f406419c67f108a95a11347680713b" },
+    { "path": "apps/web/dist/favicon.svg", "bytes": 288, "sha256": "6b2c8c18b45392bb97dad145479898477ddce9bc7bfcf987d257dccec9676704" },
+    { "path": "apps/web/dist/index.html", "bytes": 590, "sha256": "15885e81e34f8f1082646180802cf9741b8568ea7346b6463d0110bfe2e812a0" }
+  ],
+  "boundaries": {
+    "localOnly": true,
+    "otherProjectDirectoriesModified": false,
+    "engineeringArtifactsGenerated": false
+  },
+  "pending": [
+    "使用者完成 UI-0 可用性驗收"
+  ],
+  "notes": [
+    "正式建置通過；Rolldown 另輸出 megis-progress-state 外掛耗時的非失敗診斷。"
+  ]
+}
