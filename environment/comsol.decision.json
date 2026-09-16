@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G0-SIM-001",
+  "decision": "out_of_scope",
+  "blocksCoreGate": false,
+  "reason": "No local COMSOL installation, batch executable, registry key, or license configuration was detected.",
+  "requiredForFutureIntegration": [
+    "A supported COMSOL Multiphysics installation",
+    "A valid license that permits the intended batch workload",
+    "A repository-local adapter that invokes comsolbatch without exposing credentials",
+    "A licensed reference model and reproducible smoke test"
+  ],
+  "prohibitedClaims": [
+    "No COMSOL solve has been executed.",
+    "No COMSOL API integration has been validated.",
+    "No simulation result is available for engineering use."
+  ]
+}
+

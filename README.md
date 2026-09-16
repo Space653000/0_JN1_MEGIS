@@ -37,6 +37,7 @@ UI-0 已完成驗收，但仍只是使用者體驗原型；G0 不會把其合成
 - [G0 工具鏈版本決策](docs/decisions/toolchain.md)
 - [G0 CadQuery 可行性驗證](docs/G0_CAD_VERIFICATION.md)
 - [G0 FreeCAD TechDraw fallback 決策](docs/G0_FREECAD_DECISION.md)
+- [G0 COMSOL 可行性決策](docs/G0_COMSOL_DECISION.md)
 
 ## 本機啟動
 

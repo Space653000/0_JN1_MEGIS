@@ -56,8 +56,8 @@
     {
       "id": "G0-SIM-001", "title": "COMSOL license、API 與 batch feasibility decision", "gate": "G0", "status": "in_progress", "dependsOn": ["G0-ENV-001"],
       "inputs": ["local license and installation inventory"], "outputs": ["COMSOL feasibility decision"],
-      "acceptance": ["COMSOL 路徑具有 pass、fallback 或 out_of_scope 決策且不阻塞核心 Gate"], "acceptanceResults": [{ "criterion": "COMSOL 路徑具有 pass、fallback 或 out_of_scope 決策且不阻塞核心 Gate", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "acceptance": ["COMSOL 路徑具有 pass、fallback 或 out_of_scope 決策且不阻塞核心 Gate"], "acceptanceResults": [{ "criterion": "COMSOL 路徑具有 pass、fallback 或 out_of_scope 決策且不阻塞核心 Gate", "status": "passed", "evidence": ["environment/comsol.decision.json", "artifacts/g0-sim/inventory.json", "docs/G0_COMSOL_DECISION.md"] }],
+      "verificationCommands": ["powershell -ExecutionPolicy Bypass -File scripts/inventory-comsol.ps1", ".venv/Scripts/python.exe -m pytest tests/test_g0_comsol_decision.py"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["scripts/inventory-comsol.ps1", "environment/comsol.decision.json", "artifacts/g0-sim/inventory.json", "artifacts/g0-sim/README.md", "docs/G0_COMSOL_DECISION.md", "tests/test_g0_comsol_decision.py"], "verification": "passed", "commitSha": null
     },
     {
       "id": "G0-CI-001", "title": "建立 baseline CI", "gate": "G0", "status": "planned", "dependsOn": ["G0-REP-001", "G0-ENV-001"],

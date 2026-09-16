@@ -1,0 +1,80 @@
+﻿{
+    "schemaVersion":  "1.0.0",
+    "workItem":  "G0-SIM-001",
+    "inspectedAt":  "2026-09-16T16:49:00.9841061Z",
+    "scope":  "read_only_local_inventory",
+    "commands":  [
+                     {
+                         "name":  "comsol",
+                         "found":  false,
+                         "path":  null
+                     },
+                     {
+                         "name":  "comsolbatch",
+                         "found":  false,
+                         "path":  null
+                     },
+                     {
+                         "name":  "mphserver",
+                         "found":  false,
+                         "path":  null
+                     }
+                 ],
+    "standardPaths":  [
+                          {
+                              "path":  "C:\\Program Files\\COMSOL",
+                              "exists":  false
+                          },
+                          {
+                              "path":  "C:\\Program Files (x86)\\COMSOL",
+                              "exists":  false
+                          },
+                          {
+                              "path":  "C:\\COMSOL",
+                              "exists":  false
+                          }
+                      ],
+    "environmentVariables":  [
+                                 {
+                                     "name":  "COMSOL",
+                                     "present":  false
+                                 },
+                                 {
+                                     "name":  "COMSOL_ROOT",
+                                     "present":  false
+                                 },
+                                 {
+                                     "name":  "COMSOL_HOME",
+                                     "present":  false
+                                 },
+                                 {
+                                     "name":  "LMCOMSOL_LICENSE_FILE",
+                                     "present":  false
+                                 }
+                             ],
+    "registryKeys":  [
+                         {
+                             "path":  "HKLM:\\SOFTWARE\\COMSOL",
+                             "exists":  false
+                         },
+                         {
+                             "path":  "HKLM:\\SOFTWARE\\WOW6432Node\\COMSOL",
+                             "exists":  false
+                         },
+                         {
+                             "path":  "HKCU:\\SOFTWARE\\COMSOL",
+                             "exists":  false
+                         }
+                     ],
+    "summary":  {
+                    "installationDetected":  false,
+                    "licenseConfigurationDetected":  false,
+                    "batchExecutableDetected":  false,
+                    "decision":  "out_of_scope",
+                    "blocksCoreGate":  false
+                },
+    "privacy":  {
+                    "environmentVariableValuesCaptured":  false,
+                    "licenseContentsCaptured":  false
+                }
+}
