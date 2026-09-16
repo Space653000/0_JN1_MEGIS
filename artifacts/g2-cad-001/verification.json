@@ -23,5 +23,12 @@
     "volumeMm3": 192000.0
   },
   "contractTests": { "passed": 7, "failed": 0 },
+  "githubActions": {
+    "runId": 35162441328,
+    "headSha": "1cd6a270f5a5013d2ffba16c680cbbe68bc20356",
+    "status": "passed",
+    "durationSeconds": 109,
+    "url": "https://github.com/Space653000/0_JN1_MEGIS/actions/runs/35162441328"
+  },
   "engineeringArtifactGenerated": false
 }
