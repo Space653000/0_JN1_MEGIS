@@ -4,7 +4,7 @@
 > - 目的：記錄 UI-0 工具鏈 feasibility。
 > - 目前內容：本機 Node、Vite、React 與瀏覽器可行性。
 > - Owner：MEGIS Builder
-> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+> - 最後審查 commit：`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`
 
 ## Baseline
 

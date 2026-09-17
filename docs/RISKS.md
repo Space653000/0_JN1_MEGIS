@@ -4,7 +4,7 @@
 > - 目的：追蹤 V3 風險、觸發條件、緩解措施與下次審查點。
 > - 目前內容：藍圖第 28 章風險的現況索引；每個 Gate review 必審。
 > - Owner：MEGIS Builder
-> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+> - 最後審查 commit：`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`
 
 ## 目前內容
 
@@ -39,5 +39,4 @@
 
 ## 最後審查 commit
 
-`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
-
+`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`

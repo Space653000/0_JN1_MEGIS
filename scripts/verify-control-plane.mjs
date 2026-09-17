@@ -20,6 +20,9 @@ const itemIds = new Set(queue.workItems.map((item) => item.id));
 const itemsById = new Map(queue.workItems.map((item) => [item.id, item]));
 const isDone = (id) => itemsById.get(id)?.status === "done";
 const deferredBy = (owner) => Boolean(owner && !isDone(owner));
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const hasAcceptanceRow = (acceptance, gateId) =>
+  new RegExp(`(?:^|\\n)\\|\\s*${escapeRegExp(gateId)}\\s*\\|`, "u").test(acceptance);
 
 const requiredEntries = [
   ["AGENTS.md", "file", null],
@@ -272,7 +275,7 @@ for (const gate of queue.gates.filter((candidate) => candidate.status === "accep
   } else {
     const acceptancePath = resolve(repoRoot, "docs/ACCEPTANCE.md");
     const acceptance = existsSync(acceptancePath) ? readFileSync(acceptancePath, "utf8") : "";
-    if (!acceptance.includes(gate.id)) {
+    if (!hasAcceptanceRow(acceptance, gate.id)) {
       errors.push(`${gate.id} lacks an ACCEPTANCE.md review/sign-off entry`);
     }
   }

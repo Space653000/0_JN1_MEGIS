@@ -4,7 +4,7 @@
 > - 目的：定義本機重建、驗證、備份、還原與故障處理。
 > - 目前內容：Windows local single-user 的可執行操作邊界。
 > - Owner：MEGIS Maintainer
-> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+> - 最後審查 commit：`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`
 
 ## 目的
 
@@ -37,5 +37,4 @@ MEGIS Maintainer；破壞性操作仍由使用者授權。
 
 ## 最後審查 commit
 
-`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
-
+`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`

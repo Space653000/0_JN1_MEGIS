@@ -4,7 +4,7 @@
 > - 目的：保存 D8 與規則來源研究的 URL、文件版次、取用日期、比較與理由。
 > - 目前內容：研究格式與資料邊界；G1-REQ-001 尚未開始。
 > - Owner：MEGIS Builder
-> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+> - 最後審查 commit：`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`
 
 ## 目的
 
@@ -20,5 +20,4 @@
 
 ## 最後審查 commit
 
-`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
-
+`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`

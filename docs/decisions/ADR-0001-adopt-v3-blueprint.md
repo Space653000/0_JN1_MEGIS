@@ -4,7 +4,7 @@
 > - 目的：記錄 V3 藍圖採用決策及後果。
 > - 目前內容：已接受的 V3C 遷移策略與證據。
 > - Owner：MEGIS Builder
-> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+> - 最後審查 commit：`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`
 
 - 狀態：accepted
 - 日期：2026-09-17

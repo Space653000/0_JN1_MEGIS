@@ -4,7 +4,7 @@
 > - 目的：公開目前實際驗證的能力範圍與尚未驗證的 V3 目標。
 > - 目前內容：legacy Reference Fixture 幾何範圍及 G1-ENV-001 待辦界線。
 > - Owner：MEGIS Builder
-> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+> - 最後審查 commit：`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`
 
 ## 目的
 
@@ -26,5 +26,4 @@ MEGIS Builder；擴張範圍需要使用者決策。
 
 ## 最後審查 commit
 
-`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
-
+`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`

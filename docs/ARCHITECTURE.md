@@ -4,7 +4,7 @@
 > - 目的：固定分層、依賴方向、資料流與 adapter seam。
 > - 目前內容：現有 contract／geometry／UI 模組與 V3 目標架構的誠實對照。
 > - Owner：MEGIS Builder
-> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+> - 最後審查 commit：`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`
 
 ## 目的
 
@@ -41,5 +41,4 @@ MEGIS Builder；架構基線變更需 ADR。
 
 ## 最後審查 commit
 
-`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
-
+`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`

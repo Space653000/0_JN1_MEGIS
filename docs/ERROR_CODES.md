@@ -4,7 +4,7 @@
 > - 目的：提供 `MEGIS-<DOMAIN>-NNN` 錯誤碼的唯一登錄入口。
 > - 目前內容：V3 taxonomy 規則、domain 保留範圍與 legacy 缺口。
 > - Owner：MEGIS Builder
-> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+> - 最後審查 commit：`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`
 
 ## 目的
 
@@ -30,5 +30,4 @@ MEGIS Builder；新增 code 必須同時新增測試與本表紀錄。
 
 ## 最後審查 commit
 
-`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
-
+`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`

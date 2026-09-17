@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-17T12:30:52+08:00",
-  "baselineCommit": "bf152afefbd22e81655566fe5650d6c23d6b2992",
-  "currentWorkItem": "V3C-DOC-001",
+  "updatedAt": "2026-09-17T12:42:23+08:00",
+  "baselineCommit": "6cc2ad78d237d2c2095d705910a242dcd2b6b2bc",
+  "currentWorkItem": "V3C-DEC-001",
   "gates": [
     { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
     { "id": "UI-0B", "title": "施工進度中心", "status": "accepted", "dependsOn": ["UI-0A"] },
@@ -122,17 +122,18 @@
       "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E3", "review": { "required": false, "status": "not_required", "report": null }, "risk_refs": ["R-AGT-001"], "blueprint_ref": "v3.0 §5.3, §5.7, §5.13"
     },
     {
-      "id": "V3C-DOC-001", "title": "補齊控制面文件", "gate": "G2", "status": "in_progress", "dependsOn": ["V3C-BCR-001"],
+      "id": "V3C-DOC-001", "title": "補齊控制面文件", "gate": "G2", "status": "done", "dependsOn": ["V3C-BCR-001"],
       "inputs": ["v3 §5.1"], "outputs": ["required control-plane documents", "CLAUDE.md"],
-      "acceptance": ["v3 §5.1 全部文件存在且非空殼，CLAUDE.md 不與 AGENTS.md 衝突"], "acceptanceResults": [{ "criterion": "v3 §5.1 全部文件存在且非空殼，CLAUDE.md 不與 AGENTS.md 衝突", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null,
+      "acceptance": ["v3 §5.1 全部文件存在且非空殼，CLAUDE.md 不與 AGENTS.md 衝突"], "acceptanceResults": [{ "criterion": "v3 §5.1 全部文件存在且非空殼，CLAUDE.md 不與 AGENTS.md 衝突", "status": "passed", "evidence": ["CLAUDE.md", "docs/PRODUCT.md", "docs/ARCHITECTURE.md", "docs/SUPPORTED_ENVELOPE.md", "docs/ACCEPTANCE.md", "docs/RISKS.md", "docs/OPERATIONS.md", "docs/ERROR_CODES.md", "docs/RULE_SOURCES.md", "docs/research/README.md", "artifacts/v3c-doc-001/verification.json"] }],
+      "verificationCommands": ["node scripts/verify-control-plane.mjs", ".venv/Scripts/python.exe -m pytest tests/test_v3_blueprint_adoption.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["CLAUDE.md", "docs/PRODUCT.md", "docs/ARCHITECTURE.md", "docs/DECISIONS.md", "docs/SUPPORTED_ENVELOPE.md", "docs/ACCEPTANCE.md", "docs/RISKS.md", "docs/OPERATIONS.md", "docs/ERROR_CODES.md", "docs/RULE_SOURCES.md", "docs/research/README.md", "execution/handoffs/README.md", "execution/reviews/README.md", "execution/signoffs/README.md", "config/envelope/README.md", "tests/golden/README.md", "scripts/verify-control-plane.mjs", "tests/test_v3_blueprint_adoption.py", "artifacts/v3c-doc-001/verification.json"], "verification": "passed", "commitSha": "6cc2ad78d237d2c2095d705910a242dcd2b6b2bc",
       "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E2", "review": { "required": false, "status": "not_required", "report": null }, "risk_refs": ["R-AGT-003"], "blueprint_ref": "v3.0 §5.1, §26.1"
     },
     {
-      "id": "V3C-DEC-001", "title": "G0 決策補記", "gate": "G2", "status": "planned", "dependsOn": ["V3C-DOC-001"],
+      "id": "V3C-DEC-001", "title": "G0 決策補記", "gate": "G2", "status": "in_progress", "dependsOn": ["V3C-DOC-001"],
       "inputs": ["v3 §8.1 decisions"], "outputs": ["D1–D9 ADR records"],
       "acceptance": ["D1–D9 全部有可追溯 ADR 與既有決策證據"], "acceptanceResults": [{ "criterion": "D1–D9 全部有可追溯 ADR 與既有決策證據", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null,
+      "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E4", "review": { "required": false, "status": "not_required", "report": null }, "risk_refs": ["R-SME-001", "R-SPEC-001"], "blueprint_ref": "v3.0 §8.1, §26.1"
     },
     {
       "id": "V3C-DET-001", "title": "Determinism 與 fingerprint", "gate": "G2", "status": "planned", "dependsOn": ["V3C-BCR-001"],

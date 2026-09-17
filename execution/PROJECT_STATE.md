@@ -1,10 +1,10 @@
 # MEGIS Project State
 
 - Current gate: `G2 — Fixture Geometry Vertical Slice`
-- Current work item: `V3C-DOC-001 — 補齊控制面文件`
-- Last green commit: `bf152afefbd22e81655566fe5650d6c23d6b2992`
+- Current work item: `V3C-DEC-001 — G0 決策補記`
+- Last green commit: `6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`
 - Control-plane schema: `1.0.0`
-- Updated at: `2026-09-17T12:30:52+08:00`
+- Updated at: `2026-09-17T12:42:23+08:00`
 
 ## Accepted capabilities
 
@@ -27,12 +27,13 @@
 - G2-CAD-003：cover、fasteners、USB-C cutout、PCB envelope 與組立間隙驗證
 - V3C-BCR-001：V3 主藍圖指向、採用 ADR、74 項工作圖與必要 ID 防退化檢查
 - V3C-CTL-001：向後相容 schema 1.1、單一 Builder claim、依賴無循環、done SHA 與 Gate 審查強制機制
+- V3C-DOC-001：§5.1 必要文件、目錄與 28 份 Markdown 治理 metadata
 
 UI-0 驗收只涵蓋使用者體驗原型；沒有工程生成能力或工程製品獲得驗收。
 
 ## Active scope
 
-`V3C-CTL-001` 已完成；GitHub Actions run `35182065276` 對 commit `bf152af` 全綠。現在只施工 `V3C-DOC-001`，補齊 v3 §5.1 的必要文件與目錄，並驗證每份 `docs/*.md` 的用途、目前內容、owner 與最後審查 commit metadata。
+`V3C-DOC-001` 已完成；GitHub Actions run `35182708539` 對 commit `6cc2ad7` 全綠。現在只施工 `V3C-DEC-001`，把 D1–D9 與既有施工證據補記為可追溯 ADR／決策紀錄。
 
 ## Next work item
 
