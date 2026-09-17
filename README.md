@@ -16,7 +16,7 @@ V3.0 採 Gate-driven construction，不以日期或推測百分比宣稱完成�
 
 ## 目前施工狀態
 
-**G0 與 G1 沿用既有驗收，G2 為 active Gate**。`G2-CAD-003` 已完成並由 GitHub Actions 驗證；目前唯一在製項目為 `V3C-BCR-001`，先導入 V3.0 控制面，再恢復 `G2-CAD-004`。既有 done 項目與 accepted Gate 不重開。
+**G0 與 G1 沿用既有驗收，G2 為 active Gate**。`V3C-BCR-001` 已完成並由 GitHub Actions 驗證；目前唯一在製項目為 `V3C-CTL-001`，建設 control-plane schema 1.1、claim 與一致性檢查。既有 done 項目與 accepted Gate 不重開。
 
 UI-0 是本機端使用者體驗原型，用來先確認施工進度中心與治具／電子外殼引導流程。它使用有版本的 `PrototypeViewModel` 展示資料，不是藍圖中的 G6 工程能力，也不會產生 STEP、工程圖面、BOM、Prototype Package 或可供製造的工程製品。
 

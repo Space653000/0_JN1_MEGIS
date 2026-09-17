@@ -1,10 +1,10 @@
 # MEGIS Project State
 
 - Current gate: `G2 — Fixture Geometry Vertical Slice`
-- Current work item: `V3C-BCR-001 — 導入 v3.0 藍圖`
-- Last green commit: `b8473653ed8e0b8c2c329997b6e4570f368adfb7`
+- Current work item: `V3C-CTL-001 — 控制面 schema 1.1 與 claim`
+- Last green commit: `d8a6ed9598a437a0f7d7cb533f52cf90a8e451c3`
 - Control-plane schema: `1.0.0`
-- Updated at: `2026-09-17T12:04:53+08:00`
+- Updated at: `2026-09-17T12:19:10+08:00`
 
 ## Accepted capabilities
 
@@ -25,12 +25,13 @@
 - G2-CAD-001：kernel-neutral geometry contract、capability negotiation 與 adapter seam
 - G2-CAD-002：由 golden IR 驅動的 CadQuery fixture base、尺寸與拓樸驗證
 - G2-CAD-003：cover、fasteners、USB-C cutout、PCB envelope 與組立間隙驗證
+- V3C-BCR-001：V3 主藍圖指向、採用 ADR、74 項工作圖與必要 ID 防退化檢查
 
 UI-0 驗收只涵蓋使用者體驗原型；沒有工程生成能力或工程製品獲得驗收。
 
 ## Active scope
 
-`G2-CAD-003` 已完成；GitHub Actions run `35180375432` 對 commit `b847365` 全綠。依 v3 §0.6 與 §26.1，現在暫停後續 G2 輸出工作，只施工 `V3C-BCR-001` 導入 v3 控制面；已完成項目與已 accepted Gate 不重開。
+`V3C-BCR-001` 已完成；GitHub Actions run `35181276932` 對 commit `d8a6ed9` 全綠。現在只施工 `V3C-CTL-001`，導入向後相容的 control-plane schema 1.1、寫入 claim 與 v3 §5.13 控制面檢查。
 
 ## Next work item
 
