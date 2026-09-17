@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "updatedAt": "2026-09-17T12:19:10+08:00",
   "baselineCommit": "d8a6ed9598a437a0f7d7cb533f52cf90a8e451c3",
   "currentWorkItem": "V3C-CTL-001",
@@ -111,13 +111,15 @@
       "id": "V3C-BCR-001", "title": "導入 v3.0 藍圖", "gate": "G2", "status": "done", "dependsOn": [],
       "inputs": ["MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v3.0-claude-code.md", "existing v2 control plane"], "outputs": ["README blueprint pointer", "v3 adoption ADR", "complete v3 work queue", "required-ID verifier"],
       "acceptance": ["README 指向 v3、ADR 與完整 v3 工作佇列存在，verifier 必要 ID 測試生效，既有 done 項目未被重開"], "acceptanceResults": [{ "criterion": "README 指向 v3、ADR 與完整 v3 工作佇列存在，verifier 必要 ID 測試生效，既有 done 項目未被重開", "status": "passed", "evidence": ["README.md", "docs/decisions/ADR-0001-adopt-v3-blueprint.md", "execution/WORK_QUEUE.yaml", "execution/schemas/v3-required-work-items.json", "scripts/verify-control-plane.mjs", "tests/test_v3_blueprint_adoption.py", "artifacts/v3c-bcr-001/verification.json"] }],
-      "verificationCommands": ["node scripts/verify-control-plane.mjs", ".venv/Scripts/python.exe -m pytest tests/test_v3_blueprint_adoption.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["README.md", "docs/DECISIONS.md", "docs/decisions/ADR-0001-adopt-v3-blueprint.md", "execution/WORK_QUEUE.yaml", "execution/schemas/v3-required-work-items.json", "scripts/verify-control-plane.mjs", "tests/test_v3_blueprint_adoption.py", "artifacts/v3c-bcr-001/verification.json"], "verification": "passed", "commitSha": "d8a6ed9598a437a0f7d7cb533f52cf90a8e451c3"
+      "verificationCommands": ["node scripts/verify-control-plane.mjs", ".venv/Scripts/python.exe -m pytest tests/test_v3_blueprint_adoption.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["README.md", "docs/DECISIONS.md", "docs/decisions/ADR-0001-adopt-v3-blueprint.md", "execution/WORK_QUEUE.yaml", "execution/schemas/v3-required-work-items.json", "scripts/verify-control-plane.mjs", "tests/test_v3_blueprint_adoption.py", "artifacts/v3c-bcr-001/verification.json"], "verification": "passed", "commitSha": "d8a6ed9598a437a0f7d7cb533f52cf90a8e451c3",
+      "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E3", "review": { "required": false, "status": "not_required", "report": null }, "risk_refs": ["R-AGT-003"], "blueprint_ref": "v3.0 §0.6, §5.10, §26.1"
     },
     {
       "id": "V3C-CTL-001", "title": "控制面 schema 1.1 與 claim", "gate": "G2", "status": "in_progress", "dependsOn": ["V3C-BCR-001"],
       "inputs": ["v3 control-plane contract"], "outputs": ["schema 1.1.0", "execution/AGENT_CLAIM.json", "extended verifier"],
       "acceptance": ["schema 1.1 選填欄位、claim 與 v3 §5.13 控制面檢查生效"], "acceptanceResults": [{ "criterion": "schema 1.1 選填欄位、claim 與 v3 §5.13 控制面檢查生效", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null,
+      "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E3", "review": { "required": false, "status": "not_required", "report": null }, "risk_refs": ["R-AGT-001"], "blueprint_ref": "v3.0 §5.3, §5.7, §5.13"
     },
     {
       "id": "V3C-DOC-001", "title": "補齊控制面文件", "gate": "G2", "status": "planned", "dependsOn": ["V3C-BCR-001"],

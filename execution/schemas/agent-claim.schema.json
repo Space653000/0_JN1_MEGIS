@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/agent-claim.schema.json",
+  "title": "MEGIS Agent Claim",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["agent"],
+      "properties": { "agent": { "type": "null" } },
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "required": ["agent", "role", "work_item", "claimed_at", "expires_at", "base_commit"],
+      "properties": {
+        "agent": { "type": "string", "minLength": 1 },
+        "role": { "const": "builder" },
+        "work_item": { "type": "string", "minLength": 1 },
+        "claimed_at": { "type": "string", "format": "date-time" },
+        "expires_at": { "type": "string", "format": "date-time" },
+        "base_commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" }
+      },
+      "additionalProperties": false
+    }
+  ]
+}

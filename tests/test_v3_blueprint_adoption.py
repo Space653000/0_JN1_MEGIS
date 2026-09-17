@@ -4,6 +4,8 @@ import os
 from pathlib import Path
 import subprocess
 
+from jsonschema import Draft202012Validator
+
 
 ROOT = Path(__file__).resolve().parents[1]
 VERIFIER = ROOT / "scripts" / "verify-control-plane.mjs"
@@ -15,9 +17,14 @@ def _load_queue() -> dict:
 
 def _write_fixture(root: Path, queue: dict) -> None:
     copies = [
+        "AGENTS.md",
+        "docs/DECISIONS.md",
         "execution/BLOCKERS.yaml",
         "execution/schemas/work-queue.schema.json",
+        "execution/schemas/agent-claim.schema.json",
         "execution/schemas/v3-required-work-items.json",
+        "execution/AGENT_CLAIM.json",
+        "execution/V3_MIGRATION.json",
         "execution/PROJECT_STATE.md",
         "README.md",
     ]
@@ -60,6 +67,7 @@ def _write_fixture(root: Path, queue: dict) -> None:
 def _run_verifier(root: Path) -> subprocess.CompletedProcess[str]:
     environment = os.environ.copy()
     environment["MEGIS_REPO_ROOT"] = str(root)
+    environment["MEGIS_SKIP_GIT_HISTORY_CHECK"] = "1"
     return subprocess.run(
         ["node", str(VERIFIER)],
         cwd=ROOT,
@@ -82,6 +90,56 @@ def test_v3_required_work_item_manifest_matches_queue() -> None:
     assert set(required["requiredWorkItemIds"]) == {
         item["id"] for item in queue["workItems"]
     }
+    assert queue["schemaVersion"] == "1.1.0"
+
+
+def test_verifier_accepts_current_v3_migration_state(tmp_path: Path) -> None:
+    _write_fixture(tmp_path, _load_queue())
+
+    result = _run_verifier(tmp_path)
+
+    assert result.returncode == 0, result.stderr
+    assert "74 work items" in result.stdout
+
+
+def test_control_plane_schema_1_1_is_backward_compatible() -> None:
+    queue = _load_queue()
+    schema = json.loads(
+        (ROOT / "execution" / "schemas" / "work-queue.schema.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    validator = Draft202012Validator(schema)
+
+    validator.validate(queue)
+    legacy = deepcopy(queue)
+    legacy["schemaVersion"] = "1.0.0"
+    for item in legacy["workItems"]:
+        for field in (
+            "owner_role",
+            "requires_user_decision",
+            "evidence_level_required",
+            "review",
+            "risk_refs",
+            "blueprint_ref",
+        ):
+            item.pop(field, None)
+    validator.validate(legacy)
+
+
+def test_agent_claim_matches_current_work_item_and_schema() -> None:
+    queue = _load_queue()
+    claim = json.loads(
+        (ROOT / "execution" / "AGENT_CLAIM.json").read_text(encoding="utf-8")
+    )
+    schema = json.loads(
+        (ROOT / "execution" / "schemas" / "agent-claim.schema.json").read_text(
+            encoding="utf-8"
+        )
+    )
+
+    Draft202012Validator(schema).validate(claim)
+    assert claim["work_item"] == queue["currentWorkItem"]
 
 
 def test_verifier_rejects_a_missing_v3_work_item(tmp_path: Path) -> None:
@@ -108,3 +166,91 @@ def test_verifier_rejects_reopening_a_completed_v2_item(tmp_path: Path) -> None:
     assert result.returncode == 1
     assert "G1-MIG-001 changed after v3 adoption baseline" in result.stderr
 
+
+def test_verifier_rejects_claim_mismatch(tmp_path: Path) -> None:
+    queue = _load_queue()
+    _write_fixture(tmp_path, queue)
+    claim_path = tmp_path / "execution" / "AGENT_CLAIM.json"
+    claim = json.loads(claim_path.read_text(encoding="utf-8"))
+    claim["work_item"] = "G2-CAD-004"
+    claim_path.write_text(json.dumps(claim), encoding="utf-8")
+
+    result = _run_verifier(tmp_path)
+
+    assert result.returncode == 1
+    assert "AGENT_CLAIM work_item does not match currentWorkItem" in result.stderr
+
+
+def test_verifier_rejects_dependency_cycle(tmp_path: Path) -> None:
+    queue = deepcopy(_load_queue())
+    solver = next(item for item in queue["workItems"] if item["id"] == "G7-SOL-001")
+    solver["dependsOn"] = ["G7-REV-001"]
+    _write_fixture(tmp_path, queue)
+
+    result = _run_verifier(tmp_path)
+
+    assert result.returncode == 1
+    assert "Work item dependency cycle" in result.stderr
+
+
+def test_document_deferral_expires_when_owner_is_done(tmp_path: Path) -> None:
+    queue = deepcopy(_load_queue())
+    document_item = next(
+        item for item in queue["workItems"] if item["id"] == "V3C-DOC-001"
+    )
+    document_item["status"] = "done"
+    document_item["acceptanceResults"][0]["status"] = "passed"
+    document_item["acceptanceResults"][0]["evidence"] = ["README.md"]
+    document_item["evidence"] = ["README.md"]
+    document_item["verification"] = "passed"
+    document_item["commitSha"] = "d8a6ed9598a437a0f7d7cb533f52cf90a8e451c3"
+    _write_fixture(tmp_path, queue)
+
+    result = _run_verifier(tmp_path)
+
+    assert result.returncode == 1
+    assert "Missing or empty required file: docs/PRODUCT.md" in result.stderr
+
+
+def test_accepted_gate_deferrals_cannot_become_permanent(tmp_path: Path) -> None:
+    queue = _load_queue()
+    _write_fixture(tmp_path, queue)
+    migration_path = tmp_path / "execution" / "V3_MIGRATION.json"
+    migration = json.loads(migration_path.read_text(encoding="utf-8"))
+    migration["temporaryDeferrals"]["acceptedGateRetrospectiveReview"] = "V3C-BCR-001"
+    migration["temporaryDeferrals"]["acceptedGateSignoff"] = "V3C-BCR-001"
+    migration_path.write_text(json.dumps(migration), encoding="utf-8")
+
+    result = _run_verifier(tmp_path)
+
+    assert result.returncode == 1
+    assert "G0 is accepted with unfinished work items" in result.stderr
+    assert "UI-0A lacks an ACCEPTANCE.md review/sign-off entry" in result.stderr
+
+
+def test_done_item_cannot_skip_a_required_review(tmp_path: Path) -> None:
+    queue = deepcopy(_load_queue())
+    adoption = next(
+        item for item in queue["workItems"] if item["id"] == "V3C-BCR-001"
+    )
+    adoption["review"] = {"required": True, "status": "pending", "report": None}
+    _write_fixture(tmp_path, queue)
+
+    result = _run_verifier(tmp_path)
+
+    assert result.returncode == 1
+    assert "V3C-BCR-001 is done without a passed required review" in result.stderr
+
+
+def test_done_item_commit_shas_exist_in_repository_history() -> None:
+    queue = _load_queue()
+
+    for item in queue["workItems"]:
+        if item["status"] != "done":
+            continue
+        result = subprocess.run(
+            ["git", "-C", str(ROOT), "cat-file", "-e", f"{item['commitSha']}^{{commit}}"],
+            capture_output=True,
+            check=False,
+        )
+        assert result.returncode == 0, item["id"]

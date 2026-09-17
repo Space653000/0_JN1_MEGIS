@@ -5,7 +5,7 @@
   "type": "object",
   "required": ["schemaVersion", "updatedAt", "baselineCommit", "currentWorkItem", "gates", "workItems", "blockers", "risks"],
   "properties": {
-    "schemaVersion": { "const": "1.0.0" },
+    "schemaVersion": { "enum": ["1.0.0", "1.1.0"] },
     "updatedAt": { "type": "string", "format": "date-time" },
     "baselineCommit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
     "currentWorkItem": { "type": "string", "minLength": 1 },
@@ -58,7 +58,22 @@
           "blockedBy": { "type": "array", "items": { "type": "string" } },
           "evidence": { "type": "array", "items": { "type": "string" } },
           "verification": { "enum": ["not_run", "passed", "failed"] },
-          "commitSha": { "type": ["string", "null"], "pattern": "^[0-9a-f]{40}$" }
+          "commitSha": { "type": ["string", "null"], "pattern": "^[0-9a-f]{40}$" },
+          "owner_role": { "enum": ["builder", "reviewer", "human"] },
+          "requires_user_decision": { "type": "boolean" },
+          "evidence_level_required": { "enum": ["E0", "E1", "E2", "E3", "E4"] },
+          "review": {
+            "type": "object",
+            "required": ["required", "status", "report"],
+            "properties": {
+              "required": { "type": "boolean" },
+              "status": { "enum": ["not_required", "pending", "passed", "changes_requested"] },
+              "report": { "type": ["string", "null"] }
+            },
+            "additionalProperties": false
+          },
+          "risk_refs": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+          "blueprint_ref": { "type": "string", "minLength": 1 }
         },
         "additionalProperties": false
       }

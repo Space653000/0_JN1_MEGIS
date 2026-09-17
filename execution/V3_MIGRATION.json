@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0.0",
+  "adoptedBlueprint": "v3.0-claude-code",
+  "activeGate": "G2",
+  "conformanceAcceptanceItem": "V3C-ACC-001",
+  "temporaryDeferrals": {
+    "requiredControlDocuments": "V3C-DOC-001",
+    "acceptedGateRetrospectiveReview": "V3C-REV-001",
+    "acceptedGateSignoff": "V3C-ACC-001"
+  },
+  "retroactiveWorkItems": {
+    "G0": ["G0-DOC-001", "G0-DEC-001", "G0-DET-001", "G0-REV-001", "G0-ACC-001"],
+    "G1": ["G1-ERR-001", "G1-ENV-001", "G1-REQ-001", "G1-REV-001", "G1-ACC-001"]
+  },
+  "rule": "Deferral only suppresses a migration-time failure while its named V3C owner is unfinished; once that owner is done, the verifier enforces the requirement without exception."
+}
