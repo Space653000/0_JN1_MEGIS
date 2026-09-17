@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.0.0",
+  "fingerprintPolicyVersion": "1.0.0",
+  "canonicalJson": {
+    "encoding": "UTF-8",
+    "sortKeys": true,
+    "insignificantWhitespace": false,
+    "numericEngineeringValuesEncodedAsStrings": true
+  },
+  "rounding": {
+    "mode": "ROUND_HALF_EVEN",
+    "lengthMm": "0.001",
+    "areaMm2": "0.01",
+    "volumeMm3": "0.01"
+  },
+  "geometryFields": [
+    "solids",
+    "shells",
+    "faces",
+    "edges",
+    "vertices",
+    "volume_mm3",
+    "area_mm2",
+    "bbox_mm",
+    "center_of_mass_mm",
+    "semantic_features"
+  ],
+  "informationalFields": [],
+  "step": {
+    "fileNameTimestamp": "1970-01-01T00:00:00",
+    "author": "MEGIS",
+    "organization": "MEGIS"
+  },
+  "dxf": {
+    "julianDate": "2440587.5",
+    "elapsedTime": "0.0",
+    "handleSeed": "FFFF",
+    "fixedGuids": true
+  },
+  "stl": {
+    "encoding": "binary",
+    "header": "MEGIS BINARY STL | policy 1.0.0"
+  },
+  "manifestExcludedRuntimeFields": [
+    "durationSeconds",
+    "generatedAt",
+    "generated_at",
+    "manifestSemanticFingerprint",
+    "verifiedAt",
+    "verified_at"
+  ]
+}

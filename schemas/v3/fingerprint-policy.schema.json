@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/fingerprint-policy.schema.json",
+  "title": "MEGIS Fingerprint Policy",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "fingerprintPolicyVersion",
+    "canonicalJson",
+    "rounding",
+    "geometryFields",
+    "informationalFields",
+    "step",
+    "dxf",
+    "stl",
+    "manifestExcludedRuntimeFields"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "fingerprintPolicyVersion": { "const": "1.0.0" },
+    "canonicalJson": {
+      "type": "object",
+      "required": ["encoding", "sortKeys", "insignificantWhitespace", "numericEngineeringValuesEncodedAsStrings"],
+      "properties": {
+        "encoding": { "const": "UTF-8" },
+        "sortKeys": { "const": true },
+        "insignificantWhitespace": { "const": false },
+        "numericEngineeringValuesEncodedAsStrings": { "const": true }
+      },
+      "additionalProperties": false
+    },
+    "rounding": {
+      "type": "object",
+      "required": ["mode", "lengthMm", "areaMm2", "volumeMm3"],
+      "properties": {
+        "mode": { "const": "ROUND_HALF_EVEN" },
+        "lengthMm": { "const": "0.001" },
+        "areaMm2": { "const": "0.01" },
+        "volumeMm3": { "const": "0.01" }
+      },
+      "additionalProperties": false
+    },
+    "geometryFields": {
+      "type": "array",
+      "minItems": 10,
+      "uniqueItems": true,
+      "items": { "type": "string" }
+    },
+    "informationalFields": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string" }
+    },
+    "step": { "type": "object" },
+    "dxf": { "type": "object" },
+    "stl": { "type": "object" },
+    "manifestExcludedRuntimeFields": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

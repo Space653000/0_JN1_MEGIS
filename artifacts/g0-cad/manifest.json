@@ -69,26 +69,244 @@
       }
     }
   },
+  "normalization": {
+    "step": {
+      "format": "STEP",
+      "policyVersion": "1.0.0",
+      "changed": true,
+      "fileNameTimestamp": "1970-01-01T00:00:00",
+      "author": "MEGIS",
+      "organization": "MEGIS"
+    },
+    "stl": {
+      "format": "STL",
+      "policyVersion": "1.0.0",
+      "binary": true,
+      "changed": true,
+      "triangleCount": 2060,
+      "header": "MEGIS BINARY STL | policy 1.0.0"
+    },
+    "dxf": {
+      "format": "DXF",
+      "policyVersion": "1.0.0",
+      "changed": true,
+      "normalizedVariables": [
+        "$FINGERPRINTGUID",
+        "$HANDSEED",
+        "$LASTSAVEDBY",
+        "$TDCREATE",
+        "$TDINDWG",
+        "$TDUCREATE",
+        "$TDUPDATE",
+        "$TDUSRTIMER",
+        "$TDUUPDATE",
+        "$VERSIONGUID"
+      ],
+      "normalizedMetadataRecords": 2
+    }
+  },
+  "fingerprints": {
+    "sourceGeometry": {
+      "fingerprintPolicyVersion": "1.0.0",
+      "canonical": {
+        "fingerprint_policy_version": "1.0.0",
+        "solids": 1,
+        "shells": 1,
+        "faces": 15,
+        "edges": 36,
+        "vertices": 24,
+        "volume_mm3": "44999.37",
+        "area_mm2": "45884.82",
+        "bbox_mm": [
+          "120.000",
+          "80.000",
+          "35.000"
+        ],
+        "center_of_mass_mm": [
+          "0.000",
+          "0.000",
+          "11.061"
+        ],
+        "semantic_features": [
+          "base.hole.m3_cover[0]",
+          "base.hole.m3_cover[1]",
+          "base.hole.m3_cover[2]",
+          "base.hole.m3_cover[3]",
+          "base.shell.main"
+        ]
+      },
+      "informationalFields": [],
+      "semanticFingerprint": "ac317f9c43f3936e0b83ca7e94617b292d861c95110367aedd59e70dab92d8cf"
+    },
+    "stepGeometry": {
+      "fingerprintPolicyVersion": "1.0.0",
+      "canonical": {
+        "fingerprint_policy_version": "1.0.0",
+        "solids": 1,
+        "shells": 1,
+        "faces": 15,
+        "edges": 36,
+        "vertices": 24,
+        "volume_mm3": "44999.37",
+        "area_mm2": "45884.82",
+        "bbox_mm": [
+          "120.000",
+          "80.000",
+          "35.000"
+        ],
+        "center_of_mass_mm": [
+          "0.000",
+          "0.000",
+          "11.061"
+        ],
+        "semantic_features": [
+          "base.hole.m3_cover[0]",
+          "base.hole.m3_cover[1]",
+          "base.hole.m3_cover[2]",
+          "base.hole.m3_cover[3]",
+          "base.shell.main"
+        ]
+      },
+      "informationalFields": [],
+      "semanticFingerprint": "ac317f9c43f3936e0b83ca7e94617b292d861c95110367aedd59e70dab92d8cf"
+    },
+    "stlMesh": {
+      "fingerprintPolicyVersion": "1.0.0",
+      "canonical": {
+        "fingerprint_policy_version": "1.0.0",
+        "format": "binary_stl",
+        "triangle_count": 2060,
+        "triangles_sha256": "39d3f0ecb625b53a270b46bac76ed11eff081e3763ce8976df9a9bf736eff3dc"
+      },
+      "semanticFingerprint": "c1ae023d8030b75e040c757b6a0dd0c2e32d7ac4d20b3f5dc815f4f0ab1d4331"
+    },
+    "dxfVectors": {
+      "fingerprintPolicyVersion": "1.0.0",
+      "canonical": {
+        "fingerprint_policy_version": "1.0.0",
+        "format": "dxf_vector_elements",
+        "edge_count": 8,
+        "segments": [
+          [
+            [
+              "-58.000",
+              "-38.000"
+            ],
+            [
+              "-58.000",
+              "38.000"
+            ]
+          ],
+          [
+            [
+              "-58.000",
+              "-38.000"
+            ],
+            [
+              "58.000",
+              "-38.000"
+            ]
+          ],
+          [
+            [
+              "-58.000",
+              "38.000"
+            ],
+            [
+              "58.000",
+              "38.000"
+            ]
+          ],
+          [
+            [
+              "-60.000",
+              "-40.000"
+            ],
+            [
+              "-60.000",
+              "40.000"
+            ]
+          ],
+          [
+            [
+              "-60.000",
+              "-40.000"
+            ],
+            [
+              "60.000",
+              "-40.000"
+            ]
+          ],
+          [
+            [
+              "-60.000",
+              "40.000"
+            ],
+            [
+              "60.000",
+              "40.000"
+            ]
+          ],
+          [
+            [
+              "58.000",
+              "-38.000"
+            ],
+            [
+              "58.000",
+              "38.000"
+            ]
+          ],
+          [
+            [
+              "60.000",
+              "-40.000"
+            ],
+            [
+              "60.000",
+              "40.000"
+            ]
+          ]
+        ]
+      },
+      "semanticFingerprint": "20c24406f980fed8d413dc6cbe53b3d2fdce508a846597d398ce48290bfa21dc"
+    }
+  },
   "artifacts": {
     "step": {
       "path": "reference_case.step",
-      "bytes": 48862,
-      "sha256": "b2cb6f95bc10e6c49c7a0c28f6f524d89b9967d50b9729578eb1d7208bdcb1d0"
+      "bytes": 48798,
+      "sha256": "62a380d7de5f92d59bfc4a82e24c79938c1d226669aa80c40ebb92829521c0ca",
+      "byte_sha256": "62a380d7de5f92d59bfc4a82e24c79938c1d226669aa80c40ebb92829521c0ca"
     },
     "stl": {
       "path": "reference_case.stl",
-      "bytes": 535618,
-      "sha256": "7b8b714e3d6650847a9a90b92f5c81fda4a9ec9ddebb22bff63cc209d80cd574"
+      "bytes": 103084,
+      "sha256": "e3bdc5a7c73439cde8ddf102d4399631eb0f643079bb375b088fc04ffaa89caa",
+      "byte_sha256": "e3bdc5a7c73439cde8ddf102d4399631eb0f643079bb375b088fc04ffaa89caa"
     },
     "dxf": {
       "path": "reference_case_section_z10.dxf",
-      "bytes": 19537,
-      "sha256": "167b2928dfcf478a6c0289e5184502d7b4e6d0bc81c01654c80060006320b73b"
+      "bytes": 16221,
+      "sha256": "8208127cd8171ebb6c181b80318039113273bd850edf1ca1dccacf04d3377462",
+      "byte_sha256": "8208127cd8171ebb6c181b80318039113273bd850edf1ca1dccacf04d3377462"
     }
   },
   "limitations": [
     "This spike proves export and reload feasibility only.",
     "It is not the G2 production geometry backend or a manufacturing release.",
     "Material and process are declared Reference Case metadata, not solver-verified properties."
-  ]
+  ],
+  "manifestSemanticFingerprint": {
+    "fingerprintPolicyVersion": "1.0.0",
+    "excludedRuntimeFields": [
+      "durationSeconds",
+      "generatedAt",
+      "generated_at",
+      "manifestSemanticFingerprint",
+      "verifiedAt",
+      "verified_at"
+    ],
+    "semanticFingerprint": "eb0c4fb9d05aeaa6d8c93863f7ec886eb15a4d45581117023797bd508d57dc08"
+  }
 }

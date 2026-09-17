@@ -4,7 +4,7 @@
 > - 目的：固定分層、依賴方向、資料流與 adapter seam。
 > - 目前內容：現有 contract／geometry／UI 模組與 V3 目標架構的誠實對照。
 > - Owner：MEGIS Builder
-> - 最後審查 commit：`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`
+> - 最後審查 commit：`0c34596a2561534adf9abafd52fc4c3f5738d9ed`
 
 ## 目的
 
@@ -25,6 +25,7 @@ Domain 與 contract 不得 import CadQuery、OCP、FreeCAD、React 或 provider 
 
 - `megis/contracts`：既有 IR validation、serialization、consumer、migration。
 - `megis/geometry`：kernel-neutral plan、capability 與 service boundary。
+- `megis/determinism`：不依賴 CAD kernel 型別的 canonical fingerprint，以及格式正規化邊界。
 - `megis/adapters/cadquery_backend.py`：唯一 CAD backend；kernel shape 不跨出 adapter。
 - `apps/web`：UX-0 原型，仍以 `PrototypeViewModel` 合成資料運作。
 - `execution`：Gate、work item、claim、evidence 與 migration deferral 控制面。
@@ -41,4 +42,4 @@ MEGIS Builder；架構基線變更需 ADR。
 
 ## 最後審查 commit
 
-`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`
+`0c34596a2561534adf9abafd52fc4c3f5738d9ed`

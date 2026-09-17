@@ -15,6 +15,13 @@ from megis.contracts import (  # noqa: E402
     rollback_engineering_ir,
     serialize_engineering_ir,
 )
+from megis.determinism import (  # noqa: E402
+    binary_stl_semantic_fingerprint,
+    dxf_vector_semantic_fingerprint,
+    geometry_semantic_fingerprint,
+    manifest_semantic_fingerprint,
+)
+import cadquery as cq  # noqa: E402
 
 
 def load_json(relative_path: str) -> dict:
@@ -41,7 +48,17 @@ def verify_cad_artifacts() -> int:
             record["bytes"],
             record["sha256"],
         )
+        assert record["byte_sha256"] == record["sha256"]
         count += 1
+    step_path = ROOT / "artifacts/g0-cad/reference_case.step"
+    stl_path = ROOT / "artifacts/g0-cad/reference_case.stl"
+    dxf_path = ROOT / "artifacts/g0-cad/reference_case_section_z10.dxf"
+    features = manifest["fingerprints"]["stepGeometry"]["canonical"]["semantic_features"]
+    step_shape = cq.importers.importStep(str(step_path)).val()
+    assert geometry_semantic_fingerprint(step_shape, features) == manifest["fingerprints"]["stepGeometry"]
+    assert binary_stl_semantic_fingerprint(stl_path) == manifest["fingerprints"]["stlMesh"]
+    assert dxf_vector_semantic_fingerprint(dxf_path) == manifest["fingerprints"]["dxfVectors"]
+    assert manifest_semantic_fingerprint(manifest) == manifest["manifestSemanticFingerprint"]
     return count
 
 

@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import asdict, dataclass
-from hashlib import sha256
 import importlib.metadata
 import json
 from pathlib import Path
@@ -13,6 +12,17 @@ from typing import Any
 import cadquery as cq
 from OCP.StlAPI import StlAPI_Reader
 from OCP.TopoDS import TopoDS_Shape
+
+from megis.determinism import (
+    binary_stl_semantic_fingerprint,
+    byte_sha256,
+    dxf_vector_semantic_fingerprint,
+    geometry_semantic_fingerprint,
+    manifest_semantic_fingerprint,
+    normalize_dxf_file,
+    normalize_step_file,
+    normalize_stl_file,
+)
 
 
 @dataclass(frozen=True)
@@ -33,6 +43,13 @@ ARTIFACT_NAMES = {
     "stl": "reference_case.stl",
     "dxf": "reference_case_section_z10.dxf",
 }
+SEMANTIC_FEATURES = (
+    "base.shell.main",
+    "base.hole.m3_cover[0]",
+    "base.hole.m3_cover[1]",
+    "base.hole.m3_cover[2]",
+    "base.hole.m3_cover[3]",
+)
 
 
 def build_reference_case(spec: ReferenceCaseSpec = SPEC) -> cq.Shape:
@@ -88,7 +105,7 @@ def export_artifacts(output_dir: Path, spec: ReferenceCaseSpec = SPEC) -> dict[s
     section = cq.Workplane(obj=shape).section(height=spec.section_height_mm)
 
     cq.exporters.export(shape, str(paths["step"]), exportType="STEP")
-    shape.exportStl(str(paths["stl"]), tolerance=0.01, angularTolerance=0.1, ascii=True)
+    shape.exportStl(str(paths["stl"]), tolerance=0.01, angularTolerance=0.1, ascii=False)
     cq.exporters.exportDXF(section, str(paths["dxf"]), tolerance=0.001)
     return paths
 
@@ -155,11 +172,22 @@ def verify_dxf(path: Path, spec: ReferenceCaseSpec = SPEC) -> dict[str, Any]:
 
 def file_evidence(path: Path) -> dict[str, Any]:
     content = path.read_bytes()
-    return {"path": path.name, "bytes": len(content), "sha256": sha256(content).hexdigest()}
+    digest = byte_sha256(path)
+    return {
+        "path": path.name,
+        "bytes": len(content),
+        "sha256": digest,
+        "byte_sha256": digest,
+    }
 
 
 def generate_and_verify(output_dir: Path) -> dict[str, Any]:
     paths = export_artifacts(output_dir)
+    normalization = {
+        "step": normalize_step_file(paths["step"]),
+        "stl": normalize_stl_file(paths["stl"]),
+        "dxf": normalize_dxf_file(paths["dxf"]),
+    }
     source_shape = build_reference_case()
     if not source_shape.isValid() or len(source_shape.Solids()) != 1:
         raise AssertionError("Source model is not one valid solid")
@@ -170,6 +198,22 @@ def generate_and_verify(output_dir: Path) -> dict[str, Any]:
         "stl": verify_stl(paths["stl"]),
         "dxf": verify_dxf(paths["dxf"]),
     }
+    step_shape = cq.importers.importStep(str(paths["step"])).val()
+    fingerprints = {
+        "sourceGeometry": geometry_semantic_fingerprint(
+            source_shape, semantic_features=SEMANTIC_FEATURES
+        ),
+        "stepGeometry": geometry_semantic_fingerprint(
+            step_shape, semantic_features=SEMANTIC_FEATURES
+        ),
+        "stlMesh": binary_stl_semantic_fingerprint(paths["stl"]),
+        "dxfVectors": dxf_vector_semantic_fingerprint(paths["dxf"]),
+    }
+    if (
+        fingerprints["sourceGeometry"]["semanticFingerprint"]
+        != fingerprints["stepGeometry"]["semanticFingerprint"]
+    ):
+        raise AssertionError("STEP round trip changed the geometry semantic fingerprint")
     manifest = {
         "schemaVersion": "1.0.0",
         "workItem": "G0-CAD-001",
@@ -188,6 +232,8 @@ def generate_and_verify(output_dir: Path) -> dict[str, Any]:
             "boundingBoxMm": bounding_box(source_shape),
         },
         "verification": verification,
+        "normalization": normalization,
+        "fingerprints": fingerprints,
         "artifacts": {kind: file_evidence(path) for kind, path in paths.items()},
         "limitations": [
             "This spike proves export and reload feasibility only.",
@@ -195,6 +241,7 @@ def generate_and_verify(output_dir: Path) -> dict[str, Any]:
             "Material and process are declared Reference Case metadata, not solver-verified properties.",
         ],
     }
+    manifest["manifestSemanticFingerprint"] = manifest_semantic_fingerprint(manifest)
     manifest_path = output_dir / "manifest.json"
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return manifest
