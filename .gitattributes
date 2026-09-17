@@ -1,9 +1,13 @@
-# Engineering evidence is hash-verified byte for byte. Never normalize its line endings.
-*.step -text
-*.stl -text
-*.dxf -text
-*.FCStd -text
-artifacts/**/*.svg -text
-contracts/g1/golden/*.json -text
-contracts/g1/migrations/*.json -text
-schemas/v1/*.json -text
+# Cross-platform text is stored and checked out with LF. Binary engineering
+# products are never line-ending normalized.
+* text=auto eol=lf
+*.step binary
+*.stp binary
+*.stl binary
+*.FCStd binary
+*.fcstd binary
+*.glb binary
+*.gltf binary
+*.pdf binary
+artifacts/**/*.dxf binary
+artifacts/**/*.svg binary

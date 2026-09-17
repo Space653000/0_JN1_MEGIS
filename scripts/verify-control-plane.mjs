@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { resolve } from "node:path";
+import { auditRepository } from "./lib/artifact-policy.mjs";
 
 const repoRoot = process.env.MEGIS_REPO_ROOT
   ? resolve(process.env.MEGIS_REPO_ROOT)
@@ -15,6 +16,11 @@ const projectState = readFileSync(resolve(repoRoot, "execution/PROJECT_STATE.md"
 const readme = readFileSync(resolve(repoRoot, "README.md"), "utf8");
 const errors = [];
 const deferrals = [];
+
+if (process.env.MEGIS_SKIP_ARTIFACT_POLICY_CHECK !== "1") {
+  const artifactAudit = auditRepository(repoRoot);
+  for (const error of artifactAudit.errors) errors.push(`Artifact policy: ${error}`);
+}
 
 const itemIds = new Set(queue.workItems.map((item) => item.id));
 const itemsById = new Map(queue.workItems.map((item) => [item.id, item]));
@@ -38,6 +44,7 @@ const requiredEntries = [
   ["docs/OPERATIONS.md", "file", "V3C-DOC-001"],
   ["docs/ERROR_CODES.md", "file", "V3C-DOC-001"],
   ["docs/FINGERPRINT_POLICY.md", "file", "V3C-DET-001"],
+  ["docs/ARTIFACT_POLICY.md", "file", "V3C-ART-001"],
   ["docs/RULE_SOURCES.md", "file", "V3C-DOC-001"],
   ["docs/research", "directory", "V3C-DOC-001"],
   ["execution/PROJECT_STATE.md", "file", null],
@@ -58,7 +65,9 @@ const requiredEntries = [
   ["execution/signoffs", "directory", "V3C-DOC-001"],
   ["config/envelope", "directory", "V3C-DOC-001"],
   ["config/fingerprint/policy-1.0.0.json", "file", "V3C-DET-001"],
+  ["config/artifact-policy/policy-1.0.0.json", "file", "V3C-ART-001"],
   ["schemas/v3/fingerprint-policy.schema.json", "file", "V3C-DET-001"],
+  ["schemas/v3/artifact-policy.schema.json", "file", "V3C-ART-001"],
   ["tests/golden", "directory", "V3C-DOC-001"],
   ["docs/UI0_ACCEPTANCE.md", "file", null],
   ["docs/decisions/ADR-0001-adopt-v3-blueprint.md", "file", null],

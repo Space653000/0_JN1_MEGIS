@@ -77,6 +77,7 @@ def _run_verifier(root: Path) -> subprocess.CompletedProcess[str]:
     environment = os.environ.copy()
     environment["MEGIS_REPO_ROOT"] = str(root)
     environment["MEGIS_SKIP_GIT_HISTORY_CHECK"] = "1"
+    environment["MEGIS_SKIP_ARTIFACT_POLICY_CHECK"] = "1"
     return subprocess.run(
         ["node", str(VERIFIER)],
         cwd=ROOT,

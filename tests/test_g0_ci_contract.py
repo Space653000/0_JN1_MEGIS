@@ -47,16 +47,19 @@ def test_local_baseline_evidence_is_green() -> None:
     assert evidence["engineeringRelease"] is False
 
 
-def test_hash_verified_engineering_artifacts_disable_text_normalization() -> None:
+def test_git_attributes_preserve_binary_artifacts_and_fix_text_to_lf() -> None:
     attributes = (ROOT / ".gitattributes").read_text(encoding="utf-8")
+    assert "* text=auto eol=lf" in attributes
     for pattern in (
         "*.step",
+        "*.stp",
         "*.stl",
-        "*.dxf",
         "*.FCStd",
+        "*.fcstd",
+        "*.glb",
+        "*.gltf",
+        "*.pdf",
+        "artifacts/**/*.dxf",
         "artifacts/**/*.svg",
-        "contracts/g1/golden/*.json",
-        "contracts/g1/migrations/*.json",
-        "schemas/v1/*.json",
     ):
-        assert f"{pattern} -text" in attributes
+        assert f"{pattern} binary" in attributes

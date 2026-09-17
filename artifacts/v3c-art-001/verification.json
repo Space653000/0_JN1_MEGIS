@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "V3C-ART-001",
+  "verifiedAt": "2026-09-17T22:17:48+08:00",
+  "policy": {
+    "version": "1.0.0",
+    "path": "config/artifact-policy/policy-1.0.0.json",
+    "schema": "schemas/v3/artifact-policy.schema.json",
+    "documentation": "docs/ARTIFACT_POLICY.md",
+    "decision": "docs/decisions/ADR-0011-legacy-heavy-artifact-allowlist.md"
+  },
+  "trackedInventory": {
+    "trackedFiles": 214,
+    "largestTrackedFileBytes": 168196,
+    "filesOverOneMiB": 0,
+    "evidenceJsonCount": 19,
+    "evidenceJsonOver50KiB": 0,
+    "goldenTotalBytes": 10275,
+    "goldenFilesOver200KiB": 0,
+    "heavyArtifactCount": 5,
+    "legacyAllowlistCount": 5,
+    "unallowlistedHeavyArtifacts": 0
+  },
+  "gitPolicy": {
+    "textCheckoutEol": "lf",
+    "binaryEngineeringPatterns": 10,
+    "designRunsIgnored": true,
+    "newSpikeHeavyArtifactsIgnored": true,
+    "historyRewritten": false
+  },
+  "negativeEvidence": {
+    "genericFileOverOneMiBRejected": true,
+    "evidenceJsonOver50KiBRejected": true,
+    "goldenFileOver200KiBRejected": true,
+    "goldenAggregateOverFiveMiBRejected": true,
+    "newTrackedHeavyArtifactRejected": true,
+    "legacyArtifactHashMutationRejected": true,
+    "missingAttributeOrIgnoreRuleRejected": true,
+    "trackedSymlinkRejected": true
+  },
+  "verification": {
+    "artifactPolicyCommand": "node scripts/verify-artifact-policy.mjs",
+    "nodeNegativeTestCommand": "node --test tests/test_artifact_policy.mjs",
+    "nodeTestsPassed": 8,
+    "pythonSchemaAndCliTestsPassed": 2,
+    "baselineCommand": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+    "pythonTestsPassed": 103,
+    "frontendTestsPassed": 9,
+    "artifactRecordsVerified": 13,
+    "manifestRecordsVerified": 1,
+    "status": "passed"
+  },
+  "githubActions": {
+    "status": "pending_implementation_push"
+  },
+  "boundaries": {
+    "artifactEngineeringCorrectnessProven": false,
+    "retentionCleanupImplemented": false,
+    "ciArtifactUploadImplemented": false,
+    "gitLfsConfigured": false,
+    "legacyFilesDeleted": false
+  }
+}

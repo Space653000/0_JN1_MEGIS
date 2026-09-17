@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/artifact-policy.schema.json",
+  "title": "MEGIS Artifact Storage Policy",
+  "type": "object",
+  "required": ["schemaVersion", "policyVersion", "genericTrackedFileMaxBytes", "evidenceJson", "golden", "heavyArtifactExtensions", "requiredGitAttributes", "requiredGitIgnore", "legacyHeavyArtifactAllowlist"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "policyVersion": { "const": "1.0.0" },
+    "genericTrackedFileMaxBytes": { "type": "integer", "const": 1048576 },
+    "evidenceJson": {
+      "type": "object",
+      "required": ["root", "maxFileBytes"],
+      "properties": {
+        "root": { "const": "artifacts" },
+        "maxFileBytes": { "const": 51200 }
+      },
+      "additionalProperties": false
+    },
+    "golden": {
+      "type": "object",
+      "required": ["roots", "maxFileBytes", "maxTotalBytes"],
+      "properties": {
+        "roots": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+        "maxFileBytes": { "const": 204800 },
+        "maxTotalBytes": { "const": 5242880 }
+      },
+      "additionalProperties": false
+    },
+    "heavyArtifactExtensions": { "type": "array", "minItems": 8, "uniqueItems": true, "items": { "type": "string", "pattern": "^\\.[a-z0-9]+$" } },
+    "requiredGitAttributes": { "type": "array", "minItems": 10, "uniqueItems": true, "items": { "type": "string" } },
+    "requiredGitIgnore": { "type": "array", "minItems": 10, "uniqueItems": true, "items": { "type": "string" } },
+    "legacyHeavyArtifactAllowlist": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": ["path", "bytes", "sha256", "adr"],
+        "properties": {
+          "path": { "type": "string", "pattern": "^artifacts/" },
+          "bytes": { "type": "integer", "minimum": 1 },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "adr": { "type": "string", "pattern": "^ADR-[0-9]{4}$" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

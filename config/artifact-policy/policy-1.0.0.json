@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0.0",
+  "policyVersion": "1.0.0",
+  "genericTrackedFileMaxBytes": 1048576,
+  "evidenceJson": {
+    "root": "artifacts",
+    "maxFileBytes": 51200
+  },
+  "golden": {
+    "roots": ["tests/golden", "contracts/g1/golden"],
+    "maxFileBytes": 204800,
+    "maxTotalBytes": 5242880
+  },
+  "heavyArtifactExtensions": [".step", ".stp", ".stl", ".dxf", ".fcstd", ".svg", ".glb", ".gltf", ".pdf"],
+  "requiredGitAttributes": [
+    "* text=auto eol=lf",
+    "*.step binary",
+    "*.stp binary",
+    "*.stl binary",
+    "*.FCStd binary",
+    "*.fcstd binary",
+    "*.glb binary",
+    "*.gltf binary",
+    "*.pdf binary",
+    "artifacts/**/*.dxf binary",
+    "artifacts/**/*.svg binary"
+  ],
+  "requiredGitIgnore": [
+    ".runs/",
+    "artifacts/**/*.step",
+    "artifacts/**/*.stp",
+    "artifacts/**/*.stl",
+    "artifacts/**/*.dxf",
+    "artifacts/**/*.FCStd",
+    "artifacts/**/*.fcstd",
+    "artifacts/**/*.svg",
+    "artifacts/**/*.glb",
+    "artifacts/**/*.gltf",
+    "artifacts/**/*.pdf"
+  ],
+  "legacyHeavyArtifactAllowlist": [
+    {
+      "path": "artifacts/g0-cad/reference_case.step",
+      "bytes": 48798,
+      "sha256": "62a380d7de5f92d59bfc4a82e24c79938c1d226669aa80c40ebb92829521c0ca",
+      "adr": "ADR-0011"
+    },
+    {
+      "path": "artifacts/g0-cad/reference_case.stl",
+      "bytes": 103084,
+      "sha256": "e3bdc5a7c73439cde8ddf102d4399631eb0f643079bb375b088fc04ffaa89caa",
+      "adr": "ADR-0011"
+    },
+    {
+      "path": "artifacts/g0-cad/reference_case_section_z10.dxf",
+      "bytes": 16221,
+      "sha256": "b3b5a988d77c9227220dbc2e2ef996f826e0a2223f6f95aa0b129da216b6b8e4",
+      "adr": "ADR-0011"
+    },
+    {
+      "path": "artifacts/g0-freecad/reference_case_techdraw.FCStd",
+      "bytes": 12824,
+      "sha256": "fa65bb0d9e15f7d5d6f81dc84e30f05f18a9b5498ddbe686b338f1629fc81b2c",
+      "adr": "ADR-0011"
+    },
+    {
+      "path": "artifacts/g0-freecad/reference_case_techdraw_fallback.svg",
+      "bytes": 2541,
+      "sha256": "b6d413b720f66e578ec559322323f04381f4203c8eb1fe002ff0e1bb2731c05e",
+      "adr": "ADR-0011"
+    }
+  ]
+}

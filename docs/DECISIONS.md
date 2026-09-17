@@ -2,7 +2,7 @@
 
 > 文件治理
 > - 目的：集中索引架構、流程與產品決策。
-> - 目前內容：V3 採用、D1–D9 與既有工具鏈決策入口。
+> - 目前內容：V3 採用、D1–D9、重型 artifact 白名單與既有工具鏈決策入口。
 > - Owner：MEGIS Builder
 > - 最後審查 commit：`7ab1cad43dadaa2db53e4dfab62c7cfc67096e03`
 
@@ -13,6 +13,7 @@
 ## 現有決策
 
 - [ADR-0001：採用 MEGIS v3.0-claude-code 藍圖](decisions/ADR-0001-adopt-v3-blueprint.md) — accepted，V3C-BCR-001。
+- [ADR-0011：既有 G0 重型製品精確白名單](decisions/ADR-0011-legacy-heavy-artifact-allowlist.md) — accepted，V3C-ART-001。
 - [G0 工具鏈版本與平台決策](decisions/toolchain.md) — 既有 v2 基線。
 
 ## V3 §8.1 決策

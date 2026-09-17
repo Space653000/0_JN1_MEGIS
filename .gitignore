@@ -1,4 +1,5 @@
 node_modules/
+.runs/
 dist/
 coverage/
 .cache/
@@ -17,6 +18,18 @@ test-results/
 playwright-report/
 *.log
 *.tsbuildinfo
+# V3 §5.9: spike heavy products are regenerated, not newly committed.
+# The five historical G0 files already tracked remain under ADR-0011.
+artifacts/**/*.step
+artifacts/**/*.stp
+artifacts/**/*.stl
+artifacts/**/*.dxf
+artifacts/**/*.FCStd
+artifacts/**/*.fcstd
+artifacts/**/*.svg
+artifacts/**/*.glb
+artifacts/**/*.gltf
+artifacts/**/*.pdf
 .env
 .env.*
 !.env.example
