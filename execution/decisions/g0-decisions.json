@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "V3C-DEC-001",
+  "blueprintRef": "v3.0 §8.1",
+  "status": "accepted",
+  "recordedAt": "2026-09-17T17:30:00+08:00",
+  "decisions": [
+    {
+      "id": "D1",
+      "title": "部署範圍",
+      "outcome": "local_single_user",
+      "basis": "blueprint_default_confirmed_by_existing_evidence",
+      "adr": "docs/decisions/ADR-0002-local-single-user-deployment.md",
+      "evidence": ["AGENTS.md", "docs/OPERATIONS.md", "docs/SUPPORTED_ENVELOPE.md"],
+      "implementationStatus": "enforced",
+      "followUpWorkItems": ["G6-UI-001"]
+    },
+    {
+      "id": "D2",
+      "title": "COMSOL 授權與 API",
+      "outcome": "out_of_scope",
+      "basis": "existing_implementation_decision",
+      "adr": "docs/decisions/ADR-0003-comsol-out-of-scope.md",
+      "evidence": ["environment/comsol.decision.json", "docs/G0_COMSOL_DECISION.md"],
+      "implementationStatus": "enforced",
+      "followUpWorkItems": ["G7-SOL-001"]
+    },
+    {
+      "id": "D3",
+      "title": "LLM provider 與離線 fallback",
+      "outcome": "adapter_no_provider_before_g6",
+      "basis": "blueprint_default_confirmed_by_existing_evidence",
+      "adr": "docs/decisions/ADR-0004-llm-adapter-offline-fallback.md",
+      "evidence": ["AGENTS.md", "docs/ARCHITECTURE.md", "MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v3.0-claude-code.md"],
+      "implementationStatus": "partially_enforced",
+      "followUpWorkItems": ["G6-AI-001", "G6-AI-002", "G6-AI-003", "G6-AI-004"]
+    },
+    {
+      "id": "D4",
+      "title": "CI 平台與 push 授權",
+      "outcome": "github_actions_windows_x64_verified_main_push_no_force",
+      "basis": "user_decision",
+      "adr": "docs/decisions/ADR-0005-windows-ci-and-main-push.md",
+      "evidence": [".github/workflows/baseline-ci.yml", "AGENTS.md", "docs/decisions/ADR-0001-adopt-v3-blueprint.md"],
+      "implementationStatus": "enforced",
+      "followUpWorkItems": ["V3C-DET-001", "V3C-ART-001"]
+    },
+    {
+      "id": "D5",
+      "title": "客戶與公司工程資料政策",
+      "outcome": "no_customer_company_data_in_repo_or_external_services",
+      "basis": "blueprint_default_confirmed_by_existing_evidence",
+      "adr": "docs/decisions/ADR-0006-protect-customer-engineering-data.md",
+      "evidence": ["AGENTS.md", "docs/PRODUCT.md", "docs/RULE_SOURCES.md"],
+      "implementationStatus": "partially_enforced",
+      "followUpWorkItems": ["G4-IMP-001", "G6-AI-001"]
+    },
+    {
+      "id": "D6",
+      "title": "工程審查人",
+      "outcome": "builder_self_review_fresh_session_no_named_engineer",
+      "basis": "user_decision",
+      "adr": "docs/decisions/ADR-0007-builder-self-review.md",
+      "evidence": ["docs/decisions/ADR-0001-adopt-v3-blueprint.md", "docs/RISKS.md", "MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v3.0-claude-code.md"],
+      "implementationStatus": "partially_enforced",
+      "followUpWorkItems": ["V3C-REV-001", "G0-REV-001", "G1-REV-001", "G2-REV-001"]
+    },
+    {
+      "id": "D7",
+      "title": "Agent 角色與寫入鎖",
+      "outcome": "single_builder_claim_and_same_agent_fresh_session_review",
+      "basis": "user_decision",
+      "adr": "docs/decisions/ADR-0008-single-builder-agent-claim.md",
+      "evidence": ["execution/AGENT_CLAIM.json", "execution/schemas/agent-claim.schema.json", "scripts/verify-control-plane.mjs"],
+      "implementationStatus": "enforced",
+      "followUpWorkItems": ["V3C-REV-001"]
+    },
+    {
+      "id": "D8",
+      "title": "參考案例未知值研究",
+      "outcome": "builder_research_with_citable_public_sources",
+      "basis": "user_decision",
+      "adr": "docs/decisions/ADR-0009-research-reference-unknowns.md",
+      "evidence": ["docs/research/README.md", "docs/RULE_SOURCES.md", "MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v3.0-claude-code.md"],
+      "implementationStatus": "policy_only",
+      "followUpWorkItems": ["G1-REQ-001", "G3-SRC-001"]
+    },
+    {
+      "id": "D9",
+      "title": "Artifact 保留期間",
+      "outcome": "design_runs_90_days_golden_permanent",
+      "basis": "blueprint_default_confirmed_by_existing_evidence",
+      "adr": "docs/decisions/ADR-0010-artifact-retention.md",
+      "evidence": ["docs/OPERATIONS.md", "MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v3.0-claude-code.md"],
+      "implementationStatus": "policy_only",
+      "followUpWorkItems": ["V3C-ART-001", "G5-PKG-001"]
+    }
+  ]
+}

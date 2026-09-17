@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "V3C-DEC-001",
+  "verifiedAt": "2026-09-17T17:33:00+08:00",
+  "blueprintRef": "v3.0 §8.1, §26.1",
+  "decisionRegister": {
+    "path": "execution/decisions/g0-decisions.json",
+    "schema": "execution/schemas/g0-decisions.schema.json",
+    "status": "accepted",
+    "decisionIds": ["D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9"],
+    "uniqueDecisionCount": 9,
+    "adrCount": 9,
+    "evidencePathsExist": true
+  },
+  "honestImplementationBoundary": {
+    "enforced": ["D1", "D2", "D4", "D7"],
+    "partiallyEnforced": ["D3", "D5", "D6"],
+    "policyOnly": ["D8", "D9"],
+    "decisionsDoNotCloseFollowUpWorkItems": true
+  },
+  "targetedTests": {
+    "command": ".venv/Scripts/python.exe -m pytest tests/test_v3_g0_decisions.py tests/test_v3_blueprint_adoption.py",
+    "passed": 20,
+    "failed": 0
+  },
+  "baseline": {
+    "command": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+    "pythonTestsPassed": 83,
+    "frontendTestsPassed": 9,
+    "artifactRecordsVerified": 13,
+    "status": "passed"
+  },
+  "githubActions": {
+    "status": "awaiting_implementation_commit",
+    "runId": null,
+    "headSha": null,
+    "url": null
+  }
+}
