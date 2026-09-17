@@ -1,14 +1,15 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-17T18:05:30+08:00",
-  "sourceCommit": "ad0a8dd1ac28f4038d5cc6f917541e5c4d8cce09",
+  "verifiedAt": "2026-09-17T18:20:00+08:00",
+  "sourceCommit": "8f58d8b21d485dcef2f29838aa568cf201d03ece",
   "status": "passed",
   "commands": [
     { "command": ".venv/Scripts/python.exe -m pip check", "status": "passed" },
     { "command": ".venv/Scripts/python.exe scripts/verify_toolchain.py", "status": "passed", "solidValid": true, "solidVolume": 6000.0 },
     { "command": ".venv/Scripts/python.exe scripts/verify_fixture_assembly.py", "status": "passed", "solidModels": 7, "usbCutoutOpen": true, "unintendedInterferenceVolumeMm3": 0.0 },
-    { "command": ".venv/Scripts/python.exe -m pytest", "status": "passed", "testsPassed": 90, "testsFailed": 0 },
-    { "command": ".venv/Scripts/python.exe -m pytest tests/test_v3_determinism.py", "status": "passed", "testsPassed": 7, "testsFailed": 0 },
+    { "command": ".venv/Scripts/python.exe -m pytest", "status": "passed", "testsPassed": 101, "testsFailed": 0 },
+    { "command": ".venv/Scripts/python.exe -m pytest tests/test_v3_maturity.py", "status": "passed", "testsPassed": 10, "testsFailed": 0 },
+    { "command": ".venv/Scripts/python.exe scripts/verify_maturity.py", "status": "passed", "manifestsVerified": 1, "issues": 0 },
     { "command": ".venv/Scripts/python.exe -m spikes.g0_cad.reference_case --output-dir artifacts/g0-cad", "status": "passed", "stepValid": true, "stlValid": true, "dxfValid": true },
     { "command": "powershell -ExecutionPolicy Bypass -File scripts/run-freecad-spike.ps1", "status": "passed", "decision": "fallback", "visibleEdges": 12 },
     { "command": "powershell -ExecutionPolicy Bypass -File scripts/inventory-comsol.ps1", "status": "passed", "decision": "out_of_scope", "blocksCoreGate": false },
@@ -18,12 +19,12 @@
     { "command": "npm --prefix apps/web run typecheck", "status": "passed" },
     { "command": "npm --prefix apps/web test -- --run", "status": "passed", "testsPassed": 9, "testsFailed": 0 },
     { "command": "npm --prefix apps/web run build", "status": "passed" },
-    { "command": "GitHub Actions Baseline CI run 35208045903", "status": "passed", "headSha": "ad0a8dd1ac28f4038d5cc6f917541e5c4d8cce09", "durationSeconds": 128 }
+    { "command": "GitHub Actions Baseline CI run 35209605203", "status": "passed", "headSha": "8f58d8b21d485dcef2f29838aa568cf201d03ece", "durationSeconds": 129 }
   ],
   "browser": {
     "path": "/progress",
     "currentGate": "G2",
-    "currentWorkItem": "V3C-MAT-001",
+    "currentWorkItem": "V3C-ART-001",
     "ui0dAccepted": true,
     "acceptanceDisclosure": true,
     "horizontalOverflow": false,
@@ -31,10 +32,10 @@
     "consoleWarningsAndErrors": 0
   },
   "buildArtifacts": [
-    { "path": "apps/web/dist/assets/index-NDYu-z6O.js", "bytes": 286770, "sha256": "907f8f95c05366b41a39d470f53b7105c7eec8946e79632ddbe7fd89d2457119" },
+    { "path": "apps/web/dist/assets/index-BixXJMiD.js", "bytes": 287860, "sha256": "2a1b053fcd8c9ac25f95709d470b5f5b64d17f971f3450c23c3bfc1bf79575c1" },
     { "path": "apps/web/dist/assets/index-lbw2QEtU.css", "bytes": 23096, "sha256": "79805929f2f915e4070c63d27849f610baee8f314085af5d6acb707245509f1a" },
     { "path": "apps/web/dist/favicon.svg", "bytes": 288, "sha256": "6b2c8c18b45392bb97dad145479898477ddce9bc7bfcf987d257dccec9676704" },
-    { "path": "apps/web/dist/index.html", "bytes": 590, "sha256": "0794d3b94332ec50c56810857d3baaba73022c2f1254c00577b7844d2f0c41fa" }
+    { "path": "apps/web/dist/index.html", "bytes": 590, "sha256": "2af88a43a75652e6042cf4f7827e35d6de5014e55007e9b01f823b908502e3fc" }
   ],
   "boundaries": {
     "workspaceRoot": "C:/0_JN1_MEGIS",
