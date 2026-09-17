@@ -2,9 +2,9 @@
 
 - Current gate: `G2 — Fixture Geometry Vertical Slice`
 - Current work item: `V3C-DEC-001 — G0 決策補記`
-- Last green commit: `6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`
-- Control-plane schema: `1.0.0`
-- Updated at: `2026-09-17T12:42:23+08:00`
+- Last green commit: `138deb22f3cd0f790c4ff5e350a149703df08021`
+- Control-plane schema: `1.1.0`
+- Updated at: `2026-09-17T17:10:00+08:00`
 
 ## Accepted capabilities
 
@@ -33,7 +33,7 @@ UI-0 驗收只涵蓋使用者體驗原型；沒有工程生成能力或工程製
 
 ## Active scope
 
-`V3C-DOC-001` 已完成；GitHub Actions run `35182708539` 對 commit `6cc2ad7` 全綠。現在只施工 `V3C-DEC-001`，把 D1–D9 與既有施工證據補記為可追溯 ADR／決策紀錄。
+`V3C-DOC-001` 已完成；GitHub Actions run `35183285440` 對 commit `138deb2` 全綠。現在只施工 `V3C-DEC-001`，把 D1–D9 與既有施工證據補記為可追溯 ADR／決策紀錄。2026-09-17 完整本機基線為 77 項 Python、9 項前端測試與 13 筆 artifact smoke 全綠。
 
 ## Next work item
 
