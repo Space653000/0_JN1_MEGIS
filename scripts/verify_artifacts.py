@@ -39,7 +39,7 @@ def assert_file(relative_path: str, expected_bytes: int, expected_sha256: str) -
 def verify_cad_artifacts() -> int:
     manifest = load_json("artifacts/g0-cad/manifest.json")
     assert manifest["classification"] == "FEASIBILITY_SPIKE"
-    assert manifest["maturity"] == "PROTOTYPE"
+    assert manifest["maturity"] is None
     assert manifest["engineeringReviewRequired"] is True
     count = 0
     for record in manifest["artifacts"].values():

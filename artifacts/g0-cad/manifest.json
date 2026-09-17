@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "workItem": "G0-CAD-001",
   "classification": "FEASIBILITY_SPIKE",
-  "maturity": "PROTOTYPE",
+  "maturity": null,
   "engineeringReviewRequired": true,
   "specification": {
     "length_mm": 120.0,
@@ -102,7 +102,8 @@
         "$TDUUPDATE",
         "$VERSIONGUID"
       ],
-      "normalizedMetadataRecords": 2
+      "normalizedMetadataRecords": 2,
+      "sortedClassRecords": 15
     }
   },
   "fingerprints": {
@@ -288,8 +289,8 @@
     "dxf": {
       "path": "reference_case_section_z10.dxf",
       "bytes": 16221,
-      "sha256": "8208127cd8171ebb6c181b80318039113273bd850edf1ca1dccacf04d3377462",
-      "byte_sha256": "8208127cd8171ebb6c181b80318039113273bd850edf1ca1dccacf04d3377462"
+      "sha256": "b3b5a988d77c9227220dbc2e2ef996f826e0a2223f6f95aa0b129da216b6b8e4",
+      "byte_sha256": "b3b5a988d77c9227220dbc2e2ef996f826e0a2223f6f95aa0b129da216b6b8e4"
     }
   },
   "limitations": [
@@ -307,6 +308,6 @@
       "verifiedAt",
       "verified_at"
     ],
-    "semanticFingerprint": "eb0c4fb9d05aeaa6d8c93863f7ec886eb15a4d45581117023797bd508d57dc08"
+    "semanticFingerprint": "ecefee996726bf1b0e0054b7407500888ea5d0e7607ee918373a3d5dbc949186"
   }
 }

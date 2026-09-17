@@ -2,6 +2,8 @@ from copy import deepcopy
 import json
 from pathlib import Path
 import struct
+import subprocess
+import sys
 
 from jsonschema import Draft202012Validator
 
@@ -98,6 +100,28 @@ def test_two_replays_have_equal_byte_and_semantic_fingerprints(tmp_path: Path) -
     dxf = (first_dir / ARTIFACT_NAMES["dxf"]).read_text(encoding="utf-8")
     assert "2461300" not in dxf
     assert "{00000000-0000-0000-0000-000000000001}" in dxf
+
+
+def test_two_independent_processes_produce_equal_artifact_bytes(tmp_path: Path) -> None:
+    output_dirs = [tmp_path / "process-one", tmp_path / "process-two"]
+    for output_dir in output_dirs:
+        subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "spikes.g0_cad.reference_case",
+                "--output-dir",
+                str(output_dir),
+            ],
+            cwd=ROOT,
+            check=True,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+
+    for filename in ARTIFACT_NAMES.values():
+        assert (output_dirs[0] / filename).read_bytes() == (output_dirs[1] / filename).read_bytes()
 
 
 def test_l1_integrity_and_l2_semantics_are_independent(tmp_path: Path) -> None:

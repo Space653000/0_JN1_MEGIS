@@ -40,6 +40,7 @@ try {
     Invoke-Checked 'Python dependency integrity' { & $PythonExecutable -m pip check }
     Invoke-Checked 'Locked CAD toolchain' { & $PythonExecutable scripts/verify_toolchain.py }
     Invoke-Checked 'Python unit tests' { & $PythonExecutable -m pytest }
+    Invoke-Checked 'Manifest maturity scan' { & $PythonExecutable scripts/verify_maturity.py }
     Invoke-Checked 'Artifact smoke test' { & $PythonExecutable scripts/verify_artifacts.py }
     Invoke-Checked 'Frontend lint' { Invoke-Npm @('--prefix', $webRoot, 'run', 'lint') }
     Invoke-Checked 'Frontend typecheck' { Invoke-Npm @('--prefix', $webRoot, 'run', 'typecheck') }

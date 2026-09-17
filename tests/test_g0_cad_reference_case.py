@@ -9,7 +9,7 @@ def test_reference_case_exports_and_reloads_all_formats(tmp_path: Path) -> None:
     manifest = generate_and_verify(tmp_path)
 
     assert manifest["classification"] == "FEASIBILITY_SPIKE"
-    assert manifest["maturity"] == "PROTOTYPE"
+    assert manifest["maturity"] is None
     assert manifest["engineeringReviewRequired"] is True
     assert manifest["source"]["valid"] is True
     assert manifest["source"]["solids"] == 1

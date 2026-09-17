@@ -29,7 +29,7 @@
 產物的 byte count 與 SHA-256 記錄於 `artifacts/g0-cad/manifest.json`。Manifest 永久標示：
 
 - `classification: FEASIBILITY_SPIKE`
-- `maturity: PROTOTYPE`
+- `maturity: null`（可行性 spike 不具有工程成熟度）
 - `engineeringReviewRequired: true`
 
 ## V3 雙層指紋補強

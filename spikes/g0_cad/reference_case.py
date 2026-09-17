@@ -218,7 +218,7 @@ def generate_and_verify(output_dir: Path) -> dict[str, Any]:
         "schemaVersion": "1.0.0",
         "workItem": "G0-CAD-001",
         "classification": "FEASIBILITY_SPIKE",
-        "maturity": "PROTOTYPE",
+        "maturity": None,
         "engineeringReviewRequired": True,
         "specification": asdict(SPEC),
         "toolchain": {

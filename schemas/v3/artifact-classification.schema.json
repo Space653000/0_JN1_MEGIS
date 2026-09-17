@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/artifact-classification.schema.json",
+  "title": "MEGIS v3 Artifact Classification Contract",
+  "type": "object",
+  "required": ["classification", "maturity"],
+  "properties": {
+    "classification": {
+      "enum": ["DESIGN_RUN", "FEASIBILITY_SPIKE", "UX_DEMO", "BENCHMARK_CASE", "TEST_FIXTURE"]
+    },
+    "maturity": {
+      "type": ["string", "null"],
+      "enum": ["DRAFT", "CONCEPT", "PROTOTYPE", "ENGINEERING_REVIEWED", "RELEASED", null]
+    },
+    "maturity_evaluation": {
+      "type": "object",
+      "required": ["evaluator_version", "inputs_digest", "blocking_reasons"],
+      "properties": {
+        "evaluator_version": { "type": "string", "minLength": 1 },
+        "inputs_digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "blocking_reasons": { "type": "array" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "classification": { "const": "DESIGN_RUN" } } },
+      "then": {
+        "required": ["maturity_evaluation"],
+        "properties": {
+          "maturity": { "enum": ["DRAFT", "CONCEPT", "PROTOTYPE", "ENGINEERING_REVIEWED", "RELEASED"] }
+        }
+      },
+      "else": {
+        "properties": { "maturity": { "type": "null" } },
+        "not": { "required": ["maturity_evaluation"] }
+      }
+    }
+  ],
+  "additionalProperties": true
+}

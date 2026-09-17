@@ -31,6 +31,52 @@ _DXF_HEADER_VALUES = {
 }
 
 
+def _sort_dxf_classes(lines: list[str]) -> tuple[list[str], int]:
+    """Sort DXF CLASS records whose source registry order varies by process."""
+
+    pairs = [(lines[index], lines[index + 1]) for index in range(0, len(lines), 2)]
+    section_start: int | None = None
+    section_end: int | None = None
+    for index in range(len(pairs) - 1):
+        if pairs[index][0].strip() == "0" and pairs[index][1].strip() == "SECTION":
+            if pairs[index + 1][0].strip() == "2" and pairs[index + 1][1].strip() == "CLASSES":
+                section_start = index + 2
+                break
+    if section_start is None:
+        raise ValueError("DXF CLASSES section is missing")
+    for index in range(section_start, len(pairs)):
+        if pairs[index][0].strip() == "0" and pairs[index][1].strip() == "ENDSEC":
+            section_end = index
+            break
+    if section_end is None:
+        raise ValueError("DXF CLASSES section is truncated")
+
+    records: list[list[tuple[str, str]]] = []
+    cursor = section_start
+    while cursor < section_end:
+        if pairs[cursor][0].strip() != "0" or pairs[cursor][1].strip() != "CLASS":
+            raise ValueError("DXF CLASSES section contains an unexpected record")
+        record_end = cursor + 1
+        while record_end < section_end and pairs[record_end][0].strip() != "0":
+            record_end += 1
+        records.append(pairs[cursor:record_end])
+        cursor = record_end
+
+    def class_key(record: list[tuple[str, str]]) -> tuple[str, str]:
+        class_name = next(
+            (value.strip() for code, value in record if code.strip() == "1"), ""
+        )
+        cpp_name = next((value.strip() for code, value in record if code.strip() == "2"), "")
+        return class_name, cpp_name
+
+    ordered = sorted(records, key=class_key)
+    sorted_pairs = pairs[:section_start]
+    for record in ordered:
+        sorted_pairs.extend(record)
+    sorted_pairs.extend(pairs[section_end:])
+    return [line for pair in sorted_pairs for line in pair], len(records)
+
+
 def normalize_step_text(payload: str) -> str:
     """Replace the STEP FILE_NAME record with policy-controlled metadata."""
 
@@ -70,6 +116,8 @@ def normalize_dxf_file(path: Path) -> dict[str, Any]:
 
     before = path.read_bytes()
     lines = before.decode("utf-8").splitlines()
+    if len(lines) % 2:
+        raise ValueError("DXF must contain complete group-code/value pairs")
     found: set[str] = set()
     for index, line in enumerate(lines):
         variable = line.strip()
@@ -91,6 +139,7 @@ def normalize_dxf_file(path: Path) -> dict[str, Any]:
         if match:
             lines[index] = f"{match.group(1)} @ 1970-01-01T00:00:00+00:00"
             metadata_records += 1
+    lines, class_records = _sort_dxf_classes(lines)
     path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     return {
         "format": "DXF",
@@ -98,6 +147,7 @@ def normalize_dxf_file(path: Path) -> dict[str, Any]:
         "changed": before != path.read_bytes(),
         "normalizedVariables": sorted(found),
         "normalizedMetadataRecords": metadata_records,
+        "sortedClassRecords": class_records,
     }
 
 

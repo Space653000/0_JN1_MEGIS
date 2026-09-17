@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "V3C-MAT-001",
+  "verifiedAt": "2026-09-17T18:15:39+08:00",
+  "contract": {
+    "schema": "schemas/v3/artifact-classification.schema.json",
+    "implementation": "megis/governance/classification.py",
+    "documentation": "docs/CLASSIFICATION_AND_MATURITY.md",
+    "scanner": "scripts/verify_maturity.py"
+  },
+  "repositoryScan": {
+    "scope": "all repository files named manifest.json except explicit runtime/cache directories",
+    "manifestCount": 1,
+    "issueCount": 0,
+    "symlinksFollowed": false,
+    "verifiedManifest": "artifacts/g0-cad/manifest.json"
+  },
+  "correctedArtifacts": {
+    "artifacts/g0-cad/manifest.json": {
+      "classification": "FEASIBILITY_SPIKE",
+      "maturity": null,
+      "manifestSemanticFingerprint": "ecefee996726bf1b0e0054b7407500888ea5d0e7607ee918373a3d5dbc949186"
+    }
+  },
+  "negativeEvidence": {
+    "missingClassificationRejected": true,
+    "unknownClassificationRejected": true,
+    "allFourNonDesignClassificationsRejectMaturity": true,
+    "nonDesignEvaluatorClaimRejected": true,
+    "designRunNullMaturityRejected": true,
+    "designRunWithoutEvaluatorProvenanceRejected": true,
+    "invalidEvaluatorDigestRejected": true,
+    "unreadableManifestRejected": true
+  },
+  "determinismRegression": {
+    "issue": "DXF CLASS registry order differed between independent Python processes",
+    "resolution": "normalize DXF CLASS records by class and C++ names",
+    "independentProcessReplayCovered": true,
+    "dxfByteSha256": "b3b5a988d77c9227220dbc2e2ef996f826e0a2223f6f95aa0b129da216b6b8e4"
+  },
+  "verification": {
+    "baselineCommand": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+    "pythonTestsPassed": 101,
+    "frontendTestsPassed": 9,
+    "artifactRecordsVerified": 13,
+    "manifestRecordsVerified": 1,
+    "status": "passed"
+  },
+  "githubActions": {
+    "status": "pending_implementation_push"
+  },
+  "boundaries": {
+    "maturityEvaluatorImplemented": false,
+    "designRunMaturityCalculated": false,
+    "engineeringCorrectnessProven": false,
+    "scannerOnlyEnforcesManifestBoundary": true
+  }
+}
