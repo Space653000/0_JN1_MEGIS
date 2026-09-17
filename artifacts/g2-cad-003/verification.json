@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G2-CAD-003",
+  "verifiedAt": "2026-09-17T12:00:16+08:00",
+  "input": "contracts/g1/golden/reference-fixture.json",
+  "backend": {
+    "id": "cadquery",
+    "version": "2.8.0",
+    "deterministic": true,
+    "supportedOperations": ["box", "counterbore", "cutout", "fastener", "hole", "mount", "pcb_envelope", "plate", "shell"]
+  },
+  "result": {
+    "planId": "PLAN-FIXTURE-REFERENCE-001-A-ASSEMBLY",
+    "componentIds": ["COMP-FIXTURE-BASE", "COMP-FIXTURE-COVER", "COMP-FIXTURE-PCB"],
+    "solidCount": 7,
+    "valid": true,
+    "usbCutoutOpen": true,
+    "fastenerCount": 4,
+    "radialFastenerClearanceMm": 0.2,
+    "pcbSideClearanceMm": 18.0,
+    "pcbTopClearanceMm": 12.4,
+    "unintendedInterferenceVolumeMm3": 0.0
+  },
+  "topology": {
+    "modelsChecked": 7,
+    "validModels": 7,
+    "singleSolidModels": 7
+  },
+  "targetedTests": {
+    "command": ".venv/Scripts/python.exe -m pytest tests/test_g2_fixture_assembly.py tests/test_g2_fixture_base.py tests/test_g2_geometry_contract.py",
+    "passed": 17,
+    "failed": 0
+  },
+  "transitionalAssumptions": [
+    "PCB envelope and USB-C opening use isolated v2 Reference Fixture defaults.",
+    "V3 G1-REQ-001 must replace those defaults with researched parameters."
+  ],
+  "engineeringArtifactGenerated": false,
+  "releaseArtifactGenerated": false
+}
