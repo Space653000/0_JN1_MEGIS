@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-17T07:38:59+08:00",
-  "baselineCommit": "6b3d8a6aa15a3797f21cec516a3b2a4554db5c73",
-  "currentWorkItem": "G2-CAD-003",
+  "updatedAt": "2026-09-17T12:04:53+08:00",
+  "baselineCommit": "b8473653ed8e0b8c2c329997b6e4570f368adfb7",
+  "currentWorkItem": "V3C-BCR-001",
   "gates": [
     { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
     { "id": "UI-0B", "title": "施工進度中心", "status": "accepted", "dependsOn": ["UI-0A"] },
@@ -102,9 +102,63 @@
       "verificationCommands": [".venv/Scripts/python.exe scripts/verify_fixture_base.py", ".venv/Scripts/python.exe -m pytest tests/test_g2_fixture_base.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["megis/adapters/cadquery_backend.py", "megis/adapters/__init__.py", "scripts/verify_fixture_base.py", "tests/test_g2_fixture_base.py", "artifacts/g2-cad-002/verification.json", "docs/G2_FIXTURE_BASE.md"], "verification": "passed", "commitSha": "6b3d8a6aa15a3797f21cec516a3b2a4554db5c73"
     },
     {
-      "id": "G2-CAD-003", "title": "產生 cover、fasteners 與 cutout", "gate": "G2", "status": "in_progress", "dependsOn": ["G2-CAD-002"],
+      "id": "G2-CAD-003", "title": "產生 cover、fasteners 與 cutout", "gate": "G2", "status": "done", "dependsOn": ["G2-CAD-002"],
       "inputs": ["fixture base model", "Fixture golden IR"], "outputs": ["cover", "fasteners", "cutout", "assembly"],
-      "acceptance": ["組立關係與必要間隙通過自動驗證"], "acceptanceResults": [{ "criterion": "組立關係與必要間隙通過自動驗證", "status": "pending", "evidence": [] }],
+      "acceptance": ["組立關係與必要間隙通過自動驗證"], "acceptanceResults": [{ "criterion": "組立關係與必要間隙通過自動驗證", "status": "passed", "evidence": ["megis/adapters/cadquery_backend.py", "tests/test_g2_fixture_assembly.py", "artifacts/g2-cad-003/verification.json", "docs/G2_FIXTURE_ASSEMBLY.md"] }],
+      "verificationCommands": [".venv/Scripts/python.exe scripts/verify_fixture_assembly.py", ".venv/Scripts/python.exe -m pytest tests/test_g2_fixture_assembly.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["megis/geometry/contracts.py", "megis/geometry/planning.py", "megis/geometry/service.py", "megis/adapters/cadquery_backend.py", "scripts/verify_fixture_assembly.py", "tests/test_g2_fixture_assembly.py", "artifacts/g2-cad-003/verification.json", "docs/G2_FIXTURE_ASSEMBLY.md"], "verification": "passed", "commitSha": "b8473653ed8e0b8c2c329997b6e4570f368adfb7"
+    },
+    {
+      "id": "V3C-BCR-001", "title": "導入 v3.0 藍圖", "gate": "G2", "status": "in_progress", "dependsOn": [],
+      "inputs": ["MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v3.0-claude-code.md", "existing v2 control plane"], "outputs": ["README blueprint pointer", "v3 adoption ADR", "complete v3 work queue", "required-ID verifier"],
+      "acceptance": ["README 指向 v3、ADR 與完整 v3 工作佇列存在，verifier 必要 ID 測試生效，既有 done 項目未被重開"], "acceptanceResults": [{ "criterion": "README 指向 v3、ADR 與完整 v3 工作佇列存在，verifier 必要 ID 測試生效，既有 done 項目未被重開", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "V3C-CTL-001", "title": "控制面 schema 1.1 與 claim", "gate": "G2", "status": "planned", "dependsOn": ["V3C-BCR-001"],
+      "inputs": ["v3 control-plane contract"], "outputs": ["schema 1.1.0", "execution/AGENT_CLAIM.json", "extended verifier"],
+      "acceptance": ["schema 1.1 選填欄位、claim 與 v3 §5.13 控制面檢查生效"], "acceptanceResults": [{ "criterion": "schema 1.1 選填欄位、claim 與 v3 §5.13 控制面檢查生效", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "V3C-DOC-001", "title": "補齊控制面文件", "gate": "G2", "status": "planned", "dependsOn": ["V3C-BCR-001"],
+      "inputs": ["v3 §5.1"], "outputs": ["required control-plane documents", "CLAUDE.md"],
+      "acceptance": ["v3 §5.1 全部文件存在且非空殼，CLAUDE.md 不與 AGENTS.md 衝突"], "acceptanceResults": [{ "criterion": "v3 §5.1 全部文件存在且非空殼，CLAUDE.md 不與 AGENTS.md 衝突", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "V3C-DEC-001", "title": "G0 決策補記", "gate": "G2", "status": "planned", "dependsOn": ["V3C-DOC-001"],
+      "inputs": ["v3 §8.1 decisions"], "outputs": ["D1–D9 ADR records"],
+      "acceptance": ["D1–D9 全部有可追溯 ADR 與既有決策證據"], "acceptanceResults": [{ "criterion": "D1–D9 全部有可追溯 ADR 與既有決策證據", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "V3C-DET-001", "title": "Determinism 與 fingerprint", "gate": "G2", "status": "planned", "dependsOn": ["V3C-BCR-001"],
+      "inputs": ["existing CAD spikes", "v3 fingerprint policy"], "outputs": ["fingerprint policy 1.0.0", "header normalization", "replay tests"],
+      "acceptance": ["STEP/DXF 正規化、binary STL 與兩次重跑 semantic fingerprint 一致"], "acceptanceResults": [{ "criterion": "STEP/DXF 正規化、binary STL 與兩次重跑 semantic fingerprint 一致", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "V3C-MAT-001", "title": "Classification 與 maturity 修正", "gate": "G2", "status": "planned", "dependsOn": ["V3C-DET-001"],
+      "inputs": ["existing manifests", "classification contract"], "outputs": ["corrected manifests", "maturity scanner"],
+      "acceptance": ["既有 spike maturity 為 null，classification 掃描與負向測試生效"], "acceptanceResults": [{ "criterion": "既有 spike maturity 為 null，classification 掃描與負向測試生效", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "V3C-ART-001", "title": "Artifact 政策", "gate": "G2", "status": "planned", "dependsOn": ["V3C-BCR-001"],
+      "inputs": ["tracked artifact inventory", "v3 §5.9"], "outputs": [".gitattributes", "file-size budget check", "large-file ADR"],
+      "acceptance": ["artifact attributes、大小預算與重型製品政策可自動驗證"], "acceptanceResults": [{ "criterion": "artifact attributes、大小預算與重型製品政策可自動驗證", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "V3C-REV-001", "title": "已 accepted Gate 追溯審查", "gate": "G2", "status": "planned", "dependsOn": ["V3C-CTL-001", "V3C-DOC-001", "V3C-DEC-001", "V3C-MAT-001", "V3C-ART-001"],
+      "inputs": ["accepted Gate evidence", "completed V3C remediation"], "outputs": ["fresh-session retrospective review"],
+      "acceptance": ["全新 session 對已 accepted Gate 出具審查報告，所有差距均有承接項目"], "acceptanceResults": [{ "criterion": "全新 session 對已 accepted Gate 出具審查報告，所有差距均有承接項目", "status": "pending", "evidence": [] }],
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "V3C-ACC-001", "title": "導入完成簽核", "gate": "G2", "status": "planned", "dependsOn": ["V3C-REV-001"],
+      "inputs": ["V3C retrospective review"], "outputs": ["blueprint_change sign-off"],
+      "acceptance": ["v3 blueprint_change sign-off 可追溯至審查與 commit"], "acceptanceResults": [{ "criterion": "v3 blueprint_change sign-off 可追溯至審查與 commit", "status": "pending", "evidence": [] }],
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
     },
     {

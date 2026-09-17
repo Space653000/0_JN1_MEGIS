@@ -31,6 +31,20 @@
     "passed": 17,
     "failed": 0
   },
+  "baseline": {
+    "command": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+    "pythonTestsPassed": 63,
+    "frontendTestsPassed": 9,
+    "artifactRecordsVerified": 13,
+    "status": "passed"
+  },
+  "githubActions": {
+    "runId": 35180375432,
+    "headSha": "b8473653ed8e0b8c2c329997b6e4570f368adfb7",
+    "status": "passed",
+    "durationSeconds": 138,
+    "url": "https://github.com/Space653000/0_JN1_MEGIS/actions/runs/35180375432"
+  },
   "transitionalAssumptions": [
     "PCB envelope and USB-C opening use isolated v2 Reference Fixture defaults.",
     "V3 G1-REQ-001 must replace those defaults with researched parameters."

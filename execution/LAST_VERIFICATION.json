@@ -1,12 +1,13 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-17T07:38:59+08:00",
-  "sourceCommit": "6b3d8a6aa15a3797f21cec516a3b2a4554db5c73",
+  "verifiedAt": "2026-09-17T12:04:53+08:00",
+  "sourceCommit": "b8473653ed8e0b8c2c329997b6e4570f368adfb7",
   "status": "passed",
   "commands": [
     { "command": ".venv/Scripts/python.exe -m pip check", "status": "passed" },
     { "command": ".venv/Scripts/python.exe scripts/verify_toolchain.py", "status": "passed", "solidValid": true, "solidVolume": 6000.0 },
-    { "command": ".venv/Scripts/python.exe -m pytest", "status": "passed", "testsPassed": 57, "testsFailed": 0 },
+    { "command": ".venv/Scripts/python.exe scripts/verify_fixture_assembly.py", "status": "passed", "solidModels": 7, "usbCutoutOpen": true, "unintendedInterferenceVolumeMm3": 0.0 },
+    { "command": ".venv/Scripts/python.exe -m pytest", "status": "passed", "testsPassed": 63, "testsFailed": 0 },
     { "command": ".venv/Scripts/python.exe -m spikes.g0_cad.reference_case --output-dir artifacts/g0-cad", "status": "passed", "stepValid": true, "stlValid": true, "dxfValid": true },
     { "command": "powershell -ExecutionPolicy Bypass -File scripts/run-freecad-spike.ps1", "status": "passed", "decision": "fallback", "visibleEdges": 12 },
     { "command": "powershell -ExecutionPolicy Bypass -File scripts/inventory-comsol.ps1", "status": "passed", "decision": "out_of_scope", "blocksCoreGate": false },
@@ -16,12 +17,12 @@
     { "command": "npm --prefix apps/web run typecheck", "status": "passed" },
     { "command": "npm --prefix apps/web test -- --run", "status": "passed", "testsPassed": 9, "testsFailed": 0 },
     { "command": "npm --prefix apps/web run build", "status": "passed" },
-    { "command": "GitHub Actions Baseline CI run 35163062956", "status": "passed", "headSha": "6b3d8a6aa15a3797f21cec516a3b2a4554db5c73", "durationSeconds": 114 }
+    { "command": "GitHub Actions Baseline CI run 35180375432", "status": "passed", "headSha": "b8473653ed8e0b8c2c329997b6e4570f368adfb7", "durationSeconds": 138 }
   ],
   "browser": {
     "path": "/progress",
     "currentGate": "G2",
-    "currentWorkItem": "G2-CAD-003",
+    "currentWorkItem": "V3C-BCR-001",
     "ui0dAccepted": true,
     "acceptanceDisclosure": true,
     "horizontalOverflow": false,
