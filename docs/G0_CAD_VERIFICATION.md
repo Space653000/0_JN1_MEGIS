@@ -1,5 +1,11 @@
 # G0-CAD-001 CadQuery 可行性驗證
 
+> 文件治理
+> - 目的：記錄 CadQuery Reference Case feasibility。
+> - 目前內容：STEP、STL、DXF 產出與有效性檢查證據。
+> - Owner：MEGIS Builder
+> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+
 ## 結論
 
 `G0-CAD-001` 的固定 Reference Case 已以 CadQuery 2.8.0／cadquery-ocp 7.9.3.1.1 產出 STEP、ASCII STL 與 Z=10 mm 的 2D DXF section，三種格式均通過重新載入與內容檢查。此結論只證明 G0 工具路徑可行，不等同 G2 production geometry backend，也不是製造放行。

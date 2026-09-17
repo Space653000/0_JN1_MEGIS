@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "V3C-DOC-001",
+  "verifiedAt": "2026-09-17T12:38:20+08:00",
+  "requiredInventory": {
+    "claudePointer": true,
+    "product": true,
+    "architecture": true,
+    "decisions": true,
+    "supportedEnvelope": true,
+    "acceptance": true,
+    "risks": true,
+    "operations": true,
+    "errorCodes": true,
+    "ruleSources": true,
+    "researchDirectory": true,
+    "handoffsDirectory": true,
+    "reviewsDirectory": true,
+    "signoffsDirectory": true,
+    "envelopeDirectory": true,
+    "goldenDirectory": true
+  },
+  "documentationGovernance": {
+    "markdownFilesChecked": 28,
+    "requiredFields": ["目的", "目前內容", "Owner", "最後審查 commit"],
+    "missingFields": [],
+    "shellFiles": []
+  },
+  "claudeInstruction": {
+    "pointsToAgentsMd": true,
+    "duplicatesRepositoryPolicy": false
+  },
+  "migrationDeferrals": {
+    "before": 21,
+    "after": 6,
+    "remainingScope": "accepted Gate retrospective review and sign-off only"
+  },
+  "baseline": {
+    "pythonTestsPassed": 77,
+    "frontendTestsPassed": 9,
+    "artifactRecordsVerified": 13,
+    "status": "passed"
+  },
+  "githubActions": {
+    "status": "pending",
+    "runId": null,
+    "headSha": null
+  }
+}

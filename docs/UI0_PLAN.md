@@ -1,5 +1,11 @@
 # UI-0 Reconciled Implementation Plan
 
+> 文件治理
+> - 目的：保存 UI-0 經核准施工計畫。
+> - 目前內容：UI-0A～D 路徑、驗收與誠實能力邊界。
+> - Owner：MEGIS Builder
+> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+
 ## Decision
 
 UI-0 is a complete, interactive, local-only UX prototype that the user can review before core engineering construction begins. It is not G6 and cannot claim engineering capability. Successful acceptance is recorded only as `UX PROTOTYPE ACCEPTED`.
@@ -69,4 +75,3 @@ Fixture / Enclosure is the only end-to-end interactive prototype. Authentication
 ## Adversarial review disposition
 
 All four blocking and all six high-severity findings were accepted. The plan now separates UI-0 from G6, adds UI-0A, fixes the Git and workspace boundaries, closes scope, isolates mock contracts, strengthens truthfulness and usability acceptance, defines progress-data integrity, and verifies local-only networking.
-

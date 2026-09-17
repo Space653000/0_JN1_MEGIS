@@ -1,5 +1,11 @@
 # G1 Schema Migration Contract
 
+> 文件治理
+> - 目的：說明 IR migration 與 rollback 契約。
+> - 目前內容：v1 到 v2 fixture 遷移、rollback 與版本政策。
+> - Owner：MEGIS Builder
+> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+
 ## 支援路徑
 
 目前唯一明確核准的路徑是 Reference Fixture `1.0.0 → 2.0.0`。呼叫端不可要求猜測式升級、降級或跳版；沒有註冊的來源版本一律回傳 `MigrationError`。

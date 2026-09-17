@@ -1,5 +1,11 @@
 # G0 工具鏈版本決策
 
+> 文件治理
+> - 目的：固定可重現的本機與 CI 工具鏈。
+> - 目前內容：Python、Node、CadQuery、OpenCascade 與平台基線。
+> - Owner：MEGIS Builder
+> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+
 ## 決策
 
 `G0-ENV-001` 固定使用 Windows CPython 3.11 x64、pip 26.2.1、Node.js 24.17.0、npm 11.13.0、CadQuery 2.8.0、`cadquery-ocp` 7.9.3.1.1（OCP module 7.9.3.1）與 VTK 9.6.2。Python 完整傳遞依賴記錄於根目錄 `requirements.lock`，機器可讀版本與支援邊界記錄於 `environment/toolchain.lock.json`。

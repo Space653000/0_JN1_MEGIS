@@ -1,5 +1,11 @@
 # G2 Geometry Capability Contract
 
+> 文件治理
+> - 目的：說明 kernel-neutral geometry adapter seam。
+> - 目前內容：capability negotiation、planning、service 與錯誤邊界。
+> - Owner：MEGIS Builder
+> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+
 ## 邊界設計
 
 `G2-CAD-001` 建立三層可替換邊界：

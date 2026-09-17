@@ -1,5 +1,11 @@
 # G1 Engineering IR
 
+> 文件治理
+> - 目的：說明 Engineering IR schema 與邊界。
+> - 目前內容：v2 IR、語意驗證與 V3 補強缺口。
+> - Owner：MEGIS Builder
+> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+
 ## 契約內容
 
 `G1-IR-002` 將 V2 藍圖的最小 Engineering IR 固定為 Draft 2020-12 schema：design ID、revision、maturity、unit／coordinate system，以及 requirements、components、interfaces、relationships、materials、manufacturing、constraints、assumptions、unknowns、provenance。

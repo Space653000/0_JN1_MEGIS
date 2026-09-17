@@ -1,5 +1,11 @@
 # G0 COMSOL 可行性決策
 
+> 文件治理
+> - 目的：記錄 COMSOL 能力與授權決策。
+> - 目前內容：本機 out_of_scope、非阻塞核心的決策證據。
+> - Owner：MEGIS Builder
+> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+
 ## 結論
 
 `G0-SIM-001` 決策為 `out_of_scope`，且 `blocksCoreGate = false`。
@@ -34,4 +40,3 @@ powershell -ExecutionPolicy Bypass -File scripts\inventory-comsol.ps1
 ## 工程聲明
 
 本決策沒有產生 COMSOL 模擬結果，不構成物理求解、設計驗證、工程簽核或製造依據。
-

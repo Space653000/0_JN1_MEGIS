@@ -1,5 +1,11 @@
 # G0-DRW-001 FreeCAD TechDraw 決策
 
+> 文件治理
+> - 目的：記錄圖面 backend feasibility 與 fallback。
+> - 目前內容：FreeCAD headless 檢查及固定模板 SVG fallback。
+> - Owner：MEGIS Builder
+> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+
 ## 決策：fallback
 
 FreeCAD 1.1.3 的 `TechDraw::DrawViewPart` 可在 `FreeCADCmd` headless 模式載入 G0 Reference Case STEP、完成 top-view projection，並回報 `Up-to-date` 與 12 條 visible edges。原生 SVG／PDF page export 依賴 `TechDrawGui`；該模組在 console application 明確無法載入，`TechDraw::DrawPage` 也沒有 headless `getPageSVG()` API。

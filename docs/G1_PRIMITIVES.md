@@ -1,5 +1,11 @@
 # G1 Engineering Primitives
 
+> 文件治理
+> - 目的：說明工程基本型別與驗證。
+> - 目前內容：unit、coordinate、ID、provenance 與 knowledge state。
+> - Owner：MEGIS Builder
+> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+
 ## 契約範圍
 
 `G1-IR-001` 固定跨模組共用的最小語意，不定義完整 Engineering IR：

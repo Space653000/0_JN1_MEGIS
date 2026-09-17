@@ -1,5 +1,11 @@
 # G2-CAD-003 Fixture Assembly
 
+> 文件治理
+> - 目的：說明 Reference Fixture assembly 幾何切片。
+> - 目前內容：cover、fastener、cutout、PCB envelope 與間隙證據。
+> - Owner：MEGIS Builder
+> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+
 ## 目的
 
 本工作項目建立 Reference Fixture 的可替換 assembly plan 與 CadQuery 實作，涵蓋中空 base、cover、四個 fastener、counterbore、PCB envelope 與 USB-C cutout。所有 CAD kernel 物件仍封裝在 adapter 內，核心服務只接收不可變資料契約。
@@ -27,4 +33,3 @@
 .venv/Scripts/python.exe -m pytest tests/test_g2_fixture_assembly.py
 powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1
 ```
-

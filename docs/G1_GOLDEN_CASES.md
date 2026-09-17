@@ -1,5 +1,11 @@
 # G1 Golden Cases
 
+> 文件治理
+> - 目的：說明三個 golden case 與下游 consumer。
+> - 目前內容：Fixture、Acoustic、Robot schema fixtures 與 round trip。
+> - Owner：MEGIS Builder
+> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+
 ## 固定案例
 
 `G1-IR-003` 建立三個共用 Engineering IR 契約的版本化輸入：

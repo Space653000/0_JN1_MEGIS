@@ -1,5 +1,11 @@
 # G0 Baseline CI
 
+> 文件治理
+> - 目的：記錄 baseline CI 的範圍與重跑方式。
+> - 目前內容：G0 鎖定環境、測試與 artifact smoke 證據。
+> - Owner：MEGIS Builder
+> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+
 ## 驗收範圍
 
 `G0-CI-001` 建立一條 Windows x64 baseline，對本機與 GitHub Actions 使用相同的 `scripts/run-baseline-ci.ps1` 驗證入口。它涵蓋：

@@ -19,6 +19,8 @@ def _write_fixture(root: Path, queue: dict) -> None:
     copies = [
         "AGENTS.md",
         "docs/DECISIONS.md",
+        "docs/UI0_ACCEPTANCE.md",
+        "docs/decisions/ADR-0001-adopt-v3-blueprint.md",
         "execution/BLOCKERS.yaml",
         "execution/schemas/work-queue.schema.json",
         "execution/schemas/agent-claim.schema.json",
@@ -38,8 +40,6 @@ def _write_fixture(root: Path, queue: dict) -> None:
     )
     for relative in (
         "execution/LAST_VERIFICATION.json",
-        "docs/UI0_ACCEPTANCE.md",
-        "docs/decisions/ADR-0001-adopt-v3-blueprint.md",
         "MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v3.0-claude-code.md",
     ):
         destination = root / relative
@@ -61,7 +61,11 @@ def _write_fixture(root: Path, queue: dict) -> None:
     for relative in evidence_paths:
         destination = root / relative
         destination.parent.mkdir(parents=True, exist_ok=True)
-        destination.touch()
+        source = ROOT / relative
+        if source.is_file() and source.suffix.lower() == ".md":
+            destination.write_bytes(source.read_bytes())
+        else:
+            destination.touch()
 
 
 def _run_verifier(root: Path) -> subprocess.CompletedProcess[str]:
@@ -254,3 +258,42 @@ def test_done_item_commit_shas_exist_in_repository_history() -> None:
             check=False,
         )
         assert result.returncode == 0, item["id"]
+
+
+def test_required_v3_document_inventory_is_present() -> None:
+    required = [
+        "CLAUDE.md",
+        "docs/PRODUCT.md",
+        "docs/ARCHITECTURE.md",
+        "docs/DECISIONS.md",
+        "docs/SUPPORTED_ENVELOPE.md",
+        "docs/ACCEPTANCE.md",
+        "docs/RISKS.md",
+        "docs/OPERATIONS.md",
+        "docs/ERROR_CODES.md",
+        "docs/RULE_SOURCES.md",
+        "docs/research/README.md",
+        "execution/handoffs/README.md",
+        "execution/reviews/README.md",
+        "execution/signoffs/README.md",
+        "config/envelope/README.md",
+        "tests/golden/README.md",
+    ]
+
+    assert [path for path in required if not (ROOT / path).is_file()] == []
+    claude = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
+    assert "AGENTS.md" in claude
+
+
+def test_verifier_rejects_document_without_governance_metadata(tmp_path: Path) -> None:
+    _write_fixture(tmp_path, _load_queue())
+    decisions = tmp_path / "docs" / "DECISIONS.md"
+    decisions.write_text(
+        decisions.read_text(encoding="utf-8").replace("Owner：", "Maintainer："),
+        encoding="utf-8",
+    )
+
+    result = _run_verifier(tmp_path)
+
+    assert result.returncode == 1
+    assert "docs/DECISIONS.md lacks documentation governance field: owner" in result.stderr

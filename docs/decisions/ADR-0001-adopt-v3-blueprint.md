@@ -1,5 +1,11 @@
 # ADR-0001：採用 MEGIS v3.0-claude-code 藍圖
 
+> 文件治理
+> - 目的：記錄 V3 藍圖採用決策及後果。
+> - 目前內容：已接受的 V3C 遷移策略與證據。
+> - Owner：MEGIS Builder
+> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+
 - 狀態：accepted
 - 日期：2026-09-17
 - 決策者：使用者
@@ -35,4 +41,3 @@ Repository 已依 v2.0 完成 UX-0、G0、G1，以及 G2-CAD-001～003。使用�
 - `execution/WORK_QUEUE.yaml`
 - `execution/schemas/v3-required-work-items.json`
 - `scripts/verify-control-plane.mjs`
-

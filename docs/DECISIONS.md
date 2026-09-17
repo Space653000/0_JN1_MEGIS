@@ -1,5 +1,11 @@
 # 決策索引
 
+> 文件治理
+> - 目的：集中索引架構、流程與產品決策。
+> - 目前內容：V3 採用 ADR 與既有工具鏈決策入口。
+> - Owner：MEGIS Builder
+> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+
 ## 目的
 
 集中列出 MEGIS 的架構、流程與產品決策，讓施工狀態、實作與證據可互相追溯。此索引不取代各 ADR 內容。
@@ -15,4 +21,3 @@
 - 新的技術基線、envelope、fingerprint、maturity、角色或驗收範圍變更必須建立新 ADR。
 - 被取代的 ADR 保留並指向取代它的 ADR。
 - 最後檢視基準：V3C-BCR-001（commit 於工作項完成時回填）。
-

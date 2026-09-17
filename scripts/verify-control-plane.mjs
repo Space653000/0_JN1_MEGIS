@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { existsSync, readFileSync, statSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { resolve } from "node:path";
 
 const repoRoot = process.env.MEGIS_REPO_ROOT
@@ -65,6 +65,35 @@ for (const [path, kind, owner] of requiredEntries) {
   } else {
     errors.push(`Missing or empty required ${kind}: ${path}`);
   }
+}
+
+const markdownFiles = [];
+const collectMarkdown = (directory) => {
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    const absolute = resolve(directory, entry.name);
+    if (entry.isDirectory()) collectMarkdown(absolute);
+    else if (entry.name.toLowerCase().endsWith(".md")) markdownFiles.push(absolute);
+  }
+};
+const docsRoot = resolve(repoRoot, "docs");
+if (existsSync(docsRoot)) collectMarkdown(docsRoot);
+const governanceFields = [
+  ["purpose", /目的[：:]/u],
+  ["current content", /目前內容[：:]/u],
+  ["owner", /Owner[：:]/u],
+  ["last reviewed commit", /最後審查 commit[：:]/u],
+];
+for (const absolute of markdownFiles) {
+  const relative = absolute.slice(repoRoot.length + 1).replaceAll("\\", "/");
+  const contents = readFileSync(absolute, "utf8");
+  if (contents.trim().length < 120) errors.push(`Documentation shell is too small: ${relative}`);
+  for (const [label, pattern] of governanceFields) {
+    if (!pattern.test(contents)) errors.push(`${relative} lacks documentation governance field: ${label}`);
+  }
+}
+const claudePath = resolve(repoRoot, "CLAUDE.md");
+if (existsSync(claudePath) && !readFileSync(claudePath, "utf8").includes("AGENTS.md")) {
+  errors.push("CLAUDE.md must point to AGENTS.md as the common source of truth");
 }
 
 const blueprintQueueIds = requiredWorkItems.requiredWorkItemIds;

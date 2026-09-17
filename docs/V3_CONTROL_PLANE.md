@@ -1,5 +1,11 @@
 # V3 Control Plane 1.1
 
+> 文件治理
+> - 目的：說明 V3 control plane 與遷移期強制機制。
+> - 目前內容：schema 1.1、claim、verifier、deferral 與負向測試。
+> - Owner：MEGIS Builder
+> - 最後審查 commit：`92e29c528bb9a635de83eb5ebedac60f9a11d5ae`
+
 ## 目的
 
 說明 `V3C-CTL-001` 導入的向後相容 schema、單一 Builder claim，以及 v3 §5.13 控制面檢查如何在既有 repository 遷移期間生效。
