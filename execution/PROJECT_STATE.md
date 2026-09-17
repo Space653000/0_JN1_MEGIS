@@ -1,10 +1,10 @@
 # MEGIS Project State
 
 - Current gate: `G2 — Fixture Geometry Vertical Slice`
-- Current work item: `V3C-DEC-001 — G0 決策補記`
-- Last green commit: `138deb22f3cd0f790c4ff5e350a149703df08021`
+- Current work item: `V3C-DET-001 — Determinism 與 fingerprint`
+- Last green commit: `065adb3567b257b94b72a2557fb1f1cb15085342`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-17T17:10:00+08:00`
+- Updated at: `2026-09-17T17:35:44+08:00`
 
 ## Accepted capabilities
 
@@ -28,12 +28,13 @@
 - V3C-BCR-001：V3 主藍圖指向、採用 ADR、74 項工作圖與必要 ID 防退化檢查
 - V3C-CTL-001：向後相容 schema 1.1、單一 Builder claim、依賴無循環、done SHA 與 Gate 審查強制機制
 - V3C-DOC-001：§5.1 必要文件、目錄與 28 份 Markdown 治理 metadata
+- V3C-DEC-001：D1–D9 九份 accepted ADR、schema 驗證決策索引與誠實實作狀態
 
 UI-0 驗收只涵蓋使用者體驗原型；沒有工程生成能力或工程製品獲得驗收。
 
 ## Active scope
 
-`V3C-DOC-001` 已完成；GitHub Actions run `35183285440` 對 commit `138deb2` 全綠。現在只施工 `V3C-DEC-001`，把 D1–D9 與既有施工證據補記為可追溯 ADR／決策紀錄。2026-09-17 完整本機基線為 77 項 Python、9 項前端測試與 13 筆 artifact smoke 全綠。
+`V3C-DEC-001` 已完成；GitHub Actions run `35205759795` 對 commit `065adb3` 全綠。現在只施工 `V3C-DET-001`，建立 fingerprint policy 1.0.0、STEP/DXF header 正規化、binary STL 與兩次 replay 一致性。2026-09-17 完整本機基線為 83 項 Python、9 項前端測試與 13 筆 artifact smoke 全綠。
 
 ## Next work item
 

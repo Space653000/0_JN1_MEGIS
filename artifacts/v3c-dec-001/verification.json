@@ -31,9 +31,10 @@
     "status": "passed"
   },
   "githubActions": {
-    "status": "awaiting_implementation_commit",
-    "runId": null,
-    "headSha": null,
-    "url": null
+    "status": "passed",
+    "runId": 35205759795,
+    "headSha": "065adb3567b257b94b72a2557fb1f1cb15085342",
+    "durationSeconds": 112,
+    "url": "https://github.com/Space653000/0_JN1_MEGIS/actions/runs/35205759795"
   }
 }

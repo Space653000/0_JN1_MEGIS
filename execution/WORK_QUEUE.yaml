@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-17T12:42:23+08:00",
-  "baselineCommit": "6cc2ad78d237d2c2095d705910a242dcd2b6b2bc",
-  "currentWorkItem": "V3C-DEC-001",
+  "updatedAt": "2026-09-17T17:35:44+08:00",
+  "baselineCommit": "065adb3567b257b94b72a2557fb1f1cb15085342",
+  "currentWorkItem": "V3C-DET-001",
   "gates": [
     { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
     { "id": "UI-0B", "title": "施工進度中心", "status": "accepted", "dependsOn": ["UI-0A"] },
@@ -129,17 +129,20 @@
       "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E2", "review": { "required": false, "status": "not_required", "report": null }, "risk_refs": ["R-AGT-003"], "blueprint_ref": "v3.0 §5.1, §26.1"
     },
     {
-      "id": "V3C-DEC-001", "title": "G0 決策補記", "gate": "G2", "status": "in_progress", "dependsOn": ["V3C-DOC-001"],
+      "id": "V3C-DEC-001", "title": "G0 決策補記", "gate": "G2", "status": "done", "dependsOn": ["V3C-DOC-001"],
       "inputs": ["v3 §8.1 decisions"], "outputs": ["D1–D9 ADR records"],
-      "acceptance": ["D1–D9 全部有可追溯 ADR 與既有決策證據"], "acceptanceResults": [{ "criterion": "D1–D9 全部有可追溯 ADR 與既有決策證據", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null,
+      "acceptance": ["D1–D9 全部有可追溯 ADR 與既有決策證據"], "acceptanceResults": [{ "criterion": "D1–D9 全部有可追溯 ADR 與既有決策證據", "status": "passed", "evidence": ["docs/DECISIONS.md", "docs/decisions/ADR-0002-local-single-user-deployment.md", "docs/decisions/ADR-0003-comsol-out-of-scope.md", "docs/decisions/ADR-0004-llm-adapter-offline-fallback.md", "docs/decisions/ADR-0005-windows-ci-and-main-push.md", "docs/decisions/ADR-0006-protect-customer-engineering-data.md", "docs/decisions/ADR-0007-builder-self-review.md", "docs/decisions/ADR-0008-single-builder-agent-claim.md", "docs/decisions/ADR-0009-research-reference-unknowns.md", "docs/decisions/ADR-0010-artifact-retention.md", "execution/decisions/g0-decisions.json", "execution/schemas/g0-decisions.schema.json", "tests/test_v3_g0_decisions.py", "artifacts/v3c-dec-001/verification.json"] }],
+      "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_v3_g0_decisions.py tests/test_v3_blueprint_adoption.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["docs/DECISIONS.md", "docs/decisions/ADR-0002-local-single-user-deployment.md", "docs/decisions/ADR-0003-comsol-out-of-scope.md", "docs/decisions/ADR-0004-llm-adapter-offline-fallback.md", "docs/decisions/ADR-0005-windows-ci-and-main-push.md", "docs/decisions/ADR-0006-protect-customer-engineering-data.md", "docs/decisions/ADR-0007-builder-self-review.md", "docs/decisions/ADR-0008-single-builder-agent-claim.md", "docs/decisions/ADR-0009-research-reference-unknowns.md", "docs/decisions/ADR-0010-artifact-retention.md", "execution/decisions/g0-decisions.json", "execution/schemas/g0-decisions.schema.json", "tests/test_v3_g0_decisions.py", "artifacts/v3c-dec-001/verification.json"], "verification": "passed", "commitSha": "065adb3567b257b94b72a2557fb1f1cb15085342",
       "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E4", "review": { "required": false, "status": "not_required", "report": null }, "risk_refs": ["R-SME-001", "R-SPEC-001"], "blueprint_ref": "v3.0 §8.1, §26.1"
     },
     {
-      "id": "V3C-DET-001", "title": "Determinism 與 fingerprint", "gate": "G2", "status": "planned", "dependsOn": ["V3C-BCR-001"],
+      "id": "V3C-DET-001", "title": "Determinism 與 fingerprint", "gate": "G2", "status": "in_progress", "dependsOn": ["V3C-BCR-001"],
       "inputs": ["existing CAD spikes", "v3 fingerprint policy"], "outputs": ["fingerprint policy 1.0.0", "header normalization", "replay tests"],
       "acceptance": ["STEP/DXF 正規化、binary STL 與兩次重跑 semantic fingerprint 一致"], "acceptanceResults": [{ "criterion": "STEP/DXF 正規化、binary STL 與兩次重跑 semantic fingerprint 一致", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null,
+      "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E3",
+      "review": { "required": false, "status": "not_required", "report": null },
+      "risk_refs": ["R-DET-001", "R-DET-002"], "blueprint_ref": "v3.0 §4.12, §26.1"
     },
     {
       "id": "V3C-MAT-001", "title": "Classification 與 maturity 修正", "gate": "G2", "status": "planned", "dependsOn": ["V3C-DET-001"],
