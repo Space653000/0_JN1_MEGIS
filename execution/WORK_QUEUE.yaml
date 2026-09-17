@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-17T17:35:44+08:00",
-  "baselineCommit": "065adb3567b257b94b72a2557fb1f1cb15085342",
-  "currentWorkItem": "V3C-DET-001",
+  "updatedAt": "2026-09-17T18:01:27+08:00",
+  "baselineCommit": "ad0a8dd1ac28f4038d5cc6f917541e5c4d8cce09",
+  "currentWorkItem": "V3C-MAT-001",
   "gates": [
     { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
     { "id": "UI-0B", "title": "施工進度中心", "status": "accepted", "dependsOn": ["UI-0A"] },
@@ -136,19 +136,22 @@
       "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E4", "review": { "required": false, "status": "not_required", "report": null }, "risk_refs": ["R-SME-001", "R-SPEC-001"], "blueprint_ref": "v3.0 §8.1, §26.1"
     },
     {
-      "id": "V3C-DET-001", "title": "Determinism 與 fingerprint", "gate": "G2", "status": "in_progress", "dependsOn": ["V3C-BCR-001"],
+      "id": "V3C-DET-001", "title": "Determinism 與 fingerprint", "gate": "G2", "status": "done", "dependsOn": ["V3C-BCR-001"],
       "inputs": ["existing CAD spikes", "v3 fingerprint policy"], "outputs": ["fingerprint policy 1.0.0", "header normalization", "replay tests"],
-      "acceptance": ["STEP/DXF 正規化、binary STL 與兩次重跑 semantic fingerprint 一致"], "acceptanceResults": [{ "criterion": "STEP/DXF 正規化、binary STL 與兩次重跑 semantic fingerprint 一致", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null,
+      "acceptance": ["STEP/DXF 正規化、binary STL 與兩次重跑 semantic fingerprint 一致"], "acceptanceResults": [{ "criterion": "STEP/DXF 正規化、binary STL 與兩次重跑 semantic fingerprint 一致", "status": "passed", "evidence": ["config/fingerprint/policy-1.0.0.json", "docs/FINGERPRINT_POLICY.md", "megis/determinism/fingerprint.py", "megis/determinism/normalization.py", "tests/test_v3_determinism.py", "artifacts/g0-cad/manifest.json", "artifacts/v3c-det-001/verification.json"] }],
+      "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_v3_determinism.py tests/test_g0_cad_reference_case.py tests/test_g0_artifact_smoke.py tests/test_v3_blueprint_adoption.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["config/fingerprint/policy-1.0.0.json", "schemas/v3/fingerprint-policy.schema.json", "docs/FINGERPRINT_POLICY.md", "docs/G0_CAD_VERIFICATION.md", "megis/determinism/__init__.py", "megis/determinism/fingerprint.py", "megis/determinism/normalization.py", "spikes/g0_cad/reference_case.py", "scripts/verify_artifacts.py", "tests/test_v3_determinism.py", "artifacts/g0-cad/manifest.json", "artifacts/g0-cad/reference_case.step", "artifacts/g0-cad/reference_case.stl", "artifacts/g0-cad/reference_case_section_z10.dxf", "artifacts/v3c-det-001/verification.json"], "verification": "passed", "commitSha": "ad0a8dd1ac28f4038d5cc6f917541e5c4d8cce09",
       "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E3",
       "review": { "required": false, "status": "not_required", "report": null },
       "risk_refs": ["R-DET-001", "R-DET-002"], "blueprint_ref": "v3.0 §4.12, §26.1"
     },
     {
-      "id": "V3C-MAT-001", "title": "Classification 與 maturity 修正", "gate": "G2", "status": "planned", "dependsOn": ["V3C-DET-001"],
+      "id": "V3C-MAT-001", "title": "Classification 與 maturity 修正", "gate": "G2", "status": "in_progress", "dependsOn": ["V3C-DET-001"],
       "inputs": ["existing manifests", "classification contract"], "outputs": ["corrected manifests", "maturity scanner"],
       "acceptance": ["既有 spike maturity 為 null，classification 掃描與負向測試生效"], "acceptanceResults": [{ "criterion": "既有 spike maturity 為 null，classification 掃描與負向測試生效", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null,
+      "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E3",
+      "review": { "required": false, "status": "not_required", "report": null },
+      "risk_refs": ["R-SAFE-001", "R-DET-001"], "blueprint_ref": "v3.0 §1.4, §1.5, §26.1"
     },
     {
       "id": "V3C-ART-001", "title": "Artifact 政策", "gate": "G2", "status": "planned", "dependsOn": ["V3C-BCR-001"],

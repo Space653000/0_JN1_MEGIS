@@ -1,8 +1,8 @@
 {
   "agent": "codex",
   "role": "builder",
-  "work_item": "V3C-DET-001",
-  "claimed_at": "2026-09-17T17:35:44+08:00",
-  "expires_at": "2026-09-17T21:35:44+08:00",
-  "base_commit": "065adb3567b257b94b72a2557fb1f1cb15085342"
+  "work_item": "V3C-MAT-001",
+  "claimed_at": "2026-09-17T18:01:27+08:00",
+  "expires_at": "2026-09-17T22:01:27+08:00",
+  "base_commit": "ad0a8dd1ac28f4038d5cc6f917541e5c4d8cce09"
 }
