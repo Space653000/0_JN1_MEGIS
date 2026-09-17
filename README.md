@@ -15,7 +15,7 @@ V2.0 採 Gate-driven construction，不以日期或推測百分比宣稱完成�
 
 ## 目前施工狀態
 
-**G0 與 G1 已完成並通過驗收**。目前位於 **G2：治具幾何垂直切片**；geometry contract 已完成，唯一在製項目為 `G2-CAD-002`。
+**G0 與 G1 已完成並通過驗收**。目前位於 **G2：治具幾何垂直切片**；geometry contract 與 fixture base 已完成，唯一在製項目為 `G2-CAD-003`。
 
 UI-0 是本機端使用者體驗原型，用來先確認施工進度中心與治具／電子外殼引導流程。它使用有版本的 `PrototypeViewModel` 展示資料，不是藍圖中的 G6 工程能力，也不會產生 STEP、工程圖面、BOM、Prototype Package 或可供製造的工程製品。
 

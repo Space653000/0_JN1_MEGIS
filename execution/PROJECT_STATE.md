@@ -1,10 +1,10 @@
 # MEGIS Project State
 
 - Current gate: `G2 — Fixture Geometry Vertical Slice`
-- Current work item: `G2-CAD-002 — 產生 fixture base`
-- Last green commit: `1cd6a270f5a5013d2ffba16c680cbbe68bc20356`
+- Current work item: `G2-CAD-003 — 產生 cover、fasteners 與 cutout`
+- Last green commit: `6b3d8a6aa15a3797f21cec516a3b2a4554db5c73`
 - Control-plane schema: `1.0.0`
-- Updated at: `2026-09-17T07:30:37+08:00`
+- Updated at: `2026-09-17T07:38:59+08:00`
 
 ## Accepted capabilities
 
@@ -23,16 +23,17 @@
 - G1-IR-003：Fixture、Acoustic、Robot golden inputs、deterministic round trip 與下游 consumer
 - G1-MIG-001：V1→V2 deterministic migration、版本政策與可驗證 rollback
 - G2-CAD-001：kernel-neutral geometry contract、capability negotiation 與 adapter seam
+- G2-CAD-002：由 golden IR 驅動的 CadQuery fixture base、尺寸與拓樸驗證
 
 UI-0 驗收只涵蓋使用者體驗原型；沒有工程生成能力或工程製品獲得驗收。
 
 ## Active scope
 
-`G2-CAD-001` 已完成；GitHub Actions run `35162441328` 對 commit `1cd6a27` 全綠。現在只施工 `G2-CAD-002`，由 golden IR 與 geometry contract 產生、驗證 fixture base solid。
+`G2-CAD-002` 已完成；GitHub Actions run `35163062956` 對 commit `6b3d8a6` 全綠。現在只施工 `G2-CAD-003`，產生 cover、fasteners、cutout 與 assembly relationship。
 
 ## Next work item
 
-`G2-CAD-002` 完成後依相依關係處理 `G2-CAD-003`；一次仍只施工一個工作單元。
+`G2-CAD-003` 完成後依相依關係處理 `G2-CAD-004`；一次仍只施工一個工作單元。
 
 ## Boundaries
 
