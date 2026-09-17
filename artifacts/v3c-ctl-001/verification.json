@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "workItem": "V3C-CTL-001",
-  "verifiedAt": "2026-09-17T12:28:10+08:00",
+  "verifiedAt": "2026-09-17T12:30:52+08:00",
   "controlPlaneSchema": "1.1.0",
   "claim": {
     "agent": "codex",
@@ -40,8 +40,10 @@
     "status": "passed"
   },
   "githubActions": {
-    "status": "pending",
-    "runId": null,
-    "headSha": null
+    "status": "passed",
+    "runId": 35182065276,
+    "headSha": "bf152afefbd22e81655566fe5650d6c23d6b2992",
+    "durationSeconds": 112,
+    "url": "https://github.com/Space653000/0_JN1_MEGIS/actions/runs/35182065276"
   }
 }

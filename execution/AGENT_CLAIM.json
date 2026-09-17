@@ -1,8 +1,8 @@
 {
   "agent": "codex",
   "role": "builder",
-  "work_item": "V3C-CTL-001",
-  "claimed_at": "2026-09-17T12:20:54+08:00",
-  "expires_at": "2026-09-17T16:20:54+08:00",
-  "base_commit": "507ec4b7f6d66a0169481a2339fd1db85fdc08be"
+  "work_item": "V3C-DOC-001",
+  "claimed_at": "2026-09-17T12:30:52+08:00",
+  "expires_at": "2026-09-17T16:30:52+08:00",
+  "base_commit": "bf152afefbd22e81655566fe5650d6c23d6b2992"
 }

@@ -22,5 +22,4 @@
 
 ## 最後審查 commit
 
-`V3C-CTL-001` 完成提交後由控制面回填；在此之前狀態為 in progress。
-
+`bf152afefbd22e81655566fe5650d6c23d6b2992`（GitHub Actions run `35182065276` passed）。
