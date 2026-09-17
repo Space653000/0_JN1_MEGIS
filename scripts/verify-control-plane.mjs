@@ -1,11 +1,15 @@
 import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const repoRoot = process.cwd();
+const repoRoot = process.env.MEGIS_REPO_ROOT
+  ? resolve(process.env.MEGIS_REPO_ROOT)
+  : process.cwd();
 const readJsonYaml = (path) => JSON.parse(readFileSync(resolve(repoRoot, path), "utf8"));
 const queue = readJsonYaml("execution/WORK_QUEUE.yaml");
 const blockers = readJsonYaml("execution/BLOCKERS.yaml");
 const projectState = readFileSync(resolve(repoRoot, "execution/PROJECT_STATE.md"), "utf8");
+const readme = readFileSync(resolve(repoRoot, "README.md"), "utf8");
+const requiredWorkItems = readJsonYaml("execution/schemas/v3-required-work-items.json");
 const errors = [];
 
 const requiredFiles = [
@@ -14,23 +18,44 @@ const requiredFiles = [
   "execution/BLOCKERS.yaml",
   "execution/LAST_VERIFICATION.json",
   "execution/schemas/work-queue.schema.json",
+  "execution/schemas/v3-required-work-items.json",
+  "MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v3.0-claude-code.md",
+  "docs/decisions/ADR-0001-adopt-v3-blueprint.md",
   "docs/UI0_ACCEPTANCE.md",
 ];
 for (const path of requiredFiles) if (!existsSync(resolve(repoRoot, path))) errors.push(`Missing control-plane file: ${path}`);
 
-const blueprintQueueIds = [
-  "G0-REP-001", "G0-ENV-001", "G0-CAD-001", "G0-DRW-001", "G0-SIM-001", "G0-CI-001",
-  "G1-IR-001", "G1-IR-002", "G1-IR-003", "G1-MIG-001",
-  "G2-CAD-001", "G2-CAD-002", "G2-CAD-003", "G2-CAD-004",
-  "G3-RUL-001", "G3-VAL-001", "G3-VAL-002", "G3-BEN-001",
-  "G4-MOD-001", "G4-MOD-002", "G4-IMP-001",
-  "G5-PKG-001", "G5-BOM-001", "G5-DRW-001", "G5-REP-001",
-  "G6-UI-001", "G6-QST-001", "G6-E2E-001", "G7-ACO-001", "G8-ROB-001",
-];
+const blueprintQueueIds = requiredWorkItems.requiredWorkItemIds;
 
 const itemIds = new Set(queue.workItems.map((item) => item.id));
 for (const id of blueprintQueueIds) if (!itemIds.has(id)) errors.push(`Missing blueprint work item: ${id}`);
 if (itemIds.size !== queue.workItems.length) errors.push("Duplicate work item ID");
+if (new Set(blueprintQueueIds).size !== blueprintQueueIds.length) errors.push("Duplicate required blueprint work item ID");
+if (!readme.includes("MEGIS_Mechanical Engineering Generative Intelligence System — v3.0-claude-code.md")) {
+  errors.push("README does not point to the v3.0-claude-code blueprint");
+}
+
+const immutableCompletedItems = {
+  "G0-REP-001": "09f19ea3633189bdbb58e254d8e5798736950bfb",
+  "G0-ENV-001": "629c02831b6b3eae30fb8a8ef8f9519f3bfbafaf",
+  "G0-CAD-001": "b8a0dddd2f3ab763cde4a466e851f3a733f3099a",
+  "G0-DRW-001": "ed81af5ac3f55c72285010afec0091a36f3fc92f",
+  "G0-SIM-001": "28a415ea4c4457daef2bed5f3d72f1be1f67bb0f",
+  "G0-CI-001": "86b9b67513822538e8bd3147d403f24521bb0815",
+  "G1-IR-001": "a2229343e453301ca2aee8053be4509e43514964",
+  "G1-IR-002": "c05af93d16e064dd939753fb1b7ac6d108ac01bc",
+  "G1-IR-003": "6160784f8b3280152bef6d006baf0fd033e9097a",
+  "G1-MIG-001": "be573a0c8dc151ba9a199770146855a10b64540f",
+  "G2-CAD-001": "1cd6a270f5a5013d2ffba16c680cbbe68bc20356",
+  "G2-CAD-002": "6b3d8a6aa15a3797f21cec516a3b2a4554db5c73",
+  "G2-CAD-003": "b8473653ed8e0b8c2c329997b6e4570f368adfb7",
+};
+for (const [id, commitSha] of Object.entries(immutableCompletedItems)) {
+  const item = queue.workItems.find((candidate) => candidate.id === id);
+  if (item?.status !== "done" || item?.commitSha !== commitSha) {
+    errors.push(`${id} changed after v3 adoption baseline`);
+  }
+}
 
 const gateIds = new Set(queue.gates.map((gate) => gate.id));
 if (gateIds.size !== queue.gates.length) errors.push("Duplicate gate ID");

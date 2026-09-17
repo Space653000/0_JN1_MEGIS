@@ -4,18 +4,19 @@
 
 MEGIS 的目標，是將機械、聲學與製造工程師的判斷轉化為可追溯、可驗證、可重現的引導式生成工程流程。系統以確定性工程資料、規則、受限幾何與驗證證據為核心；LLM 只協助整理設計意圖、提出問題與解釋結果，不取代幾何核心、物理求解器或工程簽核。
 
-## V2.0 可執行藍圖
+## V3.0 可執行藍圖
 
 專案唯一主要施工依據為：
 
-- [MEGIS Mechanical Engineering Generative Intelligence System — v2.0 Codex](<MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v2.0 Codex.md>)
+- [MEGIS Mechanical Engineering Generative Intelligence System — v3.0 Claude Code](<MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v3.0-claude-code.md>)
+- [V2.0 可執行藍圖（封存基線）](<MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v2.0 Codex.md>)
 - [V1.0 原始藍圖（封存參考）](<MEGIS_Blueprint/OLD/Generative Mechanical Design Factory — Master Blueprint & Detailed Implementation Plan.md>)
 
-V2.0 採 Gate-driven construction，不以日期或推測百分比宣稱完成。每個 Gate 必須具備可重跑的程式、測試、工程製品或決策證據，下一 Gate 才能開始。
+V3.0 採 Gate-driven construction，不以日期或推測百分比宣稱完成。它保留 V2.0 已完成工作與 Gate，透過 V3 Conformance（`V3C-*`）補足 control plane、決策、fingerprint、classification、artifact 與隔離審查要求；每個 Gate 必須具備可重跑證據，下一 Gate 才能接受。
 
 ## 目前施工狀態
 
-**G0 與 G1 已完成並通過驗收**。目前位於 **G2：治具幾何垂直切片**；geometry contract 與 fixture base 已完成，唯一在製項目為 `G2-CAD-003`。
+**G0 與 G1 沿用既有驗收，G2 為 active Gate**。`G2-CAD-003` 已完成並由 GitHub Actions 驗證；目前唯一在製項目為 `V3C-BCR-001`，先導入 V3.0 控制面，再恢復 `G2-CAD-004`。既有 done 項目與 accepted Gate 不重開。
 
 UI-0 是本機端使用者體驗原型，用來先確認施工進度中心與治具／電子外殼引導流程。它使用有版本的 `PrototypeViewModel` 展示資料，不是藍圖中的 G6 工程能力，也不會產生 STEP、工程圖面、BOM、Prototype Package 或可供製造的工程製品。
 
@@ -26,7 +27,7 @@ UI-0 是本機端使用者體驗原型，用來先確認施工進度中心與治
 - UI-0C：引導式使用者體驗原型
 - UI-0D：自動化、瀏覽器與使用者驗收皆已通過
 
-UI-0 已完成驗收，但仍只是使用者體驗原型；G0 不會把其合成展示資料當作工程輸出。CadQuery 可行性已通過，FreeCAD 圖面路徑採固定模板 SVG fallback，COMSOL 在本機則正式決策為非阻塞的 `out_of_scope`。本機與 GitHub Actions baseline CI 均已全綠，G1 工程契約、golden cases、migration 與 rollback 已固定，目前正在建立 G2 geometry capability contract。最新狀態與驗證證據：
+UI-0 已完成驗收，但仍只是使用者體驗原型；G0 不會把其合成展示資料當作工程輸出。CadQuery 可行性已通過，FreeCAD 圖面路徑採固定模板 SVG fallback，COMSOL 在本機正式決策為非阻塞的 `out_of_scope`。G1 工程契約、golden cases、migration 與 rollback 已固定；G2 已完成 geometry contract、fixture base 與 assembly geometry。V3 新增要求尚未完成者均保留為未完成工作，不會用既有 V2 證據冒充 V3 合規。
 
 - [UI-0 施工計畫](docs/UI0_PLAN.md)
 - [UI-0 可行性紀錄](docs/UI0_FEASIBILITY.md)
@@ -45,6 +46,9 @@ UI-0 已完成驗收，但仍只是使用者體驗原型；G0 不會把其合成
 - [G1 Schema Migration Contract](docs/G1_SCHEMA_MIGRATION.md)
 - [G2 Geometry Capability Contract](docs/G2_GEOMETRY_CONTRACT.md)
 - [G2 Fixture Base](docs/G2_FIXTURE_BASE.md)
+- [G2 Fixture Assembly](docs/G2_FIXTURE_ASSEMBLY.md)
+- [V3 採用決策](docs/decisions/ADR-0001-adopt-v3-blueprint.md)
+- [決策索引](docs/DECISIONS.md)
 
 ## 本機啟動
 

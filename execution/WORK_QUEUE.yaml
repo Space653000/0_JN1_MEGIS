@@ -168,7 +168,7 @@
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
     },
     {
-      "id": "G3-RUL-001", "title": "建立 rule schema、governance 與 waiver", "gate": "G3", "status": "planned", "dependsOn": ["G2-CAD-004"],
+      "id": "G3-RUL-001", "title": "建立 rule schema、governance 與 waiver", "gate": "G3", "status": "planned", "dependsOn": ["G2-ACC-001"],
       "inputs": ["Engineering IR", "fixture artifacts"], "outputs": ["rule schema", "waiver contract"],
       "acceptance": ["規則、嚴重度、來源、版本與 waiver 均可追溯"], "acceptanceResults": [{ "criterion": "規則、嚴重度、來源、版本與 waiver 均可追溯", "status": "pending", "evidence": [] }],
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
@@ -180,25 +180,25 @@
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
     },
     {
-      "id": "G3-VAL-002", "title": "建立 CNC DFM rule pack", "gate": "G3", "status": "planned", "dependsOn": ["G3-VAL-001"],
+      "id": "G3-VAL-002", "title": "建立 CNC DFM rule pack", "gate": "G3", "status": "planned", "dependsOn": ["G3-VAL-001", "G3-SRC-001"],
       "inputs": ["rule governance", "fixture artifacts"], "outputs": ["CNC DFM rule pack"],
       "acceptance": ["CNC 規則對 golden cases 產生預期結果且來源可追溯"], "acceptanceResults": [{ "criterion": "CNC 規則對 golden cases 產生預期結果且來源可追溯", "status": "pending", "evidence": [] }],
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
     },
     {
-      "id": "G3-BEN-001", "title": "建立 benchmark metrics", "gate": "G3", "status": "planned", "dependsOn": ["G3-VAL-002"],
+      "id": "G3-BEN-001", "title": "建立 benchmark metrics", "gate": "G3", "status": "planned", "dependsOn": ["G3-MAT-001"],
       "inputs": ["validation results"], "outputs": ["benchmark metrics", "baseline"],
       "acceptance": ["正確性、可重現性與執行成本具有固定基準"], "acceptanceResults": [{ "criterion": "正確性、可重現性與執行成本具有固定基準", "status": "pending", "evidence": [] }],
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
     },
     {
-      "id": "G4-MOD-001", "title": "建立 Module capability levels", "gate": "G4", "status": "planned", "dependsOn": ["G3-BEN-001"],
+      "id": "G4-MOD-001", "title": "建立 Module capability levels", "gate": "G4", "status": "planned", "dependsOn": ["G3-ACC-001"],
       "inputs": ["Engineering IR", "validation contracts"], "outputs": ["module capability schema"],
       "acceptance": ["模組能力等級可被 schema 與測試消費"], "acceptanceResults": [{ "criterion": "模組能力等級可被 schema 與測試消費", "status": "pending", "evidence": [] }],
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
     },
     {
-      "id": "G4-MOD-002", "title": "PCB、USB-C 與 M3 composition", "gate": "G4", "status": "planned", "dependsOn": ["G4-MOD-001"],
+      "id": "G4-MOD-002", "title": "PCB、USB-C 與 M3 composition", "gate": "G4", "status": "planned", "dependsOn": ["G4-GRF-001"],
       "inputs": ["module capability schema", "Fixture golden IR"], "outputs": ["module composition"],
       "acceptance": ["PCB、USB-C 與 M3 模組可組合並保留限制條件"], "acceptanceResults": [{ "criterion": "PCB、USB-C 與 M3 模組可組合並保留限制條件", "status": "pending", "evidence": [] }],
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
@@ -210,7 +210,7 @@
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
     },
     {
-      "id": "G5-PKG-001", "title": "建立 manifest 與 content hashes", "gate": "G5", "status": "planned", "dependsOn": ["G4-IMP-001"],
+      "id": "G5-PKG-001", "title": "建立 manifest 與 content hashes", "gate": "G5", "status": "planned", "dependsOn": ["G4-ACC-001"],
       "inputs": ["validated artifacts"], "outputs": ["package manifest", "content hashes"],
       "acceptance": ["manifest 可重建且所有 artifact hash 可驗證"], "acceptanceResults": [{ "criterion": "manifest 可重建且所有 artifact hash 可驗證", "status": "pending", "evidence": [] }],
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
@@ -234,7 +234,7 @@
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
     },
     {
-      "id": "G6-UI-001", "title": "建立 capability-driven guided flow", "gate": "G6", "status": "planned", "dependsOn": ["G5-REP-001"],
+      "id": "G6-UI-001", "title": "建立 capability-driven guided flow", "gate": "G6", "status": "planned", "dependsOn": ["G5-ACC-001"],
       "inputs": ["capability contracts", "Engineering IR"], "outputs": ["engineering guided flow"],
       "acceptance": ["介面只呈現後端已證明的能力並可產生合法 IR"], "acceptanceResults": [{ "criterion": "介面只呈現後端已證明的能力並可產生合法 IR", "status": "pending", "evidence": [] }],
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
@@ -246,22 +246,1187 @@
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
     },
     {
-      "id": "G6-E2E-001", "title": "UI-to-IR-to-package end-to-end test", "gate": "G6", "status": "planned", "dependsOn": ["G6-QST-001"],
+      "id": "G6-E2E-001", "title": "UI-to-IR-to-package end-to-end test", "gate": "G6", "status": "planned", "dependsOn": ["G6-USE-001"],
       "inputs": ["guided flow", "engineering pipeline"], "outputs": ["end-to-end evidence"],
       "acceptance": ["UI 輸入可追溯至 IR、驗證與 package，失敗狀態不遺失"], "acceptanceResults": [{ "criterion": "UI 輸入可追溯至 IR、驗證與 package，失敗狀態不遺失", "status": "pending", "evidence": [] }],
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
     },
     {
-      "id": "G7-ACO-001", "title": "Acoustic graph 與 sealed-volume thin slice", "gate": "G7", "status": "planned", "dependsOn": ["G6-E2E-001"],
+      "id": "G7-ACO-001", "title": "Acoustic graph 與 sealed-volume thin slice", "gate": "G7", "status": "planned", "dependsOn": ["G6-ACC-001"],
       "inputs": ["Acoustic golden input", "core contracts"], "outputs": ["acoustic graph", "sealed-volume geometry", "validation evidence"],
       "acceptance": ["聲學關係圖與封閉體積幾何可驗證且不宣稱未完成求解能力"], "acceptanceResults": [{ "criterion": "聲學關係圖與封閉體積幾何可驗證且不宣稱未完成求解能力", "status": "pending", "evidence": [] }],
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
     },
     {
-      "id": "G8-ROB-001", "title": "Robot layout 與 assembly-relationship thin slice", "gate": "G8", "status": "planned", "dependsOn": ["G6-E2E-001"],
+      "id": "G8-ROB-001", "title": "Robot layout 與 assembly-relationship thin slice", "gate": "G8", "status": "planned", "dependsOn": ["G6-ACC-001"],
       "inputs": ["Robot golden input", "core contracts"], "outputs": ["robot layout", "assembly relationships", "validation evidence"],
       "acceptance": ["機器人配置與組立關係可驗證且不宣稱未完成安全能力"], "acceptanceResults": [{ "criterion": "機器人配置與組立關係可驗證且不宣稱未完成安全能力", "status": "pending", "evidence": [] }],
       "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+    },
+    {
+      "id": "G0-DOC-001",
+      "title": "控制面文件完整化",
+      "gate": "G0",
+      "status": "planned",
+      "dependsOn": [
+        "G0-REP-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G0-DOC-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G0-DOC-001"
+      ],
+      "acceptance": [
+        "v3 §5.1 文件全部存在且非空殼"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "v3 §5.1 文件全部存在且非空殼",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G0-DEC-001",
+      "title": "G0 使用者決策",
+      "gate": "G0",
+      "status": "planned",
+      "dependsOn": [
+        "G0-DOC-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G0-DEC-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G0-DEC-001"
+      ],
+      "acceptance": [
+        "D1–D9 全部有 ADR 與可追溯決策證據"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "D1–D9 全部有 ADR 與可追溯決策證據",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G0-DET-001",
+      "title": "Determinism 與 fingerprint 原型",
+      "gate": "G0",
+      "status": "planned",
+      "dependsOn": [
+        "G0-CAD-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G0-DET-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G0-DET-001"
+      ],
+      "acceptance": [
+        "兩次重跑 semantic fingerprint 一致，header 正規化與 maturity 掃描生效"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "兩次重跑 semantic fingerprint 一致，header 正規化與 maturity 掃描生效",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G0-REV-001",
+      "title": "G0 自我審查",
+      "gate": "G0",
+      "status": "planned",
+      "dependsOn": [
+        "G0-CI-001",
+        "G0-DOC-001",
+        "G0-DEC-001",
+        "G0-DET-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G0-REV-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G0-REV-001"
+      ],
+      "acceptance": [
+        "全新 session 在乾淨 checkout 重跑並出具 passed 報告"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "全新 session 在乾淨 checkout 重跑並出具 passed 報告",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G0-ACC-001",
+      "title": "G0 acceptance 決策紀錄",
+      "gate": "G0",
+      "status": "planned",
+      "dependsOn": [
+        "G0-REV-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G0-ACC-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G0-ACC-001"
+      ],
+      "acceptance": [
+        "gate_acceptance 決策紀錄可追溯至 G0 審查與 CI"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "gate_acceptance 決策紀錄可追溯至 G0 審查與 CI",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G1-ERR-001",
+      "title": "Error taxonomy",
+      "gate": "G1",
+      "status": "planned",
+      "dependsOn": [
+        "G1-IR-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G1-ERR-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G1-ERR-001"
+      ],
+      "acceptance": [
+        "錯誤物件 schema、ERROR_CODES.md 與錯誤碼唯一性測試通過"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "錯誤物件 schema、ERROR_CODES.md 與錯誤碼唯一性測試通過",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G1-ENV-001",
+      "title": "機器可讀 envelope",
+      "gate": "G1",
+      "status": "planned",
+      "dependsOn": [
+        "G1-IR-002"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G1-ENV-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G1-ENV-001"
+      ],
+      "acceptance": [
+        "config/envelope 與 SUPPORTED_ENVELOPE.md 一致性測試通過"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "config/envelope 與 SUPPORTED_ENVELOPE.md 一致性測試通過",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G1-REQ-001",
+      "title": "參考案例參數研究與決定",
+      "gate": "G1",
+      "status": "planned",
+      "dependsOn": [
+        "G1-IR-002"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G1-REQ-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G1-REQ-001"
+      ],
+      "acceptance": [
+        "依 v3 §9.1 完成公開來源研究，Reference Fixture 無未解決 critical unknown"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "依 v3 §9.1 完成公開來源研究，Reference Fixture 無未解決 critical unknown",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G1-REV-001",
+      "title": "G1 自我審查",
+      "gate": "G1",
+      "status": "planned",
+      "dependsOn": [
+        "G1-ERR-001",
+        "G1-ENV-001",
+        "G1-REQ-001",
+        "G1-MIG-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G1-REV-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G1-REV-001"
+      ],
+      "acceptance": [
+        "全新 session 在乾淨 checkout 重跑並出具 passed 報告"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "全新 session 在乾淨 checkout 重跑並出具 passed 報告",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G1-ACC-001",
+      "title": "G1 acceptance 決策紀錄",
+      "gate": "G1",
+      "status": "planned",
+      "dependsOn": [
+        "G1-REV-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G1-ACC-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G1-ACC-001"
+      ],
+      "acceptance": [
+        "gate_acceptance 決策紀錄可追溯至 G1 審查與 CI"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "gate_acceptance 決策紀錄可追溯至 G1 審查與 CI",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G2-NEG-001",
+      "title": "Boundary 與 negative geometry corpus",
+      "gate": "G2",
+      "status": "planned",
+      "dependsOn": [
+        "G2-CAD-004"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G2-NEG-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G2-NEG-001"
+      ],
+      "acceptance": [
+        "boundary 至少 10 例全數合格，negative 至少 10 例回傳預期錯誤碼且 silent success 為 0"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "boundary 至少 10 例全數合格，negative 至少 10 例回傳預期錯誤碼且 silent success 為 0",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G2-REV-001",
+      "title": "G2 自我審查",
+      "gate": "G2",
+      "status": "planned",
+      "dependsOn": [
+        "G2-NEG-001",
+        "V3C-ACC-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G2-REV-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G2-REV-001"
+      ],
+      "acceptance": [
+        "全新 session 在乾淨 checkout 重跑 G2 全部驗證並出具 passed 報告"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "全新 session 在乾淨 checkout 重跑 G2 全部驗證並出具 passed 報告",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G2-ACC-001",
+      "title": "G2 acceptance 決策紀錄",
+      "gate": "G2",
+      "status": "planned",
+      "dependsOn": [
+        "G2-REV-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G2-ACC-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G2-ACC-001"
+      ],
+      "acceptance": [
+        "gate_acceptance 決策紀錄可追溯至 G2 審查與 CI"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "gate_acceptance 決策紀錄可追溯至 G2 審查與 CI",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G3-SRC-001",
+      "title": "規則來源登錄與核對流程",
+      "gate": "G3",
+      "status": "planned",
+      "dependsOn": [
+        "G3-RUL-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G3-SRC-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G3-SRC-001"
+      ],
+      "acceptance": [
+        "RULE_SOURCES.md、來源過期處理與 draft 規則限制具有自動測試"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "RULE_SOURCES.md、來源過期處理與 draft 規則限制具有自動測試",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G3-MAT-001",
+      "title": "Maturity evaluator",
+      "gate": "G3",
+      "status": "planned",
+      "dependsOn": [
+        "G3-VAL-002"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G3-MAT-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G3-MAT-001"
+      ],
+      "acceptance": [
+        "v3 §1.4 table tests 通過且 evaluator 是 maturity 唯一寫入者"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "v3 §1.4 table tests 通過且 evaluator 是 maturity 唯一寫入者",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G3-REV-001",
+      "title": "G3 自我審查",
+      "gate": "G3",
+      "status": "planned",
+      "dependsOn": [
+        "G3-SRC-001",
+        "G3-BEN-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G3-REV-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G3-REV-001"
+      ],
+      "acceptance": [
+        "全新 session 在乾淨 checkout 重跑 G3 全部驗證並出具 passed 報告"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "全新 session 在乾淨 checkout 重跑 G3 全部驗證並出具 passed 報告",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G3-ACC-001",
+      "title": "G3 acceptance 決策紀錄",
+      "gate": "G3",
+      "status": "planned",
+      "dependsOn": [
+        "G3-REV-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G3-ACC-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G3-ACC-001"
+      ],
+      "acceptance": [
+        "gate_acceptance 決策紀錄可追溯至 G3 審查與 CI"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "gate_acceptance 決策紀錄可追溯至 G3 審查與 CI",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G4-GRF-001",
+      "title": "Relationship vocabulary 語意",
+      "gate": "G4",
+      "status": "planned",
+      "dependsOn": [
+        "G4-MOD-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G4-GRF-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G4-GRF-001"
+      ],
+      "acceptance": [
+        "v3 §4.16 每一關係型別都有語意測試與反例"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "v3 §4.16 每一關係型別都有語意測試與反例",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G4-REV-001",
+      "title": "G4 自我審查",
+      "gate": "G4",
+      "status": "planned",
+      "dependsOn": [
+        "G4-IMP-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G4-REV-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G4-REV-001"
+      ],
+      "acceptance": [
+        "全新 session 在乾淨 checkout 重跑 G4 全部驗證並出具 passed 報告"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "全新 session 在乾淨 checkout 重跑 G4 全部驗證並出具 passed 報告",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G4-ACC-001",
+      "title": "G4 acceptance 決策紀錄",
+      "gate": "G4",
+      "status": "planned",
+      "dependsOn": [
+        "G4-REV-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G4-ACC-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G4-ACC-001"
+      ],
+      "acceptance": [
+        "gate_acceptance 決策紀錄可追溯至 G4 審查與 CI"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "gate_acceptance 決策紀錄可追溯至 G4 審查與 CI",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G5-REV-001",
+      "title": "G5 自我審查",
+      "gate": "G5",
+      "status": "planned",
+      "dependsOn": [
+        "G5-REP-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G5-REV-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G5-REV-001"
+      ],
+      "acceptance": [
+        "全新 session 在乾淨 checkout 重跑 G5 全部驗證並出具 passed 報告"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "全新 session 在乾淨 checkout 重跑 G5 全部驗證並出具 passed 報告",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G5-ACC-001",
+      "title": "G5 acceptance 決策紀錄",
+      "gate": "G5",
+      "status": "planned",
+      "dependsOn": [
+        "G5-REV-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G5-ACC-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G5-ACC-001"
+      ],
+      "acceptance": [
+        "gate_acceptance 決策紀錄可追溯至 G5 審查與 CI"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "gate_acceptance 決策紀錄可追溯至 G5 審查與 CI",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G6-AI-001",
+      "title": "AI provider adapter 與離線 fallback",
+      "gate": "G6",
+      "status": "planned",
+      "dependsOn": [
+        "G6-QST-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G6-AI-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G6-AI-001"
+      ],
+      "acceptance": [
+        "AI 預設關閉，adapter 故障回傳 MEGIS-AI 錯誤並退回表單"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "AI 預設關閉，adapter 故障回傳 MEGIS-AI 錯誤並退回表單",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G6-AI-002",
+      "title": "Intent 到 Requirement 萃取",
+      "gate": "G6",
+      "status": "planned",
+      "dependsOn": [
+        "G6-AI-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G6-AI-002"
+      ],
+      "outputs": [
+        "implementation and evidence for G6-AI-002"
+      ],
+      "acceptance": [
+        "schema-bound 輸出、llm_proposed、evidence span 與未確認值隔離測試通過"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "schema-bound 輸出、llm_proposed、evidence span 與未確認值隔離測試通過",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G6-AI-003",
+      "title": "AI 評估語料與 KPI",
+      "gate": "G6",
+      "status": "planned",
+      "dependsOn": [
+        "G6-AI-002"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G6-AI-003"
+      ],
+      "outputs": [
+        "implementation and evidence for G6-AI-003"
+      ],
+      "acceptance": [
+        "至少 50 筆 intent，unsafe hallucination 為 0 且 injection resistance 為 100%"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "至少 50 筆 intent，unsafe hallucination 為 0 且 injection resistance 為 100%",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G6-AI-004",
+      "title": "AI grounded explanation",
+      "gate": "G6",
+      "status": "planned",
+      "dependsOn": [
+        "G6-AI-002"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G6-AI-004"
+      ],
+      "outputs": [
+        "implementation and evidence for G6-AI-004"
+      ],
+      "acceptance": [
+        "解釋中的每個數值 100% 可追溯至 IR、規則結果或 manifest"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "解釋中的每個數值 100% 可追溯至 IR、規則結果或 manifest",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G6-A11Y-001",
+      "title": "無障礙驗證",
+      "gate": "G6",
+      "status": "planned",
+      "dependsOn": [
+        "G6-UI-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G6-A11Y-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G6-A11Y-001"
+      ],
+      "acceptance": [
+        "WCAG 2.2 AA 自動化檢查與人工鍵盤、螢幕閱讀器抽查完成"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "WCAG 2.2 AA 自動化檢查與人工鍵盤、螢幕閱讀器抽查完成",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "npm --prefix apps/web test -- --run"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G6-USE-001",
+      "title": "Usability test",
+      "gate": "G6",
+      "status": "planned",
+      "dependsOn": [
+        "G6-AI-004",
+        "G6-A11Y-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G6-USE-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G6-USE-001"
+      ],
+      "acceptance": [
+        "至少 5 位非 CAD 參與者完成測試並與 UX-0 基線比較"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "至少 5 位非 CAD 參與者完成測試並與 UX-0 基線比較",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G6-REV-001",
+      "title": "G6 自我審查",
+      "gate": "G6",
+      "status": "planned",
+      "dependsOn": [
+        "G6-E2E-001",
+        "G6-AI-003"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G6-REV-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G6-REV-001"
+      ],
+      "acceptance": [
+        "全新 session 在乾淨 checkout 重跑 G6 全部驗證並出具 passed 報告"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "全新 session 在乾淨 checkout 重跑 G6 全部驗證並出具 passed 報告",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G6-ACC-001",
+      "title": "G6 acceptance 決策紀錄",
+      "gate": "G6",
+      "status": "planned",
+      "dependsOn": [
+        "G6-REV-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G6-ACC-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G6-ACC-001"
+      ],
+      "acceptance": [
+        "gate_acceptance 決策紀錄可追溯至 G6 審查與 CI"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "gate_acceptance 決策紀錄可追溯至 G6 審查與 CI",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G7-SOL-001",
+      "title": "Solver level 分級報告",
+      "gate": "G7",
+      "status": "planned",
+      "dependsOn": [
+        "G7-ACO-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G7-SOL-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G7-SOL-001"
+      ],
+      "acceptance": [
+        "L0 必達，L1 以上須有量測比對，所有結果標示 solver level 與限制"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "L0 必達，L1 以上須有量測比對，所有結果標示 solver level 與限制",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G7-REV-001",
+      "title": "G7 自我審查",
+      "gate": "G7",
+      "status": "planned",
+      "dependsOn": [
+        "G7-SOL-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G7-REV-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G7-REV-001"
+      ],
+      "acceptance": [
+        "全新 session 在乾淨 checkout 重跑 G7 全部驗證並出具 passed 報告"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "全新 session 在乾淨 checkout 重跑 G7 全部驗證並出具 passed 報告",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G7-ACC-001",
+      "title": "G7 acceptance 決策紀錄",
+      "gate": "G7",
+      "status": "planned",
+      "dependsOn": [
+        "G7-REV-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G7-ACC-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G7-ACC-001"
+      ],
+      "acceptance": [
+        "gate_acceptance 決策紀錄可追溯至 G7 審查與 CI"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "gate_acceptance 決策紀錄可追溯至 G7 審查與 CI",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G8-REV-001",
+      "title": "G8 自我審查",
+      "gate": "G8",
+      "status": "planned",
+      "dependsOn": [
+        "G8-ROB-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G8-REV-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G8-REV-001"
+      ],
+      "acceptance": [
+        "全新 session 在乾淨 checkout 重跑 G8 全部驗證並出具 passed 報告"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "全新 session 在乾淨 checkout 重跑 G8 全部驗證並出具 passed 報告",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
+      "id": "G8-ACC-001",
+      "title": "G8 acceptance 決策紀錄",
+      "gate": "G8",
+      "status": "planned",
+      "dependsOn": [
+        "G8-REV-001"
+      ],
+      "inputs": [
+        "v3 blueprint requirements for G8-ACC-001"
+      ],
+      "outputs": [
+        "implementation and evidence for G8-ACC-001"
+      ],
+      "acceptance": [
+        "gate_acceptance 決策紀錄可追溯至 G8 審查與 CI"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "gate_acceptance 決策紀錄可追溯至 G8 審查與 CI",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     }
   ],
   "blockers": [],

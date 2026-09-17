@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "V3C-BCR-001",
+  "verifiedAt": "2026-09-17T12:15:30+08:00",
+  "blueprint": "MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v3.0-claude-code.md",
+  "checks": {
+    "readmePointsToV3": true,
+    "adoptionAdrExists": true,
+    "requiredWorkItemCount": 74,
+    "blueprintWorkItemsMissing": [],
+    "blueprintWorkItemsExtra": [],
+    "completedV2ItemsProtected": 13,
+    "v3cItemsPresent": 9,
+    "singleInProgressItem": "V3C-BCR-001"
+  },
+  "negativeTests": [
+    {
+      "case": "remove G6-AI-004 from work queue",
+      "expected": "Missing blueprint work item: G6-AI-004",
+      "status": "passed"
+    },
+    {
+      "case": "reopen G1-MIG-001",
+      "expected": "G1-MIG-001 changed after v3 adoption baseline",
+      "status": "passed"
+    }
+  ],
+  "verification": {
+    "controlPlane": "passed",
+    "pythonTestsPassed": 66,
+    "frontendTestsPassed": 9,
+    "artifactRecordsVerified": 13,
+    "baseline": "passed"
+  },
+  "githubActions": {
+    "status": "pending",
+    "runId": null,
+    "headSha": null
+  }
+}
