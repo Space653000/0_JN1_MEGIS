@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-18T16:33:00+08:00",
+  "updatedAt": "2026-09-18T16:52:00+08:00",
   "baselineCommit": "2a0fdde6d57a946845b9ebf2530db214442b561e",
   "currentWorkItem": "V3C-REV-001",
   "gates": [
@@ -165,8 +165,8 @@
     {
       "id": "V3C-REV-001", "title": "已 accepted Gate 追溯審查", "gate": "G2", "status": "in_progress", "dependsOn": ["V3C-CTL-001", "V3C-DOC-001", "V3C-DEC-001", "V3C-MAT-001", "V3C-ART-001"],
       "inputs": ["accepted Gate evidence", "completed V3C remediation"], "outputs": ["fresh-session retrospective review"],
-      "acceptance": ["全新 session 對已 accepted Gate 出具審查報告，所有差距均有承接項目"], "acceptanceResults": [{ "criterion": "全新 session 對已 accepted Gate 出具審查報告，所有差距均有承接項目", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "acceptance": ["全新 session 對已 accepted Gate 出具審查報告，所有差距均有承接項目"], "acceptanceResults": [{ "criterion": "全新 session 對已 accepted Gate 出具審查報告，所有差距均有承接項目", "status": "passed", "evidence": ["execution/reviews/2026-09-18-V3C-REV-001-accepted-gates-retrospective.md", "artifacts/v3c-rev-001/verification.json", "execution/WORK_QUEUE.yaml"] }],
+      "verificationCommands": ["powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1", "node scripts/verify-control-plane.mjs"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["execution/reviews/2026-09-18-V3C-REV-001-accepted-gates-retrospective.md", "artifacts/v3c-rev-001/verification.json", "execution/LAST_VERIFICATION.json"], "verification": "passed", "commitSha": null
     },
     {
       "id": "V3C-ACC-001", "title": "導入完成簽核", "gate": "G2", "status": "planned", "dependsOn": ["V3C-REV-001"],

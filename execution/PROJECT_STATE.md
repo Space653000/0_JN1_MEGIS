@@ -4,7 +4,7 @@
 - Current work item: `V3C-REV-001 — 已 accepted Gate 追溯審查`
 - Last green commit: `2a0fdde6d57a946845b9ebf2530db214442b561e`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-18T16:33:00+08:00`
+- Updated at: `2026-09-18T16:58:15+08:00`
 
 ## Accepted capabilities
 
@@ -37,11 +37,11 @@ UI-0 驗收只涵蓋使用者體驗原型；沒有工程生成能力或工程製
 
 ## Active scope
 
-`V3C-ART-001` 已由 fresh-session 交接標为 done（實作 commit `da4e61d` 未改寫）。本 session 以 reviewer 角色接手 `V3C-REV-001`，先重跑完整 baseline、加 reviewer 專用 boundary case，再對已 accepted Gate 出具 `execution/reviews/` 追溯審查。REV/ACC 線尚未關閉，因此 G0/G1 承接項保持 planned 且被 deferral 託管。
+`V3C-ART-001` 已由 fresh-session 交接標为 done（實作 commit `da4e61d` 未改寫）。`V3C-REV-001` 追溯審查報告已產出（`execution/reviews/2026-09-18-...`），15 項差距全部對應既有承接 ID，acceptance 已標 passed；掌控面規則要求承接項閉合後才能將 REV/ACC 標 done，故繼續維持 `in_progress` 傘型。審查重跑捕獲一項 ART done 過渡的 test fixture 缺口，已以 builder 接續 commit `398c82a` 修正；本機完整 baseline 與 GitHub Actions run `35326527366`（132 秒）均全綠。
 
 ## Next work item
 
-進行中：`V3C-REV-001` fresh-session 追溯審查（審查報告 + 每差距承接 ID）。完成審查後依序關閉 G0 承接項（DOC/DEC/DET/REV/ACC）與 G1 承接項（ERR/ENV/REQ/REV/ACC），全部 done 後才能將 `V3C-REV-001` 與 `V3C-ACC-001` 標 done，再回到 `G2-CAD-004`。目前不需要使用者重新驗收，但必須保留 reviewer 與 builder 的 session 隔離。
+下一步依序完成 G0 承接項（`G0-DOC-001` → `G0-DEC-001` → `G0-DET-001` → `G0-REV-001` → `G0-ACC-001`）與 G1 承接項（`G1-ERR-001` → `G1-ENV-001` → `G1-REQ-001` → `G1-REV-001` → `G1-ACC-001`）；全部 done 後才能將 `V3C-REV-001` 與 `V3C-ACC-001` 標 done，再回到 `G2-CAD-004`。目前不需要使用者重新驗收，但必須保留 reviewer 與 builder 的 session 隔離。
 
 ## Boundaries
 

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "V3C-REV-001",
+  "reviewer": {
+    "agent": "codex",
+    "sessionKind": "fresh_session",
+    "builderSession": "2026-09-17 V3C-ART-001 (aborted handoff)",
+    "reviewSession": "2026-09-18",
+    "reviewCheckout": "398c82ae600bd26c031799589e02eb92396d2d96"
+  },
+  "environment": {
+    "os": "Windows",
+    "python": "3.11.9",
+    "node": "24.17.0",
+    "cadquery": "2.8.0",
+    "openCascade": "7.9.3.1",
+    "pytest": "9.1.1"
+  },
+  "freshBaseline": {
+    "command": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+    "status": "passed",
+    "controlPlaneWorkItems": 74,
+    "controlPlaneGates": 14,
+    "artifactPolicyNodeTests": 8,
+    "artifactPolicyTrackedFiles": 215,
+    "pythonTestsPassed": 103,
+    "manifestRecordsVerified": 1,
+    "artifactRecordsVerified": 13,
+    "frontendTestsPassed": 9,
+    "license": "local-only",
+    "boundariesCompliant": true
+  },
+  "reviewerAddedCases": [
+    { "name": "generic exact 1 MiB accepted", "expected": "accepted", "actual": "accepted" },
+    { "name": "generic 1 MiB + 1 rejected", "expected": "rejected", "actual": "rejected" },
+    { "name": "evidence JSON exact 50 KiB accepted", "expected": "accepted", "actual": "accepted" },
+    { "name": "golden file exact 200 KiB accepted", "expected": "accepted", "actual": "accepted" },
+    { "name": "golden aggregate exact 5 MiB accepted", "expected": "accepted", "actual": "accepted" },
+    { "name": "legacy allowlist exact bytes+SHA accepted", "expected": "accepted", "actual": "accepted" }
+  ],
+  "githubActions": {
+    "runId": 35326527366,
+    "headSha": "398c82ae600bd26c031799589e02eb92396d2d96",
+    "status": "success",
+    "durationSeconds": 132
+  },
+  "gapRegister": {
+    "totalGaps": 15,
+    "mappedToQueueItems": 15,
+    "unmapped": 0,
+    "carrierIds": [
+      "G0-DOC-001", "G0-DEC-001", "G0-DET-001", "G0-REV-001", "G0-ACC-001",
+      "G1-ERR-001", "G1-ENV-001", "G1-REQ-001", "G1-REV-001", "G1-ACC-001",
+      "G6-AI-001", "V3C-ACC-001"
+    ]
+  },
+  "foundAndResolved": [
+    {
+      "id": "REV-FIX-001",
+      "issue": "test_v3_blueprint_adoption verifier fixture missing newly-required artifact policy files after V3C-ART-001 done",
+      "resolvedIn": "398c82ae600bd26c031799589e02eb92396d2d96",
+      "status": "fixed"
+    }
+  ],
+  "conclusion": {
+    "acceptanceMet": true,
+    "reviewVerdict": "passed",
+    "keptInProgressReason": "Control plane requires G0/G1 carrier items done before V3C-REV-001/V3C-ACC-001 flip to done",
+    "maturityCap": "PROTOTYPE"
+  }
+}
