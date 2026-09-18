@@ -1,10 +1,10 @@
 # MEGIS Project State
 
 - Current gate: `G2 — Fixture Geometry Vertical Slice`
-- Current work item: `V3C-ART-001 — Artifact 政策`
-- Last green commit: `3afce2cef1f0dc8dca5013e9354568777c2c13e2`
+- Current work item: `V3C-REV-001 — 已 accepted Gate 追溯審查`
+- Last green commit: `2a0fdde6d57a946845b9ebf2530db214442b561e`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-17T22:28:25+08:00`
+- Updated at: `2026-09-18T16:33:00+08:00`
 
 ## Accepted capabilities
 
@@ -31,17 +31,17 @@
 - V3C-DEC-001：D1–D9 九份 accepted ADR、schema 驗證決策索引與誠實實作狀態
 - V3C-DET-001：fingerprint policy 1.0.0、STEP/DXF 正規化、binary STL 與雙次 replay
 - V3C-MAT-001：classification schema、全庫 manifest scanner、非 Design Run maturity 禁制與跨 process replay
-- V3C-ART-001（實作與 E3 證據完成，待隔離交接）：artifact policy 1.0.0、Git 大小預算、五個既有重型製品精確白名單與新增禁制
+- V3C-REV-001（進行中，fresh-session reviewer 接棒）：對 UI-0、G0、G1 已 accepted Gate 與 V3C remediation 的追溯審查，差距皆有承接項目
 
 UI-0 驗收只涵蓋使用者體驗原型；沒有工程生成能力或工程製品獲得驗收。
 
 ## Active scope
 
-`V3C-ART-001` 實作與 E3 證據已完成：GitHub Actions run `35232682702` 驗證 commit `da4e61d`，run `35233187632` 驗證 README commit `3afce2c`，兩者全綠。控制面暫留 `in_progress`，因下一項 `V3C-REV-001` 明定必須由全新 session 執行，現施工 session 不得冒充隔離審查者。完整基線為 8 個 artifact policy 負向測試、103 個 Python tests、9 個前端 tests、13 筆 artifact smoke 與 1 份 manifest scanner 全綠。
+`V3C-ART-001` 已由 fresh-session 交接標为 done（實作 commit `da4e61d` 未改寫）。本 session 以 reviewer 角色接手 `V3C-REV-001`，先重跑完整 baseline、加 reviewer 專用 boundary case，再對已 accepted Gate 出具 `execution/reviews/` 追溯審查。REV/ACC 線尚未關閉，因此 G0/G1 承接項保持 planned 且被 deferral 託管。
 
 ## Next work item
 
-由全新 session 接手 `V3C-REV-001`，對已 accepted Gate 與 V3C remediation 出具追溯審查；完成 `V3C-ACC-001` 後再回到 `G2-CAD-004`。目前不需要使用者重新驗收，但必須保留 reviewer 與 builder 的 session 隔離。
+進行中：`V3C-REV-001` fresh-session 追溯審查（審查報告 + 每差距承接 ID）。完成審查後依序關閉 G0 承接項（DOC/DEC/DET/REV/ACC）與 G1 承接項（ERR/ENV/REQ/REV/ACC），全部 done 後才能將 `V3C-REV-001` 與 `V3C-ACC-001` 標 done，再回到 `G2-CAD-004`。目前不需要使用者重新驗收，但必須保留 reviewer 與 builder 的 session 隔離。
 
 ## Boundaries
 
