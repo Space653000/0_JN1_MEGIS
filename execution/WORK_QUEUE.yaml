@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-18T20:18:30+08:00",
-  "baselineCommit": "95d5d815451320174bbf6313f9c47f10f886bac4",
+  "updatedAt": "2026-09-19T01:24:00+08:00",
+  "baselineCommit": "af963561a8d8b4e377c5020ced609714c9e47eec",
   "currentWorkItem": "V3C-REV-001",
   "gates": [
     { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
@@ -313,7 +313,7 @@
       "id": "G0-DEC-001",
       "title": "G0 使用者決策",
       "gate": "G0",
-      "status": "planned",
+      "status": "done",
       "dependsOn": [
         "G0-DOC-001"
       ],
@@ -329,18 +329,26 @@
       "acceptanceResults": [
         {
           "criterion": "D1–D9 全部有 ADR 與可追溯決策證據",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": ["docs/DECISIONS.md", "docs/decisions/ADR-0002-local-single-user-deployment.md", "docs/decisions/ADR-0003-comsol-out-of-scope.md", "docs/decisions/ADR-0004-llm-adapter-offline-fallback.md", "docs/decisions/ADR-0005-windows-ci-and-main-push.md", "docs/decisions/ADR-0006-protect-customer-engineering-data.md", "docs/decisions/ADR-0007-builder-self-review.md", "docs/decisions/ADR-0008-single-builder-agent-claim.md", "docs/decisions/ADR-0009-research-reference-unknowns.md", "docs/decisions/ADR-0010-artifact-retention.md", "execution/decisions/g0-decisions.json", "execution/schemas/g0-decisions.schema.json", "tests/test_g0_dec_001.py", "tests/test_v3_g0_decisions.py", "artifacts/g0-dec-001/verification.json"]
         }
       ],
       "verificationCommands": [
-        "node scripts/verify-control-plane.mjs"
+        "node scripts/verify-control-plane.mjs",
+        ".venv/Scripts/python.exe -m pytest tests/test_g0_dec_001.py tests/test_v3_g0_decisions.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": ["docs/DECISIONS.md", "docs/decisions/ADR-0002-local-single-user-deployment.md", "docs/decisions/ADR-0003-comsol-out-of-scope.md", "docs/decisions/ADR-0004-llm-adapter-offline-fallback.md", "docs/decisions/ADR-0005-windows-ci-and-main-push.md", "docs/decisions/ADR-0006-protect-customer-engineering-data.md", "docs/decisions/ADR-0007-builder-self-review.md", "docs/decisions/ADR-0008-single-builder-agent-claim.md", "docs/decisions/ADR-0009-research-reference-unknowns.md", "docs/decisions/ADR-0010-artifact-retention.md", "execution/decisions/g0-decisions.json", "execution/schemas/g0-decisions.schema.json", "tests/test_g0_dec_001.py", "tests/test_v3_g0_decisions.py", "artifacts/g0-dec-001/verification.json"],
+      "verification": "passed",
+      "commitSha": "af963561a8d8b4e377c5020ced609714c9e47eec",
+      "owner_role": "builder",
+      "requires_user_decision": false,
+      "evidence_level_required": "E4",
+      "review": { "required": false, "status": "not_required", "report": null },
+      "risk_refs": ["R-G0-002"],
+      "blueprint_ref": "v3.0 §8.1"
     },
     {
       "id": "G0-DET-001",
