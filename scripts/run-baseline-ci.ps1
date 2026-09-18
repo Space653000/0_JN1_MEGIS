@@ -37,6 +37,7 @@ function Invoke-Npm {
 Push-Location $repoRoot
 try {
     Invoke-Checked 'Control plane schema' { node scripts/verify-control-plane.mjs }
+    Invoke-Checked 'Secret scan' { node scripts/verify-secrets.mjs }
     Invoke-Checked 'Artifact policy negative tests' { node --test tests/test_artifact_policy.mjs }
     Invoke-Checked 'Artifact storage budget' { node scripts/verify-artifact-policy.mjs }
     Invoke-Checked 'Python dependency integrity' { & $PythonExecutable -m pip check }

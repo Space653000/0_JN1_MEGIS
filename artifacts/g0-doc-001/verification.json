@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G0-DOC-001",
+  "gate": "G0",
+  "verifiedAt": "2026-09-18T18:15:00+08:00",
+  "blueprintRef": "v3.0 §5.1, §5.13, §19.2",
+  "requiredSection51": {
+    "entries": [
+      "AGENTS.md",
+      "CLAUDE.md",
+      "docs/PRODUCT.md",
+      "docs/ARCHITECTURE.md",
+      "docs/DECISIONS.md",
+      "docs/decisions",
+      "docs/SUPPORTED_ENVELOPE.md",
+      "docs/ACCEPTANCE.md",
+      "docs/RISKS.md",
+      "docs/OPERATIONS.md",
+      "docs/ERROR_CODES.md",
+      "docs/RULE_SOURCES.md",
+      "docs/research",
+      "execution/PROJECT_STATE.md",
+      "execution/WORK_QUEUE.yaml",
+      "execution/BLOCKERS.yaml",
+      "execution/LAST_VERIFICATION.json",
+      "execution/AGENT_CLAIM.json",
+      "execution/schemas",
+      "execution/handoffs",
+      "execution/reviews",
+      "execution/signoffs",
+      "config/envelope",
+      "tests/golden"
+    ],
+    "allPresent": true,
+    "missing": []
+  },
+  "nonShellDocuments": {
+    "rule": "每份 docs/*.md 至少包含 目的、目前內容、Owner、最後審查 commit，且長度 ≥ 120 chars",
+    "documentCount": 41,
+    "governanceCompliant": true,
+    "nonCompliant": []
+  },
+  "secretScan": {
+    "blueprint": "v3.0 §19.2 秘密外洩：secret scan（pre-commit 與 CI）",
+    "scanner": "scripts/verify-secrets.mjs",
+    "integratedInBaseline": true,
+    "command": "node scripts/verify-secrets.mjs",
+    "trackedFilesScanned": 218,
+    "findings": 0,
+    "status": "passed"
+  },
+  "documentationUpdates": [
+    { "path": "docs/OPERATIONS.md", "change": "重建程序、健康檢查、備份還原、故障處理表與密鑰衛生" },
+    { "path": "docs/ACCEPTANCE.md", "change": "Gate 追溯狀態改掛 V3C-REV-001 審查與 CI 證據" },
+    { "path": "docs/G0_BASELINE_CI.md", "change": "收錄 secret scan 與 artifact policy 兩步" }
+  ],
+  "verification": {
+    "status": "passed",
+    "commands": [
+      "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+      "node scripts/verify-control-plane.mjs",
+      "node scripts/verify-secrets.mjs"
+    ]
+  }
+}

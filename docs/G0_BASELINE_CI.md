@@ -4,13 +4,15 @@
 > - 目的：記錄 baseline CI 的範圍與重跑方式。
 > - 目前內容：G0 鎖定環境、測試與 artifact smoke 證據。
 > - Owner：MEGIS Builder
-> - 最後審查 commit：`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`
+> - 最後審查 commit：`4fa15e27011759b6b29df9a3d97fb095162e7c0c`
 
 ## 驗收範圍
 
 `G0-CI-001` 建立一條 Windows x64 baseline，對本機與 GitHub Actions 使用相同的 `scripts/run-baseline-ci.ps1` 驗證入口。它涵蓋：
 
 - 控制面 schema 與依賴關係
+- Secret scan（追蹤檔機密掃描，防止密鑰被提交）
+- Artifact policy 負向測試與儲存預算
 - Python dependency integrity 與鎖定 CAD toolchain smoke test
 - Python unit tests
 - STEP、STL、DXF、FCStd、SVG 與 COMSOL 決策證據的 artifact hash smoke test
