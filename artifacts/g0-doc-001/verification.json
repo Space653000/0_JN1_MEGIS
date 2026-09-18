@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "workItem": "G0-DOC-001",
   "gate": "G0",
-  "verifiedAt": "2026-09-18T18:15:00+08:00",
+  "verifiedAt": "2026-09-18T20:15:00+08:00",
   "blueprintRef": "v3.0 §5.1, §5.13, §19.2",
   "requiredSection51": {
     "entries": [

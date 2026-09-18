@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-18T16:52:00+08:00",
-  "baselineCommit": "2a0fdde6d57a946845b9ebf2530db214442b561e",
+  "updatedAt": "2026-09-18T20:18:30+08:00",
+  "baselineCommit": "95d5d815451320174bbf6313f9c47f10f886bac4",
   "currentWorkItem": "V3C-REV-001",
   "gates": [
     { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
@@ -280,7 +280,7 @@
       "id": "G0-DOC-001",
       "title": "控制面文件完整化",
       "gate": "G0",
-      "status": "planned",
+      "status": "done",
       "dependsOn": [
         "G0-REP-001"
       ],
@@ -296,8 +296,8 @@
       "acceptanceResults": [
         {
           "criterion": "v3 §5.1 文件全部存在且非空殼",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": ["artifacts/g0-doc-001/verification.json", "docs/OPERATIONS.md", "docs/ACCEPTANCE.md", "docs/G0_BASELINE_CI.md", "scripts/verify-secrets.mjs", "scripts/run-baseline-ci.ps1"]
         }
       ],
       "verificationCommands": [
@@ -305,9 +305,9 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": ["artifacts/g0-doc-001/verification.json", "docs/OPERATIONS.md", "docs/ACCEPTANCE.md", "docs/G0_BASELINE_CI.md", "scripts/verify-secrets.mjs", "scripts/run-baseline-ci.ps1"],
+      "verification": "passed",
+      "commitSha": "95d5d815451320174bbf6313f9c47f10f886bac4"
     },
     {
       "id": "G0-DEC-001",
