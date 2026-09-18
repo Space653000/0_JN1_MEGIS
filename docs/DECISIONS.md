@@ -2,9 +2,9 @@
 
 > 文件治理
 > - 目的：集中索引架構、流程與產品決策。
-> - 目前內容：V3 採用、D1–D9、重型 artifact 白名單與既有工具鏈決策入口。
+> - 目前內容：V3 採用、D1–D9、重型 artifact 白名單、既有工具鏈決策入口；G0-DEC-001 已以 D1–D9 ADR 收斂。
 > - Owner：MEGIS Builder
-> - 最後審查 commit：`7ab1cad43dadaa2db53e4dfab62c7cfc67096e03`
+> - 最後審查 commit：`4358333b5e9f8c7a218a773f6cee0e8012a2f634`
 
 ## 目的
 
@@ -32,9 +32,11 @@
 
 機器可讀索引：`execution/decisions/g0-decisions.json`。`implementationStatus` 明確區分「決策已接受」與「執行機制已完成」，不得以 ADR 取代後續 work item。
 
+`G0-DEC-001`（G0 主線）已於 2026-09-19 以本索引的 D1–D9 ADR 與既有決策證據閉合，記錄見 `artifacts/g0-dec-001/verification.json`；決策已接受不取代各 follow-up work item。
+
 ## 維護責任
 
 - Owner：施工 Agent。
 - 新的技術基線、envelope、fingerprint、maturity、角色或驗收範圍變更必須建立新 ADR。
 - 被取代的 ADR 保留並指向取代它的 ADR。
-- 最後檢視基準：`7ab1cad43dadaa2db53e4dfab62c7cfc67096e03`。
+- 最後檢視基準：`4358333b5e9f8c7a218a773f6cee0e8012a2f634`。

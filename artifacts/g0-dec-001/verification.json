@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G0-DEC-001",
+  "verifiedAt": "2026-09-19T01:25:30+08:00",
+  "blueprintRef": "v3.0 §8.1",
+  "evidenceLevel": "E4",
+  "handoffFrom": {
+    "workItem": "V3C-DEC-001",
+    "role": "G0 決策補記（§8.1 D1–D9）",
+    "evidence": "artifacts/v3c-dec-001/verification.json"
+  },
+  "decisionRegister": {
+    "path": "execution/decisions/g0-decisions.json",
+    "schema": "execution/schemas/g0-decisions.schema.json",
+    "status": "accepted",
+    "decisionIds": ["D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9"],
+    "uniqueDecisionCount": 9,
+    "adrCount": 9,
+    "evidencePathsExist": true
+  },
+  "perDecision": [
+    { "id": "D1", "title": "部署範圍", "adr": "docs/decisions/ADR-0002-local-single-user-deployment.md", "evidenceCount": 3 },
+    { "id": "D2", "title": "COMSOL 授權與 API", "adr": "docs/decisions/ADR-0003-comsol-out-of-scope.md", "evidenceCount": 2 },
+    { "id": "D3", "title": "LLM provider 與離線 fallback", "adr": "docs/decisions/ADR-0004-llm-adapter-offline-fallback.md", "evidenceCount": 3 },
+    { "id": "D4", "title": "CI 平台與 push 授權", "adr": "docs/decisions/ADR-0005-windows-ci-and-main-push.md", "evidenceCount": 3 },
+    { "id": "D5", "title": "客戶與公司工程資料政策", "adr": "docs/decisions/ADR-0006-protect-customer-engineering-data.md", "evidenceCount": 3 },
+    { "id": "D6", "title": "工程審查人", "adr": "docs/decisions/ADR-0007-builder-self-review.md", "evidenceCount": 3 },
+    { "id": "D7", "title": "Agent 角色與寫入鎖", "adr": "docs/decisions/ADR-0008-single-builder-agent-claim.md", "evidenceCount": 3 },
+    { "id": "D8", "title": "參考案例未知值研究", "adr": "docs/decisions/ADR-0009-research-reference-unknowns.md", "evidenceCount": 3 },
+    { "id": "D9", "title": "Artifact 保留期間", "adr": "docs/decisions/ADR-0010-artifact-retention.md", "evidenceCount": 2 }
+  ],
+  "honestImplementationBoundary": {
+    "enforced": ["D1", "D2", "D4", "D7"],
+    "partiallyEnforced": ["D3", "D5", "D6"],
+    "policyOnly": ["D8", "D9"],
+    "decisionsDoNotCloseFollowUpWorkItems": true
+  },
+  "decisionIndexUpdated": {
+    "path": "docs/DECISIONS.md",
+    "g0DecisionRecorded": true
+  },
+  "targetedTests": {
+    "command": ".venv/Scripts/python.exe -m pytest tests/test_g0_dec_001.py tests/test_v3_g0_decisions.py tests/test_v3_blueprint_adoption.py",
+    "passed": 23,
+    "failed": 0
+  },
+  "controlPlane": {
+    "command": "node scripts/verify-control-plane.mjs",
+    "passed": true,
+    "workItems": 74,
+    "gates": 14,
+    "deferrals": 6,
+    "currentWorkItem": "V3C-REV-001"
+  },
+  "baseline": {
+    "command": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+    "status": "passed",
+    "pythonTestsPassed": 106,
+    "frontendTestsPassed": 9,
+    "artifactRecordsVerified": 13,
+    "secretScanTrackedFiles": 219,
+    "secretScanFindings": 0,
+    "artifactPolicyTrackedFiles": 221,
+    "artifactPolicyHeavyAllowlisted": 5
+  }
+}
