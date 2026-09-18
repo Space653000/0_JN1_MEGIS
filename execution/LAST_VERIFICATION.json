@@ -1,13 +1,15 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-17T18:20:00+08:00",
-  "sourceCommit": "8f58d8b21d485dcef2f29838aa568cf201d03ece",
+  "verifiedAt": "2026-09-17T22:28:25+08:00",
+  "sourceCommit": "3afce2cef1f0dc8dca5013e9354568777c2c13e2",
   "status": "passed",
   "commands": [
     { "command": ".venv/Scripts/python.exe -m pip check", "status": "passed" },
     { "command": ".venv/Scripts/python.exe scripts/verify_toolchain.py", "status": "passed", "solidValid": true, "solidVolume": 6000.0 },
     { "command": ".venv/Scripts/python.exe scripts/verify_fixture_assembly.py", "status": "passed", "solidModels": 7, "usbCutoutOpen": true, "unintendedInterferenceVolumeMm3": 0.0 },
-    { "command": ".venv/Scripts/python.exe -m pytest", "status": "passed", "testsPassed": 101, "testsFailed": 0 },
+    { "command": "node --test tests/test_artifact_policy.mjs", "status": "passed", "testsPassed": 8, "testsFailed": 0 },
+    { "command": "node scripts/verify-artifact-policy.mjs", "status": "passed", "trackedFiles": 214, "heavyArtifactCount": 5, "unallowlistedHeavyArtifacts": 0 },
+    { "command": ".venv/Scripts/python.exe -m pytest", "status": "passed", "testsPassed": 103, "testsFailed": 0 },
     { "command": ".venv/Scripts/python.exe -m pytest tests/test_v3_maturity.py", "status": "passed", "testsPassed": 10, "testsFailed": 0 },
     { "command": ".venv/Scripts/python.exe scripts/verify_maturity.py", "status": "passed", "manifestsVerified": 1, "issues": 0 },
     { "command": ".venv/Scripts/python.exe -m spikes.g0_cad.reference_case --output-dir artifacts/g0-cad", "status": "passed", "stepValid": true, "stlValid": true, "dxfValid": true },
@@ -19,7 +21,8 @@
     { "command": "npm --prefix apps/web run typecheck", "status": "passed" },
     { "command": "npm --prefix apps/web test -- --run", "status": "passed", "testsPassed": 9, "testsFailed": 0 },
     { "command": "npm --prefix apps/web run build", "status": "passed" },
-    { "command": "GitHub Actions Baseline CI run 35209605203", "status": "passed", "headSha": "8f58d8b21d485dcef2f29838aa568cf201d03ece", "durationSeconds": 129 }
+    { "command": "GitHub Actions Baseline CI run 35232682702", "status": "passed", "headSha": "da4e61d1c9cf8782ea03b775da238492bda9a020", "durationSeconds": 131 },
+    { "command": "GitHub Actions Baseline CI run 35233187632", "status": "passed", "headSha": "3afce2cef1f0dc8dca5013e9354568777c2c13e2", "durationSeconds": 176 }
   ],
   "browser": {
     "path": "/progress",

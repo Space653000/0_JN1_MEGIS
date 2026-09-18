@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-17T18:20:00+08:00",
-  "baselineCommit": "8f58d8b21d485dcef2f29838aa568cf201d03ece",
+  "updatedAt": "2026-09-17T22:28:25+08:00",
+  "baselineCommit": "3afce2cef1f0dc8dca5013e9354568777c2c13e2",
   "currentWorkItem": "V3C-ART-001",
   "gates": [
     { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
@@ -156,8 +156,8 @@
     {
       "id": "V3C-ART-001", "title": "Artifact 政策", "gate": "G2", "status": "in_progress", "dependsOn": ["V3C-BCR-001"],
       "inputs": ["tracked artifact inventory", "v3 §5.9"], "outputs": [".gitattributes", "file-size budget check", "large-file ADR"],
-      "acceptance": ["artifact attributes、大小預算與重型製品政策可自動驗證"], "acceptanceResults": [{ "criterion": "artifact attributes、大小預算與重型製品政策可自動驗證", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null,
+      "acceptance": ["artifact attributes、大小預算與重型製品政策可自動驗證"], "acceptanceResults": [{ "criterion": "artifact attributes、大小預算與重型製品政策可自動驗證", "status": "passed", "evidence": [".gitattributes", ".gitignore", "config/artifact-policy/policy-1.0.0.json", "docs/decisions/ADR-0011-legacy-heavy-artifact-allowlist.md", "scripts/verify-artifact-policy.mjs", "tests/test_artifact_policy.mjs", "artifacts/v3c-art-001/verification.json"] }],
+      "verificationCommands": ["node scripts/verify-artifact-policy.mjs", "node --test tests/test_artifact_policy.mjs", ".venv/Scripts/python.exe -m pytest tests/test_v3_artifact_policy.py tests/test_g0_ci_contract.py tests/test_v3_blueprint_adoption.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [".gitattributes", ".gitignore", "config/artifact-policy/policy-1.0.0.json", "schemas/v3/artifact-policy.schema.json", "docs/ARTIFACT_POLICY.md", "docs/decisions/ADR-0011-legacy-heavy-artifact-allowlist.md", "scripts/lib/artifact-policy.mjs", "scripts/verify-artifact-policy.mjs", "scripts/verify-control-plane.mjs", "scripts/run-baseline-ci.ps1", "tests/test_artifact_policy.mjs", "tests/test_v3_artifact_policy.py", "artifacts/v3c-art-001/verification.json", "outputs/2026-09-17-V3C-ART-001-施工完成與隔離交接報告.md", "README.md"], "verification": "passed", "commitSha": "da4e61d1c9cf8782ea03b775da238492bda9a020",
       "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E3",
       "review": { "required": false, "status": "not_required", "report": null },
       "risk_refs": ["R-GIT-001", "R-DET-001"], "blueprint_ref": "v3.0 §5.8, §5.9, §26.1"

@@ -2,9 +2,9 @@
 
 - Current gate: `G2 — Fixture Geometry Vertical Slice`
 - Current work item: `V3C-ART-001 — Artifact 政策`
-- Last green commit: `8f58d8b21d485dcef2f29838aa568cf201d03ece`
+- Last green commit: `3afce2cef1f0dc8dca5013e9354568777c2c13e2`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-17T18:20:00+08:00`
+- Updated at: `2026-09-17T22:28:25+08:00`
 
 ## Accepted capabilities
 
@@ -31,16 +31,17 @@
 - V3C-DEC-001：D1–D9 九份 accepted ADR、schema 驗證決策索引與誠實實作狀態
 - V3C-DET-001：fingerprint policy 1.0.0、STEP/DXF 正規化、binary STL 與雙次 replay
 - V3C-MAT-001：classification schema、全庫 manifest scanner、非 Design Run maturity 禁制與跨 process replay
+- V3C-ART-001（實作與 E3 證據完成，待隔離交接）：artifact policy 1.0.0、Git 大小預算、五個既有重型製品精確白名單與新增禁制
 
 UI-0 驗收只涵蓋使用者體驗原型；沒有工程生成能力或工程製品獲得驗收。
 
 ## Active scope
 
-`V3C-MAT-001` 已完成；GitHub Actions run `35209605203` 對 commit `8f58d8b` 全綠。現在只施工 `V3C-ART-001`，建立 `.gitattributes`、Git 追蹤檔大小預算檢查與大型製品 ADR 白名單政策。2026-09-17 完整本機基線為 101 項 Python、9 項前端測試、13 筆 artifact smoke 與 1 份 manifest scanner 全綠。
+`V3C-ART-001` 實作與 E3 證據已完成：GitHub Actions run `35232682702` 驗證 commit `da4e61d`，run `35233187632` 驗證 README commit `3afce2c`，兩者全綠。控制面暫留 `in_progress`，因下一項 `V3C-REV-001` 明定必須由全新 session 執行，現施工 session 不得冒充隔離審查者。完整基線為 8 個 artifact policy 負向測試、103 個 Python tests、9 個前端 tests、13 筆 artifact smoke 與 1 份 manifest scanner 全綠。
 
 ## Next work item
 
-先完成 V3C 相容補強線；`V3C-ACC-001` 完成後再回到 `G2-CAD-004`。一次仍只施工一個工作單元。
+由全新 session 接手 `V3C-REV-001`，對已 accepted Gate 與 V3C remediation 出具追溯審查；完成 `V3C-ACC-001` 後再回到 `G2-CAD-004`。目前不需要使用者重新驗收，但必須保留 reviewer 與 builder 的 session 隔離。
 
 ## Boundaries
 

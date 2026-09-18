@@ -51,7 +51,13 @@
     "status": "passed"
   },
   "githubActions": {
-    "status": "pending_implementation_push"
+    "status": "passed",
+    "implementationRunId": 35232682702,
+    "implementationHeadSha": "da4e61d1c9cf8782ea03b775da238492bda9a020",
+    "implementationDurationSeconds": 131,
+    "readmeRunId": 35233187632,
+    "readmeHeadSha": "3afce2cef1f0dc8dca5013e9354568777c2c13e2",
+    "readmeDurationSeconds": 176
   },
   "boundaries": {
     "artifactEngineeringCorrectnessProven": false,
