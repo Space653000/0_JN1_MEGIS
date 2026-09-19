@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G0-ACC-001",
+  "verifiedAt": "2026-09-19T09:26:40+08:00",
+  "blueprintRef": "v3.0 §5.7、§6.3、§8.1、附錄 A.5",
+  "evidenceLevel": "E4",
+  "gate": "G0",
+  "gateStatus": "accepted",
+  "workItems": {
+    "total": 11,
+    "done": 11,
+    "ids": [
+      "G0-REP-001",
+      "G0-ENV-001",
+      "G0-CAD-001",
+      "G0-DRW-001",
+      "G0-SIM-001",
+      "G0-CI-001",
+      "G0-DOC-001",
+      "G0-DEC-001",
+      "G0-DET-001",
+      "G0-REV-001",
+      "G0-ACC-001"
+    ]
+  },
+  "reviewPassed": {
+    "report": "execution/reviews/2026-09-19-G0-REV-001-review.md",
+    "conclusion": "passed",
+    "blockingFindings": 0,
+    "reviewedCommit": "07c8feaf4b9a6b017e1f5243ee407812fd95b6c6"
+  },
+  "ciEvidence": [
+    {
+      "runId": 35411750532,
+      "headSha": "07c8feaf4b9a6b017e1f5243ee407812fd95b6c6",
+      "conclusion": "success",
+      "durationSeconds": 145
+    },
+    {
+      "runId": 35412035686,
+      "headSha": "7389a1da99b27a25424a54e589862a39c16f43fd",
+      "conclusion": "success",
+      "durationSeconds": 136
+    },
+    {
+      "runId": 35412386823,
+      "headSha": "c51460558151ae9c04bf1df0d646051e643fc04e",
+      "conclusion": "success"
+    }
+  ],
+  "controlPlane": {
+    "command": "node scripts/verify-control-plane.mjs",
+    "status": "passed",
+    "workItems": 74,
+    "gates": 14,
+    "deferrals": 6,
+    "activeGate": "G2"
+  },
+  "decision": {
+    "decision": "approved",
+    "signoff": "execution/signoffs/SO-0001.yaml",
+    "recordedBy": "agent",
+    "recordedAt": "2026-09-19T09:26:40+08:00",
+    "signatureReference": "7389a1da99b27a25424a54e589862a39c16f43fd",
+    "userVeto": null
+  },
+  "checks": {
+    "allG0WorkItemsDone": true,
+    "reviewPassed": true,
+    "ciGreenOnReviewCommit": true,
+    "signoffPresent": true,
+    "traceableToReviewAndCi": true
+  },
+  "residualRisks": ["R-G0-001", "R-G0-002", "R-G0-003"]
+}

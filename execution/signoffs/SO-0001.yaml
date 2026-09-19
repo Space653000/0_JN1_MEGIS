@@ -1,0 +1,22 @@
+signoff_id: SO-0001
+type: gate_acceptance
+subject: G0
+reviewer_name: codex
+reviewer_role: self_review
+review_session_id: codex-fresh-review-g0-2026-09-19
+build_session_id: codex-builder-g0-closure-2026-09-19
+scope: |
+  G0 全部 11 個 work item 閉合（G0-REP/ENV/CAD/DRW/SIM/CI/DOC/DEC/DET/REV 已 done，
+  本紀錄閉合 G0-ACC-001）。依 v3 §5.7、§6.3：施工者自評（G0-REV-001 passed）+ 自我審查報告
+  passed + CI 對審查 commit 全綠 + gate_acceptance 決策紀錄；使用者保有否決權。
+evidence:
+  - path: execution/reviews/2026-09-19-G0-REV-001-review.md
+  - artifact: artifacts/g0-rev-001/verification.json
+  - artifact: artifacts/g0-acc-001/verification.json
+  - path: execution/LAST_VERIFICATION.json
+decision: approved
+conditions: []
+signed_at: 2026-09-19T09:26:40+08:00
+signature_reference: 7389a1da99b27a25424a54e589862a39c16f43fd
+recorded_by: agent
+user_veto: null
