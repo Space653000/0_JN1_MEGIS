@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-19T09:05:00+08:00",
-  "baselineCommit": "7f91b78e5fffe6c5aafebfe5c22d1ce2f3ed9683",
+  "updatedAt": "2026-09-19T09:16:00+08:00",
+  "baselineCommit": "7389a1da99b27a25424a54e589862a39c16f43fd",
   "currentWorkItem": "V3C-REV-001",
   "gates": [
     { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
@@ -394,7 +394,7 @@
       "id": "G0-REV-001",
       "title": "G0 自我審查",
       "gate": "G0",
-      "status": "planned",
+      "status": "done",
       "dependsOn": [
         "G0-CI-001",
         "G0-DOC-001",
@@ -413,18 +413,25 @@
       "acceptanceResults": [
         {
           "criterion": "全新 session 在乾淨 checkout 重跑並出具 passed 報告",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": ["execution/reviews/2026-09-19-G0-REV-001-review.md", "artifacts/g0-rev-001/verification.json", "execution/LAST_VERIFICATION.json"]
         }
       ],
       "verificationCommands": [
-        "node scripts/verify-control-plane.mjs"
+        "node scripts/verify-control-plane.mjs",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": ["execution/reviews/2026-09-19-G0-REV-001-review.md", "artifacts/g0-rev-001/verification.json", "execution/LAST_VERIFICATION.json"],
+      "verification": "passed",
+      "commitSha": "7389a1da99b27a25424a54e589862a39c16f43fd",
+      "owner_role": "reviewer",
+      "requires_user_decision": false,
+      "evidence_level_required": "E3",
+      "review": { "required": false, "status": "not_required", "report": null },
+      "risk_refs": ["R-G0-002"],
+      "blueprint_ref": "v3.0 G0 Exit criteria、§8.1、附錄 A.3"
     },
     {
       "id": "G0-ACC-001",
