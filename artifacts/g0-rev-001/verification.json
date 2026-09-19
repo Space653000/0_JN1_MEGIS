@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G0-REV-001",
+  "verifiedAt": "2026-09-19T09:16:00+08:00",
+  "blueprintRef": "v3.0 G0 Exit criteria、§8.1、附錄 A.3",
+  "evidenceLevel": "E3",
+  "reviewCheckout": {
+    "commit": "07c8feaf4b9a6b017e1f5243ee407812fd95b6c6",
+    "originMain": true,
+    "workingTreeClean": true
+  },
+  "scope": {
+    "workItems": [
+      "G0-REP-001",
+      "G0-ENV-001",
+      "G0-CAD-001",
+      "G0-DRW-001",
+      "G0-SIM-001",
+      "G0-CI-001",
+      "G0-DOC-001",
+      "G0-DEC-001",
+      "G0-DET-001"
+    ],
+    "doneCount": 9,
+    "commitShaTraced": true,
+    "evidencePathsExist": true
+  },
+  "rerun": {
+    "command": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+    "status": "passed",
+    "controlPlaneWorkItems": 74,
+    "controlPlaneGates": 14,
+    "deferrals": 6,
+    "secretScanTrackedFiles": 225,
+    "secretScanFindings": 0,
+    "artifactPolicyTrackedFiles": 227,
+    "artifactPolicyHeavyAllowlisted": 5,
+    "pythonTestsPassed": 110,
+    "frontendTestsPassed": 9,
+    "artifactRecordsVerified": 13,
+    "manifestMaturityScan": 1
+  },
+  "independentCleanCheckout": {
+    "githubActionsRunId": 35411750532,
+    "headSha": "07c8feaf4b9a6b017e1f5243ee407812fd95b6c6",
+    "conclusion": "success",
+    "durationSeconds": 145
+  },
+  "findings": [],
+  "blockingFindingsCount": 0,
+  "residualRisks": [
+    "R-G0-001",
+    "R-G0-002",
+    "R-G0-003"
+  ],
+  "report": "execution/reviews/2026-09-19-G0-REV-001-review.md"
+}
