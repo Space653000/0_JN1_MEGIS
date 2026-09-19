@@ -85,9 +85,9 @@
     "pythonTestsPassed": 110,
     "frontendTestsPassed": 9,
     "artifactRecordsVerified": 13,
-    "secretScanTrackedFiles": 222,
+    "secretScanTrackedFiles": 224,
     "secretScanFindings": 0,
-    "artifactPolicyTrackedFiles": 224,
+    "artifactPolicyTrackedFiles": 226,
     "artifactPolicyHeavyAllowlisted": 5
   },
   "boundaries": {

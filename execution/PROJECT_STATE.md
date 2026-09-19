@@ -2,9 +2,9 @@
 
 - Current gate: `G2 — Fixture Geometry Vertical Slice`
 - Current work item: `V3C-REV-001 — 已 accepted Gate 追溯審查`
-- Last green commit: `af963561a8d8b4e377c5020ced609714c9e47eec`
+- Last green commit: `7f91b78e5fffe6c5aafebfe5c22d1ce2f3ed9683`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-19T01:25:30+08:00`
+- Updated at: `2026-09-19T09:06:30+08:00`
 
 ## Accepted capabilities
 
@@ -20,6 +20,7 @@
 - G0-CI-001：本機與 GitHub Actions baseline CI，含跨 checkout artifact hash 穩定性
 - G0-DOC-001：v3 §5.1 必要文件 24 項全部存在、41 份 docs/*.md 治理 metadata 全通過，secret scan 整合進 baseline
 - G0-DEC-001：D1–D9 所有 G0 使用者決策有 accepted ADR 與可追溯證據（E4），誠實標記 enforced／partially_enforced／policy_only
+- G0-DET-001：兩次重跑 semantic fingerprint 一致、STEP/DXF/STL header 正規化與 maturity 掃描生效（E3）
 - G1-IR-001：unit、coordinate、ID/reference、provenance 與 knowledge-state primitives
 - G1-IR-002：完整 Engineering IR schema、語意參照完整性與負向契約測試
 - G1-IR-003：Fixture、Acoustic、Robot golden inputs、deterministic round trip 與下游 consumer
@@ -39,10 +40,10 @@ UI-0 驗收只涵蓋使用者體驗原型；沒有工程生成能力或工程製
 
 ## Active scope
 
-`V3C-REV-001` 追溯審查報告已產出，10 項結構差距全部對應既有承接 ID，掌控面規則要求 G0/G1 承接項全 done 後才能將 REV/ACC 標 done，故維持 `in_progress` 傘型。本段完成 `G0-DEC-001`：以既有 `V3C-DEC-001` 決策補記為來源，D1–D9 全部有 accepted ADR 與可追溯證據（E4），新增 `tests/test_g0_dec_001.py` 與 `artifacts/g0-dec-001/verification.json`；本機完整 baseline 全綠（106 Python、23 decision tests、219 secret-scan 檔、221 artifact-policy 檔）。
+`V3C-REV-001` 追溯審查報告已產出，10 項結構差距全部對應既有承接 ID，掌控面規則要求 G0/G1 承接項全 done 後才能將 REV/ACC 標 done，故維持 `in_progress` 傘型。本段完成 `G0-DET-001`：承接既有 `V3C-DET-001` fingerprint 證據（E3），兩次隔離重跑 semantic fingerprint 與 header 正規化一致、maturity 掃描生效，新增 `tests/test_g0_det_001.py` 與 `artifacts/g0-det-001/verification.json`；本機完整 baseline 全綠（110 Python、23 determinism tests、224 secret-scan 檔、226 artifact-policy 檔）。
 ## Next work item
 
-下一步完成 `G0-DET-001`（Determinism 與 fingerprint 原型：兩次重跑 semantic fingerprint 一致、header 正規化與 maturity 掃描生效），再依序 `G0-REV-001` → `G0-ACC-001`，接著 G1 承接項（`G1-ERR-001` → `G1-ENV-001` → `G1-REQ-001` → `G1-REV-001` → `G1-ACC-001`）；全部 done 後才能將 `V3C-REV-001` 與 `V3C-ACC-001` 標 done，再回到 `G2-CAD-004`。不需要使用者重新驗收，但必須保留 reviewer 與 builder 的 session 隔離。
+下一步完成 `G0-REV-001`（全新 session 在乾淨 checkout 重跑 G0 全部驗證並出具 passed 報告），再 `G0-ACC-001`，接著 G1 承接項（`G1-ERR-001` → `G1-ENV-001` → `G1-REQ-001` → `G1-REV-001` → `G1-ACC-001`）；全部 done 後才能將 `V3C-REV-001` 與 `V3C-ACC-001` 標 done，再回到 `G2-CAD-004`。不需要使用者重新驗收，但必須保留 reviewer 與 builder 的 session 隔離。
 
 ## Boundaries
 
