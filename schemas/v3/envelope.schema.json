@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v3/envelope.schema.json",
+  "title": "MEGIS Supported Envelope (v3)",
+  "description": "Machine-readable supported envelope consumed by UI, API, geometry and maturity; must stay consistent with docs/SUPPORTED_ENVELOPE.md.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "envelope_id",
+    "label",
+    "verified",
+    "product",
+    "materials",
+    "machining",
+    "dimensions_mm",
+    "fixture",
+    "v3_target",
+    "unsupported_behaviour"
+  ],
+  "properties": {
+    "schemaVersion": { "type": "string", "enum": ["1.0.0"] },
+    "envelope_id": { "type": "string", "minLength": 1 },
+    "label": { "type": "string", "minLength": 1 },
+    "verified": { "type": "boolean" },
+    "product": {
+      "type": "object",
+      "required": ["category"],
+      "properties": { "category": { "type": "string", "minLength": 1 } },
+      "additionalProperties": false
+    },
+    "materials": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "machining": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "dimensions_mm": {
+      "type": "object",
+      "required": ["outer", "minimum_wall"],
+      "properties": {
+        "outer": {
+          "type": "object",
+          "required": ["width", "depth", "height"],
+          "properties": {
+            "width": { "type": "number", "exclusiveMinimum": 0 },
+            "depth": { "type": "number", "exclusiveMinimum": 0 },
+            "height": { "type": "number", "exclusiveMinimum": 0 }
+          },
+          "additionalProperties": false
+        },
+        "minimum_wall": { "type": "number", "exclusiveMinimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "fixture": {
+      "type": "object",
+      "required": [
+        "cover_count",
+        "fastener_count",
+        "pcb_envelope_present",
+        "usb_c_cutout_present",
+        "pcb_envelope_verified",
+        "pcb_envelope_note"
+      ],
+      "properties": {
+        "cover_count": { "type": "integer", "minimum": 0 },
+        "fastener_count": { "type": "integer", "minimum": 0 },
+        "pcb_envelope_present": { "type": "boolean" },
+        "usb_c_cutout_present": { "type": "boolean" },
+        "pcb_envelope_verified": { "type": "boolean" },
+        "pcb_envelope_note": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "v3_target": {
+      "type": "object",
+      "required": ["verified", "notes"],
+      "properties": {
+        "verified": { "type": "boolean" },
+        "notes": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "unsupported_behaviour": {
+      "type": "object",
+      "required": ["error_codes", "silent_clamp"],
+      "properties": {
+        "error_codes": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^MEGIS-[A-Z]{2,4}-[0-9]{3}$" },
+          "minItems": 1
+        },
+        "silent_clamp": { "type": "boolean", "enum": [false] }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

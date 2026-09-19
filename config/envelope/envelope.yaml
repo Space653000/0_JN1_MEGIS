@@ -1,0 +1,30 @@
+schemaVersion: "1.0.0"
+envelope_id: "legacy-reference-fixture"
+label: "Legacy Reference Fixture 已驗證範圍"
+verified: true
+product:
+  category: "Small CNC electronic fixture/enclosure"
+materials:
+  - "AL6061"
+machining:
+  - "3-axis CNC"
+dimensions_mm:
+  outer:
+    width: 120.0
+    depth: 80.0
+    height: 20.0
+  minimum_wall: 2.0
+fixture:
+  cover_count: 1
+  fastener_count: 4
+  pcb_envelope_present: true
+  usb_c_cutout_present: true
+  pcb_envelope_verified: false
+  pcb_envelope_note: "V2 transitional assumptions; not research-approved until G1-REQ-001"
+v3_target:
+  verified: false
+  notes: "120x80x35mm, two PCB, USB-C, M3 removable cover; not verified until G1-REQ-001 research approval"
+unsupported_behaviour:
+  error_codes:
+    - "MEGIS-ENV-001"
+  silent_clamp: false
