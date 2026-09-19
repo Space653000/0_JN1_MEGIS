@@ -237,7 +237,7 @@ def test_accepted_gate_deferrals_cannot_become_permanent(tmp_path: Path) -> None
     result = _run_verifier(tmp_path)
 
     assert result.returncode == 1
-    assert "G0 is accepted with unfinished work items" in result.stderr
+    assert "G1 is accepted with unfinished work items" in result.stderr
     assert "UI-0A lacks an ACCEPTANCE.md review/sign-off entry" in result.stderr
 
 
