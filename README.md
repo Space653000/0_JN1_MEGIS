@@ -101,6 +101,7 @@ UI-0 已完成驗收，但仍只是使用者體驗原型；G0 不會把其合成
 - [Artifact 儲存與 Git 大小預算政策](docs/ARTIFACT_POLICY.md)
 - [ADR-0011：既有 G0 重型製品精確白名單](docs/decisions/ADR-0011-legacy-heavy-artifact-allowlist.md)
 - [G1-ENV-001 完工進度報告](outputs/2026-09-19-G1-ENV-001-完工進度報告.md)
+- [V3 最新施工進度盤點與 GitHub／網頁同步報告](outputs/2026-09-19-MEGIS-V3-施工進度盤點與GitHub網頁同步報告.md)
 - [決策索引](docs/DECISIONS.md)
 
 ## 本機啟動
