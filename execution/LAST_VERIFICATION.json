@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-19T09:31:30+08:00",
-  "sourceCommit": "6f1c1fabff5dadb81d48b5006a269b0e02335873",
+  "verifiedAt": "2026-09-19T09:39:40+08:00",
+  "sourceCommit": "c5703470f9dbf63699017c270355120fc8e3f405",
   "status": "passed",
   "commands": [
     { "command": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1", "status": "passed", "controlPlaneWorkItems": 74, "controlPlaneGates": 14, "deferrals": 6 },
@@ -19,7 +19,7 @@
     { "command": "npm --prefix apps/web run build", "status": "passed" },
     { "command": "reviewer-added boundary/positive cases (6)", "status": "passed", "casesPassed": 6, "details": "execution/reviews/2026-09-18-V3C-REV-001-accepted-gates-retrospective.md" },
     { "command": ".venv/Scripts/python.exe -m pytest tests/test_g0_det_001.py tests/test_v3_determinism.py tests/test_g0_cad_reference_case.py tests/test_v3_maturity.py", "status": "passed", "testsPassed": 23, "testsFailed": 0 },
-    { "command": "GitHub Actions Baseline CI run 35412677242", "status": "passed", "headSha": "6f1c1fabff5dadb81d48b5006a269b0e02335873", "durationSeconds": 134 }
+    { "command": "GitHub Actions Baseline CI run 35413182265", "status": "passed", "headSha": "c5703470f9dbf63699017c270355120fc8e3f405", "durationSeconds": 147 }
   ],
   "boundaries": {
     "workspaceRoot": "C:/0_JN1_MEGIS",
