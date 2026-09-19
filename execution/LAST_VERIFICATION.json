@@ -1,25 +1,87 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-19T09:50:40+08:00",
-  "sourceCommit": "8e7e695b57f24592963264bd4992f46c50738836",
+  "verifiedAt": "2026-09-19T17:00:40+08:00",
+  "sourceCommit": "4a2d9e281f9fbf57a54122e546b7814ff78768b0",
   "status": "passed",
   "commands": [
-    { "command": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1", "status": "passed", "controlPlaneWorkItems": 74, "controlPlaneGates": 14, "deferrals": 6 },
-    { "command": "node --test tests/test_artifact_policy.mjs", "status": "passed", "testsPassed": 8, "testsFailed": 0 },
-    { "command": "node scripts/verify-artifact-policy.mjs", "status": "passed", "trackedFiles": 237, "heavyArtifactCount": 5, "unallowlistedHeavyArtifacts": 0 },
-    { "command": "node scripts/verify-secrets.mjs", "status": "passed", "trackedFilesScanned": 235, "findings": 0 },
-    { "command": ".venv/Scripts/python.exe -m pip check", "status": "passed" },
-    { "command": ".venv/Scripts/python.exe scripts/verify_toolchain.py", "status": "passed", "solidValid": true, "solidVolume": 6000.0 },
-    { "command": ".venv/Scripts/python.exe -m pytest", "status": "passed", "testsPassed": 119, "testsFailed": 0 },
-    { "command": ".venv/Scripts/python.exe scripts/verify_maturity.py", "status": "passed", "manifestsVerified": 1, "issues": 0 },
-    { "command": ".venv/Scripts/python.exe scripts/verify_artifacts.py", "status": "passed", "recordsVerified": 13 },
-    { "command": "npm --prefix apps/web run lint", "status": "passed" },
-    { "command": "npm --prefix apps/web run typecheck", "status": "passed" },
-    { "command": "npm --prefix apps/web test -- --run", "status": "passed", "testsPassed": 9, "testsFailed": 0 },
-    { "command": "npm --prefix apps/web run build", "status": "passed" },
-    { "command": "reviewer-added boundary/positive cases (6)", "status": "passed", "casesPassed": 6, "details": "execution/reviews/2026-09-18-V3C-REV-001-accepted-gates-retrospective.md" },
-    { "command": ".venv/Scripts/python.exe -m pytest tests/test_g0_det_001.py tests/test_v3_determinism.py tests/test_g0_cad_reference_case.py tests/test_v3_maturity.py", "status": "passed", "testsPassed": 23, "testsFailed": 0 },
-    { "command": "GitHub Actions Baseline CI run 35413730097", "status": "passed", "headSha": "8e7e695b57f24592963264bd4992f46c50738836", "durationSeconds": 139 }
+    {
+      "command": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+      "status": "passed",
+      "controlPlaneWorkItems": 74,
+      "controlPlaneGates": 14,
+      "deferrals": 6
+    },
+    {
+      "command": "node --test tests/test_artifact_policy.mjs",
+      "status": "passed",
+      "testsPassed": 8,
+      "testsFailed": 0
+    },
+    {
+      "command": "node scripts/verify-artifact-policy.mjs",
+      "status": "passed",
+      "trackedFiles": 244,
+      "evidenceJsonCount": 26,
+      "heavyArtifactCount": 5,
+      "unallowlistedHeavyArtifacts": 0
+    },
+    {
+      "command": "node scripts/verify-secrets.mjs",
+      "status": "passed",
+      "trackedFilesScanned": 242,
+      "findings": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe -m pip check",
+      "status": "passed"
+    },
+    {
+      "command": ".venv/Scripts/python.exe scripts/verify_toolchain.py",
+      "status": "passed",
+      "solidValid": true,
+      "solidVolume": 6000.0
+    },
+    {
+      "command": ".venv/Scripts/python.exe -m pytest",
+      "status": "passed",
+      "testsPassed": 126,
+      "testsFailed": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe scripts/verify_maturity.py",
+      "status": "passed",
+      "manifestsVerified": 1,
+      "issues": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe scripts/verify_artifacts.py",
+      "status": "passed",
+      "recordsVerified": 13
+    },
+    {
+      "command": "npm --prefix apps/web run lint",
+      "status": "passed"
+    },
+    {
+      "command": "npm --prefix apps/web run typecheck",
+      "status": "passed"
+    },
+    {
+      "command": "npm --prefix apps/web test -- --run",
+      "status": "passed",
+      "testsPassed": 9,
+      "testsFailed": 0
+    },
+    {
+      "command": "npm --prefix apps/web run build",
+      "status": "passed"
+    },
+    {
+      "command": "GitHub Actions Baseline CI run 35432809248",
+      "status": "passed",
+      "headSha": "4a2d9e281f9fbf57a54122e546b7814ff78768b0",
+      "durationSeconds": 139
+    }
   ],
   "boundaries": {
     "workspaceRoot": "C:/0_JN1_MEGIS",

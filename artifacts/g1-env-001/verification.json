@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G1-ENV-001",
+  "verifiedAt": "2026-09-19T17:00:00+08:00",
+  "blueprintRef": "v3.0 §2.4（envelope）、§5.1（SUPPORTED_ENVELOPE.md）、§9.1（G1-REQ-001 研究承接）、invariant 18",
+  "evidenceLevel": "E3",
+  "implementations": {
+    "envelopeYaml": "config/envelope/envelope.yaml",
+    "schema": "schemas/v3/envelope.schema.json",
+    "module": "megis/envelope/envelope.py",
+    "moduleInit": "megis/envelope/__init__.py",
+    "loader": "megis/envelope/envelope.py:load_envelope",
+    "guard": "megis/envelope/envelope.py:check_within_envelope",
+    "tests": "tests/test_g1_env_001.py",
+    "doc": "docs/SUPPORTED_ENVELOPE.md"
+  },
+  "envelope": {
+    "schemaVersion": "1.0.0",
+    "envelopeId": "legacy-reference-fixture",
+    "label": "Legacy Reference Fixture 已驗證範圍",
+    "verified": true,
+    "outerDimensionsMm": { "width": 120.0, "depth": 80.0, "height": 20.0 },
+    "minimumWallMm": 2.0,
+    "materials": ["AL6061"],
+    "machining": ["3-axis CNC"],
+    "coverCount": 1,
+    "fastenerCount": 4,
+    "pcbEnvelopePresent": true,
+    "usbCCutoutPresent": true,
+    "pcbEnvelopeVerified": false,
+    "pcbEnvelopeNote": "V2 transitional assumptions; not research-approved until G1-REQ-001",
+    "v3TargetVerified": false,
+    "v3TargetNote": "120x80x35mm, two PCB, USB-C, M3 removable cover; not verified until G1-REQ-001 research approval",
+    "unsupportedErrorCodes": ["MEGIS-ENV-001"],
+    "silentClamp": false
+  },
+  "checks": {
+    "loadsAndMatchesSchema": true,
+    "machineEnvelopeMatchesHumanDoc": true,
+    "exactBoundaryWithinEnvelope": true,
+    "overEnvelopeRaisesMegisEnv001": true,
+    "eachAxisEscapeRejected": true,
+    "invalidEnvelopeRejected": true,
+    "envelopeFilesExistAndConsumedByLoader": true,
+    "silentClampForbiddenBySchema": true,
+    "singleMachineSourceOfTruth": true
+  },
+  "verificationCommands": [
+    { "command": ".venv/Scripts/python.exe -m pytest tests/test_g1_env_001.py", "status": "passed", "testsPassed": 7, "testsFailed": 0 },
+    { "command": ".venv/Scripts/python.exe -m pytest", "status": "passed", "testsPassed": 126, "testsFailed": 0 },
+    { "command": "node scripts/verify-control-plane.mjs", "status": "passed", "workItems": 74, "gates": 14, "deferrals": 6 },
+    { "command": "node scripts/verify-secrets.mjs", "status": "passed", "trackedFilesScanned": 242, "findings": 0 },
+    { "command": "node scripts/verify-artifact-policy.mjs", "status": "passed", "trackedFiles": 244, "evidenceJsonCount": 26, "heavyArtifactCount": 5, "unallowlistedHeavyArtifacts": 0 },
+    { "command": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1", "status": "passed", "pythonTestsPassed": 126, "frontendTestsPassed": 9, "artifactPolicyNegativeTests": 8 }
+  ],
+  "independentCleanCheckout": {
+    "githubActionsRunId": 35432809248,
+    "headSha": "4a2d9e281f9fbf57a54122e546b7814ff78768b0",
+    "conclusion": "success",
+    "durationSeconds": 139
+  },
+  "findings": [],
+  "blockingFindingsCount": 0,
+  "residualRisks": ["R-G0-001", "R-G0-002"],
+  "boundaries": {
+    "workspaceRoot": "C:/0_JN1_MEGIS",
+    "localOnly": true,
+    "otherProjectDirectoriesModified": false
+  }
+}
