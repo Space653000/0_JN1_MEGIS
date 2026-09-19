@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G0-DET-001",
+  "verifiedAt": "2026-09-19T09:05:00+08:00",
+  "blueprintRef": "v3.0 §8.0 G0 工作 4（Determinism spike）、§8.1、§0.6",
+  "evidenceLevel": "E3",
+  "handoffFrom": {
+    "workItem": "V3C-DET-001",
+    "role": "Determinism 與 fingerprint 補記",
+    "evidence": "artifacts/v3c-det-001/verification.json"
+  },
+  "fingerprintPolicy": {
+    "version": "1.0.0",
+    "path": "config/fingerprint/policy-1.0.0.json",
+    "schema": "schemas/v3/fingerprint-policy.schema.json",
+    "documentation": "docs/FINGERPRINT_POLICY.md"
+  },
+  "normalization": {
+    "step": {
+      "fileNameTimestampFixed": true,
+      "identityFixed": true,
+      "openCascadeSequenceFixed": true,
+      "reloadValid": true
+    },
+    "dxf": {
+      "createUpdateTimesFixed": true,
+      "handleSeedFixed": true,
+      "guidsFixed": true,
+      "ezdxfMetadataTimesFixed": true,
+      "classRecordsSorted": true,
+      "reloadValid": true
+    },
+    "stl": {
+      "binary": true,
+      "fixedHeader": "MEGIS BINARY STL | policy 1.0.0",
+      "triangleCount": 2060,
+      "reloadValid": true
+    }
+  },
+  "replay": {
+    "isolatedRuns": 2,
+    "stepNormalizedByteHashEqual": true,
+    "dxfNormalizedByteHashEqual": true,
+    "stlNormalizedByteHashEqual": true,
+    "allSemanticFingerprintsEqual": true,
+    "sourceAndStepGeometryEqual": true
+  },
+  "negativeEvidence": {
+    "stlHeaderMutationChangesL1NotL2": true,
+    "stlTriangleMutationChangesL2": true,
+    "manifestRuntimeTimeMutationDoesNotChangeL2": true,
+    "manifestEngineeringValueMutationChangesL2": true
+  },
+  "maturityScan": {
+    "command": ".venv/Scripts/python.exe scripts/verify_maturity.py",
+    "active": true,
+    "manifestsVerified": 1,
+    "spikeManifestsMaturityNull": true
+  },
+  "referenceArtifactFingerprints": {
+    "stepByteSha256": "62a380d7de5f92d59bfc4a82e24c79938c1d226669aa80c40ebb92829521c0ca",
+    "stlByteSha256": "e3bdc5a7c73439cde8ddf102d4399631eb0f643079bb375b088fc04ffaa89caa",
+    "dxfByteSha256": "b3b5a988d77c9227220dbc2e2ef996f826e0a2223f6f95aa0b129da216b6b8e4",
+    "geometrySemanticFingerprint": "ac317f9c43f3936e0b83ca7e94617b292d861c95110367aedd59e70dab92d8cf",
+    "stlSemanticFingerprint": "c1ae023d8030b75e040c757b6a0dd0c2e32d7ac4d20b3f5dc815f4f0ab1d4331",
+    "dxfSemanticFingerprint": "20c24406f980fed8d413dc6cbe53b3d2fdce508a846597d398ce48290bfa21dc",
+    "manifestSemanticFingerprint": "ecefee996726bf1b0e0054b7407500888ea5d0e7607ee918373a3d5dbc949186"
+  },
+  "targetedTests": {
+    "command": ".venv/Scripts/python.exe -m pytest tests/test_g0_det_001.py tests/test_v3_determinism.py tests/test_g0_cad_reference_case.py tests/test_v3_maturity.py",
+    "passed": 23,
+    "failed": 0
+  },
+  "controlPlane": {
+    "command": "node scripts/verify-control-plane.mjs",
+    "passed": true,
+    "workItems": 74,
+    "gates": 14,
+    "deferrals": 6,
+    "currentWorkItem": "V3C-REV-001"
+  },
+  "baseline": {
+    "command": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+    "status": "passed",
+    "pythonTestsPassed": 110,
+    "frontendTestsPassed": 9,
+    "artifactRecordsVerified": 13,
+    "secretScanTrackedFiles": 222,
+    "secretScanFindings": 0,
+    "artifactPolicyTrackedFiles": 224,
+    "artifactPolicyHeavyAllowlisted": 5
+  },
+  "boundaries": {
+    "fingerprintProvesEngineeringCorrectness": false,
+    "fingerprintProvesManufacturability": false,
+    "fingerprintOnlyLocksReproducibility": true
+  }
+}

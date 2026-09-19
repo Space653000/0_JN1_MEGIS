@@ -2,7 +2,7 @@
   "agent": "codex",
   "role": "builder",
   "work_item": "V3C-REV-001",
-  "claimed_at": "2026-09-19T01:21:30+08:00",
-  "expires_at": "2026-09-19T09:21:30+08:00",
-  "base_commit": "4358333b5e9f8c7a218a773f6cee0e8012a2f634"
+  "claimed_at": "2026-09-19T09:01:00+08:00",
+  "expires_at": "2026-09-19T17:01:00+08:00",
+  "base_commit": "cbc6e81a47058e8d8d67487375192d490ea8e215"
 }
