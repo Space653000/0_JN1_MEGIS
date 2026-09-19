@@ -2,9 +2,9 @@
 
 - Current gate: `G2 — Fixture Geometry Vertical Slice`
 - Current work item: `V3C-REV-001 — 已 accepted Gate 追溯審查`
-- Last green commit: `4a2d9e281f9fbf57a54122e546b7814ff78768b0`
+- Last green commit: `ecd1e39248dd8f7f5a3527d27db25d6b42719ec5`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-19T17:00:00+08:00`
+- Updated at: `2026-09-19T17:26:56+08:00`
 
 ## Accepted capabilities
 

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-19T17:00:00+08:00",
-  "baselineCommit": "4a2d9e281f9fbf57a54122e546b7814ff78768b0",
+  "updatedAt": "2026-09-19T17:26:56+08:00",
+  "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
   "currentWorkItem": "V3C-REV-001",
   "gates": [
     { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
