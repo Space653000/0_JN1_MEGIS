@@ -4,7 +4,7 @@
 > - 目的：提供 `MEGIS-<DOMAIN>-NNN` 錯誤碼的唯一登錄入口。
 > - 目前內容：V3 已核准錯誤碼登錄與 v2 legacy 映射。
 > - Owner：MEGIS Builder
-> - 最後審查 commit：`4aa55ab04eb87c9556ec0f3d4760413f62b32f6b`
+> - 最後審查 commit：`8e7e695b57f24592963264bd4992f46c50738836`
 
 ## 目的
 
@@ -46,4 +46,4 @@ MEGIS Builder；新增 code 必須同時新增測試與本表紀錄。
 
 ## 最後審查 commit
 
-`4aa55ab04eb87c9556ec0f3d4760413f62b32f6b`
+`8e7e695b57f24592963264bd4992f46c50738836`

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-19T09:39:40+08:00",
-  "baselineCommit": "c5703470f9dbf63699017c270355120fc8e3f405",
+  "updatedAt": "2026-09-19T09:50:30+08:00",
+  "baselineCommit": "8e7e695b57f24592963264bd4992f46c50738836",
   "currentWorkItem": "V3C-REV-001",
   "gates": [
     { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
@@ -477,7 +477,7 @@
       "id": "G1-ERR-001",
       "title": "Error taxonomy",
       "gate": "G1",
-      "status": "planned",
+      "status": "done",
       "dependsOn": [
         "G1-IR-001"
       ],
@@ -493,18 +493,26 @@
       "acceptanceResults": [
         {
           "criterion": "錯誤物件 schema、ERROR_CODES.md 與錯誤碼唯一性測試通過",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": ["schemas/v3/error.schema.json", "megis/errors/registry.py", "docs/ERROR_CODES.md", "tests/test_g1_err_001.py", "artifacts/g1-err-001/verification.json"]
         }
       ],
       "verificationCommands": [
         "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+        ,
+        "node scripts/verify-control-plane.mjs"
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": ["schemas/v3/error.schema.json", "megis/errors/registry.py", "docs/ERROR_CODES.md", "tests/test_g1_err_001.py", "artifacts/g1-err-001/verification.json"],
+      "verification": "passed",
+      "commitSha": "8e7e695b57f24592963264bd4992f46c50738836",
+      "owner_role": "builder",
+      "requires_user_decision": false,
+      "evidence_level_required": "E3",
+      "review": { "required": false, "status": "not_required", "report": null },
+      "risk_refs": ["R-G0-002"],
+      "blueprint_ref": "v3.0 §4.10、§5.12"
     },
     {
       "id": "G1-ENV-001",

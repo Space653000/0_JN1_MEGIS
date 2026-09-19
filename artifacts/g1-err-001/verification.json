@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G1-ERR-001",
+  "verifiedAt": "2026-09-19T09:50:19+08:00",
+  "blueprintRef": "v3.0 §4.10、§5.1（ERROR_CODES.md）、§5.12",
+  "evidenceLevel": "E3",
+  "implementations": {
+    "schema": "schemas/v3/error.schema.json",
+    "registry": "megis/errors/registry.py",
+    "tests": "tests/test_g1_err_001.py",
+    "registryDoc": "docs/ERROR_CODES.md"
+  },
+  "registry": {
+    "codeCount": 14,
+    "domainCount": 11,
+    "format": "MEGIS-<DOMAIN>-<NNN>",
+    "domains": [
+      "SCH", "REF", "ENV", "GEO", "VAL", "RUL", "PKG", "JOB", "AI", "IMP", "SYS"
+    ],
+    "legacyMappingCount": 4,
+    "legacyMappingComplete": true
+  },
+  "checks": {
+    "codeUniqueness": true,
+    "formatConformance": true,
+    "numbersContiguousPerDomain": true,
+    "schemaPositive": true,
+    "schemaNegative": true,
+    "missingRequiredFieldRejected": true,
+    "legacyGeometryMappingComplete": true,
+    "unknownCodeRejected": true
+  },
+  "verificationCommands": [
+    { "command": ".venv/Scripts/python.exe -m pytest tests/test_g1_err_001.py", "status": "passed", "testsPassed": 9, "testsFailed": 0 },
+    { "command": ".venv/Scripts/python.exe -m pytest", "status": "passed", "testsPassed": 119, "testsFailed": 0 },
+    { "command": "node scripts/verify-control-plane.mjs", "status": "passed", "workItems": 74, "gates": 14, "deferrals": 6 },
+    { "command": "node scripts/verify-secrets.mjs", "status": "passed", "trackedFilesScanned": 235, "findings": 0 },
+    { "command": "node scripts/verify-artifact-policy.mjs", "status": "passed", "trackedFiles": 237, "heavyArtifactCount": 5, "unallowlistedHeavyArtifacts": 0 },
+    { "command": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1", "status": "passed", "pythonTestsPassed": 119, "frontendTestsPassed": 9, "artifactPolicyNegativeTests": 8 }
+  ],
+  "independentCleanCheckout": {
+    "githubActionsRunId": 35413730097,
+    "headSha": "8e7e695b57f24592963264bd4992f46c50738836",
+    "conclusion": "success",
+    "durationSeconds": 139
+  },
+  "findings": [],
+  "blockingFindingsCount": 0,
+  "residualRisks": ["R-G0-001"],
+  "boundaries": {
+    "workspaceRoot": "C:/0_JN1_MEGIS",
+    "localOnly": true,
+    "otherProjectDirectoriesModified": false
+  }
+}

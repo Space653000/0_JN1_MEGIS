@@ -2,9 +2,9 @@
 
 - Current gate: `G2 — Fixture Geometry Vertical Slice`
 - Current work item: `V3C-REV-001 — 已 accepted Gate 追溯審查`
-- Last green commit: `c5703470f9dbf63699017c270355120fc8e3f405`
+- Last green commit: `8e7e695b57f24592963264bd4992f46c50738836`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-19T09:39:40+08:00`
+- Updated at: `2026-09-19T09:50:30+08:00`
 
 ## Accepted capabilities
 
@@ -27,6 +27,7 @@
 - G1-IR-002：完整 Engineering IR schema、語意參照完整性與負向契約測試
 - G1-IR-003：Fixture、Acoustic、Robot golden inputs、deterministic round trip 與下游 consumer
 - G1-MIG-001：V1→V2 deterministic migration、版本政策與可驗證 rollback
+- G1-ERR-001：V3 錯誤物件 schema、`MEGIS-<DOMAIN>-<NNN>` 登錄 14 碼、唯一性與 legacy 映射測試（E3）
 - G2-CAD-001：kernel-neutral geometry contract、capability negotiation 與 adapter seam
 - G2-CAD-002：由 golden IR 驅動的 CadQuery fixture base、尺寸與拓樸驗證
 - G2-CAD-003：cover、fasteners、USB-C cutout、PCB envelope 與組立間隙驗證
@@ -42,10 +43,10 @@ UI-0 驗收只涵蓋使用者體驗原型；沒有工程生成能力或工程製
 
 ## Active scope
 
-`V3C-REV-001` 追溯審查報告已產出，10 項結構差距全部對應既有承接 ID，掌控面規則要求 G0/G1 承接項全 done 後才能將 REV/ACC 標 done，故維持 `in_progress` 傘型。本段完成 `G0-ACC-001`：記錄 `execution/signoffs/SO-0001.yaml`（`gate_acceptance`，subject G0，decision approved，reviewer_role self_review，user_veto null），可追溯至 G0-REV-001 審查報告與 CI runs `35411750532`（`07c8fea`）、`35412035686`（`7389a1d`）、`35412677242`（`6f1c1fa`）均 success；G0 11/11 work items 全 done。
+`V3C-REV-001` 追溯審查報告已產出，10 項結構差距全部對應既有承接 ID，掌控面規則要求 G0/G1 承接項全 done 後才能將 REV/ACC 標 done，故維持 `in_progress` 傘型。本段完成 `G1-ERR-001`：建立 `schemas/v3/error.schema.json` 與 `megis/errors/` 模組（14 個 `MEGIS-<DOMAIN>-<NNN>` 碼、11 個 domain、v2 legacy `GeometryErrorCode` 4 項映射），更新 `docs/ERROR_CODES.md` 並以 `tests/test_g1_err_001.py` 驗證唯一性、格式、schema 正負向與映射完整性；full pytest 119 passed、CI run `35413730097`（`8e7e695`）success。
 ## Next work item
 
-下一步完成 `G1-ERR-001`，依序 `G1-ENV-001` → `G1-REQ-001` → `G1-REV-001` → `G1-ACC-001`；全部 done 後才能將 `V3C-REV-001` 與 `V3C-ACC-001` 標 done，再回到 `G2-CAD-004`。不需要使用者重新驗收，但必須保留 reviewer 與 builder 的 session 隔離。
+下一步完成 `G1-ENV-001`（機器可讀 envelope 與 `SUPPORTED_ENVELOPE.md` 一致性），依序 `G1-REQ-001` → `G1-REV-001` → `G1-ACC-001`；全部 done 後才能將 `V3C-REV-001` 與 `V3C-ACC-001` 標 done，再回到 `G2-CAD-004`。不需要使用者重新驗收，但必須保留 reviewer 與 builder 的 session 隔離。
 
 ## Boundaries
 
