@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v3/error.schema.json",
+  "title": "MEGIS Error Object (v3)",
+  "description": "Every structured error must conform to this shape. Codes are MEGIS-<DOMAIN>-<NNN> and are registered in docs/ERROR_CODES.md.",
+  "type": "object",
+  "required": [
+    "code",
+    "severity",
+    "retryable",
+    "user_message_zh_tw",
+    "engineer_detail",
+    "entity_refs",
+    "correlation_id"
+  ],
+  "properties": {
+    "code": {
+      "type": "string",
+      "pattern": "^MEGIS-[A-Z]{2,4}-[0-9]{3}$"
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["fatal", "error", "warning", "info"]
+    },
+    "retryable": {
+      "type": "boolean"
+    },
+    "user_message_zh_tw": {
+      "type": "string",
+      "minLength": 1
+    },
+    "engineer_detail": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "object" },
+        { "type": "array" }
+      ]
+    },
+    "entity_refs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "correlation_id": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

@@ -2,27 +2,43 @@
 
 > 文件治理
 > - 目的：提供 `MEGIS-<DOMAIN>-NNN` 錯誤碼的唯一登錄入口。
-> - 目前內容：V3 taxonomy 規則、domain 保留範圍與 legacy 缺口。
+> - 目前內容：V3 已核准錯誤碼登錄與 v2 legacy 映射。
 > - Owner：MEGIS Builder
-> - 最後審查 commit：`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`
+> - 最後審查 commit：`4aa55ab04eb87c9556ec0f3d4760413f62b32f6b`
 
 ## 目的
 
 錯誤必須具有穩定 code、message、domain、severity、retryable、context 與 cause chain；UI 只翻譯顯示，不以字串猜測類型。
 
-## 目前內容
+## 已核准錯誤碼（MEGIS-<DOMAIN>-<NNN>）
 
-| Domain | 範圍 | 狀態 |
-|---|---|---|
-| CTL | 控制面、claim、Gate 狀態 | reserved |
-| IR | schema、reference、unit、migration | reserved |
-| GEO | geometry planning、kernel、timeout | reserved |
-| IMP | 不可信 STEP／DXF import | reserved |
-| RUL | rule evaluation／source | reserved |
-| PKG | package、manifest、BOM、drawing | reserved |
-| AI | provider、schema output、grounding | reserved |
+| Code | Domain | Severity | Retry | 繁體中文訊息 |
+|---|---|---|---|---|
+| MEGIS-SCH-001 | SCH | error | no | 輸入的單位或型別不符合定義。 |
+| MEGIS-REF-001 | REF | error | no | 參照的物件不存在。 |
+| MEGIS-ENV-001 | ENV | error | no | 輸入超出支援範圍。 |
+| MEGIS-GEO-001 | GEO | error | no | 幾何輸入資料無效。 |
+| MEGIS-GEO-002 | GEO | error | no | 不支援此幾何操作。 |
+| MEGIS-GEO-003 | GEO | error | no | 幾何尺寸無效。 |
+| MEGIS-GEO-004 | GEO | fatal | no | 幾何後端違反契約。 |
+| MEGIS-VAL-001 | VAL | error | no | 檢測到碰撞或佈局衝突。 |
+| MEGIS-RUL-001 | RUL | error | no | 規則來源未經核准。 |
+| MEGIS-PKG-001 | PKG | error | no | 套件指紋不符。 |
+| MEGIS-JOB-001 | JOB | error | yes | 工作逾時。 |
+| MEGIS-AI-001 | AI | error | yes | AI 輸出格式無效。 |
+| MEGIS-IMP-001 | IMP | error | no | 輸入檔案超出限制。 |
+| MEGIS-SYS-001 | SYS | fatal | no | 本機工具鏈版本不符。 |
 
-現有 `GeometryErrorCode` 仍是 v2 legacy enum，尚未符合 V3 prefix；`G1-ERR-001` 負責建立正式 schema、唯一性測試與映射。此處不提前宣稱任何 V3 code 已核准。
+v2 legacy `GeometryErrorCode` 映射（severity／retryable／訊息由 `megis/errors/registry.py` 統一管理）：
+
+| v2 value | v3 code |
+|---|---|
+| INVALID_IR | MEGIS-GEO-001 |
+| UNSUPPORTED_OPERATION | MEGIS-GEO-002 |
+| INVALID_DIMENSION | MEGIS-GEO-003 |
+| BACKEND_CONTRACT_VIOLATION | MEGIS-GEO-004 |
+
+唯一性防退化：`tests/test_g1_err_001.py` 對 `MEGIS-<DOMAIN>-<NNN>` 格式、domain 內連續編號、v3 物件 schema 合規與 legacy 映射完整性做自動化檢查；新增 code 必須同步更新 `megis/errors/registry.py` 與本表。
 
 ## Owner
 
@@ -30,4 +46,4 @@ MEGIS Builder；新增 code 必須同時新增測試與本表紀錄。
 
 ## 最後審查 commit
 
-`6cc2ad78d237d2c2095d705910a242dcd2b6b2bc`
+`4aa55ab04eb87c9556ec0f3d4760413f62b32f6b`
