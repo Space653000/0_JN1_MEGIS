@@ -1,280 +1,1920 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-19T17:26:56+08:00",
+  "updatedAt": "2026-09-20T16:51:12.181066+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "V3C-REV-001",
+  "currentWorkItem": "G1-REV-001",
   "gates": [
-    { "id": "UI-0A", "title": "最小可行基礎", "status": "accepted", "dependsOn": [] },
-    { "id": "UI-0B", "title": "施工進度中心", "status": "accepted", "dependsOn": ["UI-0A"] },
-    { "id": "UI-0C", "title": "引導式使用者體驗原型", "status": "accepted", "dependsOn": ["UI-0B"] },
-    { "id": "UI-0D", "title": "驗證與使用者驗收", "status": "accepted", "dependsOn": ["UI-0C"] },
-    { "id": "G0", "title": "基礎建設與可行性", "status": "accepted", "dependsOn": ["UI-0D"] },
-    { "id": "G1", "title": "工程契約與黃金案例", "status": "accepted", "dependsOn": ["G0"] },
-    { "id": "G2", "title": "治具幾何垂直切片", "status": "active", "dependsOn": ["G1"] },
-    { "id": "G3", "title": "規則與驗證", "status": "planned", "dependsOn": ["G2"] },
-    { "id": "G4", "title": "模組與限制條件組合", "status": "planned", "dependsOn": ["G3"] },
-    { "id": "G5", "title": "原型套件與可重現性", "status": "planned", "dependsOn": ["G4"] },
-    { "id": "G6", "title": "引導式介面工程整合", "status": "planned", "dependsOn": ["G5"] },
-    { "id": "G7", "title": "聲學垂直切片", "status": "planned", "dependsOn": ["G6"] },
-    { "id": "G8", "title": "機器人垂直切片", "status": "planned", "dependsOn": ["G6"] },
-    { "id": "G9", "title": "強化與擴充", "status": "planned", "dependsOn": ["G7", "G8"] }
+    {
+      "id": "UI-0A",
+      "title": "最小可行基礎",
+      "status": "accepted",
+      "dependsOn": []
+    },
+    {
+      "id": "UI-0B",
+      "title": "施工進度中心",
+      "status": "accepted",
+      "dependsOn": [
+        "UI-0A"
+      ]
+    },
+    {
+      "id": "UI-0C",
+      "title": "引導式使用者體驗原型",
+      "status": "accepted",
+      "dependsOn": [
+        "UI-0B"
+      ]
+    },
+    {
+      "id": "UI-0D",
+      "title": "驗證與使用者驗收",
+      "status": "accepted",
+      "dependsOn": [
+        "UI-0C"
+      ]
+    },
+    {
+      "id": "G0",
+      "title": "基礎建設與可行性",
+      "status": "accepted",
+      "dependsOn": [
+        "UI-0D"
+      ]
+    },
+    {
+      "id": "G1",
+      "title": "工程契約與黃金案例",
+      "status": "accepted",
+      "dependsOn": [
+        "G0"
+      ]
+    },
+    {
+      "id": "G2",
+      "title": "治具幾何垂直切片",
+      "status": "active",
+      "dependsOn": [
+        "G1"
+      ]
+    },
+    {
+      "id": "G3",
+      "title": "規則與驗證",
+      "status": "planned",
+      "dependsOn": [
+        "G2"
+      ]
+    },
+    {
+      "id": "G4",
+      "title": "模組與限制條件組合",
+      "status": "planned",
+      "dependsOn": [
+        "G3"
+      ]
+    },
+    {
+      "id": "G5",
+      "title": "原型套件與可重現性",
+      "status": "planned",
+      "dependsOn": [
+        "G4"
+      ]
+    },
+    {
+      "id": "G6",
+      "title": "引導式介面工程整合",
+      "status": "planned",
+      "dependsOn": [
+        "G5"
+      ]
+    },
+    {
+      "id": "G7",
+      "title": "聲學垂直切片",
+      "status": "planned",
+      "dependsOn": [
+        "G6"
+      ]
+    },
+    {
+      "id": "G8",
+      "title": "機器人垂直切片",
+      "status": "planned",
+      "dependsOn": [
+        "G6"
+      ]
+    },
+    {
+      "id": "G9",
+      "title": "強化與擴充",
+      "status": "planned",
+      "dependsOn": [
+        "G7",
+        "G8"
+      ]
+    }
   ],
   "workItems": [
     {
-      "id": "G0-REP-001", "title": "建立 repository 與狀態檔", "gate": "G0", "status": "done", "dependsOn": [],
-      "inputs": ["MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v2.0 Codex.md", "docs/UI0_ACCEPTANCE.md"],
-      "outputs": ["execution/PROJECT_STATE.md", "execution/WORK_QUEUE.yaml", "execution/BLOCKERS.yaml", "execution/LAST_VERIFICATION.json"],
-      "acceptance": ["UI-0 驗收已遷移至正式控制面", "初始工作清單具有依賴與驗收條件", "控制面可由自動化命令驗證"],
-      "acceptanceResults": [
-        { "criterion": "UI-0 驗收已遷移至正式控制面", "status": "passed", "evidence": ["docs/UI0_ACCEPTANCE.md", "execution/PROJECT_STATE.md"] },
-        { "criterion": "初始工作清單具有依賴與驗收條件", "status": "passed", "evidence": ["execution/WORK_QUEUE.yaml"] },
-        { "criterion": "控制面可由自動化命令驗證", "status": "passed", "evidence": ["scripts/verify-control-plane.mjs", "execution/schemas/work-queue.schema.json"] }
+      "id": "G0-REP-001",
+      "title": "建立 repository 與狀態檔",
+      "gate": "G0",
+      "status": "done",
+      "dependsOn": [],
+      "inputs": [
+        "MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v2.0 Codex.md",
+        "docs/UI0_ACCEPTANCE.md"
       ],
-      "verificationCommands": ["node scripts/verify-control-plane.mjs", "npm --prefix apps/web test -- --run"],
-      "rollbackBoundary": "commit", "blockedBy": [],
-      "evidence": ["docs/UI0_ACCEPTANCE.md", "execution/PROJECT_STATE.md", "execution/WORK_QUEUE.yaml", "execution/BLOCKERS.yaml", "execution/LAST_VERIFICATION.json"],
-      "verification": "passed", "commitSha": "09f19ea3633189bdbb58e254d8e5798736950bfb"
+      "outputs": [
+        "execution/PROJECT_STATE.md",
+        "execution/WORK_QUEUE.yaml",
+        "execution/BLOCKERS.yaml",
+        "execution/LAST_VERIFICATION.json"
+      ],
+      "acceptance": [
+        "UI-0 驗收已遷移至正式控制面",
+        "初始工作清單具有依賴與驗收條件",
+        "控制面可由自動化命令驗證"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "UI-0 驗收已遷移至正式控制面",
+          "status": "passed",
+          "evidence": [
+            "docs/UI0_ACCEPTANCE.md",
+            "execution/PROJECT_STATE.md"
+          ]
+        },
+        {
+          "criterion": "初始工作清單具有依賴與驗收條件",
+          "status": "passed",
+          "evidence": [
+            "execution/WORK_QUEUE.yaml"
+          ]
+        },
+        {
+          "criterion": "控制面可由自動化命令驗證",
+          "status": "passed",
+          "evidence": [
+            "scripts/verify-control-plane.mjs",
+            "execution/schemas/work-queue.schema.json"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs",
+        "npm --prefix apps/web test -- --run"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "docs/UI0_ACCEPTANCE.md",
+        "execution/PROJECT_STATE.md",
+        "execution/WORK_QUEUE.yaml",
+        "execution/BLOCKERS.yaml",
+        "execution/LAST_VERIFICATION.json"
+      ],
+      "verification": "passed",
+      "commitSha": "09f19ea3633189bdbb58e254d8e5798736950bfb"
     },
     {
-      "id": "G0-ENV-001", "title": "鎖定 Python、Node 與 CAD dependencies", "gate": "G0", "status": "done", "dependsOn": ["G0-REP-001"],
-      "inputs": ["execution/PROJECT_STATE.md"], "outputs": ["environment lockfiles", "docs/decisions/toolchain.md"],
-      "acceptance": ["支援版本與依賴均可重現且有鎖定證據"], "acceptanceResults": [{ "criterion": "支援版本與依賴均可重現且有鎖定證據", "status": "passed", "evidence": ["requirements.lock", "environment/toolchain.lock.json", "environment/G0_ENV_VERIFICATION.json", "docs/decisions/toolchain.md"] }],
-      "verificationCommands": [".venv/Scripts/python.exe -m pip check", ".venv/Scripts/python.exe scripts/verify_toolchain.py", ".venv/Scripts/python.exe -m pytest"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["requirements.in", "requirements.lock", "pyproject.toml", "environment/toolchain.lock.json", "environment/G0_ENV_VERIFICATION.json", "scripts/verify_toolchain.py", "tests/test_toolchain.py", "docs/decisions/toolchain.md"], "verification": "passed", "commitSha": "629c02831b6b3eae30fb8a8ef8f9519f3bfbafaf"
+      "id": "G0-ENV-001",
+      "title": "鎖定 Python、Node 與 CAD dependencies",
+      "gate": "G0",
+      "status": "done",
+      "dependsOn": [
+        "G0-REP-001"
+      ],
+      "inputs": [
+        "execution/PROJECT_STATE.md"
+      ],
+      "outputs": [
+        "environment lockfiles",
+        "docs/decisions/toolchain.md"
+      ],
+      "acceptance": [
+        "支援版本與依賴均可重現且有鎖定證據"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "支援版本與依賴均可重現且有鎖定證據",
+          "status": "passed",
+          "evidence": [
+            "requirements.lock",
+            "environment/toolchain.lock.json",
+            "environment/G0_ENV_VERIFICATION.json",
+            "docs/decisions/toolchain.md"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe -m pip check",
+        ".venv/Scripts/python.exe scripts/verify_toolchain.py",
+        ".venv/Scripts/python.exe -m pytest"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "requirements.in",
+        "requirements.lock",
+        "pyproject.toml",
+        "environment/toolchain.lock.json",
+        "environment/G0_ENV_VERIFICATION.json",
+        "scripts/verify_toolchain.py",
+        "tests/test_toolchain.py",
+        "docs/decisions/toolchain.md"
+      ],
+      "verification": "passed",
+      "commitSha": "629c02831b6b3eae30fb8a8ef8f9519f3bfbafaf"
     },
     {
-      "id": "G0-CAD-001", "title": "CadQuery Reference Case spike", "gate": "G0", "status": "done", "dependsOn": ["G0-ENV-001"],
-      "inputs": ["locked CadQuery toolchain"], "outputs": ["STEP", "STL", "2D DXF section", "spike evidence"],
-      "acceptance": ["Reference Case 產出三種格式且通過自動有效性檢查"], "acceptanceResults": [{ "criterion": "Reference Case 產出三種格式且通過自動有效性檢查", "status": "passed", "evidence": ["artifacts/g0-cad/reference_case.step", "artifacts/g0-cad/reference_case.stl", "artifacts/g0-cad/reference_case_section_z10.dxf", "artifacts/g0-cad/manifest.json", "docs/G0_CAD_VERIFICATION.md"] }],
-      "verificationCommands": [".venv/Scripts/python.exe -m spikes.g0_cad.reference_case --output-dir artifacts/g0-cad", ".venv/Scripts/python.exe -m pytest tests/test_g0_cad_reference_case.py"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["spikes/g0_cad/reference_case.py", "spikes/g0_cad/README.md", "tests/test_g0_cad_reference_case.py", "artifacts/g0-cad/manifest.json", "docs/G0_CAD_VERIFICATION.md"], "verification": "passed", "commitSha": "b8a0dddd2f3ab763cde4a466e851f3a733f3099a"
+      "id": "G0-CAD-001",
+      "title": "CadQuery Reference Case spike",
+      "gate": "G0",
+      "status": "done",
+      "dependsOn": [
+        "G0-ENV-001"
+      ],
+      "inputs": [
+        "locked CadQuery toolchain"
+      ],
+      "outputs": [
+        "STEP",
+        "STL",
+        "2D DXF section",
+        "spike evidence"
+      ],
+      "acceptance": [
+        "Reference Case 產出三種格式且通過自動有效性檢查"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "Reference Case 產出三種格式且通過自動有效性檢查",
+          "status": "passed",
+          "evidence": [
+            "artifacts/g0-cad/reference_case.step",
+            "artifacts/g0-cad/reference_case.stl",
+            "artifacts/g0-cad/reference_case_section_z10.dxf",
+            "artifacts/g0-cad/manifest.json",
+            "docs/G0_CAD_VERIFICATION.md"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe -m spikes.g0_cad.reference_case --output-dir artifacts/g0-cad",
+        ".venv/Scripts/python.exe -m pytest tests/test_g0_cad_reference_case.py"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "spikes/g0_cad/reference_case.py",
+        "spikes/g0_cad/README.md",
+        "tests/test_g0_cad_reference_case.py",
+        "artifacts/g0-cad/manifest.json",
+        "docs/G0_CAD_VERIFICATION.md"
+      ],
+      "verification": "passed",
+      "commitSha": "b8a0dddd2f3ab763cde4a466e851f3a733f3099a"
     },
     {
-      "id": "G0-DRW-001", "title": "FreeCAD TechDraw headless spike", "gate": "G0", "status": "done", "dependsOn": ["G0-ENV-001"],
-      "inputs": ["locked FreeCAD toolchain"], "outputs": ["fixed-template drawing", "feasibility decision"],
-      "acceptance": ["FreeCAD 圖面路徑具有 pass、fallback 或 out_of_scope 決策"], "acceptanceResults": [{ "criterion": "FreeCAD 圖面路徑具有 pass、fallback 或 out_of_scope 決策", "status": "passed", "evidence": ["environment/freecad.lock.json", "artifacts/g0-freecad/verification.json", "artifacts/g0-freecad/browser-verification.json", "artifacts/g0-freecad/reference_case_techdraw.FCStd", "artifacts/g0-freecad/reference_case_techdraw_fallback.svg", "docs/G0_FREECAD_DECISION.md"] }],
-      "verificationCommands": ["powershell -ExecutionPolicy Bypass -File scripts/run-freecad-spike.ps1", ".venv/Scripts/python.exe -m pytest tests/test_g0_freecad_fallback.py"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["environment/freecad.lock.json", "spikes/g0_freecad/techdraw_spike.py", "spikes/g0_freecad/templates/a4_landscape_megis.svg", "scripts/run-freecad-spike.ps1", "tests/test_g0_freecad_fallback.py", "artifacts/g0-freecad/verification.json", "docs/G0_FREECAD_DECISION.md"], "verification": "passed", "commitSha": "ed81af5ac3f55c72285010afec0091a36f3fc92f"
+      "id": "G0-DRW-001",
+      "title": "FreeCAD TechDraw headless spike",
+      "gate": "G0",
+      "status": "done",
+      "dependsOn": [
+        "G0-ENV-001"
+      ],
+      "inputs": [
+        "locked FreeCAD toolchain"
+      ],
+      "outputs": [
+        "fixed-template drawing",
+        "feasibility decision"
+      ],
+      "acceptance": [
+        "FreeCAD 圖面路徑具有 pass、fallback 或 out_of_scope 決策"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "FreeCAD 圖面路徑具有 pass、fallback 或 out_of_scope 決策",
+          "status": "passed",
+          "evidence": [
+            "environment/freecad.lock.json",
+            "artifacts/g0-freecad/verification.json",
+            "artifacts/g0-freecad/browser-verification.json",
+            "artifacts/g0-freecad/reference_case_techdraw.FCStd",
+            "artifacts/g0-freecad/reference_case_techdraw_fallback.svg",
+            "docs/G0_FREECAD_DECISION.md"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/run-freecad-spike.ps1",
+        ".venv/Scripts/python.exe -m pytest tests/test_g0_freecad_fallback.py"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "environment/freecad.lock.json",
+        "spikes/g0_freecad/techdraw_spike.py",
+        "spikes/g0_freecad/templates/a4_landscape_megis.svg",
+        "scripts/run-freecad-spike.ps1",
+        "tests/test_g0_freecad_fallback.py",
+        "artifacts/g0-freecad/verification.json",
+        "docs/G0_FREECAD_DECISION.md"
+      ],
+      "verification": "passed",
+      "commitSha": "ed81af5ac3f55c72285010afec0091a36f3fc92f"
     },
     {
-      "id": "G0-SIM-001", "title": "COMSOL license、API 與 batch feasibility decision", "gate": "G0", "status": "done", "dependsOn": ["G0-ENV-001"],
-      "inputs": ["local license and installation inventory"], "outputs": ["COMSOL feasibility decision"],
-      "acceptance": ["COMSOL 路徑具有 pass、fallback 或 out_of_scope 決策且不阻塞核心 Gate"], "acceptanceResults": [{ "criterion": "COMSOL 路徑具有 pass、fallback 或 out_of_scope 決策且不阻塞核心 Gate", "status": "passed", "evidence": ["environment/comsol.decision.json", "artifacts/g0-sim/inventory.json", "docs/G0_COMSOL_DECISION.md"] }],
-      "verificationCommands": ["powershell -ExecutionPolicy Bypass -File scripts/inventory-comsol.ps1", ".venv/Scripts/python.exe -m pytest tests/test_g0_comsol_decision.py"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["scripts/inventory-comsol.ps1", "environment/comsol.decision.json", "artifacts/g0-sim/inventory.json", "artifacts/g0-sim/README.md", "docs/G0_COMSOL_DECISION.md", "tests/test_g0_comsol_decision.py"], "verification": "passed", "commitSha": "28a415ea4c4457daef2bed5f3d72f1be1f67bb0f"
+      "id": "G0-SIM-001",
+      "title": "COMSOL license、API 與 batch feasibility decision",
+      "gate": "G0",
+      "status": "done",
+      "dependsOn": [
+        "G0-ENV-001"
+      ],
+      "inputs": [
+        "local license and installation inventory"
+      ],
+      "outputs": [
+        "COMSOL feasibility decision"
+      ],
+      "acceptance": [
+        "COMSOL 路徑具有 pass、fallback 或 out_of_scope 決策且不阻塞核心 Gate"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "COMSOL 路徑具有 pass、fallback 或 out_of_scope 決策且不阻塞核心 Gate",
+          "status": "passed",
+          "evidence": [
+            "environment/comsol.decision.json",
+            "artifacts/g0-sim/inventory.json",
+            "docs/G0_COMSOL_DECISION.md"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/inventory-comsol.ps1",
+        ".venv/Scripts/python.exe -m pytest tests/test_g0_comsol_decision.py"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "scripts/inventory-comsol.ps1",
+        "environment/comsol.decision.json",
+        "artifacts/g0-sim/inventory.json",
+        "artifacts/g0-sim/README.md",
+        "docs/G0_COMSOL_DECISION.md",
+        "tests/test_g0_comsol_decision.py"
+      ],
+      "verification": "passed",
+      "commitSha": "28a415ea4c4457daef2bed5f3d72f1be1f67bb0f"
     },
     {
-      "id": "G0-CI-001", "title": "建立 baseline CI", "gate": "G0", "status": "done", "dependsOn": ["G0-REP-001", "G0-ENV-001"],
-      "inputs": ["locked toolchain", "control-plane verifier"], "outputs": ["CI workflow", "baseline evidence"],
-      "acceptance": ["lint、typecheck、unit、schema 與 artifact smoke test 可重跑且全綠"], "acceptanceResults": [{ "criterion": "lint、typecheck、unit、schema 與 artifact smoke test 可重跑且全綠", "status": "passed", "evidence": [".github/workflows/baseline-ci.yml", "scripts/run-baseline-ci.ps1", "scripts/verify_artifacts.py", "artifacts/g0-ci/baseline-verification.json", "docs/G0_BASELINE_CI.md"] }],
-      "verificationCommands": ["powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [".github/workflows/baseline-ci.yml", "scripts/run-baseline-ci.ps1", "scripts/verify_artifacts.py", "tests/test_g0_artifact_smoke.py", "tests/test_g0_ci_contract.py", "artifacts/g0-ci/README.md", "artifacts/g0-ci/baseline-verification.json", "docs/G0_BASELINE_CI.md"], "verification": "passed", "commitSha": "86b9b67513822538e8bd3147d403f24521bb0815"
+      "id": "G0-CI-001",
+      "title": "建立 baseline CI",
+      "gate": "G0",
+      "status": "done",
+      "dependsOn": [
+        "G0-REP-001",
+        "G0-ENV-001"
+      ],
+      "inputs": [
+        "locked toolchain",
+        "control-plane verifier"
+      ],
+      "outputs": [
+        "CI workflow",
+        "baseline evidence"
+      ],
+      "acceptance": [
+        "lint、typecheck、unit、schema 與 artifact smoke test 可重跑且全綠"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "lint、typecheck、unit、schema 與 artifact smoke test 可重跑且全綠",
+          "status": "passed",
+          "evidence": [
+            ".github/workflows/baseline-ci.yml",
+            "scripts/run-baseline-ci.ps1",
+            "scripts/verify_artifacts.py",
+            "artifacts/g0-ci/baseline-verification.json",
+            "docs/G0_BASELINE_CI.md"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        ".github/workflows/baseline-ci.yml",
+        "scripts/run-baseline-ci.ps1",
+        "scripts/verify_artifacts.py",
+        "tests/test_g0_artifact_smoke.py",
+        "tests/test_g0_ci_contract.py",
+        "artifacts/g0-ci/README.md",
+        "artifacts/g0-ci/baseline-verification.json",
+        "docs/G0_BASELINE_CI.md"
+      ],
+      "verification": "passed",
+      "commitSha": "86b9b67513822538e8bd3147d403f24521bb0815"
     },
     {
-      "id": "G1-IR-001", "title": "定義 unit、coordinate、ID 與 provenance primitives", "gate": "G1", "status": "done", "dependsOn": ["G0-CAD-001", "G0-DRW-001", "G0-SIM-001", "G0-CI-001"],
-      "inputs": ["G0 feasibility decisions"], "outputs": ["primitive schemas"],
-      "acceptance": ["單位、座標、識別碼與來源語意具有正反向 schema tests"], "acceptanceResults": [{ "criterion": "單位、座標、識別碼與來源語意具有正反向 schema tests", "status": "passed", "evidence": ["schemas/v2/primitives.schema.json", "contracts/g1/examples/primitives-valid.json", "tests/test_g1_primitives.py", "artifacts/g1-ir-001/verification.json", "docs/G1_PRIMITIVES.md"] }],
-      "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_g1_primitives.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["schemas/v2/primitives.schema.json", "megis/contracts/validation.py", "contracts/g1/examples/primitives-valid.json", "tests/test_g1_primitives.py", "artifacts/g1-ir-001/verification.json", "docs/G1_PRIMITIVES.md", "requirements.in", "requirements.lock"], "verification": "passed", "commitSha": "a2229343e453301ca2aee8053be4509e43514964"
+      "id": "G1-IR-001",
+      "title": "定義 unit、coordinate、ID 與 provenance primitives",
+      "gate": "G1",
+      "status": "done",
+      "dependsOn": [
+        "G0-CAD-001",
+        "G0-DRW-001",
+        "G0-SIM-001",
+        "G0-CI-001"
+      ],
+      "inputs": [
+        "G0 feasibility decisions"
+      ],
+      "outputs": [
+        "primitive schemas"
+      ],
+      "acceptance": [
+        "單位、座標、識別碼與來源語意具有正反向 schema tests"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "單位、座標、識別碼與來源語意具有正反向 schema tests",
+          "status": "passed",
+          "evidence": [
+            "schemas/v2/primitives.schema.json",
+            "contracts/g1/examples/primitives-valid.json",
+            "tests/test_g1_primitives.py",
+            "artifacts/g1-ir-001/verification.json",
+            "docs/G1_PRIMITIVES.md"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe -m pytest tests/test_g1_primitives.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "schemas/v2/primitives.schema.json",
+        "megis/contracts/validation.py",
+        "contracts/g1/examples/primitives-valid.json",
+        "tests/test_g1_primitives.py",
+        "artifacts/g1-ir-001/verification.json",
+        "docs/G1_PRIMITIVES.md",
+        "requirements.in",
+        "requirements.lock"
+      ],
+      "verification": "passed",
+      "commitSha": "a2229343e453301ca2aee8053be4509e43514964"
     },
     {
-      "id": "G1-IR-002", "title": "定義 Engineering IR schema", "gate": "G1", "status": "done", "dependsOn": ["G1-IR-001"],
-      "inputs": ["primitive schemas"], "outputs": ["Engineering IR schema"],
-      "acceptance": ["IR schema 拒絕 unit mismatch、dangling reference、duplicate ID 與 invalid range"], "acceptanceResults": [{ "criterion": "IR schema 拒絕 unit mismatch、dangling reference、duplicate ID 與 invalid range", "status": "passed", "evidence": ["schemas/v2/engineering-ir.schema.json", "contracts/g1/examples/engineering-ir-valid.json", "tests/test_g1_engineering_ir.py", "artifacts/g1-ir-002/verification.json", "docs/G1_ENGINEERING_IR.md"] }],
-      "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_g1_engineering_ir.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["schemas/v2/engineering-ir.schema.json", "megis/contracts/validation.py", "contracts/g1/examples/engineering-ir-valid.json", "tests/test_g1_engineering_ir.py", "artifacts/g1-ir-002/verification.json", "docs/G1_ENGINEERING_IR.md"], "verification": "passed", "commitSha": "c05af93d16e064dd939753fb1b7ac6d108ac01bc"
+      "id": "G1-IR-002",
+      "title": "定義 Engineering IR schema",
+      "gate": "G1",
+      "status": "done",
+      "dependsOn": [
+        "G1-IR-001"
+      ],
+      "inputs": [
+        "primitive schemas"
+      ],
+      "outputs": [
+        "Engineering IR schema"
+      ],
+      "acceptance": [
+        "IR schema 拒絕 unit mismatch、dangling reference、duplicate ID 與 invalid range"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "IR schema 拒絕 unit mismatch、dangling reference、duplicate ID 與 invalid range",
+          "status": "passed",
+          "evidence": [
+            "schemas/v2/engineering-ir.schema.json",
+            "contracts/g1/examples/engineering-ir-valid.json",
+            "tests/test_g1_engineering_ir.py",
+            "artifacts/g1-ir-002/verification.json",
+            "docs/G1_ENGINEERING_IR.md"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe -m pytest tests/test_g1_engineering_ir.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "schemas/v2/engineering-ir.schema.json",
+        "megis/contracts/validation.py",
+        "contracts/g1/examples/engineering-ir-valid.json",
+        "tests/test_g1_engineering_ir.py",
+        "artifacts/g1-ir-002/verification.json",
+        "docs/G1_ENGINEERING_IR.md"
+      ],
+      "verification": "passed",
+      "commitSha": "c05af93d16e064dd939753fb1b7ac6d108ac01bc"
     },
     {
-      "id": "G1-IR-003", "title": "建立 Reference Fixture golden case", "gate": "G1", "status": "done", "dependsOn": ["G1-IR-002"],
-      "inputs": ["Engineering IR schema"], "outputs": ["Fixture golden input", "Acoustic schema input", "Robot schema input"],
-      "acceptance": ["三個 golden inputs 通過 schema 且 Fixture 完成 round trip"], "acceptanceResults": [{ "criterion": "三個 golden inputs 通過 schema 且 Fixture 完成 round trip", "status": "passed", "evidence": ["contracts/g1/golden/reference-fixture.json", "contracts/g1/golden/acoustic-schema-only.json", "contracts/g1/golden/robot-schema-only.json", "contracts/g1/golden/reference-fixture-expectations.json", "tests/test_g1_golden_cases.py", "artifacts/g1-ir-003/verification.json", "docs/G1_GOLDEN_CASES.md"] }],
-      "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_g1_golden_cases.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["megis/contracts/serialization.py", "megis/contracts/consumer.py", "contracts/g1/golden/reference-fixture.json", "contracts/g1/golden/acoustic-schema-only.json", "contracts/g1/golden/robot-schema-only.json", "contracts/g1/golden/reference-fixture-expectations.json", "tests/test_g1_golden_cases.py", "artifacts/g1-ir-003/verification.json", "docs/G1_GOLDEN_CASES.md"], "verification": "passed", "commitSha": "6160784f8b3280152bef6d006baf0fd033e9097a"
+      "id": "G1-IR-003",
+      "title": "建立 Reference Fixture golden case",
+      "gate": "G1",
+      "status": "done",
+      "dependsOn": [
+        "G1-IR-002"
+      ],
+      "inputs": [
+        "Engineering IR schema"
+      ],
+      "outputs": [
+        "Fixture golden input",
+        "Acoustic schema input",
+        "Robot schema input"
+      ],
+      "acceptance": [
+        "三個 golden inputs 通過 schema 且 Fixture 完成 round trip"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "三個 golden inputs 通過 schema 且 Fixture 完成 round trip",
+          "status": "passed",
+          "evidence": [
+            "contracts/g1/golden/reference-fixture.json",
+            "contracts/g1/golden/acoustic-schema-only.json",
+            "contracts/g1/golden/robot-schema-only.json",
+            "contracts/g1/golden/reference-fixture-expectations.json",
+            "tests/test_g1_golden_cases.py",
+            "artifacts/g1-ir-003/verification.json",
+            "docs/G1_GOLDEN_CASES.md"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe -m pytest tests/test_g1_golden_cases.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "megis/contracts/serialization.py",
+        "megis/contracts/consumer.py",
+        "contracts/g1/golden/reference-fixture.json",
+        "contracts/g1/golden/acoustic-schema-only.json",
+        "contracts/g1/golden/robot-schema-only.json",
+        "contracts/g1/golden/reference-fixture-expectations.json",
+        "tests/test_g1_golden_cases.py",
+        "artifacts/g1-ir-003/verification.json",
+        "docs/G1_GOLDEN_CASES.md"
+      ],
+      "verification": "passed",
+      "commitSha": "6160784f8b3280152bef6d006baf0fd033e9097a"
     },
     {
-      "id": "G1-MIG-001", "title": "建立 schema migration contract", "gate": "G1", "status": "done", "dependsOn": ["G1-IR-003"],
-      "inputs": ["versioned golden input"], "outputs": ["migration interface", "rollback fixture"],
-      "acceptance": ["至少一個前版 fixture 可遷移並通過 rollback test"], "acceptanceResults": [{ "criterion": "至少一個前版 fixture 可遷移並通過 rollback test", "status": "passed", "evidence": ["schemas/v1/engineering-ir.schema.json", "contracts/g1/migrations/reference-fixture-v1.json", "megis/contracts/migration.py", "tests/test_g1_migration.py", "artifacts/g1-mig-001/verification.json", "docs/G1_SCHEMA_MIGRATION.md"] }],
-      "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_g1_migration.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["schemas/v1/engineering-ir.schema.json", "contracts/g1/migrations/reference-fixture-v1.json", "megis/contracts/migration.py", "tests/test_g1_migration.py", "artifacts/g1-mig-001/verification.json", "docs/G1_SCHEMA_MIGRATION.md"], "verification": "passed", "commitSha": "be573a0c8dc151ba9a199770146855a10b64540f"
+      "id": "G1-MIG-001",
+      "title": "建立 schema migration contract",
+      "gate": "G1",
+      "status": "done",
+      "dependsOn": [
+        "G1-IR-003"
+      ],
+      "inputs": [
+        "versioned golden input"
+      ],
+      "outputs": [
+        "migration interface",
+        "rollback fixture"
+      ],
+      "acceptance": [
+        "至少一個前版 fixture 可遷移並通過 rollback test"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "至少一個前版 fixture 可遷移並通過 rollback test",
+          "status": "passed",
+          "evidence": [
+            "schemas/v1/engineering-ir.schema.json",
+            "contracts/g1/migrations/reference-fixture-v1.json",
+            "megis/contracts/migration.py",
+            "tests/test_g1_migration.py",
+            "artifacts/g1-mig-001/verification.json",
+            "docs/G1_SCHEMA_MIGRATION.md"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe -m pytest tests/test_g1_migration.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "schemas/v1/engineering-ir.schema.json",
+        "contracts/g1/migrations/reference-fixture-v1.json",
+        "megis/contracts/migration.py",
+        "tests/test_g1_migration.py",
+        "artifacts/g1-mig-001/verification.json",
+        "docs/G1_SCHEMA_MIGRATION.md"
+      ],
+      "verification": "passed",
+      "commitSha": "be573a0c8dc151ba9a199770146855a10b64540f"
     },
     {
-      "id": "G2-CAD-001", "title": "實作 geometry capability contract", "gate": "G2", "status": "done", "dependsOn": ["G1-MIG-001"],
-      "inputs": ["Engineering IR", "CadQuery spike"], "outputs": ["geometry capability contract"],
-      "acceptance": ["幾何 adapter 介面可由 golden IR 驅動且不洩漏核心實作"], "acceptanceResults": [{ "criterion": "幾何 adapter 介面可由 golden IR 驅動且不洩漏核心實作", "status": "passed", "evidence": ["megis/geometry/contracts.py", "megis/geometry/planning.py", "megis/geometry/service.py", "tests/test_g2_geometry_contract.py", "artifacts/g2-cad-001/verification.json", "docs/G2_GEOMETRY_CONTRACT.md"] }],
-      "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_g2_geometry_contract.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["megis/geometry/contracts.py", "megis/geometry/planning.py", "megis/geometry/service.py", "megis/geometry/__init__.py", "tests/test_g2_geometry_contract.py", "artifacts/g2-cad-001/verification.json", "docs/G2_GEOMETRY_CONTRACT.md"], "verification": "passed", "commitSha": "1cd6a270f5a5013d2ffba16c680cbbe68bc20356"
+      "id": "G2-CAD-001",
+      "title": "實作 geometry capability contract",
+      "gate": "G2",
+      "status": "done",
+      "dependsOn": [
+        "G1-MIG-001"
+      ],
+      "inputs": [
+        "Engineering IR",
+        "CadQuery spike"
+      ],
+      "outputs": [
+        "geometry capability contract"
+      ],
+      "acceptance": [
+        "幾何 adapter 介面可由 golden IR 驅動且不洩漏核心實作"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "幾何 adapter 介面可由 golden IR 驅動且不洩漏核心實作",
+          "status": "passed",
+          "evidence": [
+            "megis/geometry/contracts.py",
+            "megis/geometry/planning.py",
+            "megis/geometry/service.py",
+            "tests/test_g2_geometry_contract.py",
+            "artifacts/g2-cad-001/verification.json",
+            "docs/G2_GEOMETRY_CONTRACT.md"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe -m pytest tests/test_g2_geometry_contract.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "megis/geometry/contracts.py",
+        "megis/geometry/planning.py",
+        "megis/geometry/service.py",
+        "megis/geometry/__init__.py",
+        "tests/test_g2_geometry_contract.py",
+        "artifacts/g2-cad-001/verification.json",
+        "docs/G2_GEOMETRY_CONTRACT.md"
+      ],
+      "verification": "passed",
+      "commitSha": "1cd6a270f5a5013d2ffba16c680cbbe68bc20356"
     },
     {
-      "id": "G2-CAD-002", "title": "產生 fixture base", "gate": "G2", "status": "done", "dependsOn": ["G2-CAD-001"],
-      "inputs": ["Fixture golden IR"], "outputs": ["fixture base model"],
-      "acceptance": ["base 幾何、尺寸與拓樸通過自動驗證"], "acceptanceResults": [{ "criterion": "base 幾何、尺寸與拓樸通過自動驗證", "status": "passed", "evidence": ["megis/adapters/cadquery_backend.py", "scripts/verify_fixture_base.py", "tests/test_g2_fixture_base.py", "artifacts/g2-cad-002/verification.json", "docs/G2_FIXTURE_BASE.md"] }],
-      "verificationCommands": [".venv/Scripts/python.exe scripts/verify_fixture_base.py", ".venv/Scripts/python.exe -m pytest tests/test_g2_fixture_base.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["megis/adapters/cadquery_backend.py", "megis/adapters/__init__.py", "scripts/verify_fixture_base.py", "tests/test_g2_fixture_base.py", "artifacts/g2-cad-002/verification.json", "docs/G2_FIXTURE_BASE.md"], "verification": "passed", "commitSha": "6b3d8a6aa15a3797f21cec516a3b2a4554db5c73"
+      "id": "G2-CAD-002",
+      "title": "產生 fixture base",
+      "gate": "G2",
+      "status": "done",
+      "dependsOn": [
+        "G2-CAD-001"
+      ],
+      "inputs": [
+        "Fixture golden IR"
+      ],
+      "outputs": [
+        "fixture base model"
+      ],
+      "acceptance": [
+        "base 幾何、尺寸與拓樸通過自動驗證"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "base 幾何、尺寸與拓樸通過自動驗證",
+          "status": "passed",
+          "evidence": [
+            "megis/adapters/cadquery_backend.py",
+            "scripts/verify_fixture_base.py",
+            "tests/test_g2_fixture_base.py",
+            "artifacts/g2-cad-002/verification.json",
+            "docs/G2_FIXTURE_BASE.md"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe scripts/verify_fixture_base.py",
+        ".venv/Scripts/python.exe -m pytest tests/test_g2_fixture_base.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "megis/adapters/cadquery_backend.py",
+        "megis/adapters/__init__.py",
+        "scripts/verify_fixture_base.py",
+        "tests/test_g2_fixture_base.py",
+        "artifacts/g2-cad-002/verification.json",
+        "docs/G2_FIXTURE_BASE.md"
+      ],
+      "verification": "passed",
+      "commitSha": "6b3d8a6aa15a3797f21cec516a3b2a4554db5c73"
     },
     {
-      "id": "G2-CAD-003", "title": "產生 cover、fasteners 與 cutout", "gate": "G2", "status": "done", "dependsOn": ["G2-CAD-002"],
-      "inputs": ["fixture base model", "Fixture golden IR"], "outputs": ["cover", "fasteners", "cutout", "assembly"],
-      "acceptance": ["組立關係與必要間隙通過自動驗證"], "acceptanceResults": [{ "criterion": "組立關係與必要間隙通過自動驗證", "status": "passed", "evidence": ["megis/adapters/cadquery_backend.py", "tests/test_g2_fixture_assembly.py", "artifacts/g2-cad-003/verification.json", "docs/G2_FIXTURE_ASSEMBLY.md"] }],
-      "verificationCommands": [".venv/Scripts/python.exe scripts/verify_fixture_assembly.py", ".venv/Scripts/python.exe -m pytest tests/test_g2_fixture_assembly.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["megis/geometry/contracts.py", "megis/geometry/planning.py", "megis/geometry/service.py", "megis/adapters/cadquery_backend.py", "scripts/verify_fixture_assembly.py", "tests/test_g2_fixture_assembly.py", "artifacts/g2-cad-003/verification.json", "docs/G2_FIXTURE_ASSEMBLY.md"], "verification": "passed", "commitSha": "b8473653ed8e0b8c2c329997b6e4570f368adfb7"
+      "id": "G2-CAD-003",
+      "title": "產生 cover、fasteners 與 cutout",
+      "gate": "G2",
+      "status": "done",
+      "dependsOn": [
+        "G2-CAD-002"
+      ],
+      "inputs": [
+        "fixture base model",
+        "Fixture golden IR"
+      ],
+      "outputs": [
+        "cover",
+        "fasteners",
+        "cutout",
+        "assembly"
+      ],
+      "acceptance": [
+        "組立關係與必要間隙通過自動驗證"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "組立關係與必要間隙通過自動驗證",
+          "status": "passed",
+          "evidence": [
+            "megis/adapters/cadquery_backend.py",
+            "tests/test_g2_fixture_assembly.py",
+            "artifacts/g2-cad-003/verification.json",
+            "docs/G2_FIXTURE_ASSEMBLY.md"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe scripts/verify_fixture_assembly.py",
+        ".venv/Scripts/python.exe -m pytest tests/test_g2_fixture_assembly.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "megis/geometry/contracts.py",
+        "megis/geometry/planning.py",
+        "megis/geometry/service.py",
+        "megis/adapters/cadquery_backend.py",
+        "scripts/verify_fixture_assembly.py",
+        "tests/test_g2_fixture_assembly.py",
+        "artifacts/g2-cad-003/verification.json",
+        "docs/G2_FIXTURE_ASSEMBLY.md"
+      ],
+      "verification": "passed",
+      "commitSha": "b8473653ed8e0b8c2c329997b6e4570f368adfb7"
     },
     {
-      "id": "V3C-BCR-001", "title": "導入 v3.0 藍圖", "gate": "G2", "status": "done", "dependsOn": [],
-      "inputs": ["MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v3.0-claude-code.md", "existing v2 control plane"], "outputs": ["README blueprint pointer", "v3 adoption ADR", "complete v3 work queue", "required-ID verifier"],
-      "acceptance": ["README 指向 v3、ADR 與完整 v3 工作佇列存在，verifier 必要 ID 測試生效，既有 done 項目未被重開"], "acceptanceResults": [{ "criterion": "README 指向 v3、ADR 與完整 v3 工作佇列存在，verifier 必要 ID 測試生效，既有 done 項目未被重開", "status": "passed", "evidence": ["README.md", "docs/decisions/ADR-0001-adopt-v3-blueprint.md", "execution/WORK_QUEUE.yaml", "execution/schemas/v3-required-work-items.json", "scripts/verify-control-plane.mjs", "tests/test_v3_blueprint_adoption.py", "artifacts/v3c-bcr-001/verification.json"] }],
-      "verificationCommands": ["node scripts/verify-control-plane.mjs", ".venv/Scripts/python.exe -m pytest tests/test_v3_blueprint_adoption.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["README.md", "docs/DECISIONS.md", "docs/decisions/ADR-0001-adopt-v3-blueprint.md", "execution/WORK_QUEUE.yaml", "execution/schemas/v3-required-work-items.json", "scripts/verify-control-plane.mjs", "tests/test_v3_blueprint_adoption.py", "artifacts/v3c-bcr-001/verification.json"], "verification": "passed", "commitSha": "d8a6ed9598a437a0f7d7cb533f52cf90a8e451c3",
-      "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E3", "review": { "required": false, "status": "not_required", "report": null }, "risk_refs": ["R-AGT-003"], "blueprint_ref": "v3.0 §0.6, §5.10, §26.1"
+      "id": "V3C-BCR-001",
+      "title": "導入 v3.0 藍圖",
+      "gate": "G2",
+      "status": "done",
+      "dependsOn": [],
+      "inputs": [
+        "MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v3.0-claude-code.md",
+        "existing v2 control plane"
+      ],
+      "outputs": [
+        "README blueprint pointer",
+        "v3 adoption ADR",
+        "complete v3 work queue",
+        "required-ID verifier"
+      ],
+      "acceptance": [
+        "README 指向 v3、ADR 與完整 v3 工作佇列存在，verifier 必要 ID 測試生效，既有 done 項目未被重開"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "README 指向 v3、ADR 與完整 v3 工作佇列存在，verifier 必要 ID 測試生效，既有 done 項目未被重開",
+          "status": "passed",
+          "evidence": [
+            "README.md",
+            "docs/decisions/ADR-0001-adopt-v3-blueprint.md",
+            "execution/WORK_QUEUE.yaml",
+            "execution/schemas/v3-required-work-items.json",
+            "scripts/verify-control-plane.mjs",
+            "tests/test_v3_blueprint_adoption.py",
+            "artifacts/v3c-bcr-001/verification.json"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs",
+        ".venv/Scripts/python.exe -m pytest tests/test_v3_blueprint_adoption.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "README.md",
+        "docs/DECISIONS.md",
+        "docs/decisions/ADR-0001-adopt-v3-blueprint.md",
+        "execution/WORK_QUEUE.yaml",
+        "execution/schemas/v3-required-work-items.json",
+        "scripts/verify-control-plane.mjs",
+        "tests/test_v3_blueprint_adoption.py",
+        "artifacts/v3c-bcr-001/verification.json"
+      ],
+      "verification": "passed",
+      "commitSha": "d8a6ed9598a437a0f7d7cb533f52cf90a8e451c3",
+      "owner_role": "builder",
+      "requires_user_decision": false,
+      "evidence_level_required": "E3",
+      "review": {
+        "required": false,
+        "status": "not_required",
+        "report": null
+      },
+      "risk_refs": [
+        "R-AGT-003"
+      ],
+      "blueprint_ref": "v3.0 §0.6, §5.10, §26.1"
     },
     {
-      "id": "V3C-CTL-001", "title": "控制面 schema 1.1 與 claim", "gate": "G2", "status": "done", "dependsOn": ["V3C-BCR-001"],
-      "inputs": ["v3 control-plane contract"], "outputs": ["schema 1.1.0", "execution/AGENT_CLAIM.json", "extended verifier"],
-      "acceptance": ["schema 1.1 選填欄位、claim 與 v3 §5.13 控制面檢查生效"], "acceptanceResults": [{ "criterion": "schema 1.1 選填欄位、claim 與 v3 §5.13 控制面檢查生效", "status": "passed", "evidence": ["execution/schemas/work-queue.schema.json", "execution/schemas/agent-claim.schema.json", "execution/AGENT_CLAIM.json", "execution/V3_MIGRATION.json", "scripts/verify-control-plane.mjs", "tests/test_v3_blueprint_adoption.py", "artifacts/v3c-ctl-001/verification.json", "docs/V3_CONTROL_PLANE.md"] }],
-      "verificationCommands": ["node scripts/verify-control-plane.mjs", ".venv/Scripts/python.exe -m pytest tests/test_v3_blueprint_adoption.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [".github/workflows/baseline-ci.yml", "execution/schemas/work-queue.schema.json", "execution/schemas/agent-claim.schema.json", "execution/AGENT_CLAIM.json", "execution/V3_MIGRATION.json", "scripts/verify-control-plane.mjs", "tests/test_v3_blueprint_adoption.py", "artifacts/v3c-ctl-001/verification.json", "docs/V3_CONTROL_PLANE.md"], "verification": "passed", "commitSha": "bf152afefbd22e81655566fe5650d6c23d6b2992",
-      "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E3", "review": { "required": false, "status": "not_required", "report": null }, "risk_refs": ["R-AGT-001"], "blueprint_ref": "v3.0 §5.3, §5.7, §5.13"
+      "id": "V3C-CTL-001",
+      "title": "控制面 schema 1.1 與 claim",
+      "gate": "G2",
+      "status": "done",
+      "dependsOn": [
+        "V3C-BCR-001"
+      ],
+      "inputs": [
+        "v3 control-plane contract"
+      ],
+      "outputs": [
+        "schema 1.1.0",
+        "execution/AGENT_CLAIM.json",
+        "extended verifier"
+      ],
+      "acceptance": [
+        "schema 1.1 選填欄位、claim 與 v3 §5.13 控制面檢查生效"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "schema 1.1 選填欄位、claim 與 v3 §5.13 控制面檢查生效",
+          "status": "passed",
+          "evidence": [
+            "execution/schemas/work-queue.schema.json",
+            "execution/schemas/agent-claim.schema.json",
+            "execution/AGENT_CLAIM.json",
+            "execution/V3_MIGRATION.json",
+            "scripts/verify-control-plane.mjs",
+            "tests/test_v3_blueprint_adoption.py",
+            "artifacts/v3c-ctl-001/verification.json",
+            "docs/V3_CONTROL_PLANE.md"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs",
+        ".venv/Scripts/python.exe -m pytest tests/test_v3_blueprint_adoption.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        ".github/workflows/baseline-ci.yml",
+        "execution/schemas/work-queue.schema.json",
+        "execution/schemas/agent-claim.schema.json",
+        "execution/AGENT_CLAIM.json",
+        "execution/V3_MIGRATION.json",
+        "scripts/verify-control-plane.mjs",
+        "tests/test_v3_blueprint_adoption.py",
+        "artifacts/v3c-ctl-001/verification.json",
+        "docs/V3_CONTROL_PLANE.md"
+      ],
+      "verification": "passed",
+      "commitSha": "bf152afefbd22e81655566fe5650d6c23d6b2992",
+      "owner_role": "builder",
+      "requires_user_decision": false,
+      "evidence_level_required": "E3",
+      "review": {
+        "required": false,
+        "status": "not_required",
+        "report": null
+      },
+      "risk_refs": [
+        "R-AGT-001"
+      ],
+      "blueprint_ref": "v3.0 §5.3, §5.7, §5.13"
     },
     {
-      "id": "V3C-DOC-001", "title": "補齊控制面文件", "gate": "G2", "status": "done", "dependsOn": ["V3C-BCR-001"],
-      "inputs": ["v3 §5.1"], "outputs": ["required control-plane documents", "CLAUDE.md"],
-      "acceptance": ["v3 §5.1 全部文件存在且非空殼，CLAUDE.md 不與 AGENTS.md 衝突"], "acceptanceResults": [{ "criterion": "v3 §5.1 全部文件存在且非空殼，CLAUDE.md 不與 AGENTS.md 衝突", "status": "passed", "evidence": ["CLAUDE.md", "docs/PRODUCT.md", "docs/ARCHITECTURE.md", "docs/SUPPORTED_ENVELOPE.md", "docs/ACCEPTANCE.md", "docs/RISKS.md", "docs/OPERATIONS.md", "docs/ERROR_CODES.md", "docs/RULE_SOURCES.md", "docs/research/README.md", "artifacts/v3c-doc-001/verification.json"] }],
-      "verificationCommands": ["node scripts/verify-control-plane.mjs", ".venv/Scripts/python.exe -m pytest tests/test_v3_blueprint_adoption.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["CLAUDE.md", "docs/PRODUCT.md", "docs/ARCHITECTURE.md", "docs/DECISIONS.md", "docs/SUPPORTED_ENVELOPE.md", "docs/ACCEPTANCE.md", "docs/RISKS.md", "docs/OPERATIONS.md", "docs/ERROR_CODES.md", "docs/RULE_SOURCES.md", "docs/research/README.md", "execution/handoffs/README.md", "execution/reviews/README.md", "execution/signoffs/README.md", "config/envelope/README.md", "tests/golden/README.md", "scripts/verify-control-plane.mjs", "tests/test_v3_blueprint_adoption.py", "artifacts/v3c-doc-001/verification.json"], "verification": "passed", "commitSha": "6cc2ad78d237d2c2095d705910a242dcd2b6b2bc",
-      "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E2", "review": { "required": false, "status": "not_required", "report": null }, "risk_refs": ["R-AGT-003"], "blueprint_ref": "v3.0 §5.1, §26.1"
+      "id": "V3C-DOC-001",
+      "title": "補齊控制面文件",
+      "gate": "G2",
+      "status": "done",
+      "dependsOn": [
+        "V3C-BCR-001"
+      ],
+      "inputs": [
+        "v3 §5.1"
+      ],
+      "outputs": [
+        "required control-plane documents",
+        "CLAUDE.md"
+      ],
+      "acceptance": [
+        "v3 §5.1 全部文件存在且非空殼，CLAUDE.md 不與 AGENTS.md 衝突"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "v3 §5.1 全部文件存在且非空殼，CLAUDE.md 不與 AGENTS.md 衝突",
+          "status": "passed",
+          "evidence": [
+            "CLAUDE.md",
+            "docs/PRODUCT.md",
+            "docs/ARCHITECTURE.md",
+            "docs/SUPPORTED_ENVELOPE.md",
+            "docs/ACCEPTANCE.md",
+            "docs/RISKS.md",
+            "docs/OPERATIONS.md",
+            "docs/ERROR_CODES.md",
+            "docs/RULE_SOURCES.md",
+            "docs/research/README.md",
+            "artifacts/v3c-doc-001/verification.json"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-control-plane.mjs",
+        ".venv/Scripts/python.exe -m pytest tests/test_v3_blueprint_adoption.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "CLAUDE.md",
+        "docs/PRODUCT.md",
+        "docs/ARCHITECTURE.md",
+        "docs/DECISIONS.md",
+        "docs/SUPPORTED_ENVELOPE.md",
+        "docs/ACCEPTANCE.md",
+        "docs/RISKS.md",
+        "docs/OPERATIONS.md",
+        "docs/ERROR_CODES.md",
+        "docs/RULE_SOURCES.md",
+        "docs/research/README.md",
+        "execution/handoffs/README.md",
+        "execution/reviews/README.md",
+        "execution/signoffs/README.md",
+        "config/envelope/README.md",
+        "tests/golden/README.md",
+        "scripts/verify-control-plane.mjs",
+        "tests/test_v3_blueprint_adoption.py",
+        "artifacts/v3c-doc-001/verification.json"
+      ],
+      "verification": "passed",
+      "commitSha": "6cc2ad78d237d2c2095d705910a242dcd2b6b2bc",
+      "owner_role": "builder",
+      "requires_user_decision": false,
+      "evidence_level_required": "E2",
+      "review": {
+        "required": false,
+        "status": "not_required",
+        "report": null
+      },
+      "risk_refs": [
+        "R-AGT-003"
+      ],
+      "blueprint_ref": "v3.0 §5.1, §26.1"
     },
     {
-      "id": "V3C-DEC-001", "title": "G0 決策補記", "gate": "G2", "status": "done", "dependsOn": ["V3C-DOC-001"],
-      "inputs": ["v3 §8.1 decisions"], "outputs": ["D1–D9 ADR records"],
-      "acceptance": ["D1–D9 全部有可追溯 ADR 與既有決策證據"], "acceptanceResults": [{ "criterion": "D1–D9 全部有可追溯 ADR 與既有決策證據", "status": "passed", "evidence": ["docs/DECISIONS.md", "docs/decisions/ADR-0002-local-single-user-deployment.md", "docs/decisions/ADR-0003-comsol-out-of-scope.md", "docs/decisions/ADR-0004-llm-adapter-offline-fallback.md", "docs/decisions/ADR-0005-windows-ci-and-main-push.md", "docs/decisions/ADR-0006-protect-customer-engineering-data.md", "docs/decisions/ADR-0007-builder-self-review.md", "docs/decisions/ADR-0008-single-builder-agent-claim.md", "docs/decisions/ADR-0009-research-reference-unknowns.md", "docs/decisions/ADR-0010-artifact-retention.md", "execution/decisions/g0-decisions.json", "execution/schemas/g0-decisions.schema.json", "tests/test_v3_g0_decisions.py", "artifacts/v3c-dec-001/verification.json"] }],
-      "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_v3_g0_decisions.py tests/test_v3_blueprint_adoption.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["docs/DECISIONS.md", "docs/decisions/ADR-0002-local-single-user-deployment.md", "docs/decisions/ADR-0003-comsol-out-of-scope.md", "docs/decisions/ADR-0004-llm-adapter-offline-fallback.md", "docs/decisions/ADR-0005-windows-ci-and-main-push.md", "docs/decisions/ADR-0006-protect-customer-engineering-data.md", "docs/decisions/ADR-0007-builder-self-review.md", "docs/decisions/ADR-0008-single-builder-agent-claim.md", "docs/decisions/ADR-0009-research-reference-unknowns.md", "docs/decisions/ADR-0010-artifact-retention.md", "execution/decisions/g0-decisions.json", "execution/schemas/g0-decisions.schema.json", "tests/test_v3_g0_decisions.py", "artifacts/v3c-dec-001/verification.json"], "verification": "passed", "commitSha": "065adb3567b257b94b72a2557fb1f1cb15085342",
-      "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E4", "review": { "required": false, "status": "not_required", "report": null }, "risk_refs": ["R-SME-001", "R-SPEC-001"], "blueprint_ref": "v3.0 §8.1, §26.1"
+      "id": "V3C-DEC-001",
+      "title": "G0 決策補記",
+      "gate": "G2",
+      "status": "done",
+      "dependsOn": [
+        "V3C-DOC-001"
+      ],
+      "inputs": [
+        "v3 §8.1 decisions"
+      ],
+      "outputs": [
+        "D1–D9 ADR records"
+      ],
+      "acceptance": [
+        "D1–D9 全部有可追溯 ADR 與既有決策證據"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "D1–D9 全部有可追溯 ADR 與既有決策證據",
+          "status": "passed",
+          "evidence": [
+            "docs/DECISIONS.md",
+            "docs/decisions/ADR-0002-local-single-user-deployment.md",
+            "docs/decisions/ADR-0003-comsol-out-of-scope.md",
+            "docs/decisions/ADR-0004-llm-adapter-offline-fallback.md",
+            "docs/decisions/ADR-0005-windows-ci-and-main-push.md",
+            "docs/decisions/ADR-0006-protect-customer-engineering-data.md",
+            "docs/decisions/ADR-0007-builder-self-review.md",
+            "docs/decisions/ADR-0008-single-builder-agent-claim.md",
+            "docs/decisions/ADR-0009-research-reference-unknowns.md",
+            "docs/decisions/ADR-0010-artifact-retention.md",
+            "execution/decisions/g0-decisions.json",
+            "execution/schemas/g0-decisions.schema.json",
+            "tests/test_v3_g0_decisions.py",
+            "artifacts/v3c-dec-001/verification.json"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe -m pytest tests/test_v3_g0_decisions.py tests/test_v3_blueprint_adoption.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "docs/DECISIONS.md",
+        "docs/decisions/ADR-0002-local-single-user-deployment.md",
+        "docs/decisions/ADR-0003-comsol-out-of-scope.md",
+        "docs/decisions/ADR-0004-llm-adapter-offline-fallback.md",
+        "docs/decisions/ADR-0005-windows-ci-and-main-push.md",
+        "docs/decisions/ADR-0006-protect-customer-engineering-data.md",
+        "docs/decisions/ADR-0007-builder-self-review.md",
+        "docs/decisions/ADR-0008-single-builder-agent-claim.md",
+        "docs/decisions/ADR-0009-research-reference-unknowns.md",
+        "docs/decisions/ADR-0010-artifact-retention.md",
+        "execution/decisions/g0-decisions.json",
+        "execution/schemas/g0-decisions.schema.json",
+        "tests/test_v3_g0_decisions.py",
+        "artifacts/v3c-dec-001/verification.json"
+      ],
+      "verification": "passed",
+      "commitSha": "065adb3567b257b94b72a2557fb1f1cb15085342",
+      "owner_role": "builder",
+      "requires_user_decision": false,
+      "evidence_level_required": "E4",
+      "review": {
+        "required": false,
+        "status": "not_required",
+        "report": null
+      },
+      "risk_refs": [
+        "R-SME-001",
+        "R-SPEC-001"
+      ],
+      "blueprint_ref": "v3.0 §8.1, §26.1"
     },
     {
-      "id": "V3C-DET-001", "title": "Determinism 與 fingerprint", "gate": "G2", "status": "done", "dependsOn": ["V3C-BCR-001"],
-      "inputs": ["existing CAD spikes", "v3 fingerprint policy"], "outputs": ["fingerprint policy 1.0.0", "header normalization", "replay tests"],
-      "acceptance": ["STEP/DXF 正規化、binary STL 與兩次重跑 semantic fingerprint 一致"], "acceptanceResults": [{ "criterion": "STEP/DXF 正規化、binary STL 與兩次重跑 semantic fingerprint 一致", "status": "passed", "evidence": ["config/fingerprint/policy-1.0.0.json", "docs/FINGERPRINT_POLICY.md", "megis/determinism/fingerprint.py", "megis/determinism/normalization.py", "tests/test_v3_determinism.py", "artifacts/g0-cad/manifest.json", "artifacts/v3c-det-001/verification.json"] }],
-      "verificationCommands": [".venv/Scripts/python.exe -m pytest tests/test_v3_determinism.py tests/test_g0_cad_reference_case.py tests/test_g0_artifact_smoke.py tests/test_v3_blueprint_adoption.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["config/fingerprint/policy-1.0.0.json", "schemas/v3/fingerprint-policy.schema.json", "docs/FINGERPRINT_POLICY.md", "docs/G0_CAD_VERIFICATION.md", "megis/determinism/__init__.py", "megis/determinism/fingerprint.py", "megis/determinism/normalization.py", "spikes/g0_cad/reference_case.py", "scripts/verify_artifacts.py", "tests/test_v3_determinism.py", "artifacts/g0-cad/manifest.json", "artifacts/g0-cad/reference_case.step", "artifacts/g0-cad/reference_case.stl", "artifacts/g0-cad/reference_case_section_z10.dxf", "artifacts/v3c-det-001/verification.json"], "verification": "passed", "commitSha": "ad0a8dd1ac28f4038d5cc6f917541e5c4d8cce09",
-      "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E3",
-      "review": { "required": false, "status": "not_required", "report": null },
-      "risk_refs": ["R-DET-001", "R-DET-002"], "blueprint_ref": "v3.0 §4.12, §26.1"
+      "id": "V3C-DET-001",
+      "title": "Determinism 與 fingerprint",
+      "gate": "G2",
+      "status": "done",
+      "dependsOn": [
+        "V3C-BCR-001"
+      ],
+      "inputs": [
+        "existing CAD spikes",
+        "v3 fingerprint policy"
+      ],
+      "outputs": [
+        "fingerprint policy 1.0.0",
+        "header normalization",
+        "replay tests"
+      ],
+      "acceptance": [
+        "STEP/DXF 正規化、binary STL 與兩次重跑 semantic fingerprint 一致"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "STEP/DXF 正規化、binary STL 與兩次重跑 semantic fingerprint 一致",
+          "status": "passed",
+          "evidence": [
+            "config/fingerprint/policy-1.0.0.json",
+            "docs/FINGERPRINT_POLICY.md",
+            "megis/determinism/fingerprint.py",
+            "megis/determinism/normalization.py",
+            "tests/test_v3_determinism.py",
+            "artifacts/g0-cad/manifest.json",
+            "artifacts/v3c-det-001/verification.json"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe -m pytest tests/test_v3_determinism.py tests/test_g0_cad_reference_case.py tests/test_g0_artifact_smoke.py tests/test_v3_blueprint_adoption.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "config/fingerprint/policy-1.0.0.json",
+        "schemas/v3/fingerprint-policy.schema.json",
+        "docs/FINGERPRINT_POLICY.md",
+        "docs/G0_CAD_VERIFICATION.md",
+        "megis/determinism/__init__.py",
+        "megis/determinism/fingerprint.py",
+        "megis/determinism/normalization.py",
+        "spikes/g0_cad/reference_case.py",
+        "scripts/verify_artifacts.py",
+        "tests/test_v3_determinism.py",
+        "artifacts/g0-cad/manifest.json",
+        "artifacts/g0-cad/reference_case.step",
+        "artifacts/g0-cad/reference_case.stl",
+        "artifacts/g0-cad/reference_case_section_z10.dxf",
+        "artifacts/v3c-det-001/verification.json"
+      ],
+      "verification": "passed",
+      "commitSha": "ad0a8dd1ac28f4038d5cc6f917541e5c4d8cce09",
+      "owner_role": "builder",
+      "requires_user_decision": false,
+      "evidence_level_required": "E3",
+      "review": {
+        "required": false,
+        "status": "not_required",
+        "report": null
+      },
+      "risk_refs": [
+        "R-DET-001",
+        "R-DET-002"
+      ],
+      "blueprint_ref": "v3.0 §4.12, §26.1"
     },
     {
-      "id": "V3C-MAT-001", "title": "Classification 與 maturity 修正", "gate": "G2", "status": "done", "dependsOn": ["V3C-DET-001"],
-      "inputs": ["existing manifests", "classification contract"], "outputs": ["corrected manifests", "maturity scanner"],
-      "acceptance": ["既有 spike maturity 為 null，classification 掃描與負向測試生效"], "acceptanceResults": [{ "criterion": "既有 spike maturity 為 null，classification 掃描與負向測試生效", "status": "passed", "evidence": ["schemas/v3/artifact-classification.schema.json", "megis/governance/classification.py", "scripts/verify_maturity.py", "tests/test_v3_maturity.py", "artifacts/g0-cad/manifest.json", "artifacts/v3c-mat-001/verification.json"] }],
-      "verificationCommands": [".venv/Scripts/python.exe scripts/verify_maturity.py", ".venv/Scripts/python.exe -m pytest tests/test_v3_maturity.py tests/test_g0_cad_reference_case.py tests/test_v3_determinism.py tests/test_g0_artifact_smoke.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["schemas/v3/artifact-classification.schema.json", "docs/CLASSIFICATION_AND_MATURITY.md", "megis/governance/__init__.py", "megis/governance/classification.py", "scripts/verify_maturity.py", "scripts/run-baseline-ci.ps1", "tests/test_v3_maturity.py", "tests/test_v3_determinism.py", "artifacts/g0-cad/manifest.json", "artifacts/v3c-mat-001/verification.json"], "verification": "passed", "commitSha": "8f58d8b21d485dcef2f29838aa568cf201d03ece",
-      "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E3",
-      "review": { "required": false, "status": "not_required", "report": null },
-      "risk_refs": ["R-SAFE-001", "R-DET-001"], "blueprint_ref": "v3.0 §1.4, §1.5, §26.1"
+      "id": "V3C-MAT-001",
+      "title": "Classification 與 maturity 修正",
+      "gate": "G2",
+      "status": "done",
+      "dependsOn": [
+        "V3C-DET-001"
+      ],
+      "inputs": [
+        "existing manifests",
+        "classification contract"
+      ],
+      "outputs": [
+        "corrected manifests",
+        "maturity scanner"
+      ],
+      "acceptance": [
+        "既有 spike maturity 為 null，classification 掃描與負向測試生效"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "既有 spike maturity 為 null，classification 掃描與負向測試生效",
+          "status": "passed",
+          "evidence": [
+            "schemas/v3/artifact-classification.schema.json",
+            "megis/governance/classification.py",
+            "scripts/verify_maturity.py",
+            "tests/test_v3_maturity.py",
+            "artifacts/g0-cad/manifest.json",
+            "artifacts/v3c-mat-001/verification.json"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe scripts/verify_maturity.py",
+        ".venv/Scripts/python.exe -m pytest tests/test_v3_maturity.py tests/test_g0_cad_reference_case.py tests/test_v3_determinism.py tests/test_g0_artifact_smoke.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "schemas/v3/artifact-classification.schema.json",
+        "docs/CLASSIFICATION_AND_MATURITY.md",
+        "megis/governance/__init__.py",
+        "megis/governance/classification.py",
+        "scripts/verify_maturity.py",
+        "scripts/run-baseline-ci.ps1",
+        "tests/test_v3_maturity.py",
+        "tests/test_v3_determinism.py",
+        "artifacts/g0-cad/manifest.json",
+        "artifacts/v3c-mat-001/verification.json"
+      ],
+      "verification": "passed",
+      "commitSha": "8f58d8b21d485dcef2f29838aa568cf201d03ece",
+      "owner_role": "builder",
+      "requires_user_decision": false,
+      "evidence_level_required": "E3",
+      "review": {
+        "required": false,
+        "status": "not_required",
+        "report": null
+      },
+      "risk_refs": [
+        "R-SAFE-001",
+        "R-DET-001"
+      ],
+      "blueprint_ref": "v3.0 §1.4, §1.5, §26.1"
     },
     {
-      "id": "V3C-ART-001", "title": "Artifact 政策", "gate": "G2", "status": "done", "dependsOn": ["V3C-BCR-001"],
-      "inputs": ["tracked artifact inventory", "v3 §5.9"], "outputs": [".gitattributes", "file-size budget check", "large-file ADR"],
-      "acceptance": ["artifact attributes、大小預算與重型製品政策可自動驗證"], "acceptanceResults": [{ "criterion": "artifact attributes、大小預算與重型製品政策可自動驗證", "status": "passed", "evidence": [".gitattributes", ".gitignore", "config/artifact-policy/policy-1.0.0.json", "docs/decisions/ADR-0011-legacy-heavy-artifact-allowlist.md", "scripts/verify-artifact-policy.mjs", "tests/test_artifact_policy.mjs", "artifacts/v3c-art-001/verification.json"] }],
-      "verificationCommands": ["node scripts/verify-artifact-policy.mjs", "node --test tests/test_artifact_policy.mjs", ".venv/Scripts/python.exe -m pytest tests/test_v3_artifact_policy.py tests/test_g0_ci_contract.py tests/test_v3_blueprint_adoption.py", "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [".gitattributes", ".gitignore", "config/artifact-policy/policy-1.0.0.json", "schemas/v3/artifact-policy.schema.json", "docs/ARTIFACT_POLICY.md", "docs/decisions/ADR-0011-legacy-heavy-artifact-allowlist.md", "scripts/lib/artifact-policy.mjs", "scripts/verify-artifact-policy.mjs", "scripts/verify-control-plane.mjs", "scripts/run-baseline-ci.ps1", "tests/test_artifact_policy.mjs", "tests/test_v3_artifact_policy.py", "artifacts/v3c-art-001/verification.json", "outputs/2026-09-17-V3C-ART-001-施工完成與隔離交接報告.md", "README.md"], "verification": "passed", "commitSha": "da4e61d1c9cf8782ea03b775da238492bda9a020",
-      "owner_role": "builder", "requires_user_decision": false, "evidence_level_required": "E3",
-      "review": { "required": false, "status": "not_required", "report": null },
-      "risk_refs": ["R-GIT-001", "R-DET-001"], "blueprint_ref": "v3.0 §5.8, §5.9, §26.1"
+      "id": "V3C-ART-001",
+      "title": "Artifact 政策",
+      "gate": "G2",
+      "status": "done",
+      "dependsOn": [
+        "V3C-BCR-001"
+      ],
+      "inputs": [
+        "tracked artifact inventory",
+        "v3 §5.9"
+      ],
+      "outputs": [
+        ".gitattributes",
+        "file-size budget check",
+        "large-file ADR"
+      ],
+      "acceptance": [
+        "artifact attributes、大小預算與重型製品政策可自動驗證"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "artifact attributes、大小預算與重型製品政策可自動驗證",
+          "status": "passed",
+          "evidence": [
+            ".gitattributes",
+            ".gitignore",
+            "config/artifact-policy/policy-1.0.0.json",
+            "docs/decisions/ADR-0011-legacy-heavy-artifact-allowlist.md",
+            "scripts/verify-artifact-policy.mjs",
+            "tests/test_artifact_policy.mjs",
+            "artifacts/v3c-art-001/verification.json"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        "node scripts/verify-artifact-policy.mjs",
+        "node --test tests/test_artifact_policy.mjs",
+        ".venv/Scripts/python.exe -m pytest tests/test_v3_artifact_policy.py tests/test_g0_ci_contract.py tests/test_v3_blueprint_adoption.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        ".gitattributes",
+        ".gitignore",
+        "config/artifact-policy/policy-1.0.0.json",
+        "schemas/v3/artifact-policy.schema.json",
+        "docs/ARTIFACT_POLICY.md",
+        "docs/decisions/ADR-0011-legacy-heavy-artifact-allowlist.md",
+        "scripts/lib/artifact-policy.mjs",
+        "scripts/verify-artifact-policy.mjs",
+        "scripts/verify-control-plane.mjs",
+        "scripts/run-baseline-ci.ps1",
+        "tests/test_artifact_policy.mjs",
+        "tests/test_v3_artifact_policy.py",
+        "artifacts/v3c-art-001/verification.json",
+        "outputs/2026-09-17-V3C-ART-001-施工完成與隔離交接報告.md",
+        "README.md"
+      ],
+      "verification": "passed",
+      "commitSha": "da4e61d1c9cf8782ea03b775da238492bda9a020",
+      "owner_role": "builder",
+      "requires_user_decision": false,
+      "evidence_level_required": "E3",
+      "review": {
+        "required": false,
+        "status": "not_required",
+        "report": null
+      },
+      "risk_refs": [
+        "R-GIT-001",
+        "R-DET-001"
+      ],
+      "blueprint_ref": "v3.0 §5.8, §5.9, §26.1"
     },
     {
-      "id": "V3C-REV-001", "title": "已 accepted Gate 追溯審查", "gate": "G2", "status": "in_progress", "dependsOn": ["V3C-CTL-001", "V3C-DOC-001", "V3C-DEC-001", "V3C-MAT-001", "V3C-ART-001"],
-      "inputs": ["accepted Gate evidence", "completed V3C remediation"], "outputs": ["fresh-session retrospective review"],
-      "acceptance": ["全新 session 對已 accepted Gate 出具審查報告，所有差距均有承接項目"], "acceptanceResults": [{ "criterion": "全新 session 對已 accepted Gate 出具審查報告，所有差距均有承接項目", "status": "passed", "evidence": ["execution/reviews/2026-09-18-V3C-REV-001-accepted-gates-retrospective.md", "artifacts/v3c-rev-001/verification.json", "execution/WORK_QUEUE.yaml"] }],
-      "verificationCommands": ["powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1", "node scripts/verify-control-plane.mjs"], "rollbackBoundary": "commit", "blockedBy": [], "evidence": ["execution/reviews/2026-09-18-V3C-REV-001-accepted-gates-retrospective.md", "artifacts/v3c-rev-001/verification.json", "execution/LAST_VERIFICATION.json"], "verification": "passed", "commitSha": null
+      "id": "V3C-REV-001",
+      "title": "已 accepted Gate 追溯審查",
+      "gate": "G2",
+      "status": "in_progress",
+      "dependsOn": [
+        "V3C-CTL-001",
+        "V3C-DOC-001",
+        "V3C-DEC-001",
+        "V3C-MAT-001",
+        "V3C-ART-001"
+      ],
+      "inputs": [
+        "accepted Gate evidence",
+        "completed V3C remediation"
+      ],
+      "outputs": [
+        "fresh-session retrospective review"
+      ],
+      "acceptance": [
+        "全新 session 對已 accepted Gate 出具審查報告，所有差距均有承接項目"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "全新 session 對已 accepted Gate 出具審查報告，所有差距均有承接項目",
+          "status": "passed",
+          "evidence": [
+            "execution/reviews/2026-09-18-V3C-REV-001-accepted-gates-retrospective.md",
+            "artifacts/v3c-rev-001/verification.json",
+            "execution/WORK_QUEUE.yaml"
+          ]
+        }
+      ],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "execution/reviews/2026-09-18-V3C-REV-001-accepted-gates-retrospective.md",
+        "artifacts/v3c-rev-001/verification.json",
+        "execution/LAST_VERIFICATION.json"
+      ],
+      "verification": "passed",
+      "commitSha": null
     },
     {
-      "id": "V3C-ACC-001", "title": "導入完成簽核", "gate": "G2", "status": "planned", "dependsOn": ["V3C-REV-001"],
-      "inputs": ["V3C retrospective review"], "outputs": ["blueprint_change sign-off"],
-      "acceptance": ["v3 blueprint_change sign-off 可追溯至審查與 commit"], "acceptanceResults": [{ "criterion": "v3 blueprint_change sign-off 可追溯至審查與 commit", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "V3C-ACC-001",
+      "title": "導入完成簽核",
+      "gate": "G2",
+      "status": "planned",
+      "dependsOn": [
+        "V3C-REV-001"
+      ],
+      "inputs": [
+        "V3C retrospective review"
+      ],
+      "outputs": [
+        "blueprint_change sign-off"
+      ],
+      "acceptance": [
+        "v3 blueprint_change sign-off 可追溯至審查與 commit"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "v3 blueprint_change sign-off 可追溯至審查與 commit",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
-      "id": "G2-CAD-004", "title": "輸出與重新載入 artifacts", "gate": "G2", "status": "planned", "dependsOn": ["G2-CAD-003"],
-      "inputs": ["fixture assembly"], "outputs": ["STEP", "STL", "DXF", "reload evidence"],
-      "acceptance": ["輸出檔可重新載入且幾何不為空"], "acceptanceResults": [{ "criterion": "輸出檔可重新載入且幾何不為空", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "G2-CAD-004",
+      "title": "輸出與重新載入 artifacts",
+      "gate": "G2",
+      "status": "planned",
+      "dependsOn": [
+        "G2-CAD-003"
+      ],
+      "inputs": [
+        "fixture assembly"
+      ],
+      "outputs": [
+        "STEP",
+        "STL",
+        "DXF",
+        "reload evidence"
+      ],
+      "acceptance": [
+        "輸出檔可重新載入且幾何不為空"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "輸出檔可重新載入且幾何不為空",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
-      "id": "G3-RUL-001", "title": "建立 rule schema、governance 與 waiver", "gate": "G3", "status": "planned", "dependsOn": ["G2-ACC-001"],
-      "inputs": ["Engineering IR", "fixture artifacts"], "outputs": ["rule schema", "waiver contract"],
-      "acceptance": ["規則、嚴重度、來源、版本與 waiver 均可追溯"], "acceptanceResults": [{ "criterion": "規則、嚴重度、來源、版本與 waiver 均可追溯", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "G3-RUL-001",
+      "title": "建立 rule schema、governance 與 waiver",
+      "gate": "G3",
+      "status": "planned",
+      "dependsOn": [
+        "G2-ACC-001"
+      ],
+      "inputs": [
+        "Engineering IR",
+        "fixture artifacts"
+      ],
+      "outputs": [
+        "rule schema",
+        "waiver contract"
+      ],
+      "acceptance": [
+        "規則、嚴重度、來源、版本與 waiver 均可追溯"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "規則、嚴重度、來源、版本與 waiver 均可追溯",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
-      "id": "G3-VAL-001", "title": "建立 geometry、collision 與 clearance validators", "gate": "G3", "status": "planned", "dependsOn": ["G3-RUL-001"],
-      "inputs": ["rule schema", "fixture assembly"], "outputs": ["geometry validators"],
-      "acceptance": ["已知 pass/fail cases 產生可追溯驗證結果"], "acceptanceResults": [{ "criterion": "已知 pass/fail cases 產生可追溯驗證結果", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "G3-VAL-001",
+      "title": "建立 geometry、collision 與 clearance validators",
+      "gate": "G3",
+      "status": "planned",
+      "dependsOn": [
+        "G3-RUL-001"
+      ],
+      "inputs": [
+        "rule schema",
+        "fixture assembly"
+      ],
+      "outputs": [
+        "geometry validators"
+      ],
+      "acceptance": [
+        "已知 pass/fail cases 產生可追溯驗證結果"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "已知 pass/fail cases 產生可追溯驗證結果",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
-      "id": "G3-VAL-002", "title": "建立 CNC DFM rule pack", "gate": "G3", "status": "planned", "dependsOn": ["G3-VAL-001", "G3-SRC-001"],
-      "inputs": ["rule governance", "fixture artifacts"], "outputs": ["CNC DFM rule pack"],
-      "acceptance": ["CNC 規則對 golden cases 產生預期結果且來源可追溯"], "acceptanceResults": [{ "criterion": "CNC 規則對 golden cases 產生預期結果且來源可追溯", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "G3-VAL-002",
+      "title": "建立 CNC DFM rule pack",
+      "gate": "G3",
+      "status": "planned",
+      "dependsOn": [
+        "G3-VAL-001",
+        "G3-SRC-001"
+      ],
+      "inputs": [
+        "rule governance",
+        "fixture artifacts"
+      ],
+      "outputs": [
+        "CNC DFM rule pack"
+      ],
+      "acceptance": [
+        "CNC 規則對 golden cases 產生預期結果且來源可追溯"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "CNC 規則對 golden cases 產生預期結果且來源可追溯",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
-      "id": "G3-BEN-001", "title": "建立 benchmark metrics", "gate": "G3", "status": "planned", "dependsOn": ["G3-MAT-001"],
-      "inputs": ["validation results"], "outputs": ["benchmark metrics", "baseline"],
-      "acceptance": ["正確性、可重現性與執行成本具有固定基準"], "acceptanceResults": [{ "criterion": "正確性、可重現性與執行成本具有固定基準", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "G3-BEN-001",
+      "title": "建立 benchmark metrics",
+      "gate": "G3",
+      "status": "planned",
+      "dependsOn": [
+        "G3-MAT-001"
+      ],
+      "inputs": [
+        "validation results"
+      ],
+      "outputs": [
+        "benchmark metrics",
+        "baseline"
+      ],
+      "acceptance": [
+        "正確性、可重現性與執行成本具有固定基準"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "正確性、可重現性與執行成本具有固定基準",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
-      "id": "G4-MOD-001", "title": "建立 Module capability levels", "gate": "G4", "status": "planned", "dependsOn": ["G3-ACC-001"],
-      "inputs": ["Engineering IR", "validation contracts"], "outputs": ["module capability schema"],
-      "acceptance": ["模組能力等級可被 schema 與測試消費"], "acceptanceResults": [{ "criterion": "模組能力等級可被 schema 與測試消費", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "G4-MOD-001",
+      "title": "建立 Module capability levels",
+      "gate": "G4",
+      "status": "planned",
+      "dependsOn": [
+        "G3-ACC-001"
+      ],
+      "inputs": [
+        "Engineering IR",
+        "validation contracts"
+      ],
+      "outputs": [
+        "module capability schema"
+      ],
+      "acceptance": [
+        "模組能力等級可被 schema 與測試消費"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "模組能力等級可被 schema 與測試消費",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
-      "id": "G4-MOD-002", "title": "PCB、USB-C 與 M3 composition", "gate": "G4", "status": "planned", "dependsOn": ["G4-GRF-001"],
-      "inputs": ["module capability schema", "Fixture golden IR"], "outputs": ["module composition"],
-      "acceptance": ["PCB、USB-C 與 M3 模組可組合並保留限制條件"], "acceptanceResults": [{ "criterion": "PCB、USB-C 與 M3 模組可組合並保留限制條件", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "G4-MOD-002",
+      "title": "PCB、USB-C 與 M3 composition",
+      "gate": "G4",
+      "status": "planned",
+      "dependsOn": [
+        "G4-GRF-001"
+      ],
+      "inputs": [
+        "module capability schema",
+        "Fixture golden IR"
+      ],
+      "outputs": [
+        "module composition"
+      ],
+      "acceptance": [
+        "PCB、USB-C 與 M3 模組可組合並保留限制條件"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "PCB、USB-C 與 M3 模組可組合並保留限制條件",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
-      "id": "G4-IMP-001", "title": "建立 safe STEP 與 DXF metadata extraction", "gate": "G4", "status": "planned", "dependsOn": ["G4-MOD-002"],
-      "inputs": ["untrusted sample artifacts"], "outputs": ["safe metadata extraction"],
-      "acceptance": ["匯入只擷取允許的 metadata 且拒絕不安全輸入"], "acceptanceResults": [{ "criterion": "匯入只擷取允許的 metadata 且拒絕不安全輸入", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "G4-IMP-001",
+      "title": "建立 safe STEP 與 DXF metadata extraction",
+      "gate": "G4",
+      "status": "planned",
+      "dependsOn": [
+        "G4-MOD-002"
+      ],
+      "inputs": [
+        "untrusted sample artifacts"
+      ],
+      "outputs": [
+        "safe metadata extraction"
+      ],
+      "acceptance": [
+        "匯入只擷取允許的 metadata 且拒絕不安全輸入"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "匯入只擷取允許的 metadata 且拒絕不安全輸入",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
-      "id": "G5-PKG-001", "title": "建立 manifest 與 content hashes", "gate": "G5", "status": "planned", "dependsOn": ["G4-ACC-001"],
-      "inputs": ["validated artifacts"], "outputs": ["package manifest", "content hashes"],
-      "acceptance": ["manifest 可重建且所有 artifact hash 可驗證"], "acceptanceResults": [{ "criterion": "manifest 可重建且所有 artifact hash 可驗證", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "G5-PKG-001",
+      "title": "建立 manifest 與 content hashes",
+      "gate": "G5",
+      "status": "planned",
+      "dependsOn": [
+        "G4-ACC-001"
+      ],
+      "inputs": [
+        "validated artifacts"
+      ],
+      "outputs": [
+        "package manifest",
+        "content hashes"
+      ],
+      "acceptance": [
+        "manifest 可重建且所有 artifact hash 可驗證"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "manifest 可重建且所有 artifact hash 可驗證",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
-      "id": "G5-BOM-001", "title": "建立 BOM exporter", "gate": "G5", "status": "planned", "dependsOn": ["G5-PKG-001"],
-      "inputs": ["module composition", "package manifest"], "outputs": ["BOM"],
-      "acceptance": ["BOM 內容、數量、來源與 hash 可重現"], "acceptanceResults": [{ "criterion": "BOM 內容、數量、來源與 hash 可重現", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "G5-BOM-001",
+      "title": "建立 BOM exporter",
+      "gate": "G5",
+      "status": "planned",
+      "dependsOn": [
+        "G5-PKG-001"
+      ],
+      "inputs": [
+        "module composition",
+        "package manifest"
+      ],
+      "outputs": [
+        "BOM"
+      ],
+      "acceptance": [
+        "BOM 內容、數量、來源與 hash 可重現"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "BOM 內容、數量、來源與 hash 可重現",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
-      "id": "G5-DRW-001", "title": "建立 fixed-template draft drawing", "gate": "G5", "status": "planned", "dependsOn": ["G5-BOM-001"],
-      "inputs": ["validated geometry", "drawing feasibility decision"], "outputs": ["draft drawing"],
-      "acceptance": ["固定模板圖面具有尺寸、版本與人工 QA 邊界"], "acceptanceResults": [{ "criterion": "固定模板圖面具有尺寸、版本與人工 QA 邊界", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "G5-DRW-001",
+      "title": "建立 fixed-template draft drawing",
+      "gate": "G5",
+      "status": "planned",
+      "dependsOn": [
+        "G5-BOM-001"
+      ],
+      "inputs": [
+        "validated geometry",
+        "drawing feasibility decision"
+      ],
+      "outputs": [
+        "draft drawing"
+      ],
+      "acceptance": [
+        "固定模板圖面具有尺寸、版本與人工 QA 邊界"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "固定模板圖面具有尺寸、版本與人工 QA 邊界",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
-      "id": "G5-REP-001", "title": "Clean-environment reproducibility test", "gate": "G5", "status": "planned", "dependsOn": ["G5-DRW-001"],
-      "inputs": ["locked environment", "prototype package"], "outputs": ["clean rebuild evidence"],
-      "acceptance": ["乾淨環境可依 README 重建相同內容 hash"], "acceptanceResults": [{ "criterion": "乾淨環境可依 README 重建相同內容 hash", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "G5-REP-001",
+      "title": "Clean-environment reproducibility test",
+      "gate": "G5",
+      "status": "planned",
+      "dependsOn": [
+        "G5-DRW-001"
+      ],
+      "inputs": [
+        "locked environment",
+        "prototype package"
+      ],
+      "outputs": [
+        "clean rebuild evidence"
+      ],
+      "acceptance": [
+        "乾淨環境可依 README 重建相同內容 hash"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "乾淨環境可依 README 重建相同內容 hash",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
-      "id": "G6-UI-001", "title": "建立 capability-driven guided flow", "gate": "G6", "status": "planned", "dependsOn": ["G5-ACC-001"],
-      "inputs": ["capability contracts", "Engineering IR"], "outputs": ["engineering guided flow"],
-      "acceptance": ["介面只呈現後端已證明的能力並可產生合法 IR"], "acceptanceResults": [{ "criterion": "介面只呈現後端已證明的能力並可產生合法 IR", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "G6-UI-001",
+      "title": "建立 capability-driven guided flow",
+      "gate": "G6",
+      "status": "planned",
+      "dependsOn": [
+        "G5-ACC-001"
+      ],
+      "inputs": [
+        "capability contracts",
+        "Engineering IR"
+      ],
+      "outputs": [
+        "engineering guided flow"
+      ],
+      "acceptance": [
+        "介面只呈現後端已證明的能力並可產生合法 IR"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "介面只呈現後端已證明的能力並可產生合法 IR",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
-      "id": "G6-QST-001", "title": "建立 question ordering 與 abstention", "gate": "G6", "status": "planned", "dependsOn": ["G6-UI-001"],
-      "inputs": ["guided flow", "assumption vocabulary"], "outputs": ["question ordering", "abstention behavior"],
-      "acceptance": ["unsafe unknown 不會被預設且會產生可追溯問題"], "acceptanceResults": [{ "criterion": "unsafe unknown 不會被預設且會產生可追溯問題", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "G6-QST-001",
+      "title": "建立 question ordering 與 abstention",
+      "gate": "G6",
+      "status": "planned",
+      "dependsOn": [
+        "G6-UI-001"
+      ],
+      "inputs": [
+        "guided flow",
+        "assumption vocabulary"
+      ],
+      "outputs": [
+        "question ordering",
+        "abstention behavior"
+      ],
+      "acceptance": [
+        "unsafe unknown 不會被預設且會產生可追溯問題"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "unsafe unknown 不會被預設且會產生可追溯問題",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
-      "id": "G6-E2E-001", "title": "UI-to-IR-to-package end-to-end test", "gate": "G6", "status": "planned", "dependsOn": ["G6-USE-001"],
-      "inputs": ["guided flow", "engineering pipeline"], "outputs": ["end-to-end evidence"],
-      "acceptance": ["UI 輸入可追溯至 IR、驗證與 package，失敗狀態不遺失"], "acceptanceResults": [{ "criterion": "UI 輸入可追溯至 IR、驗證與 package，失敗狀態不遺失", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "G6-E2E-001",
+      "title": "UI-to-IR-to-package end-to-end test",
+      "gate": "G6",
+      "status": "planned",
+      "dependsOn": [
+        "G6-USE-001"
+      ],
+      "inputs": [
+        "guided flow",
+        "engineering pipeline"
+      ],
+      "outputs": [
+        "end-to-end evidence"
+      ],
+      "acceptance": [
+        "UI 輸入可追溯至 IR、驗證與 package，失敗狀態不遺失"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "UI 輸入可追溯至 IR、驗證與 package，失敗狀態不遺失",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
-      "id": "G7-ACO-001", "title": "Acoustic graph 與 sealed-volume thin slice", "gate": "G7", "status": "planned", "dependsOn": ["G6-ACC-001"],
-      "inputs": ["Acoustic golden input", "core contracts"], "outputs": ["acoustic graph", "sealed-volume geometry", "validation evidence"],
-      "acceptance": ["聲學關係圖與封閉體積幾何可驗證且不宣稱未完成求解能力"], "acceptanceResults": [{ "criterion": "聲學關係圖與封閉體積幾何可驗證且不宣稱未完成求解能力", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "G7-ACO-001",
+      "title": "Acoustic graph 與 sealed-volume thin slice",
+      "gate": "G7",
+      "status": "planned",
+      "dependsOn": [
+        "G6-ACC-001"
+      ],
+      "inputs": [
+        "Acoustic golden input",
+        "core contracts"
+      ],
+      "outputs": [
+        "acoustic graph",
+        "sealed-volume geometry",
+        "validation evidence"
+      ],
+      "acceptance": [
+        "聲學關係圖與封閉體積幾何可驗證且不宣稱未完成求解能力"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "聲學關係圖與封閉體積幾何可驗證且不宣稱未完成求解能力",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
-      "id": "G8-ROB-001", "title": "Robot layout 與 assembly-relationship thin slice", "gate": "G8", "status": "planned", "dependsOn": ["G6-ACC-001"],
-      "inputs": ["Robot golden input", "core contracts"], "outputs": ["robot layout", "assembly relationships", "validation evidence"],
-      "acceptance": ["機器人配置與組立關係可驗證且不宣稱未完成安全能力"], "acceptanceResults": [{ "criterion": "機器人配置與組立關係可驗證且不宣稱未完成安全能力", "status": "pending", "evidence": [] }],
-      "verificationCommands": [], "rollbackBoundary": "commit", "blockedBy": [], "evidence": [], "verification": "not_run", "commitSha": null
+      "id": "G8-ROB-001",
+      "title": "Robot layout 與 assembly-relationship thin slice",
+      "gate": "G8",
+      "status": "planned",
+      "dependsOn": [
+        "G6-ACC-001"
+      ],
+      "inputs": [
+        "Robot golden input",
+        "core contracts"
+      ],
+      "outputs": [
+        "robot layout",
+        "assembly relationships",
+        "validation evidence"
+      ],
+      "acceptance": [
+        "機器人配置與組立關係可驗證且不宣稱未完成安全能力"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "機器人配置與組立關係可驗證且不宣稱未完成安全能力",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [],
+      "verification": "not_run",
+      "commitSha": null
     },
     {
       "id": "G0-DOC-001",
@@ -297,7 +1937,14 @@
         {
           "criterion": "v3 §5.1 文件全部存在且非空殼",
           "status": "passed",
-          "evidence": ["artifacts/g0-doc-001/verification.json", "docs/OPERATIONS.md", "docs/ACCEPTANCE.md", "docs/G0_BASELINE_CI.md", "scripts/verify-secrets.mjs", "scripts/run-baseline-ci.ps1"]
+          "evidence": [
+            "artifacts/g0-doc-001/verification.json",
+            "docs/OPERATIONS.md",
+            "docs/ACCEPTANCE.md",
+            "docs/G0_BASELINE_CI.md",
+            "scripts/verify-secrets.mjs",
+            "scripts/run-baseline-ci.ps1"
+          ]
         }
       ],
       "verificationCommands": [
@@ -305,7 +1952,14 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": ["artifacts/g0-doc-001/verification.json", "docs/OPERATIONS.md", "docs/ACCEPTANCE.md", "docs/G0_BASELINE_CI.md", "scripts/verify-secrets.mjs", "scripts/run-baseline-ci.ps1"],
+      "evidence": [
+        "artifacts/g0-doc-001/verification.json",
+        "docs/OPERATIONS.md",
+        "docs/ACCEPTANCE.md",
+        "docs/G0_BASELINE_CI.md",
+        "scripts/verify-secrets.mjs",
+        "scripts/run-baseline-ci.ps1"
+      ],
       "verification": "passed",
       "commitSha": "95d5d815451320174bbf6313f9c47f10f886bac4"
     },
@@ -330,7 +1984,23 @@
         {
           "criterion": "D1–D9 全部有 ADR 與可追溯決策證據",
           "status": "passed",
-          "evidence": ["docs/DECISIONS.md", "docs/decisions/ADR-0002-local-single-user-deployment.md", "docs/decisions/ADR-0003-comsol-out-of-scope.md", "docs/decisions/ADR-0004-llm-adapter-offline-fallback.md", "docs/decisions/ADR-0005-windows-ci-and-main-push.md", "docs/decisions/ADR-0006-protect-customer-engineering-data.md", "docs/decisions/ADR-0007-builder-self-review.md", "docs/decisions/ADR-0008-single-builder-agent-claim.md", "docs/decisions/ADR-0009-research-reference-unknowns.md", "docs/decisions/ADR-0010-artifact-retention.md", "execution/decisions/g0-decisions.json", "execution/schemas/g0-decisions.schema.json", "tests/test_g0_dec_001.py", "tests/test_v3_g0_decisions.py", "artifacts/g0-dec-001/verification.json"]
+          "evidence": [
+            "docs/DECISIONS.md",
+            "docs/decisions/ADR-0002-local-single-user-deployment.md",
+            "docs/decisions/ADR-0003-comsol-out-of-scope.md",
+            "docs/decisions/ADR-0004-llm-adapter-offline-fallback.md",
+            "docs/decisions/ADR-0005-windows-ci-and-main-push.md",
+            "docs/decisions/ADR-0006-protect-customer-engineering-data.md",
+            "docs/decisions/ADR-0007-builder-self-review.md",
+            "docs/decisions/ADR-0008-single-builder-agent-claim.md",
+            "docs/decisions/ADR-0009-research-reference-unknowns.md",
+            "docs/decisions/ADR-0010-artifact-retention.md",
+            "execution/decisions/g0-decisions.json",
+            "execution/schemas/g0-decisions.schema.json",
+            "tests/test_g0_dec_001.py",
+            "tests/test_v3_g0_decisions.py",
+            "artifacts/g0-dec-001/verification.json"
+          ]
         }
       ],
       "verificationCommands": [
@@ -340,14 +2010,36 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": ["docs/DECISIONS.md", "docs/decisions/ADR-0002-local-single-user-deployment.md", "docs/decisions/ADR-0003-comsol-out-of-scope.md", "docs/decisions/ADR-0004-llm-adapter-offline-fallback.md", "docs/decisions/ADR-0005-windows-ci-and-main-push.md", "docs/decisions/ADR-0006-protect-customer-engineering-data.md", "docs/decisions/ADR-0007-builder-self-review.md", "docs/decisions/ADR-0008-single-builder-agent-claim.md", "docs/decisions/ADR-0009-research-reference-unknowns.md", "docs/decisions/ADR-0010-artifact-retention.md", "execution/decisions/g0-decisions.json", "execution/schemas/g0-decisions.schema.json", "tests/test_g0_dec_001.py", "tests/test_v3_g0_decisions.py", "artifacts/g0-dec-001/verification.json"],
+      "evidence": [
+        "docs/DECISIONS.md",
+        "docs/decisions/ADR-0002-local-single-user-deployment.md",
+        "docs/decisions/ADR-0003-comsol-out-of-scope.md",
+        "docs/decisions/ADR-0004-llm-adapter-offline-fallback.md",
+        "docs/decisions/ADR-0005-windows-ci-and-main-push.md",
+        "docs/decisions/ADR-0006-protect-customer-engineering-data.md",
+        "docs/decisions/ADR-0007-builder-self-review.md",
+        "docs/decisions/ADR-0008-single-builder-agent-claim.md",
+        "docs/decisions/ADR-0009-research-reference-unknowns.md",
+        "docs/decisions/ADR-0010-artifact-retention.md",
+        "execution/decisions/g0-decisions.json",
+        "execution/schemas/g0-decisions.schema.json",
+        "tests/test_g0_dec_001.py",
+        "tests/test_v3_g0_decisions.py",
+        "artifacts/g0-dec-001/verification.json"
+      ],
       "verification": "passed",
       "commitSha": "af963561a8d8b4e377c5020ced609714c9e47eec",
       "owner_role": "builder",
       "requires_user_decision": false,
       "evidence_level_required": "E4",
-      "review": { "required": false, "status": "not_required", "report": null },
-      "risk_refs": ["R-G0-002"],
+      "review": {
+        "required": false,
+        "status": "not_required",
+        "report": null
+      },
+      "risk_refs": [
+        "R-G0-002"
+      ],
       "blueprint_ref": "v3.0 §8.1"
     },
     {
@@ -371,7 +2063,17 @@
         {
           "criterion": "兩次重跑 semantic fingerprint 一致，header 正規化與 maturity 掃描生效",
           "status": "passed",
-          "evidence": ["artifacts/g0-det-001/verification.json", "artifacts/v3c-det-001/verification.json", "artifacts/g0-cad/manifest.json", "config/fingerprint/policy-1.0.0.json", "tests/test_g0_det_001.py", "tests/test_v3_determinism.py", "tests/test_v3_maturity.py", "docs/FINGERPRINT_POLICY.md", "scripts/verify_maturity.py"]
+          "evidence": [
+            "artifacts/g0-det-001/verification.json",
+            "artifacts/v3c-det-001/verification.json",
+            "artifacts/g0-cad/manifest.json",
+            "config/fingerprint/policy-1.0.0.json",
+            "tests/test_g0_det_001.py",
+            "tests/test_v3_determinism.py",
+            "tests/test_v3_maturity.py",
+            "docs/FINGERPRINT_POLICY.md",
+            "scripts/verify_maturity.py"
+          ]
         }
       ],
       "verificationCommands": [
@@ -380,14 +2082,30 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": ["artifacts/g0-det-001/verification.json", "artifacts/v3c-det-001/verification.json", "artifacts/g0-cad/manifest.json", "config/fingerprint/policy-1.0.0.json", "tests/test_g0_det_001.py", "tests/test_v3_determinism.py", "tests/test_v3_maturity.py", "docs/FINGERPRINT_POLICY.md", "scripts/verify_maturity.py"],
+      "evidence": [
+        "artifacts/g0-det-001/verification.json",
+        "artifacts/v3c-det-001/verification.json",
+        "artifacts/g0-cad/manifest.json",
+        "config/fingerprint/policy-1.0.0.json",
+        "tests/test_g0_det_001.py",
+        "tests/test_v3_determinism.py",
+        "tests/test_v3_maturity.py",
+        "docs/FINGERPRINT_POLICY.md",
+        "scripts/verify_maturity.py"
+      ],
       "verification": "passed",
       "commitSha": "7f91b78e5fffe6c5aafebfe5c22d1ce2f3ed9683",
       "owner_role": "builder",
       "requires_user_decision": false,
       "evidence_level_required": "E3",
-      "review": { "required": false, "status": "not_required", "report": null },
-      "risk_refs": ["R-G0-001"],
+      "review": {
+        "required": false,
+        "status": "not_required",
+        "report": null
+      },
+      "risk_refs": [
+        "R-G0-001"
+      ],
       "blueprint_ref": "v3.0 §8.0 G0 工作 4（Determinism spike）、§8.1"
     },
     {
@@ -414,7 +2132,11 @@
         {
           "criterion": "全新 session 在乾淨 checkout 重跑並出具 passed 報告",
           "status": "passed",
-          "evidence": ["execution/reviews/2026-09-19-G0-REV-001-review.md", "artifacts/g0-rev-001/verification.json", "execution/LAST_VERIFICATION.json"]
+          "evidence": [
+            "execution/reviews/2026-09-19-G0-REV-001-review.md",
+            "artifacts/g0-rev-001/verification.json",
+            "execution/LAST_VERIFICATION.json"
+          ]
         }
       ],
       "verificationCommands": [
@@ -423,14 +2145,24 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": ["execution/reviews/2026-09-19-G0-REV-001-review.md", "artifacts/g0-rev-001/verification.json", "execution/LAST_VERIFICATION.json"],
+      "evidence": [
+        "execution/reviews/2026-09-19-G0-REV-001-review.md",
+        "artifacts/g0-rev-001/verification.json",
+        "execution/LAST_VERIFICATION.json"
+      ],
       "verification": "passed",
       "commitSha": "7389a1da99b27a25424a54e589862a39c16f43fd",
       "owner_role": "reviewer",
       "requires_user_decision": false,
       "evidence_level_required": "E3",
-      "review": { "required": false, "status": "not_required", "report": null },
-      "risk_refs": ["R-G0-002"],
+      "review": {
+        "required": false,
+        "status": "not_required",
+        "report": null
+      },
+      "risk_refs": [
+        "R-G0-002"
+      ],
       "blueprint_ref": "v3.0 G0 Exit criteria、§8.1、附錄 A.3"
     },
     {
@@ -454,7 +2186,12 @@
         {
           "criterion": "gate_acceptance 決策紀錄可追溯至 G0 審查與 CI",
           "status": "passed",
-          "evidence": ["execution/signoffs/SO-0001.yaml", "artifacts/g0-acc-001/verification.json", "execution/reviews/2026-09-19-G0-REV-001-review.md", "execution/LAST_VERIFICATION.json"]
+          "evidence": [
+            "execution/signoffs/SO-0001.yaml",
+            "artifacts/g0-acc-001/verification.json",
+            "execution/reviews/2026-09-19-G0-REV-001-review.md",
+            "execution/LAST_VERIFICATION.json"
+          ]
         }
       ],
       "verificationCommands": [
@@ -463,14 +2200,26 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": ["execution/signoffs/SO-0001.yaml", "artifacts/g0-acc-001/verification.json", "execution/reviews/2026-09-19-G0-REV-001-review.md", "artifacts/g0-rev-001/verification.json", "execution/LAST_VERIFICATION.json"],
+      "evidence": [
+        "execution/signoffs/SO-0001.yaml",
+        "artifacts/g0-acc-001/verification.json",
+        "execution/reviews/2026-09-19-G0-REV-001-review.md",
+        "artifacts/g0-rev-001/verification.json",
+        "execution/LAST_VERIFICATION.json"
+      ],
       "verification": "passed",
       "commitSha": "6f1c1fabff5dadb81d48b5006a269b0e02335873",
       "owner_role": "builder",
       "requires_user_decision": false,
       "evidence_level_required": "E4",
-      "review": { "required": false, "status": "not_required", "report": null },
-      "risk_refs": ["R-G0-002"],
+      "review": {
+        "required": false,
+        "status": "not_required",
+        "report": null
+      },
+      "risk_refs": [
+        "R-G0-002"
+      ],
       "blueprint_ref": "v3.0 §5.7、§6.3、§8.1、附錄 A.5"
     },
     {
@@ -494,7 +2243,13 @@
         {
           "criterion": "錯誤物件 schema、ERROR_CODES.md 與錯誤碼唯一性測試通過",
           "status": "passed",
-          "evidence": ["schemas/v3/error.schema.json", "megis/errors/registry.py", "docs/ERROR_CODES.md", "tests/test_g1_err_001.py", "artifacts/g1-err-001/verification.json"]
+          "evidence": [
+            "schemas/v3/error.schema.json",
+            "megis/errors/registry.py",
+            "docs/ERROR_CODES.md",
+            "tests/test_g1_err_001.py",
+            "artifacts/g1-err-001/verification.json"
+          ]
         }
       ],
       "verificationCommands": [
@@ -503,14 +2258,26 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": ["schemas/v3/error.schema.json", "megis/errors/registry.py", "docs/ERROR_CODES.md", "tests/test_g1_err_001.py", "artifacts/g1-err-001/verification.json"],
+      "evidence": [
+        "schemas/v3/error.schema.json",
+        "megis/errors/registry.py",
+        "docs/ERROR_CODES.md",
+        "tests/test_g1_err_001.py",
+        "artifacts/g1-err-001/verification.json"
+      ],
       "verification": "passed",
       "commitSha": "8e7e695b57f24592963264bd4992f46c50738836",
       "owner_role": "builder",
       "requires_user_decision": false,
       "evidence_level_required": "E3",
-      "review": { "required": false, "status": "not_required", "report": null },
-      "risk_refs": ["R-G0-002"],
+      "review": {
+        "required": false,
+        "status": "not_required",
+        "report": null
+      },
+      "risk_refs": [
+        "R-G0-002"
+      ],
       "blueprint_ref": "v3.0 §4.10、§5.12"
     },
     {
@@ -577,7 +2344,7 @@
       "id": "G1-REQ-001",
       "title": "參考案例參數研究與決定",
       "gate": "G1",
-      "status": "planned",
+      "status": "done",
       "dependsOn": [
         "G1-IR-002"
       ],
@@ -592,9 +2359,11 @@
       ],
       "acceptanceResults": [
         {
-          "criterion": "依 v3 §9.1 完成公開來源研究，Reference Fixture 無未解決 critical unknown",
-          "status": "pending",
-          "evidence": []
+          "criterion": "unknown 參數已解決",
+          "status": "passed",
+          "evidence": [
+            "tests/golden/reference_fixture/requirement.yaml"
+          ]
         }
       ],
       "verificationCommands": [
@@ -602,9 +2371,13 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "tests/golden/reference_fixture/requirement.yaml",
+        "outputs/2026-09-20-G1-REQ-001-研究報告.md"
+      ],
+      "verification": "passed",
+      "commitSha": "HEAD",
+      "blueprint_ref": "v3.0 §1.3, §9.1"
     },
     {
       "id": "G1-REV-001",
@@ -1507,8 +3280,23 @@
   ],
   "blockers": [],
   "risks": [
-    { "id": "R-G0-001", "title": "外部 CAD 工具不可用或版本不相容", "impact": "high", "mitigation": "先做隔離 spike；保留 evidence 並切換明確 fallback，不讓失敗 adapter 進入核心" },
-    { "id": "R-G0-002", "title": "控制面與實際 Git 狀態漂移", "impact": "high", "mitigation": "每個完成狀態都要求 commit SHA、存在的證據與可重跑驗證" },
-    { "id": "R-G0-003", "title": "工具寫入核准工作區之外", "impact": "high", "mitigation": "所有 cache、environment、artifact 與 temporary path 固定在 C:/0_JN1_MEGIS" }
+    {
+      "id": "R-G0-001",
+      "title": "外部 CAD 工具不可用或版本不相容",
+      "impact": "high",
+      "mitigation": "先做隔離 spike；保留 evidence 並切換明確 fallback，不讓失敗 adapter 進入核心"
+    },
+    {
+      "id": "R-G0-002",
+      "title": "控制面與實際 Git 狀態漂移",
+      "impact": "high",
+      "mitigation": "每個完成狀態都要求 commit SHA、存在的證據與可重跑驗證"
+    },
+    {
+      "id": "R-G0-003",
+      "title": "工具寫入核准工作區之外",
+      "impact": "high",
+      "mitigation": "所有 cache、environment、artifact 與 temporary path 固定在 C:/0_JN1_MEGIS"
+    }
   ]
 }

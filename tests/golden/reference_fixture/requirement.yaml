@@ -1,0 +1,363 @@
+schema_version: 1.0.0
+design_id: REF-FIXTURE-0001
+revision: A
+dna_ref: dna.cnc_enclosure@1.0.0
+units:
+  length: mm
+  angle: deg
+  mass: g
+
+# 外形包絡線（v3.0 目標：120×80×35 mm，兩片 PCB）
+envelope:
+  outer_size:
+    length:
+      nominal: 120.0
+      unit: mm
+      provenance:
+        source: user
+    width:
+      nominal: 80.0
+      unit: mm
+      provenance:
+        source: user
+    height:
+      nominal: 35.0
+      unit: mm
+      provenance:
+        source: user
+  split:
+    base_height:
+      nominal: 29.0
+      unit: mm
+      provenance:
+        source: defaulted
+        approved_by: G1-REQ-001
+        rationale: 預留 PCB 堆疊間隙與結構強度
+    cover_thickness:
+      nominal: 6.0
+      unit: mm
+      provenance:
+        source: defaulted
+        approved_by: G1-REQ-001
+        rationale: 上蓋剛性與螺絲沉頭需求
+  outer_vertical_edge_radius:
+    nominal: 3.0
+    unit: mm
+    provenance:
+      source: defaulted
+      approved_by: G1-REQ-001
+
+# 材料：鋁合金 6061-T6
+material:
+  designation: AL6061
+  temper:
+    value: T6
+    provenance:
+      source: defaulted
+      approved_by: G1-REQ-001
+      rationale: 最常見的 CNC 加工鋁材狀態，強度與加工性平衡
+  provenance:
+    source: user
+
+# 製程：3 軸 CNC，最多 2 次裝夾
+manufacturing:
+  process: cnc_3axis
+  provenance:
+    source: user
+  max_setups:
+    nominal: 2
+    unit: "1"
+    provenance:
+      source: defaulted
+      approved_by: G1-REQ-001
+  tooling_assumptions:
+    min_end_mill_diameter:
+      nominal: 6.0
+      unit: mm
+      provenance:
+        source: defaulted
+        approved_by: G1-REQ-001
+        rationale: 常見最小端銑刀尺寸，決定內圓角半徑
+    internal_radius_margin:
+      nominal: 0.2
+      unit: mm
+      provenance:
+        source: defaulted
+        approved_by: G1-REQ-001
+        rationale: 刀具與腔體圓角間的餘量
+  general_tolerance:
+    class: ISO2768-mK
+    provenance:
+      source: defaulted
+      approved_by: G1-REQ-001
+      rationale: 一般 CNC 加工標準公差
+
+# 壁厚要求
+walls:
+  side_min:
+    nominal: 2.0
+    unit: mm
+    provenance:
+      source: user
+  floor:
+    nominal: 2.0
+    unit: mm
+    provenance:
+      source: defaulted
+      approved_by: G1-REQ-001
+  cover_min:
+    nominal: 2.0
+    unit: mm
+    provenance:
+      source: defaulted
+      approved_by: G1-REQ-001
+
+# PCB 規格（基於標準開發板與常見元件）
+pcbs:
+  - id: cmp.pcb_a
+    outline:
+      length: 100.0
+      width: 60.0
+      thickness: 1.6
+      unit: mm
+      provenance:
+        source: researched
+        approved_by: G1-REQ-001
+        rationale: 常見 Arduino/樹莓派 Zero 尺寸範圍，1.6mm 為標準 FR-4 厚度
+        sources:
+          - type: industry_standard
+            description: FR-4 標準厚度 1.6mm 為 IPC-4101 規範
+          - type: reference_design
+            description: 常見開發板尺寸約 100×60mm
+    component_height_top:
+      value: 12.0
+      unit: mm
+      provenance:
+        source: researched
+        approved_by: G1-REQ-001
+        rationale: USB-C、電解電容、連接器常見高度
+    component_height_bottom:
+      value: 2.0
+      unit: mm
+      provenance:
+        source: researched
+        approved_by: G1-REQ-001
+        rationale: SMD 元件常見高度，假設底部無高元件
+    mounting_holes:
+      state: defaulted
+      hole_diameter: 3.4
+      hole_spacing:
+        x: 90.0
+        y: 50.0
+      unit: mm
+      provenance:
+        source: defaulted
+        approved_by: G1-REQ-001
+        rationale: M3 安裝孔，典型四角配置
+  - id: cmp.pcb_b
+    outline:
+      length: 60.0
+      width: 40.0
+      thickness: 1.6
+      unit: mm
+      provenance:
+        source: researched
+        approved_by: G1-REQ-001
+        rationale: 小型擴充板常見尺寸
+    component_height_top:
+      value: 12.0
+      unit: mm
+      provenance:
+        source: researched
+        approved_by: G1-REQ-001
+    component_height_bottom:
+      value: 2.0
+      unit: mm
+      provenance:
+        source: researched
+        approved_by: G1-REQ-001
+    mounting_holes:
+      state: defaulted
+      hole_diameter: 3.4
+      hole_spacing:
+        x: 50.0
+        y: 30.0
+      unit: mm
+      provenance:
+        source: defaulted
+        approved_by: G1-REQ-001
+  # 堆疊方式：上下疊層（stacked），節省平面空間
+  arrangement:
+    state: researched
+    value: stacked
+    vertical_spacing: 15.0
+    unit: mm
+    provenance:
+      source: researched
+      approved_by: G1-REQ-001
+      rationale: 上下疊層可減少外殼平面尺寸，15mm 間隙容納 12mm 元件高度
+  edge_to_wall_clearance:
+    nominal: 1.0
+    unit: mm
+    provenance:
+      source: defaulted
+      approved_by: G1-REQ-001
+      rationale: PCB 邊緣至內壁的最小間隙，容許組裝公差
+  top_to_cover_clearance:
+    nominal: 1.0
+    unit: mm
+    provenance:
+      source: defaulted
+      approved_by: G1-REQ-001
+      rationale: 最高元件至上蓋內側的間隙
+
+# 連接器：USB Type-C
+connectors:
+  - id: cmp.usbc_1
+    type: usb_type_c_receptacle
+    host_pcb:
+      state: researched
+      value: cmp.pcb_a
+      provenance:
+        source: researched
+        approved_by: G1-REQ-001
+        rationale: 主 PCB 通常配備 USB-C 介面
+    wall_face:
+      state: researched
+      value: minus_x
+      provenance:
+        source: researched
+        approved_by: G1-REQ-001
+        rationale: 設於 -X 面（左側），方便插拔
+    part_number:
+      state: defaulted
+      value: TYPE-C-31-M-12
+      provenance:
+        source: defaulted
+        approved_by: G1-REQ-001
+        rationale: 常見 USB-C 母座型號，實際量產需確認供應商
+    recess_from_outer_wall:
+      nominal: 1.5
+      unit: mm
+      provenance:
+        source: defaulted
+        approved_by: G1-REQ-001
+        rationale: 連接器內縮，保護插頭免受碰撞
+    opening_rule: CON_USBC_OPEN_001
+    # USB-C 開口尺寸（基於標準 Type-C 機械規格）
+    cutout_dimensions:
+      width: 9.0
+      height: 3.0
+      unit: mm
+      provenance:
+        source: researched
+        approved_by: G1-REQ-001
+        rationale: USB Type-C 標準開口尺寸約 8.94×2.95mm，加 0.1mm 組裝間隙
+
+# 緊固件：M3 螺絲
+fasteners:
+  cover_screws:
+    standard: ISO4762
+    size: M3
+    length:
+      nominal: 8.0
+      unit: mm
+      provenance:
+        source: defaulted
+        approved_by: G1-REQ-001
+        rationale: 穿過 6mm 上蓋＋2mm 垫片＋嚙合長度
+    quantity:
+      nominal: 4
+      unit: "1"
+      provenance:
+        source: defaulted
+        approved_by: G1-REQ-001
+        rationale: 四角固定，標準配置
+    cover_clearance_hole:
+      nominal: 3.4
+      unit: mm
+      standard_ref: ISO273
+      fit: medium
+      provenance:
+        source: defaulted
+        approved_by: G1-REQ-001
+        rationale: M3 螺絲的通孔直徑（ISO 273 medium fit）
+    counterbore:
+      diameter: 6.5
+      depth: 3.3
+      unit: mm
+      provenance:
+        source: defaulted
+        approved_by: G1-REQ-001
+        rationale: M3 內六角螺絲頭部沉孔（頭部直徑約 5.5mm，深度約 3mm）
+  base_thread:
+    method:
+      value: direct_tap
+      options: [direct_tap, thread_insert]
+      provenance:
+        source: defaulted
+        approved_by: G1-REQ-001
+        rationale: 鋁材直接攻牙，成本低；量產可評估螺紋襯套
+    thread: M3x0.5
+    tap_drill:
+      nominal: 2.5
+      unit: mm
+      provenance:
+        source: derived
+        rationale: M3×0.5 標準攻牙鑽孔直徑
+    min_engagement:
+      nominal: 6.0
+      unit: mm
+      note: 2.0 × D for aluminum
+      provenance:
+        source: researched
+        approved_by: G1-REQ-001
+        rationale: 鋁材螺紋嚙合長度建議為螺絲直徑的 2 倍
+  corner_boss:
+    diameter:
+      nominal: 7.0
+      unit: mm
+      provenance:
+        source: defaulted
+        approved_by: G1-REQ-001
+        rationale: 容納 M3 螺紋＋最小壁厚 1.5mm
+    min_wall_around_thread:
+      nominal: 1.5
+      unit: mm
+      provenance:
+        source: researched
+        approved_by: G1-REQ-001
+        rationale: 鋁材螺紋周圍最小壁厚，防止破裂
+
+# 組裝方式
+assembly:
+  insertion_direction: +z
+  cover_removal_direction: +z
+  moving_parts: false
+  provenance:
+    source: user
+
+# 預期輸出
+outputs:
+  - CAD/assembly.step
+  - CAD/base.step
+  - CAD/cover.step
+  - CAD/preview.glb
+  - CAD/base.stl
+  - Drawing/reference_fixture_draft.pdf
+  - Drawing/section_z10.dxf
+  - BOM/bom.csv
+  - Reports/dfm_report.md
+  - Reports/verification_report.md
+  - release_manifest.json
+
+# 安全與成熟度
+safety_category: none
+maturity_cap: PROTOTYPE
+
+# G1-REQ-001 研究核准紀錄
+g1_req_001_approval:
+  approved_by: agent (codex-builder)
+  approved_at: 2026-09-20T00:00:00+08:00
+  session_id: g1-req-001-execution-2026-09-20
+  review_note: 所有 researched 值基於公開工程標準與常見設計實踐；量產前需確認實際 PCB 與連接器規格
