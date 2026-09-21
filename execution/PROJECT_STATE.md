@@ -1,10 +1,10 @@
 # MEGIS Project State
 
 - Current gate: `G2 — 治具幾何垂直切片`
-- Current work item: `G2-NEG-001 — Boundary 與 negative geometry corpus`
-- Last green commit: `19785f1abc622558900f624a0b9e7b4681d0436c`
+- Current work item: `G2-REV-001 — G2 自我審查`
+- Last green commit: `238a9d9b1b5d4dd88e4f833f96fdbce24674f25e`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-21T18:10:00+08:00`
+- Updated at: `2026-09-21T18:40:00+08:00`
 
 ## Active gate: G2
 
@@ -24,8 +24,8 @@ G1 已 closed（`SO-0002`，2026-09-21），V3C 追溯閉合。G2 現在為 acti
 | G2-CAD-002 | done | megis/adapters/cadquery_backend.py, scripts/verify_fixture_base.py |
 | G2-CAD-003 | done | megis/adapters/cadquery_backend.py, tests/test_g2_fixture_assembly.py |
 | G2-CAD-004 | done | megis/adapters/cadquery_backend.py、gltf.py、scripts/verify_g2_cad_004.py；33 項 reload/cross-check 全數 passed |
-| G2-NEG-001 | in_progress | 本段執行：boundary ≥10 例全數合格、negative ≥10 例回傳預期錯誤碼且 silent success 為 0 |
-| G2-REV-001 | planned | G2 自我審查 |
+| G2-NEG-001 | done | contracts/g2/golden/geometry-corpus.json、scripts/verify_g2_neg_001.py；boundary 10/10 合格、negative 14/14 回傳預期錯誤碼、silent success 0、越界不 clamp（MEGIS-ENV-001） |
+| G2-REV-001 | in_progress | G2 自我審查（乾淨 checkout 重跑 G2 全部驗證） |
 | G2-ACC-001 | planned | G2 acceptance（SO-0003） |
 
 ## Boundaries

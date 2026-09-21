@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-21T00:00:00+08:00",
+  "updatedAt": "2026-09-21T18:40:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G2-NEG-001",
+  "currentWorkItem": "G2-REV-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -2478,7 +2478,7 @@
       "id": "G2-NEG-001",
       "title": "Boundary 與 negative geometry corpus",
       "gate": "G2",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G2-CAD-004"
       ],
@@ -2494,24 +2494,43 @@
       "acceptanceResults": [
         {
           "criterion": "boundary 至少 10 例全數合格，negative 至少 10 例回傳預期錯誤碼且 silent success 為 0",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "contracts/g2/golden/geometry-corpus.json",
+            "schemas/v2/geometry-corpus.schema.json",
+            "megis/geometry/corpus.py",
+            "megis/geometry/planning.py",
+            "scripts/verify_g2_neg_001.py",
+            "tests/test_g2_neg_001.py",
+            "artifacts/g2-neg-001/verification.json",
+            "docs/G2_NEGATIVE_CORPUS.md"
+          ]
         }
       ],
       "verificationCommands": [
-        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+        ".venv/Scripts/python.exe scripts/verify_g2_neg_001.py"
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "contracts/g2/golden/geometry-corpus.json",
+        "schemas/v2/geometry-corpus.schema.json",
+        "megis/geometry/corpus.py",
+        "megis/geometry/planning.py",
+        "scripts/verify_g2_neg_001.py",
+        "tests/test_g2_neg_001.py",
+        "artifacts/g2-neg-001/verification.json",
+        "docs/G2_NEGATIVE_CORPUS.md"
+      ],
+      "verification": "passed",
+      "commitSha": "238a9d9b1b5d4dd88e4f833f96fdbce24674f25e"
     },
     {
       "id": "G2-REV-001",
       "title": "G2 自我審查",
       "gate": "G2",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G2-NEG-001",
         "V3C-ACC-001"
