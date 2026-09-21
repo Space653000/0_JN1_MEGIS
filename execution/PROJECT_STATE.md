@@ -1,10 +1,10 @@
 # MEGIS Project State
 
 - Current gate: `G2 — 治具幾何垂直切片`
-- Current work item: `G2-CAD-004 — 輸出與重新載入 artifacts`
-- Last green commit: `c6e39020852f2c5fca6d49d12ddb7798793c9c37`
+- Current work item: `G2-NEG-001 — Boundary 與 negative geometry corpus`
+- Last green commit: `19785f1abc622558900f624a0b9e7b4681d0436c`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-21T00:00:00+08:00`
+- Updated at: `2026-09-21T18:10:00+08:00`
 
 ## Active gate: G2
 
@@ -23,8 +23,8 @@ G1 已 closed（`SO-0002`，2026-09-21），V3C 追溯閉合。G2 現在為 acti
 | G2-CAD-001 | done | megis/geometry/contracts.py, tests/test_g2_geometry_contract.py |
 | G2-CAD-002 | done | megis/adapters/cadquery_backend.py, scripts/verify_fixture_base.py |
 | G2-CAD-003 | done | megis/adapters/cadquery_backend.py, tests/test_g2_fixture_assembly.py |
-| G2-CAD-004 | in_progress | 本段執行：輸出檔可重新載入且幾何不為空（STEP/STL/DXF artifacts + reload 驗證） |
-| G2-NEG-001 | planned | Boundary 與 negative geometry corpus（依賴 G2-CAD-004） |
+| G2-CAD-004 | done | megis/adapters/cadquery_backend.py、gltf.py、scripts/verify_g2_cad_004.py；33 項 reload/cross-check 全數 passed |
+| G2-NEG-001 | in_progress | 本段執行：boundary ≥10 例全數合格、negative ≥10 例回傳預期錯誤碼且 silent success 為 0 |
 | G2-REV-001 | planned | G2 自我審查 |
 | G2-ACC-001 | planned | G2 acceptance（SO-0003） |
 

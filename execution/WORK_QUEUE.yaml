@@ -2,7 +2,7 @@
   "schemaVersion": "1.1.0",
   "updatedAt": "2026-09-21T00:00:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G2-CAD-004",
+  "currentWorkItem": "G2-NEG-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -1368,7 +1368,7 @@
       "id": "G2-CAD-004",
       "title": "輸出與重新載入 artifacts",
       "gate": "G2",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G2-CAD-003"
       ],
@@ -1387,16 +1387,34 @@
       "acceptanceResults": [
         {
           "criterion": "輸出檔可重新載入且幾何不為空",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "megis/adapters/cadquery_backend.py",
+            "megis/adapters/gltf.py",
+            "artifacts/g2-cad-004/verification.json",
+            "docs/G2_ARTIFACT_EXPORT_RELOAD.md"
+          ]
         }
       ],
-      "verificationCommands": [],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe scripts/verify_g2_cad_004.py",
+        ".venv/Scripts/python.exe -m pytest tests/test_g2_cad_004.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "megis/geometry/contracts.py",
+        "megis/geometry/__init__.py",
+        "megis/adapters/cadquery_backend.py",
+        "megis/adapters/gltf.py",
+        "scripts/verify_g2_cad_004.py",
+        "tests/test_g2_cad_004.py",
+        "artifacts/g2-cad-004/verification.json",
+        "docs/G2_ARTIFACT_EXPORT_RELOAD.md"
+      ],
+      "verification": "passed",
+      "commitSha": "19785f1abc622558900f624a0b9e7b4681d0436c"
     },
     {
       "id": "G3-RUL-001",
@@ -2460,7 +2478,7 @@
       "id": "G2-NEG-001",
       "title": "Boundary 與 negative geometry corpus",
       "gate": "G2",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G2-CAD-004"
       ],

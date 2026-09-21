@@ -1,8 +1,8 @@
 {
   "agent": "codex",
   "role": "builder",
-  "work_item": "G2-CAD-004",
-  "claimed_at": "2026-09-21T00:00:00+08:00",
-  "expires_at": "2026-09-22T00:00:00+08:00",
-  "base_commit": "c6e39020852f2c5fca6d49d12ddb7798793c9c37"
+  "work_item": "G2-NEG-001",
+  "claimed_at": "2026-09-21T18:10:00+08:00",
+  "expires_at": "2026-09-22T18:10:00+08:00",
+  "base_commit": "19785f1abc622558900f624a0b9e7b4681d0436c"
 }

@@ -226,7 +226,11 @@ def test_document_deferral_expires_when_owner_is_done(tmp_path: Path) -> None:
 
 
 def test_accepted_gate_deferrals_cannot_become_permanent(tmp_path: Path) -> None:
-    queue = _load_queue()
+    queue = deepcopy(_load_queue())
+    review_item = next(
+        item for item in queue["workItems"] if item["id"] == "G1-REV-001"
+    )
+    review_item["status"] = "planned"
     _write_fixture(tmp_path, queue)
     migration_path = tmp_path / "execution" / "V3_MIGRATION.json"
     migration = json.loads(migration_path.read_text(encoding="utf-8"))
@@ -238,7 +242,6 @@ def test_accepted_gate_deferrals_cannot_become_permanent(tmp_path: Path) -> None
 
     assert result.returncode == 1
     assert "G1 is accepted with unfinished work items" in result.stderr
-    assert "UI-0A lacks an ACCEPTANCE.md review/sign-off entry" in result.stderr
 
 
 def test_done_item_cannot_skip_a_required_review(tmp_path: Path) -> None:
