@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v3/validation-corpus.schema.json",
+  "title": "MEGIS Validation Golden Corpus (v3)",
+  "description": "Known pass/fail cases driving the G3-VAL-001 geometry, collision and clearance validators. Each case supplies a kernel-neutral axis-aligned bounding box design and the expected overall status and expected MEGIS-VAL-* codes.",
+  "type": "object",
+  "required": ["schemaVersion", "workItem", "cases"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "workItem": { "const": "G3-VAL-001" },
+    "title": { "type": "string", "minLength": 1 },
+    "cases": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/case" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "case": {
+      "type": "object",
+      "required": ["case_id", "description", "expectStatus", "expectCodes", "input"],
+      "properties": {
+        "case_id": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 1 },
+        "expectStatus": { "enum": ["pass", "fail", "error"] },
+        "expectCodes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^MEGIS-[A-Z]{2,4}-[0-9]{3}$" }
+        },
+        "input": { "$ref": "#/$defs/input" }
+      },
+      "additionalProperties": false
+    },
+    "input": {
+      "type": "object",
+      "required": ["design_id", "components"],
+      "properties": {
+        "design_id": { "type": "string", "minLength": 1 },
+        "components": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/component" }
+        },
+        "clearances": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/clearance" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "component": {
+      "type": "object",
+      "required": ["component_id", "box"],
+      "properties": {
+        "component_id": { "type": "string", "minLength": 1 },
+        "box": { "$ref": "#/$defs/box" }
+      },
+      "additionalProperties": false
+    },
+    "box": {
+      "type": "object",
+      "required": ["min", "max"],
+      "properties": {
+        "min": {
+          "type": "array",
+          "prefixItems": [{ "type": "number" }, { "type": "number" }, { "type": "number" }],
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "max": {
+          "type": "array",
+          "prefixItems": [{ "type": "number" }, { "type": "number" }, { "type": "number" }],
+          "minItems": 3,
+          "maxItems": 3
+        }
+      },
+      "additionalProperties": false
+    },
+    "clearance": {
+      "type": "object",
+      "required": ["first_id", "second_id", "min_gap_mm"],
+      "properties": {
+        "first_id": { "type": "string", "minLength": 1 },
+        "second_id": { "type": "string", "minLength": 1 },
+        "min_gap_mm": { "type": "number", "minimum": 0 },
+        "rule_id": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    }
+  }
+}

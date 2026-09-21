@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v3/validation-result.schema.json",
+  "title": "MEGIS Validation Result (v3)",
+  "description": "Serialized result of running geometry, collision or clearance validators (G3-VAL-001). Every failed check carries a stable MEGIS-VAL-* code, a severity, entity references and both user and engineer copy so results are machine-routable and human-readable.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "workItem",
+    "validation_id",
+    "design_ref",
+    "created_at",
+    "status",
+    "summary",
+    "results"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "workItem": { "const": "G3-VAL-001" },
+    "validation_id": { "type": "string", "minLength": 1 },
+    "design_ref": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["pass", "fail", "error"] },
+    "summary": {
+      "type": "object",
+      "required": ["checks", "passed", "failed"],
+      "properties": {
+        "checks": { "type": "integer", "minimum": 0 },
+        "passed": { "type": "integer", "minimum": 0 },
+        "failed": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "results": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/issue" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "issue": {
+      "type": "object",
+      "required": [
+        "check_id",
+        "check_type",
+        "status",
+        "severity",
+        "code",
+        "retryable",
+        "user_message_zh_tw",
+        "engineer_detail",
+        "entity_refs"
+      ],
+      "properties": {
+        "check_id": { "type": "string", "minLength": 1 },
+        "check_type": { "enum": ["geometry", "collision", "clearance"] },
+        "status": { "enum": ["pass", "fail", "error"] },
+        "severity": { "enum": ["info", "warning", "error", "fatal"] },
+        "code": { "anyOf": [{ "type": "string", "pattern": "^MEGIS-[A-Z]{2,4}-[0-9]{3}$" }, { "type": "null" }] },
+        "retryable": { "type": "boolean" },
+        "user_message_zh_tw": { "type": "string", "minLength": 1 },
+        "engineer_detail": { "type": "string", "minLength": 1 },
+        "entity_refs": { "type": "array", "items": { "type": "string" } },
+        "rule_id": { "anyOf": [{ "type": "string", "minLength": 1 }, { "type": "null" }] },
+        "details": { "type": "object" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

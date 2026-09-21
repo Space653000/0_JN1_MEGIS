@@ -63,6 +63,8 @@ _ERROR_CODES: list[ErrorCode] = [
     ErrorCode("MEGIS-GEO-003", ErrorDomain.GEO, 3, ErrorSeverity.ERROR, False, "幾何尺寸無效。", "invalid dimension for geometry operation"),
     ErrorCode("MEGIS-GEO-004", ErrorDomain.GEO, 4, ErrorSeverity.FATAL, False, "幾何後端違反契約。", "backend contract violation"),
     ErrorCode("MEGIS-VAL-001", ErrorDomain.VAL, 1, ErrorSeverity.ERROR, False, "檢測到碰撞或佈局衝突。", "collision or layout conflict detected"),
+    ErrorCode("MEGIS-VAL-002", ErrorDomain.VAL, 2, ErrorSeverity.ERROR, False, "元件間餘隙不足。", "clearance below required minimum gap"),
+    ErrorCode("MEGIS-VAL-003", ErrorDomain.VAL, 3, ErrorSeverity.ERROR, False, "驗證輸入幾何無效。", "invalid geometry for validation"),
     ErrorCode("MEGIS-RUL-001", ErrorDomain.RUL, 1, ErrorSeverity.ERROR, False, "規則來源未經核准。", "rule source not approved"),
     ErrorCode("MEGIS-RUL-002", ErrorDomain.RUL, 2, ErrorSeverity.ERROR, False, "規則狀態轉換無效。", "invalid rule lifecycle transition"),
     ErrorCode("MEGIS-RUL-003", ErrorDomain.RUL, 3, ErrorSeverity.ERROR, False, "規則不可豁免或豁免條件無效。", "rule waiver disallowed or invalid"),

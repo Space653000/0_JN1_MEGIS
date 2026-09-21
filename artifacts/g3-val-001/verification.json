@@ -1,0 +1,238 @@
+{
+  "allChecksPassed": true,
+  "blueprintRef": "v3.0 26.6 G3-VAL-001、4.10 MEGIS-VAL",
+  "evidenceLevel": "E3",
+  "referenceDate": "2026-09-21",
+  "schemaVersion": "1.0.0",
+  "workItem": "G3-VAL-001",
+  "verifiedAt": "2026-09-21T21:30:00+08:00",
+  "engineeringArtifactGenerated": false,
+  "releaseArtifactGenerated": false,
+  "input": {
+    "corpus": "contracts\\g3\\golden\\validation-corpus.json",
+    "corpusSchema": "schemas\\v3\\validation-corpus.schema.json",
+    "resultSchema": "schemas\\v3\\validation-result.schema.json"
+  },
+  "summary": {
+    "cases": 15,
+    "passedCases": 7,
+    "failedCases": 8
+  },
+  "checks": [
+    {
+      "name": "golden corpus is schema conformant",
+      "passed": true,
+      "detail": {
+        "errors": []
+      }
+    },
+    {
+      "name": "validation error codes registered",
+      "passed": true,
+      "detail": {
+        "MEGIS-VAL-001": true,
+        "MEGIS-VAL-002": true,
+        "MEGIS-VAL-003": true
+      }
+    },
+    {
+      "name": "case geometry_valid_box_passes matches golden expectation",
+      "passed": true,
+      "detail": {
+        "expectStatus": "pass",
+        "status": "pass",
+        "expectCodes": [],
+        "codes": [],
+        "resultSchemaValid": true
+      }
+    },
+    {
+      "name": "case geometry_flat_slab_passes matches golden expectation",
+      "passed": true,
+      "detail": {
+        "expectStatus": "pass",
+        "status": "pass",
+        "expectCodes": [],
+        "codes": [],
+        "resultSchemaValid": true
+      }
+    },
+    {
+      "name": "case geometry_inverted_box_fails matches golden expectation",
+      "passed": true,
+      "detail": {
+        "expectStatus": "fail",
+        "status": "fail",
+        "expectCodes": [
+          "MEGIS-VAL-003"
+        ],
+        "codes": [
+          "MEGIS-VAL-003"
+        ],
+        "resultSchemaValid": true
+      }
+    },
+    {
+      "name": "case geometry_zero_volume_fails matches golden expectation",
+      "passed": true,
+      "detail": {
+        "expectStatus": "fail",
+        "status": "fail",
+        "expectCodes": [
+          "MEGIS-VAL-003"
+        ],
+        "codes": [
+          "MEGIS-VAL-003"
+        ],
+        "resultSchemaValid": true
+      }
+    },
+    {
+      "name": "case geometry_non_finite_fails matches golden expectation",
+      "passed": true,
+      "detail": {
+        "expectStatus": "fail",
+        "status": "fail",
+        "expectCodes": [
+          "MEGIS-VAL-003"
+        ],
+        "codes": [
+          "MEGIS-VAL-003"
+        ],
+        "resultSchemaValid": true
+      }
+    },
+    {
+      "name": "case collision_separated_passes matches golden expectation",
+      "passed": true,
+      "detail": {
+        "expectStatus": "pass",
+        "status": "pass",
+        "expectCodes": [],
+        "codes": [],
+        "resultSchemaValid": true
+      }
+    },
+    {
+      "name": "case collision_touching_passes matches golden expectation",
+      "passed": true,
+      "detail": {
+        "expectStatus": "pass",
+        "status": "pass",
+        "expectCodes": [],
+        "codes": [],
+        "resultSchemaValid": true
+      }
+    },
+    {
+      "name": "case collision_overlap_fails matches golden expectation",
+      "passed": true,
+      "detail": {
+        "expectStatus": "fail",
+        "status": "fail",
+        "expectCodes": [
+          "MEGIS-VAL-001"
+        ],
+        "codes": [
+          "MEGIS-VAL-001"
+        ],
+        "resultSchemaValid": true
+      }
+    },
+    {
+      "name": "case collision_nested_fails matches golden expectation",
+      "passed": true,
+      "detail": {
+        "expectStatus": "fail",
+        "status": "fail",
+        "expectCodes": [
+          "MEGIS-VAL-001"
+        ],
+        "codes": [
+          "MEGIS-VAL-001"
+        ],
+        "resultSchemaValid": true
+      }
+    },
+    {
+      "name": "case clearance_met_passes matches golden expectation",
+      "passed": true,
+      "detail": {
+        "expectStatus": "pass",
+        "status": "pass",
+        "expectCodes": [],
+        "codes": [],
+        "resultSchemaValid": true
+      }
+    },
+    {
+      "name": "case clearance_exact_boundary_passes matches golden expectation",
+      "passed": true,
+      "detail": {
+        "expectStatus": "pass",
+        "status": "pass",
+        "expectCodes": [],
+        "codes": [],
+        "resultSchemaValid": true
+      }
+    },
+    {
+      "name": "case clearance_violated_fails matches golden expectation",
+      "passed": true,
+      "detail": {
+        "expectStatus": "fail",
+        "status": "fail",
+        "expectCodes": [
+          "MEGIS-VAL-002"
+        ],
+        "codes": [
+          "MEGIS-VAL-002"
+        ],
+        "resultSchemaValid": true
+      }
+    },
+    {
+      "name": "case clearance_overlap_fails matches golden expectation",
+      "passed": true,
+      "detail": {
+        "expectStatus": "fail",
+        "status": "fail",
+        "expectCodes": [
+          "MEGIS-VAL-001",
+          "MEGIS-VAL-002"
+        ],
+        "codes": [
+          "MEGIS-VAL-001",
+          "MEGIS-VAL-002"
+        ],
+        "resultSchemaValid": true
+      }
+    },
+    {
+      "name": "case clearance_unknown_component_fails matches golden expectation",
+      "passed": true,
+      "detail": {
+        "expectStatus": "error",
+        "status": "error",
+        "expectCodes": [
+          "MEGIS-VAL-003"
+        ],
+        "codes": [
+          "MEGIS-VAL-003"
+        ],
+        "resultSchemaValid": true
+      }
+    },
+    {
+      "name": "case fixture_assembly_passes matches golden expectation",
+      "passed": true,
+      "detail": {
+        "expectStatus": "pass",
+        "status": "pass",
+        "expectCodes": [],
+        "codes": [],
+        "resultSchemaValid": true
+      }
+    }
+  ]
+}

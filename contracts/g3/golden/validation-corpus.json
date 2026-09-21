@@ -1,0 +1,216 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G3-VAL-001",
+  "title": "Geometry / collision / clearance validator golden corpus",
+  "cases": [
+    {
+      "case_id": "geometry_valid_box_passes",
+      "description": "single valid solid box must pass geometry validation",
+      "expectStatus": "pass",
+      "expectCodes": [],
+      "input": {
+        "design_id": "geom-valid-001",
+        "components": [
+          { "component_id": "base", "box": { "min": [0, 0, 0], "max": [10, 10, 10] } }
+        ]
+      }
+    },
+    {
+      "case_id": "geometry_flat_slab_passes",
+      "description": "thin slab with positive volume must pass",
+      "expectStatus": "pass",
+      "expectCodes": [],
+      "input": {
+        "design_id": "geom-slab-001",
+        "components": [
+          { "component_id": "slab", "box": { "min": [0, 0, 0], "max": [60, 40, 1.2] } }
+        ]
+      }
+    },
+    {
+      "case_id": "geometry_inverted_box_fails",
+      "description": "min greater than max on x axis must fail with MEGIS-VAL-003",
+      "expectStatus": "fail",
+      "expectCodes": ["MEGIS-VAL-003"],
+      "input": {
+        "design_id": "geom-inverted-001",
+        "components": [
+          { "component_id": "bad", "box": { "min": [10, 0, 0], "max": [5, 5, 5] } }
+        ]
+      }
+    },
+    {
+      "case_id": "geometry_zero_volume_fails",
+      "description": "zero thickness box must fail with MEGIS-VAL-003",
+      "expectStatus": "fail",
+      "expectCodes": ["MEGIS-VAL-003"],
+      "input": {
+        "design_id": "geom-zero-001",
+        "components": [
+          { "component_id": "flat", "box": { "min": [0, 0, 0], "max": [10, 10, 0] } }
+        ]
+      }
+    },
+    {
+      "case_id": "geometry_non_finite_fails",
+      "description": "infinite coordinate must fail with MEGIS-VAL-003",
+      "expectStatus": "fail",
+      "expectCodes": ["MEGIS-VAL-003"],
+      "input": {
+        "design_id": "geom-inf-001",
+        "components": [
+          { "component_id": "inf", "box": { "min": [0, 0, 0], "max": [1e999, 10, 10] } }
+        ]
+      }
+    },
+    {
+      "case_id": "collision_separated_passes",
+      "description": "boxes far apart must pass collision and clearance checks",
+      "expectStatus": "pass",
+      "expectCodes": [],
+      "input": {
+        "design_id": "collision-separated-001",
+        "components": [
+          { "component_id": "a", "box": { "min": [0, 0, 0], "max": [10, 10, 10] } },
+          { "component_id": "b", "box": { "min": [20, 20, 20], "max": [30, 30, 30] } }
+        ]
+      }
+    },
+    {
+      "case_id": "collision_touching_passes",
+      "description": "boxes sharing a face with zero gap must not be a collision",
+      "expectStatus": "pass",
+      "expectCodes": [],
+      "input": {
+        "design_id": "collision-touch-001",
+        "components": [
+          { "component_id": "a", "box": { "min": [0, 0, 0], "max": [10, 10, 10] } },
+          { "component_id": "b", "box": { "min": [10, 0, 0], "max": [20, 10, 10] } }
+        ]
+      }
+    },
+    {
+      "case_id": "collision_overlap_fails",
+      "description": "positive overlap in all axes must fail with MEGIS-VAL-001",
+      "expectStatus": "fail",
+      "expectCodes": ["MEGIS-VAL-001"],
+      "input": {
+        "design_id": "collision-overlap-001",
+        "components": [
+          { "component_id": "a", "box": { "min": [0, 0, 0], "max": [10, 10, 10] } },
+          { "component_id": "b", "box": { "min": [5, 5, 5], "max": [15, 15, 15] } }
+        ]
+      }
+    },
+    {
+      "case_id": "collision_nested_fails",
+      "description": "fully contained box must fail with MEGIS-VAL-001",
+      "expectStatus": "fail",
+      "expectCodes": ["MEGIS-VAL-001"],
+      "input": {
+        "design_id": "collision-nested-001",
+        "components": [
+          { "component_id": "outer", "box": { "min": [0, 0, 0], "max": [20, 20, 20] } },
+          { "component_id": "inner", "box": { "min": [5, 5, 5], "max": [10, 10, 10] } }
+        ]
+      }
+    },
+    {
+      "case_id": "clearance_met_passes",
+      "description": "gap larger than required must pass with no codes",
+      "expectStatus": "pass",
+      "expectCodes": [],
+      "input": {
+        "design_id": "clearance-met-001",
+        "components": [
+          { "component_id": "base", "box": { "min": [0, 0, 0], "max": [10, 10, 10] } },
+          { "component_id": "top", "box": { "min": [0, 0, 15], "max": [10, 10, 20] } }
+        ],
+        "clearances": [
+          { "first_id": "base", "second_id": "top", "min_gap_mm": 4 }
+        ]
+      }
+    },
+    {
+      "case_id": "clearance_exact_boundary_passes",
+      "description": "gap exactly equal to required must pass (inclusive boundary)",
+      "expectStatus": "pass",
+      "expectCodes": [],
+      "input": {
+        "design_id": "clearance-boundary-001",
+        "components": [
+          { "component_id": "base", "box": { "min": [0, 0, 0], "max": [10, 10, 10] } },
+          { "component_id": "top", "box": { "min": [0, 0, 14], "max": [10, 10, 20] } }
+        ],
+        "clearances": [
+          { "first_id": "base", "second_id": "top", "min_gap_mm": 4 }
+        ]
+      }
+    },
+    {
+      "case_id": "clearance_violated_fails",
+      "description": "gap below required must fail with MEGIS-VAL-002",
+      "expectStatus": "fail",
+      "expectCodes": ["MEGIS-VAL-002"],
+      "input": {
+        "design_id": "clearance-violated-001",
+        "components": [
+          { "component_id": "base", "box": { "min": [0, 0, 0], "max": [10, 10, 10] } },
+          { "component_id": "top", "box": { "min": [0, 0, 13], "max": [10, 10, 20] } }
+        ],
+        "clearances": [
+          { "first_id": "base", "second_id": "top", "min_gap_mm": 4 }
+        ]
+      }
+    },
+    {
+      "case_id": "clearance_overlap_fails",
+      "description": "overlapping boxes with a required gap fail both collision and clearance",
+      "expectStatus": "fail",
+      "expectCodes": ["MEGIS-VAL-001", "MEGIS-VAL-002"],
+      "input": {
+        "design_id": "clearance-overlap-001",
+        "components": [
+          { "component_id": "a", "box": { "min": [0, 0, 0], "max": [10, 10, 10] } },
+          { "component_id": "b", "box": { "min": [5, 5, 5], "max": [15, 15, 15] } }
+        ],
+        "clearances": [
+          { "first_id": "a", "second_id": "b", "min_gap_mm": 2 }
+        ]
+      }
+    },
+    {
+      "case_id": "clearance_unknown_component_fails",
+      "description": "dangling clearance component reference must fail with MEGIS-VAL-003",
+      "expectStatus": "error",
+      "expectCodes": ["MEGIS-VAL-003"],
+      "input": {
+        "design_id": "clearance-dangling-001",
+        "components": [
+          { "component_id": "base", "box": { "min": [0, 0, 0], "max": [10, 10, 10] } }
+        ],
+        "clearances": [
+          { "first_id": "base", "second_id": "missing", "min_gap_mm": 1 }
+        ]
+      }
+    },
+    {
+      "case_id": "fixture_assembly_passes",
+      "description": "realistic three-box reference fixture assembly with clearances must pass",
+      "expectStatus": "pass",
+      "expectCodes": [],
+      "input": {
+        "design_id": "fixture-assembly-001",
+        "components": [
+          { "component_id": "base", "box": { "min": [0, 0, 0], "max": [60, 40, 4] } },
+          { "component_id": "pcb", "box": { "min": [2, 2, 5], "max": [58, 38, 6.6] } },
+          { "component_id": "cover", "box": { "min": [0, 0, 7], "max": [60, 40, 9] } }
+        ],
+        "clearances": [
+          { "first_id": "base", "second_id": "pcb", "min_gap_mm": 0.9, "rule_id": "PCB_STANDOFF_001" },
+          { "first_id": "pcb", "second_id": "cover", "min_gap_mm": 0.4, "rule_id": "PCB_TOP_CLEAR_001" }
+        ]
+      }
+    }
+  ]
+}

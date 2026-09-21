@@ -22,6 +22,8 @@
 | MEGIS-GEO-003 | GEO | error | no | 幾何尺寸無效。 |
 | MEGIS-GEO-004 | GEO | fatal | no | 幾何後端違反契約。 |
 | MEGIS-VAL-001 | VAL | error | no | 檢測到碰撞或佈局衝突。 |
+| MEGIS-VAL-002 | VAL | error | no | 元件間餘隙不足。 |
+| MEGIS-VAL-003 | VAL | error | no | 驗證輸入幾何無效。 |
 | MEGIS-RUL-001 | RUL | error | no | 規則來源未經核准。 |
 | MEGIS-RUL-002 | RUL | error | no | 規則狀態轉換無效。 |
 | MEGIS-RUL-003 | RUL | error | no | 規則不可豁免或豁免條件無效。 |
