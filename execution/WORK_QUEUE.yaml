@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-21T19:20:00+08:00",
+  "updatedAt": "2026-09-21T20:00:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G3-RUL-001",
+  "currentWorkItem": "G3-SRC-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -1420,7 +1420,7 @@
       "id": "G3-RUL-001",
       "title": "建立 rule schema、governance 與 waiver",
       "gate": "G3",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G2-ACC-001"
       ],
@@ -1438,16 +1438,40 @@
       "acceptanceResults": [
         {
           "criterion": "規則、嚴重度、來源、版本與 waiver 均可追溯",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "schemas/v3/rule.schema.json",
+            "schemas/v3/waiver.schema.json",
+            "megis/rules/lifecycle.py",
+            "megis/rules/waiver.py",
+            "contracts/g3/golden/rule-governance.json",
+            "scripts/verify_g3_rul_001.py",
+            "tests/test_g3_rul_001.py",
+            "docs/G3_RULE_GOVERNANCE.md",
+            "artifacts/g3-rul-001/verification.json"
+          ]
         }
       ],
-      "verificationCommands": [],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe scripts/verify_g3_rul_001.py",
+        ".venv/Scripts/python.exe -m pytest tests/test_g3_rul_001.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "schemas/v3/rule.schema.json",
+        "schemas/v3/waiver.schema.json",
+        "megis/rules/lifecycle.py",
+        "megis/rules/waiver.py",
+        "contracts/g3/golden/rule-governance.json",
+        "scripts/verify_g3_rul_001.py",
+        "tests/test_g3_rul_001.py",
+        "docs/G3_RULE_GOVERNANCE.md",
+        "artifacts/g3-rul-001/verification.json"
+      ],
+      "verification": "passed",
+      "commitSha": "162d09d95df517c5123e4f7916ff19a0e2cfb087"
     },
     {
       "id": "G3-VAL-001",
@@ -2615,7 +2639,7 @@
       "id": "G3-SRC-001",
       "title": "規則來源登錄與核對流程",
       "gate": "G3",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G3-RUL-001"
       ],

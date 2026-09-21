@@ -1,14 +1,16 @@
 # MEGIS Project State
 
 - Current gate: `G3 — 規則與驗證`
-- Current work item: `G3-RUL-001 — 建立 rule schema / governance / waiver`
-- Last green commit: `43f2e0f32a695c61c76efd39a2c02bddd572fab8`
+- Current work item: `G3-SRC-001 — 規則來源登錄與核對流程`
+- Last green commit: `162d09d95df517c5123e4f7916ff19a0e2cfb087`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-21T19:20:00+08:00`
+- Updated at: `2026-09-21T20:00:00+08:00`
 
 ## Active gate: G3
 
 G2 已 closed（`SO-0003`，2026-09-21）。G3 — 規則與驗證 現在為 active gate。
+
+G3-RUL-001 已閉合（2026-09-21）：rule schema（`schemas/v3/rule.schema.json`）、waiver schema（`schemas/v3/waiver.schema.json`）、生命週期狀態機與 waiver 到期／不可豁免邏輯（`megis/rules/`）、golden corpus（`contracts/g3/golden/rule-governance.json`）；14 tests + `verify_g3_rul_001.py` 18/18 checks 全綠，新增 `MEGIS-RUL-002／003`。
 
 ## G1 閉合摘要
 
@@ -35,10 +37,10 @@ G2 已 closed（`SO-0003`，2026-09-21）。G3 — 規則與驗證 現在為 act
 
 | ID | Status | Evidence |
 |---|---|---|
-| G3-RUL-001 | in_progress | rule schema / governance / waiver（進行中，見 `execution/AGENT_CLAIM.json`） |
+| G3-RUL-001 | done | schemas/v3/rule.schema.json、schemas/v3/waiver.schema.json、megis/rules/、contracts/g3/golden/rule-governance.json；14 tests + verify_g3_rul_001.py 18/18 checks |
 | G3-VAL-001 | planned | geometry / collision / clearance validators |
 | G3-VAL-002 | planned | CNC DFM rule pack（20–30 條規則） |
-| G3-SRC-001 | planned | 規則來源登錄與核對流程（`docs/RULE_SOURCES.md`） |
+| G3-SRC-001 | in_progress | 規則來源登錄與核對流程（`docs/RULE_SOURCES.md`，見 `execution/AGENT_CLAIM.json`） |
 | G3-MAT-001 | planned | Maturity evaluator（§1.4 table-driven tests） |
 | G3-BEN-001 | planned | benchmark metrics（defect ≥ 30、clean ≥ 10、precision/recall/FP/Wilson CI） |
 | G3-REV-001 | planned | G3 自我審查（全新 session） |
