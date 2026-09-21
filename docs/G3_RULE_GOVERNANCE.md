@@ -2,9 +2,9 @@
 
 > 文件治理
 > - 目的：定義 MEGIS 規則生命週期、規則 schema 必填欄位、waiver 格式與到期失效、不可豁免類別及對應錯誤碼。
-> - 目前內容：G3-RUL-001 規則治理契約（2026-09-21）。
+> - 目前內容：G3-RUL-001 規則治理契約與 G3-SRC-001 來源登錄契約（2026-09-21）。
 > - Owner：MEGIS Builder；使用者保有否決權
-> - 最後審查 commit：`f8de6f33f60c336e1dc26ada8ba1b24eddb28e20`
+> - 最後審查 commit：`162d09d95df517c5123e4f7916ff19a0e2cfb087`
 
 ## 目的
 
@@ -22,6 +22,13 @@
 | `deprecated` | 保留歷史；不再評估新 Design Run | 只能由 `approved` 轉入 |
 
 規則版本依 SemVer 遞增；`approved` 後不就地修改，只能以新版本取代。來源未經核准（`docs/RULE_SOURCES.md` 未登錄為 `approved`）之規則不得設為 `approved`，違反時回傳 `MEGIS-RUL-001`；非正規狀態轉換回傳 `MEGIS-RUL-002`。
+
+## 規則來源登錄
+
+來源登錄以 `config/rule-sources/sources.yaml` 為唯一事實來源（schema：`schemas/v3/rule-source.schema.json`），人工可讀對映見 `docs/RULE_SOURCES.md`。`approved` 來源的 `review_due` 通過後自動降為 `needs_review`，且核准必須附 URL 與取用日期；`draft`／`needs_review`／`retired` 來源不可支撐核准規則。未知來源回傳 `MEGIS-RUL-004`。
+
+draft（或 in_review／deprecated）規則一律不得被評估為 approved，違反時回傳 `MEGIS-RUL-001`。
+
 
 ## 規則 schema 必填欄位
 
@@ -52,6 +59,7 @@ Waiver 失效後受影響 Design Run 的成熟度必須重新計算（此重算�
 | `MEGIS-RUL-001` | error | 規則來源未經核准 |
 | `MEGIS-RUL-002` | error | 規則狀態轉換無效 |
 | `MEGIS-RUL-003` | error | 規則不可豁免或豁免條件無效 |
+| `MEGIS-RUL-004` | error | 規則來源登錄無效或不存在 |
 
 ## Owner
 
@@ -59,4 +67,4 @@ MEGIS Builder；使用者保有否決權。
 
 ## 最後審查 commit
 
-`f8de6f33f60c336e1dc26ada8ba1b24eddb28e20`
+`162d09d95df517c5123e4f7916ff19a0e2cfb087`

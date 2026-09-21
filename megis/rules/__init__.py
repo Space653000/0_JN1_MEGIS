@@ -26,6 +26,19 @@ from .waiver import (
     waiver_status,
 )
 
+from .sources import (
+    SOURCES_PATH,
+    SOURCE_SCHEMA_PATH,
+    SOURCE_STATUS_NEEDS_REVIEW,
+    RuleSource,
+    approve_rule_via_registry,
+    ensure_rule_evaluable,
+    ensure_source_approved,
+    load_sources,
+    registry_issues,
+    source_by_id,
+    validate_source,
+)
 __all__ = [
     "ALLOWED_TRANSITIONS",
     "EVENT_CONDITIONS",
@@ -48,4 +61,15 @@ __all__ = [
     "validate_waiver",
     "verify_rule_registry",
     "waiver_status",
+    "SOURCES_PATH",
+    "SOURCE_SCHEMA_PATH",
+    "SOURCE_STATUS_NEEDS_REVIEW",
+    "RuleSource",
+    "approve_rule_via_registry",
+    "ensure_rule_evaluable",
+    "ensure_source_approved",
+    "load_sources",
+    "registry_issues",
+    "source_by_id",
+    "validate_source",
 ]

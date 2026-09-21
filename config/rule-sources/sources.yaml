@@ -1,0 +1,74 @@
+schemaVersion: "1.0.0"
+sources:
+  - source_id: "SRC-ISO-2768-1"
+    type: "standard"
+    status: "needs_review"
+    revision: "2026-A"
+    owner: "mechanical_engineering"
+    review_due: "2026-12-31"
+    url: null
+    accessed_at: null
+    notes: "一般公差；待 G3 公開查證後核准"
+  - source_id: "SRC-ISO-273"
+    type: "standard"
+    status: "needs_review"
+    revision: "2026-A"
+    owner: "mechanical_engineering"
+    review_due: "2026-12-31"
+    url: null
+    accessed_at: null
+    notes: "緊固件通孔；待 G3 公開查證後核准"
+  - source_id: "SRC-ISO-261-262"
+    type: "standard"
+    status: "needs_review"
+    revision: "2026-A"
+    owner: "mechanical_engineering"
+    review_due: "2026-12-31"
+    url: null
+    accessed_at: null
+    notes: "公制螺紋；待 G3 公開查證後核准"
+  - source_id: "SRC-ISO-4762"
+    type: "standard"
+    status: "needs_review"
+    revision: "2026-A"
+    owner: "mechanical_engineering"
+    review_due: "2026-12-31"
+    url: null
+    accessed_at: null
+    notes: "內六角圓柱頭螺絲；待查證後核准"
+  - source_id: "SRC-USB-TYPEC"
+    type: "datasheet"
+    status: "needs_review"
+    revision: "2026-A"
+    owner: "mechanical_engineering"
+    review_due: "2026-12-31"
+    url: null
+    accessed_at: null
+    notes: "優先以實際零件 datasheet 與 USB Type-C 規格為準"
+  - source_id: "SRC-IPC-2221"
+    type: "standard"
+    status: "needs_review"
+    revision: "2026-A"
+    owner: "mechanical_engineering"
+    review_due: "2026-12-31"
+    url: null
+    accessed_at: null
+    notes: "PCB 通則；只作 warning／info 級規則"
+  - source_id: "SRC-INTERNAL-ME-001"
+    type: "internal"
+    status: "draft"
+    revision: "2026-A"
+    owner: "mechanical_engineering"
+    review_due: "2026-12-31"
+    url: null
+    accessed_at: null
+    notes: "內部機構準則；核准前必須附公開依據（URL＋取用日期）"
+  - source_id: "SRC-CNC-DFM-001"
+    type: "internal"
+    status: "draft"
+    revision: "2026-A"
+    owner: "mechanical_engineering"
+    review_due: "2026-12-31"
+    url: null
+    accessed_at: null
+    notes: "CNC DFM 加工廠設計準則；核准前必須查證提交 URL"

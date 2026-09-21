@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v3/rule-source.schema.json",
+  "title": "MEGIS Rule Source Registry Entry (v3)",
+  "description": "Registry entry for an engineering rule source. A source becomes eligible to approve rules only when status is approved; an approved source whose review_due date has passed automatically returns to needs_review. URL and accessed_at must be filled before a source can be approved.",
+  "type": "object",
+  "required": [
+    "source_id",
+    "type",
+    "status",
+    "revision",
+    "owner",
+    "review_due",
+    "url",
+    "accessed_at"
+  ],
+  "properties": {
+    "source_id": { "type": "string", "pattern": "^SRC-[A-Z0-9-]+$" },
+    "type": { "type": "string", "enum": ["standard", "internal", "datasheet"] },
+    "status": { "type": "string", "enum": ["draft", "approved", "needs_review", "retired"] },
+    "revision": { "type": "string", "minLength": 1 },
+    "owner": { "type": "string", "minLength": 1 },
+    "review_due": { "type": "string", "format": "date" },
+    "url": {
+      "anyOf": [
+        { "type": "string", "minLength": 1 },
+        { "type": "null" }
+      ]
+    },
+    "accessed_at": {
+      "anyOf": [
+        { "type": "string", "format": "date" },
+        { "type": "null" }
+      ]
+    },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": false
+}

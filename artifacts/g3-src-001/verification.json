@@ -1,0 +1,145 @@
+{
+  "allChecksPassed": true,
+  "blueprintRef": "v3.0 §19.1、G3-SRC-001、invariant 7",
+  "checks": [
+    {
+      "detail": {
+        "status": "needs_review"
+      },
+      "name": "registry schema valid SRC-ISO-2768-1",
+      "passed": true
+    },
+    {
+      "detail": {
+        "status": "needs_review"
+      },
+      "name": "registry schema valid SRC-ISO-273",
+      "passed": true
+    },
+    {
+      "detail": {
+        "status": "needs_review"
+      },
+      "name": "registry schema valid SRC-ISO-261-262",
+      "passed": true
+    },
+    {
+      "detail": {
+        "status": "needs_review"
+      },
+      "name": "registry schema valid SRC-ISO-4762",
+      "passed": true
+    },
+    {
+      "detail": {
+        "status": "needs_review"
+      },
+      "name": "registry schema valid SRC-USB-TYPEC",
+      "passed": true
+    },
+    {
+      "detail": {
+        "status": "needs_review"
+      },
+      "name": "registry schema valid SRC-IPC-2221",
+      "passed": true
+    },
+    {
+      "detail": {
+        "status": "draft"
+      },
+      "name": "registry schema valid SRC-INTERNAL-ME-001",
+      "passed": true
+    },
+    {
+      "detail": {
+        "status": "draft"
+      },
+      "name": "registry schema valid SRC-CNC-DFM-001",
+      "passed": true
+    },
+    {
+      "detail": {
+        "issues": []
+      },
+      "name": "real registry has no governance issues at reference date",
+      "passed": true
+    },
+    {
+      "detail": {
+        "statuses": {
+          "SRC-CNC-DFM-001": "draft",
+          "SRC-INTERNAL-ME-001": "draft",
+          "SRC-IPC-2221": "needs_review",
+          "SRC-ISO-261-262": "needs_review",
+          "SRC-ISO-273": "needs_review",
+          "SRC-ISO-2768-1": "needs_review",
+          "SRC-ISO-4762": "needs_review",
+          "SRC-USB-TYPEC": "needs_review"
+        }
+      },
+      "name": "real registry currently has no approved source (conservative state)",
+      "passed": true
+    },
+    {
+      "detail": {
+        "sourceId": "SRC-CNC-DFM-001"
+      },
+      "name": "approved fixture source passes approval gate",
+      "passed": true
+    },
+    {
+      "detail": {
+        "effectiveStatus": "needs_review"
+      },
+      "name": "approved source lapses to needs_review after review date",
+      "passed": true
+    },
+    {
+      "detail": {
+        "errorCode": "MEGIS-RUL-004"
+      },
+      "name": "unknown source rejected",
+      "passed": true
+    },
+    {
+      "detail": {
+        "errorCode": "MEGIS-RUL-001"
+      },
+      "name": "expired source rejected",
+      "passed": true
+    },
+    {
+      "detail": {
+        "errorCode": "MEGIS-RUL-001"
+      },
+      "name": "draft rule never evaluated as approved",
+      "passed": true
+    },
+    {
+      "detail": {
+        "reviewedBy": "REV-SRC-2026",
+        "status": "approved"
+      },
+      "name": "registry-backed approval succeeds with reviewed_by",
+      "passed": true
+    }
+  ],
+  "engineeringArtifactGenerated": false,
+  "evidenceLevel": "E3",
+  "input": {
+    "goldenCorpus": "contracts/g3/golden/rule-governance.json",
+    "registry": "config/rule-sources/sources.yaml",
+    "schema": "schemas/v3/rule-source.schema.json"
+  },
+  "referenceDate": "2026-09-21",
+  "releaseArtifactGenerated": false,
+  "schemaVersion": "1.0.0",
+  "summary": {
+    "approvedSources": 0,
+    "registeredSources": 8,
+    "registryGovernanceIssues": 0
+  },
+  "verifiedAt": "2026-09-21T21:00:00+08:00",
+  "workItem": "G3-SRC-001"
+}
