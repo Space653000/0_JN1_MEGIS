@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v3/rule.schema.json",
+  "title": "MEGIS Engineering Rule (v3)",
+  "description": "Every rule must carry stable id, SemVer version, lifecycle status, verifiable source reference, severity, scope, applicability, waiver category and positive/negative/boundary tests. Approval requires a registered approved source (docs/RULE_SOURCES.md) and a sign-off reference.",
+  "type": "object",
+  "required": [
+    "rule_id",
+    "version",
+    "status",
+    "source",
+    "source_revision",
+    "source_clause",
+    "owner",
+    "reviewed_by",
+    "scope",
+    "condition",
+    "severity",
+    "recommendation",
+    "auto_fix",
+    "effective_date",
+    "applicability",
+    "waiver_category",
+    "waiver_policy",
+    "tests"
+  ],
+  "properties": {
+    "rule_id": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "status": { "type": "string", "enum": ["draft", "in_review", "approved", "deprecated"] },
+    "source": { "type": "string", "pattern": "^SRC-[A-Z0-9-]+$" },
+    "source_revision": { "type": "string", "minLength": 1 },
+    "source_clause": { "type": "string", "minLength": 1 },
+    "owner": { "type": "string", "minLength": 1 },
+    "reviewed_by": {
+      "description": "Required non-null when status is approved; references the sign-off who reviewed the rule.",
+      "anyOf": [
+        { "type": "null" },
+        { "type": "string", "minLength": 1 }
+      ]
+    },
+    "scope": { "type": "object" },
+    "condition": { "type": "object" },
+    "severity": { "type": "string", "enum": ["error", "warning", "info"] },
+    "recommendation": { "type": "string" },
+    "auto_fix": { "type": "boolean" },
+    "effective_date": { "type": "string", "format": "date" },
+    "applicability": {
+      "type": "object",
+      "required": ["envelope_ref", "materials", "processes"],
+      "properties": {
+        "envelope_ref": { "type": "string", "minLength": 1 },
+        "materials": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "processes": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      },
+      "additionalProperties": false
+    },
+    "waiver_category": {
+      "description": "safety and unsafe_to_default rules can never be waived; only standard rules are waivable.",
+      "type": "string",
+      "enum": ["standard", "safety", "unsafe_to_default"]
+    },
+    "waiver_policy": {
+      "type": "object",
+      "required": ["waivable", "requires_signoff", "revalidation_required"],
+      "properties": {
+        "waivable": { "type": "boolean" },
+        "requires_signoff": { "type": "boolean" },
+        "revalidation_required": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "tests": {
+      "type": "object",
+      "required": ["positive", "negative", "boundary"],
+      "properties": {
+        "positive": {
+          "type": "array",
+          "items": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string", "minLength": 1 } }, "additionalProperties": true }
+        },
+        "negative": {
+          "type": "array",
+          "items": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string", "minLength": 1 } }, "additionalProperties": true }
+        },
+        "boundary": {
+          "type": "array",
+          "items": { "type": "object", "required": ["name"], "properties": { "name": { "type": "string", "minLength": 1 } }, "additionalProperties": true }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

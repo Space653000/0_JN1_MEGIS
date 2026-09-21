@@ -1,0 +1,228 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G3-RUL-001",
+  "title": "Rule lifecycle, governance and waiver golden corpus",
+  "sourceStatus": {
+    "SRC-CNC-DFM-001": "approved",
+    "SRC-USB-TYPEC": "approved",
+    "SRC-ISO-2768-1": "approved",
+    "SRC-INTERNAL-ME-001": "approved"
+  },
+  "rules": [
+    {
+      "rule_id": "CNC_MIN_WALL_001",
+      "version": "0.4.0",
+      "status": "draft",
+      "source": "SRC-CNC-DFM-001",
+      "source_revision": "2026-A",
+      "source_clause": "minimum wall 2.0 mm for AL6061 3-axis milling",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": { "fixture": "base" },
+      "condition": { "type": "minimum_wall", "limit_mm": 2.0, "comparator": ">=" },
+      "severity": "error",
+      "recommendation": "increase_wall_to_2mm",
+      "auto_fix": false,
+      "effective_date": "2026-09-16",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": { "waivable": true, "requires_signoff": false, "revalidation_required": true },
+      "tests": {
+        "positive": [{ "name": "wall_2mm_passes" }],
+        "negative": [{ "name": "wall_1mm_fails" }],
+        "boundary": [{ "name": "wall_exactly_2mm" }]
+      }
+    },
+    {
+      "rule_id": "CNC_TAP_BLIND_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-CNC-DFM-001",
+      "source_revision": "2026-A",
+      "source_clause": "blind tapping depth equals thread length plus incomplete-thread allowance",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {},
+      "condition": { "type": "blind_tap_depth", "comparator": ">=" },
+      "severity": "error",
+      "recommendation": "deepen_drill_pilot",
+      "auto_fix": false,
+      "effective_date": "2026-09-16",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis", "tapping"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": { "waivable": true, "requires_signoff": false, "revalidation_required": true },
+      "tests": {
+        "positive": [{ "name": "depth_with_allowance_passes" }],
+        "negative": [{ "name": "depth_equals_thread_only_fails" }],
+        "boundary": [{ "name": "depth_exactly_at_allowance" }]
+      }
+    },
+    {
+      "rule_id": "CON_USBC_OPEN_001",
+      "version": "1.0.0",
+      "status": "approved",
+      "source": "SRC-USB-TYPEC",
+      "source_revision": "2026-A",
+      "source_clause": "USB Type-C receptacle shell plus clearance when flush; plus plug overmold when recessed",
+      "owner": "mechanical_engineering",
+      "reviewed_by": "REV-2026-USBTYPEC",
+      "scope": {},
+      "condition": { "type": "opening_clearance", "comparator": ">=" },
+      "severity": "error",
+      "recommendation": "enlarge_usbc_opening",
+      "auto_fix": false,
+      "effective_date": "2026-09-16",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6", "ABS"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": { "waivable": true, "requires_signoff": true, "revalidation_required": true },
+      "tests": {
+        "positive": [{ "name": "flush_receptacle_clearance_passes" }],
+        "negative": [{ "name": "recessed_plug_overmold_interferes" }],
+        "boundary": [{ "name": "opening_exactly_shell_plus_clearance" }]
+      }
+    },
+    {
+      "rule_id": "ASM_COLLISION_001",
+      "version": "1.0.0",
+      "status": "approved",
+      "source": "SRC-INTERNAL-ME-001",
+      "source_revision": "2026-A",
+      "source_clause": "any two components must not intersect",
+      "owner": "mechanical_engineering",
+      "reviewed_by": "REV-2026-COLLISION",
+      "scope": {},
+      "condition": { "type": "collision", "expected": "no_intersection" },
+      "severity": "error",
+      "recommendation": "resolve_interference",
+      "auto_fix": false,
+      "effective_date": "2026-09-16",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "safety",
+      "waiver_policy": { "waivable": false, "requires_signoff": true, "revalidation_required": true },
+      "tests": {
+        "positive": [{ "name": "clean_assembly_passes" }],
+        "negative": [{ "name": "intersecting_pair_fails" }],
+        "boundary": [{ "name": "touching_surfaces" }]
+      }
+    },
+    {
+      "rule_id": "TOL_GENERAL_001",
+      "version": "1.0.0",
+      "status": "approved",
+      "source": "SRC-ISO-2768-1",
+      "source_revision": "2026-A",
+      "source_clause": "untoleranced dimensions follow general tolerance class",
+      "owner": "mechanical_engineering",
+      "reviewed_by": "REV-2026-ISO2768",
+      "scope": {},
+      "condition": { "type": "general_tolerance", "class": "m" },
+      "severity": "info",
+      "recommendation": "apply_general_tolerance_class_m",
+      "auto_fix": true,
+      "effective_date": "2026-09-16",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": { "waivable": true, "requires_signoff": false, "revalidation_required": true },
+      "tests": {
+        "positive": [{ "name": "class_m_marks_ok" }],
+        "negative": [{ "name": "looser_customer_tolerance_flagged" }],
+        "boundary": [{ "name": "dimension_at_class_boundary" }]
+      }
+    },
+    {
+      "rule_id": "CNC_DEPTH_RATIO_001",
+      "version": "1.0.0",
+      "status": "deprecated",
+      "source": "SRC-CNC-DFM-001",
+      "source_revision": "2026-A",
+      "source_clause": "pocket depth limit replaced by tool-diameter ratio guideline",
+      "owner": "mechanical_engineering",
+      "reviewed_by": "REV-2026-CNC-DEPTH",
+      "scope": {},
+      "condition": { "type": "pocket_depth_ratio", "comparator": "<=", "limit": "4x_tool_diameter" },
+      "severity": "warning",
+      "recommendation": "split_pocket_or_larger_tool",
+      "auto_fix": false,
+      "effective_date": "2026-09-10",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": { "waivable": true, "requires_signoff": false, "revalidation_required": true },
+      "tests": {
+        "positive": [{ "name": "shallow_pocket_passes" }],
+        "negative": [{ "name": "deep_pocket_fails" }],
+        "boundary": [{ "name": "pocket_exactly_at_limit" }]
+      }
+    }
+  ],
+  "waivers": [
+    {
+      "waiver_id": "WV-0001",
+      "rule_id": "TOL_GENERAL_001",
+      "rule_version": "1.0.0",
+      "design_id": "PROJECT-0001",
+      "revision": "A",
+      "entity_refs": ["base.pocket.main"],
+      "reason": "Customer drawing QM-21 Rev D overlays a tighter tolerance than default class m.",
+      "risk_accepted": "Tighter customer tolerance applied; no function risk.",
+      "owner": "mechanical_engineering",
+      "approved_by_signoff": "SO-0007",
+      "expires_when": ["input_changed", "rule_version_changed"],
+      "affected_artifacts": ["CAD/base.step"],
+      "revalidation_required": true
+    },
+    {
+      "waiver_id": "WV-0002",
+      "rule_id": "TOL_GENERAL_001",
+      "rule_version": "1.0.0",
+      "design_id": "PROJECT-0002",
+      "revision": "B",
+      "entity_refs": ["cover.top"],
+      "reason": "Temporary tolerance exception on a cosmetic cover surface.",
+      "risk_accepted": "Cosmetic only; verified by inspection fixture.",
+      "owner": "mechanical_engineering",
+      "approved_by_signoff": "SO-0008",
+      "expires_when": [{ "date": "2026-09-01" }],
+      "affected_artifacts": ["CAD/cover.step"],
+      "revalidation_required": true
+    },
+    {
+      "waiver_id": "WV-0003",
+      "rule_id": "ASM_COLLISION_001",
+      "rule_version": "1.0.0",
+      "design_id": "PROJECT-0003",
+      "revision": "A",
+      "entity_refs": ["asm.comp_a", "asm.comp_b"],
+      "reason": "Proposed margin cut to meet envelope target.",
+      "risk_accepted": "None; safety category must never default to a waiver.",
+      "owner": "mechanical_engineering",
+      "approved_by_signoff": "SO-0009",
+      "expires_when": ["input_changed"],
+      "affected_artifacts": ["CAD/asm.step"],
+      "revalidation_required": true
+    }
+  ]
+}

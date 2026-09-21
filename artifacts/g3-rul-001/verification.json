@@ -1,0 +1,169 @@
+{
+  "allChecksPassed": true,
+  "blueprintRef": "v3.0 §11.1、§11.3、附錄 A.6、invariant 7/8",
+  "checks": [
+    {
+      "detail": {
+        "status": "draft",
+        "version": "0.4.0"
+      },
+      "name": "rule schema valid CNC_MIN_WALL_001",
+      "passed": true
+    },
+    {
+      "detail": {
+        "status": "in_review",
+        "version": "1.0.0"
+      },
+      "name": "rule schema valid CNC_TAP_BLIND_001",
+      "passed": true
+    },
+    {
+      "detail": {
+        "status": "approved",
+        "version": "1.0.0"
+      },
+      "name": "rule schema valid CON_USBC_OPEN_001",
+      "passed": true
+    },
+    {
+      "detail": {
+        "status": "approved",
+        "version": "1.0.0"
+      },
+      "name": "rule schema valid ASM_COLLISION_001",
+      "passed": true
+    },
+    {
+      "detail": {
+        "status": "approved",
+        "version": "1.0.0"
+      },
+      "name": "rule schema valid TOL_GENERAL_001",
+      "passed": true
+    },
+    {
+      "detail": {
+        "status": "deprecated",
+        "version": "1.0.0"
+      },
+      "name": "rule schema valid CNC_DEPTH_RATIO_001",
+      "passed": true
+    },
+    {
+      "detail": {
+        "ruleId": "TOL_GENERAL_001"
+      },
+      "name": "waiver schema valid WV-0001",
+      "passed": true
+    },
+    {
+      "detail": {
+        "ruleId": "TOL_GENERAL_001"
+      },
+      "name": "waiver schema valid WV-0002",
+      "passed": true
+    },
+    {
+      "detail": {
+        "ruleId": "ASM_COLLISION_001"
+      },
+      "name": "waiver schema valid WV-0003",
+      "passed": true
+    },
+    {
+      "detail": {
+        "issues": []
+      },
+      "name": "golden rule registry has no governance issues",
+      "passed": true
+    },
+    {
+      "detail": {
+        "unapproved": {}
+      },
+      "name": "all registered rule sources are approved",
+      "passed": true
+    },
+    {
+      "detail": {
+        "chain": [
+          "draft",
+          "in_review",
+          "approved",
+          "deprecated"
+        ],
+        "reviewedBy": "REV-2026-CNC-MIN-WALL"
+      },
+      "name": "lifecycle chain solves draft -> in_review -> approved -> deprecated",
+      "passed": true
+    },
+    {
+      "detail": {
+        "errorCode": "MEGIS-RUL-002"
+      },
+      "name": "skip-review direct approval rejected",
+      "passed": true
+    },
+    {
+      "detail": {
+        "errorCode": "MEGIS-RUL-001"
+      },
+      "name": "unapproved source approval rejected",
+      "passed": true
+    },
+    {
+      "detail": {},
+      "name": "WV-0001 active at reference date",
+      "passed": true
+    },
+    {
+      "detail": {
+        "triggered": [
+          "input_changed"
+        ]
+      },
+      "name": "WV-0001 expires on input change",
+      "passed": true
+    },
+    {
+      "detail": {
+        "triggered": [
+          "date:2026-09-01"
+        ]
+      },
+      "name": "WV-0002 expired after its date boundary",
+      "passed": true
+    },
+    {
+      "detail": {
+        "status": "invalid"
+      },
+      "name": "WV-0003 rejected for safety rule",
+      "passed": true
+    }
+  ],
+  "engineeringArtifactGenerated": false,
+  "evidenceLevel": "E3",
+  "input": {
+    "corpus": "contracts/g3/golden/rule-governance.json",
+    "ruleSchema": "schemas/v3/rule.schema.json",
+    "waiverSchema": "schemas/v3/waiver.schema.json"
+  },
+  "referenceDate": "2026-09-21",
+  "releaseArtifactGenerated": false,
+  "schemaVersion": "1.0.0",
+  "summary": {
+    "lifecycleChain": "passed",
+    "registryGovernanceIssues": 0,
+    "ruleSchemaConformant": 6,
+    "rules": 6,
+    "waiverActive": 1,
+    "waiverExpired": 1,
+    "waiverInvalid": 1,
+    "waiverSchemaConformant": 3,
+    "waivers": 3
+  },
+  "verifiedAt": "2026-09-21T20:00:00+08:00",
+  "workItem": "G3-RUL-001"
+}

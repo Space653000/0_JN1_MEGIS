@@ -4,7 +4,7 @@
 > - 目的：提供 `MEGIS-<DOMAIN>-NNN` 錯誤碼的唯一登錄入口。
 > - 目前內容：V3 已核准錯誤碼登錄與 v2 legacy 映射。
 > - Owner：MEGIS Builder
-> - 最後審查 commit：`8e7e695b57f24592963264bd4992f46c50738836`
+> - 最後審查 commit：`f8de6f33f60c336e1dc26ada8ba1b24eddb28e20`
 
 ## 目的
 
@@ -23,6 +23,8 @@
 | MEGIS-GEO-004 | GEO | fatal | no | 幾何後端違反契約。 |
 | MEGIS-VAL-001 | VAL | error | no | 檢測到碰撞或佈局衝突。 |
 | MEGIS-RUL-001 | RUL | error | no | 規則來源未經核准。 |
+| MEGIS-RUL-002 | RUL | error | no | 規則狀態轉換無效。 |
+| MEGIS-RUL-003 | RUL | error | no | 規則不可豁免或豁免條件無效。 |
 | MEGIS-PKG-001 | PKG | error | no | 套件指紋不符。 |
 | MEGIS-JOB-001 | JOB | error | yes | 工作逾時。 |
 | MEGIS-AI-001 | AI | error | yes | AI 輸出格式無效。 |
@@ -46,4 +48,4 @@ MEGIS Builder；新增 code 必須同時新增測試與本表紀錄。
 
 ## 最後審查 commit
 
-`8e7e695b57f24592963264bd4992f46c50738836`
+`f8de6f33f60c336e1dc26ada8ba1b24eddb28e20`
