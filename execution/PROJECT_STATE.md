@@ -1,74 +1,36 @@
 # MEGIS Project State
 
-- Current gate: G1 — 工程契約與黃金案例
-- Current work item: G1-REQ-001 — 參考案例參數研究與決定 ✅ DONE
-- Last green commit: ecd1e39248dd8f7f5a3527d27db25d6b42719ec5
-- Control-plane schema: 1.1.0
-- Updated at: 2026-09-20T00:00:00+08:00
+- Current gate: `G2 — 治具幾何垂直切片`
+- Current work item: `G2-CAD-004 — 輸出與重新載入 artifacts`
+- Last green commit: `c6e39020852f2c5fca6d49d12ddb7798793c9c37`
+- Control-plane schema: `1.1.0`
+- Updated at: `2026-09-21T00:00:00+08:00`
 
-## Accepted capabilities
+## Active gate: G2
 
-- UI-0A：隔離的本機前端工具鏈
-- UI-0B：證據驅動的施工進度中心
-- UI-0C：引導式治具使用者體驗原型
-- UI-0D：自動化驗證與使用者驗收
-- G0-REP-001：正式施工控制面
-- G0-ENV-001：可重現 Python、Node 與 CAD 工具鏈
-- G0-CAD-001：CadQuery STEP/STL/DXF 輸出與重新載入可行性
-- G0-DRW-001：FreeCAD headless projection 與固定模板 SVG fallback
-- G0-SIM-001：COMSOL 本機可行性決策為 out_of_scope，不阻塞核心 Gate
-- G0-CI-001：本機與 GitHub Actions baseline CI，含跨 checkout artifact hash 穩定性
-- G0-DOC-001：v3 §5.1 必要文件 24 項全部存在、41 份 docs/*.md 治理 metadata 全通過，secret scan 整合進 baseline
-- G0-DEC-001：D1-D9 所有 G0 使用者決策有 accepted ADR 與可追溯證據 (E4)，誠實標記 enforced/partially_enforced/policy_only
-- G0-DET-001：兩次重跑 semantic fingerprint 一致、STEP/DXF/STL header 正規化與 maturity 掃描生效 (E3)
-- G0-REV-001：reviewer 以 clean checkout 重跑 G0 全部驗證並出具 passed 審查報告 (E3)
-- G0-ACC-001：gate_acceptance 決策紀錄 SO-0001 (E4)，可追溯 G0 審查與 CI，使用者保有否決權
-- G1-IR-001：unit、coordinate、ID/reference、provenance 與 knowledge-state primitives
-- G1-IR-002：完整 Engineering IR schema、語意參照完整性與負向契約測試
-- G1-IR-003：Fixture、Acoustic、Robot golden inputs、deterministic round trip 與下游 consumer
-- G1-MIG-001：V1→V2 deterministic migration、版本政策與可驗證 rollback
-- G1-ERR-001：V3 錯誤物件 schema、MEGIS-<DOMAIN>-<NNN> 登錄 14 碼、唯一性與 legacy 映射測試 (E3)
-- G1-ENV-001：機器可讀 config/envelope/envelope.yaml + schemas/v3/envelope.schema.json + loader/guard 模組，與 SUPPORTED_ENVELOPE.md 一致性測試、超出範圍回 MEGIS-ENV-001 且禁止 silent clamp (E3)
-- **G1-REQ-001**：Reference Case 完整參數研究與決定 (v3 §1.3、§9.1、附錄 B) ✅ NEW
-- G2-CAD-001：kernel-neutral geometry contract、capability negotiation 與 adapter seam
-- G2-CAD-002：由 golden IR 驅動的 CadQuery fixture base、尺寸與拓樸驗證
-- G2-CAD-003：cover、fasteners、USB-C cutout、PCB envelope 與組立間隙驗證
-- V3C-BCR-001：V3 主藍圖指向、採用 ADR、74 項工作圖與必要 ID 防退化檢查
-- V3C-CTL-001：向後相容 schema 1.1、單一 Builder claim、依賴無循環、done SHA 與 Gate 審查強制機制
-- V3C-DOC-001：§5.1 必要文件、目錄與 28 份 Markdown 治理 metadata
-- V3C-DEC-001：D1-D9 九份 accepted ADR、schema 驗證決策索引與誠實實作狀態
-- V3C-DET-001：fingerprint policy 1.0.0、STEP/DXF 正規化、binary STL 與雙次 replay
-- V3C-MAT-001：classification schema、全庫 manifest scanner、非 Design Run maturity 禁制與跨 process replay
-- V3C-REV-001 (進行中，fresh-session reviewer 接棒)：對 UI-0、G0、G1 已 accepted Gate 與 V3C remediation 的追溯審查，差距皆有承接項目
+G1 已 closed（`SO-0002`，2026-09-21），V3C 追溯閉合。G2 現在為 active gate。
 
-UI-0 驗收只涵蓋使用者體驗原型;沒有工程生成能力或工程製品獲得驗收。
+## G1 閉合摘要
 
-## Active scope
+- G1-REV-001：自我審查 passed（54 tests），報告 `execution/reviews/2026-09-21-G1-REV-001-review.md`
+- G1-ACC-001：`SO-0002`（E4 gate_acceptance）
+- V3C-REV-001 / V3C-ACC-001：V3C 追溯閉合
 
-**G1-REQ-001 已完成**: 建立 tests/golden/reference_fixture/requirement.yaml (v3 附錄 B 格式)，包含：
+## G2 work items
 
-- 外形：120×80×35 mm (Base 29mm + Cover 6mm)
-- PCB-A：100×60×1.6 mm，PCB-B：60×40×1.6 mm (researched：常見開發板尺寸)
-- 堆疊方式：stacked (上下疊層，15mm 間隙)
-- 元件高度：top 12mm / bottom 2mm (researched：USB-C、電解電容常見高度)
-- USB-C：PCB-A 的 -X 面，開口 9.0×3.0 mm (researched：標準 Type-C 尺寸)
-- M3 緊固：4 支 ISO 4762 內六角螺絲，直接攻牙，嚙合 6mm (researched：2.0×D 鋁材建議)
-- Corner boss：Ø7 mm，壁厚 1.5 mm
-- 所有參數帶有 provenance (user、researched、defaulted、derived) 與 approved_by: G1-REQ-001
-
-產出報告：outputs/2026-09-20-G1-REQ-001-研究報告.md
-
-V3C-REV-001 維持 in_progress 傘型，等待 G1-REV-001 → G1-ACC-001 完成後一併閉合。
-
-## Next work item
-
-1. **G1-REV-001**: 全新 session 自我審查，重跑 G1 全部驗證並出具 passed 報告
-2. **G1-ACC-001**: Gate acceptance 決策紀錄 (SO-0002)
-3. 完成後回到 **G2-CAD-004**: 基於完整參數的幾何生成
+| ID | Status | Evidence |
+|---|---|---|
+| G2-CAD-001 | done | megis/geometry/contracts.py, tests/test_g2_geometry_contract.py |
+| G2-CAD-002 | done | megis/adapters/cadquery_backend.py, scripts/verify_fixture_base.py |
+| G2-CAD-003 | done | megis/adapters/cadquery_backend.py, tests/test_g2_fixture_assembly.py |
+| G2-CAD-004 | in_progress | 本段執行：輸出檔可重新載入且幾何不為空（STEP/STL/DXF artifacts + reload 驗證） |
+| G2-NEG-001 | planned | Boundary 與 negative geometry corpus（依賴 G2-CAD-004） |
+| G2-REV-001 | planned | G2 自我審查 |
+| G2-ACC-001 | planned | G2 acceptance（SO-0003） |
 
 ## Boundaries
 
-- 所有本機寫入必須留在 C:\0_JN1_MEGIS。
-- C:\0_JN1_AERIS 與 C:\0_JN1_Offline-Local-Voice-Agent 不得變更、共用或依賴。
-- 本機服務只綁定 127.0.0.1。
-- 本 Gate 不把 UI-0 合成展示資料視為工程資料。
+- 所有本機寫入必須留在 `C:\0_JN1_MEGIS`。
+- `C:\0_JN1_AERIS` 與 `C:\0_JN1_Offline-Local-Voice-Agent` 不得變更、共用或依賴。
+- 本機服務只綁定 `127.0.0.1`。
+- UI-0 合成展示資料不視為工程資料。

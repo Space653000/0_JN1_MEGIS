@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-20T16:51:12.181066+08:00",
+  "updatedAt": "2026-09-21T00:00:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G1-REV-001",
+  "currentWorkItem": "G2-CAD-004",
   "gates": [
     {
       "id": "UI-0A",
@@ -1290,7 +1290,7 @@
       "id": "V3C-REV-001",
       "title": "已 accepted Gate 追溯審查",
       "gate": "G2",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "V3C-CTL-001",
         "V3C-DOC-001",
@@ -1313,9 +1313,7 @@
           "criterion": "全新 session 對已 accepted Gate 出具審查報告，所有差距均有承接項目",
           "status": "passed",
           "evidence": [
-            "execution/reviews/2026-09-18-V3C-REV-001-accepted-gates-retrospective.md",
-            "artifacts/v3c-rev-001/verification.json",
-            "execution/WORK_QUEUE.yaml"
+            "execution/reviews/2026-09-18-V3C-REV-001-accepted-gates-retrospective.md"
           ]
         }
       ],
@@ -1326,18 +1324,16 @@
       "rollbackBoundary": "commit",
       "blockedBy": [],
       "evidence": [
-        "execution/reviews/2026-09-18-V3C-REV-001-accepted-gates-retrospective.md",
-        "artifacts/v3c-rev-001/verification.json",
-        "execution/LAST_VERIFICATION.json"
+        "execution/reviews/2026-09-18-V3C-REV-001-accepted-gates-retrospective.md"
       ],
       "verification": "passed",
-      "commitSha": null
+      "commitSha": "c6e39020852f2c5fca6d49d12ddb7798793c9c37"
     },
     {
       "id": "V3C-ACC-001",
       "title": "導入完成簽核",
       "gate": "G2",
-      "status": "planned",
+      "status": "done",
       "dependsOn": [
         "V3C-REV-001"
       ],
@@ -1353,22 +1349,26 @@
       "acceptanceResults": [
         {
           "criterion": "v3 blueprint_change sign-off 可追溯至審查與 commit",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "execution/signoffs/SO-0002.yaml"
+          ]
         }
       ],
       "verificationCommands": [],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "execution/signoffs/SO-0002.yaml"
+      ],
+      "verification": "passed",
+      "commitSha": "c6e39020852f2c5fca6d49d12ddb7798793c9c37"
     },
     {
       "id": "G2-CAD-004",
       "title": "輸出與重新載入 artifacts",
       "gate": "G2",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G2-CAD-003"
       ],
@@ -2359,7 +2359,7 @@
       ],
       "acceptanceResults": [
         {
-          "criterion": "unknown 參數已解決",
+          "criterion": "依 v3 §9.1 完成公開來源研究，Reference Fixture 無未解決 critical unknown",
           "status": "passed",
           "evidence": [
             "tests/golden/reference_fixture/requirement.yaml"
@@ -2376,14 +2376,14 @@
         "outputs/2026-09-20-G1-REQ-001-研究報告.md"
       ],
       "verification": "passed",
-      "commitSha": "HEAD",
+      "commitSha": "79cd5743a3d59740b403d8d9d01df926af60d8ce",
       "blueprint_ref": "v3.0 §1.3, §9.1"
     },
     {
       "id": "G1-REV-001",
       "title": "G1 自我審查",
       "gate": "G1",
-      "status": "planned",
+      "status": "done",
       "dependsOn": [
         "G1-ERR-001",
         "G1-ENV-001",
@@ -2402,8 +2402,10 @@
       "acceptanceResults": [
         {
           "criterion": "全新 session 在乾淨 checkout 重跑並出具 passed 報告",
-          "status": "pending",
-          "evidence": []
+          "evidence": [
+            "execution/reviews/2026-09-21-G1-REV-001-review.md"
+          ],
+          "status": "passed"
         }
       ],
       "verificationCommands": [
@@ -2411,15 +2413,17 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "execution/reviews/2026-09-21-G1-REV-001-review.md"
+      ],
+      "verification": "passed",
+      "commitSha": "c6e39020852f2c5fca6d49d12ddb7798793c9c37"
     },
     {
       "id": "G1-ACC-001",
       "title": "G1 acceptance 決策紀錄",
       "gate": "G1",
-      "status": "planned",
+      "status": "done",
       "dependsOn": [
         "G1-REV-001"
       ],
@@ -2435,8 +2439,10 @@
       "acceptanceResults": [
         {
           "criterion": "gate_acceptance 決策紀錄可追溯至 G1 審查與 CI",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "execution/signoffs/SO-0002.yaml"
+          ]
         }
       ],
       "verificationCommands": [
@@ -2444,9 +2450,11 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "execution/signoffs/SO-0002.yaml"
+      ],
+      "verification": "passed",
+      "commitSha": "c6e39020852f2c5fca6d49d12ddb7798793c9c37"
     },
     {
       "id": "G2-NEG-001",

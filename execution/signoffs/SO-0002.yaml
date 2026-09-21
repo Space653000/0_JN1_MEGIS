@@ -1,0 +1,23 @@
+signoff_id: SO-0002
+type: gate_acceptance
+subject: G1
+reviewer_name: codex
+reviewer_role: self_review
+review_session_id: codex-fresh-review-g1-2026-09-21
+build_session_id: codex-builder-g1-closure-2026-09-21
+scope: |
+  G1 全部 9 個 work item 閉合（IR-001/002/003、MIG-001、ERR-001、ENV-001、REQ-001、
+  REV-001 已 done，本紀錄閉合 G1-ACC-001）。依 v3 §5.7、§6.3：施工者以全新 session
+  自我審查（G1-REV-001 passed）+ 乾淨重跑 54 tests 全綠 + control-plane verifier 全綠 +
+  gate_acceptance 決策紀錄；使用者保有否決權。
+evidence:
+  - path: execution/reviews/2026-09-21-G1-REV-001-review.md
+  - artifact: tests/golden/reference_fixture/requirement.yaml
+  - artifact: config/envelope/envelope.yaml
+  - path: execution/LAST_VERIFICATION.json
+decision: approved
+conditions: []
+signed_at: 2026-09-21T00:00:00+08:00
+signature_reference: c6e39020852f2c5fca6d49d12ddb7798793c9c37
+recorded_by: agent
+user_veto: null

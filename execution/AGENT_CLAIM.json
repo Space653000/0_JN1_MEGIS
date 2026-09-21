@@ -1,8 +1,8 @@
 {
   "agent": "codex",
   "role": "builder",
-  "work_item": "V3C-REV-001",
-  "claimed_at": "2026-09-19T17:05:00+08:00",
-  "expires_at": "2026-09-20T17:05:00+08:00",
-  "base_commit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5"
+  "work_item": "G2-CAD-004",
+  "claimed_at": "2026-09-21T00:00:00+08:00",
+  "expires_at": "2026-09-22T00:00:00+08:00",
+  "base_commit": "c6e39020852f2c5fca6d49d12ddb7798793c9c37"
 }
