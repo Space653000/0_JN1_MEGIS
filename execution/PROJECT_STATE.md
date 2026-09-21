@@ -1,10 +1,10 @@
 # MEGIS Project State
 
 - Current gate: `G3 — 規則與驗證`
-- Current work item: `G3-VAL-001 — 建立 geometry、collision 與 clearance validators`
-- Last green commit: `eac514c7339a2f280ccd2f12078bfb5fcc247263`
+- Current work item: `G3-VAL-002 — 建立 CNC DFM rule pack`
+- Last green commit: `a2d1402928e85161f14dfc95aba43d03836204c0`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-21T21:30:00+08:00`
+- Updated at: `2026-09-21T22:00:00+08:00`
 
 ## Active gate: G3
 
@@ -13,6 +13,8 @@ G2 已 closed（`SO-0003`，2026-09-21）。G3 — 規則與驗證 現在為 act
 G3-RUL-001 已閉合（2026-09-21）：rule schema（`schemas/v3/rule.schema.json`）、waiver schema（`schemas/v3/waiver.schema.json`）、生命週期狀態機與 waiver 到期／不可豁免邏輯（`megis/rules/`）、golden corpus（`contracts/g3/golden/rule-governance.json`）；14 tests + `verify_g3_rul_001.py` 18/18 checks 全綠，新增 `MEGIS-RUL-002／003`。
 
 G3-SRC-001 已閉合（2026-09-21）：規則來源登錄與核對流程（`schemas/v3/rule-source.schema.json`、`config/rule-sources/sources.yaml`、`megis/rules/sources.py`）；8 個來源登錄、0 approved（保守狀態），review_due 過期自動降為 `needs_review`、draft 規則不可支撐核准；13 tests + `verify_g3_src_001.py` 18/18 checks 全綠，新增 `MEGIS-RUL-004`。
+
+G3-VAL-001 已閉合（2026-09-21）：geometry / collision / clearance validators（`schemas/v3/validation-result.schema.json`、`megis/validation/`、`contracts/g3/golden/validation-corpus.json`）；15 個已知 pass/fail cases + `verify_g3_val_001.py` 17/17 checks 全綠，新增 `MEGIS-VAL-002／003`。
 
 ## G1 閉合摘要
 
@@ -40,8 +42,8 @@ G3-SRC-001 已閉合（2026-09-21）：規則來源登錄與核對流程（`sche
 | ID | Status | Evidence |
 |---|---|---|
 | G3-RUL-001 | done | schemas/v3/rule.schema.json、schemas/v3/waiver.schema.json、megis/rules/、contracts/g3/golden/rule-governance.json；14 tests + verify_g3_rul_001.py 18/18 checks |
-| G3-VAL-001 | in_progress | geometry / collision / clearance validators（見 `execution/AGENT_CLAIM.json`） |
-| G3-VAL-002 | planned | CNC DFM rule pack（20–30 條規則） |
+| G3-VAL-001 | done | schemas/v3/validation-result.schema.json、megis/validation/、contracts/g3/golden/validation-corpus.json；15 cases + verify_g3_val_001.py 17/17 checks |
+| G3-VAL-002 | in_progress | CNC DFM rule pack（20–30 條規則，見 `execution/AGENT_CLAIM.json`） |
 | G3-SRC-001 | done | schemas/v3/rule-source.schema.json、config/rule-sources/sources.yaml、megis/rules/sources.py；13 tests + verify_g3_src_001.py 18/18 checks |
 | G3-MAT-001 | planned | Maturity evaluator（§1.4 table-driven tests） |
 | G3-BEN-001 | planned | benchmark metrics（defect ≥ 30、clean ≥ 10、precision/recall/FP/Wilson CI） |

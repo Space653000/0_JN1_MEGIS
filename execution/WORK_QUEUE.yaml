@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-21T21:30:00+08:00",
+  "updatedAt": "2026-09-21T22:00:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G3-VAL-001",
+  "currentWorkItem": "G3-VAL-002",
   "gates": [
     {
       "id": "UI-0A",
@@ -1477,7 +1477,7 @@
       "id": "G3-VAL-001",
       "title": "建立 geometry、collision 與 clearance validators",
       "gate": "G3",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G3-RUL-001"
       ],
@@ -1494,22 +1494,44 @@
       "acceptanceResults": [
         {
           "criterion": "已知 pass/fail cases 產生可追溯驗證結果",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "schemas/v3/validation-result.schema.json",
+            "schemas/v3/validation-corpus.schema.json",
+            "megis/validation/geometry.py",
+            "megis/validation/results.py",
+            "contracts/g3/golden/validation-corpus.json",
+            "tests/test_g3_val_001.py",
+            "scripts/verify_g3_val_001.py",
+            "docs/G3_VALIDATION.md",
+            "docs/ERROR_CODES.md",
+            "artifacts/g3-val-001/verification.json"
+          ]
         }
       ],
       "verificationCommands": [],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "schemas/v3/validation-result.schema.json",
+        "schemas/v3/validation-corpus.schema.json",
+        "megis/validation/geometry.py",
+        "megis/validation/results.py",
+        "contracts/g3/golden/validation-corpus.json",
+        "tests/test_g3_val_001.py",
+        "scripts/verify_g3_val_001.py",
+        "docs/G3_VALIDATION.md",
+        "docs/ERROR_CODES.md",
+        "artifacts/g3-val-001/verification.json"
+      ],
+      "verification": "passed",
+      "commitSha": "a2d1402928e85161f14dfc95aba43d03836204c0"
     },
     {
       "id": "G3-VAL-002",
       "title": "建立 CNC DFM rule pack",
       "gate": "G3",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G3-VAL-001",
         "G3-SRC-001"
