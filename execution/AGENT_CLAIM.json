@@ -1,8 +1,8 @@
 {
   "agent": "codex",
   "role": "builder",
-  "work_item": "G2-ACC-001",
-  "claimed_at": "2026-09-21T19:00:00+08:00",
-  "expires_at": "2026-09-22T19:00:00+08:00",
-  "base_commit": "c8d548b2769493b5e5c372b561c5218f9e00a07a"
+  "work_item": "G3-RUL-001",
+  "claimed_at": "2026-09-21T19:20:00+08:00",
+  "expires_at": "2026-09-22T19:20:00+08:00",
+  "base_commit": "43f2e0f32a695c61c76efd39a2c02bddd572fab8"
 }

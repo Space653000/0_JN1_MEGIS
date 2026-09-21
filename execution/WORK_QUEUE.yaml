@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-21T19:00:00+08:00",
+  "updatedAt": "2026-09-21T19:20:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G2-ACC-001",
+  "currentWorkItem": "G3-RUL-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -53,7 +53,7 @@
     {
       "id": "G2",
       "title": "治具幾何垂直切片",
-      "status": "active",
+      "status": "accepted",
       "dependsOn": [
         "G1"
       ]
@@ -61,7 +61,7 @@
     {
       "id": "G3",
       "title": "規則與驗證",
-      "status": "planned",
+      "status": "active",
       "dependsOn": [
         "G2"
       ]
@@ -1420,7 +1420,7 @@
       "id": "G3-RUL-001",
       "title": "建立 rule schema、governance 與 waiver",
       "gate": "G3",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G2-ACC-001"
       ],
@@ -2572,7 +2572,7 @@
       "id": "G2-ACC-001",
       "title": "G2 acceptance 決策紀錄",
       "gate": "G2",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G2-REV-001"
       ],
@@ -2588,8 +2588,13 @@
       "acceptanceResults": [
         {
           "criterion": "gate_acceptance 決策紀錄可追溯至 G2 審查與 CI",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "execution/signoffs/SO-0003.yaml",
+            "artifacts/g2-acc-001/verification.json",
+            "execution/reviews/2026-09-21-G2-REV-001-review.md",
+            "execution/LAST_VERIFICATION.json"
+          ]
         }
       ],
       "verificationCommands": [
@@ -2597,9 +2602,14 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "execution/signoffs/SO-0003.yaml",
+        "artifacts/g2-acc-001/verification.json",
+        "execution/reviews/2026-09-21-G2-REV-001-review.md",
+        "execution/LAST_VERIFICATION.json"
+      ],
+      "verification": "passed",
+      "commitSha": "43f2e0f32a695c61c76efd39a2c02bddd572fab8"
     },
     {
       "id": "G3-SRC-001",
