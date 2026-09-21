@@ -4,7 +4,7 @@
 > - 目的：集中索引 Gate、commit、review、CI 與 sign-off。
 > - 目前內容：UX-0／G0／G1／G2 驗收基線與 V3C 追溯審查結果（2026-09-21）。
 > - Owner：MEGIS Builder；使用者保有否決權
-> - 最後審查 commit：`238a9d9b1b5d4dd88e4f833f96fdbce24674f25e`
+> - 最後審查 commit：`c8d548b2769493b5e5c372b561c5218f9e00a07a`
 
 ## 目前內容
 
@@ -16,7 +16,7 @@
 | UI-0D | accepted | `docs/UI0_ACCEPTANCE.md` | review：`V3C-REV-001`（2026-09-18，passed）；sign-off：`V3C-ACC-001`（2026-09-21，closed） |
 | G0 | accepted | `docs/G0_BASELINE_CI.md` 與 G0 evidence | review：`V3C-REV-001`（passed）；簽核 `SO-0001`（2026-09-19） |
 | G1 | accepted | G1 contract、golden、migration evidence | review：`G1-REV-001`（2026-09-21，54 tests passed）；簽核 `SO-0002`（2026-09-21） |
-| G2 | active | G2-CAD-001～004、G2-NEG-001 已完成 | V3C 閉合後進入 active；`G2-NEG-001` 已閉合（boundary 10/10、negative 14/14、silent success 0、越界不 clamp），續施工 `G2-REV-001` |
+| G2 | active | G2-CAD-001～004、G2-NEG-001、G2-REV-001 已完成 | V3C 閉合後進入 active；`G2-NEG-001`（boundary 10/10、negative 14/14、silent success 0、越界不 clamp）與 `G2-REV-001`（乾淨 checkout 92 tests + 4 script）已閉合，續施工 `G2-ACC-001`（SO-0003） |
 
 審查證據：`execution/reviews/2026-09-18-V3C-REV-001-accepted-gates-retrospective.md` 與 `execution/reviews/2026-09-21-G1-REV-001-review.md`。
 CI 證據：GitHub Actions run `35326527366`（`398c82a`）與 run `35327571839`（`4fa15e2`）皆 green。
@@ -29,4 +29,4 @@ MEGIS Builder；使用者保有否決權。
 
 ## 最後審查 commit
 
-`238a9d9b1b5d4dd88e4f833f96fdbce24674f25e`
+`c8d548b2769493b5e5c372b561c5218f9e00a07a`
