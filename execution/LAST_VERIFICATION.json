@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-19T17:26:56+08:00",
-  "sourceCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
+  "verifiedAt": "2026-09-21T18:50:00+08:00",
+  "sourceCommit": "fafa3ec7b850655da48b605a6138e6a4be3120b7",
   "status": "passed",
   "commands": [
     {
@@ -9,78 +9,35 @@
       "status": "passed",
       "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
-      "deferrals": 6
+      "deferrals": 0,
+      "pythonTests": 147,
+      "frontendTests": 9
     },
     {
-      "command": "node --test tests/test_artifact_policy.mjs",
+      "command": "node scripts/verify-control-plane.mjs",
       "status": "passed",
-      "testsPassed": 8,
+      "controlPlaneWorkItems": 74,
+      "controlPlaneGates": 14,
+      "deferrals": 0
+    },
+    {
+      "command": "clean checkout .runs/g2-rev-001-clean pytest G1+G2",
+      "status": "passed",
+      "testsPassed": 92,
       "testsFailed": 0
     },
     {
-      "command": "node scripts/verify-artifact-policy.mjs",
+      "command": "clean checkout verify_g2_cad_004.py",
       "status": "passed",
-      "trackedFiles": 244,
-      "evidenceJsonCount": 26,
-      "heavyArtifactCount": 5,
-      "unallowlistedHeavyArtifacts": 0
+      "checksPassed": 30
     },
     {
-      "command": "node scripts/verify-secrets.mjs",
+      "command": "clean checkout verify_g2_neg_001.py",
       "status": "passed",
-      "trackedFilesScanned": 242,
-      "findings": 0
-    },
-    {
-      "command": ".venv/Scripts/python.exe -m pip check",
-      "status": "passed"
-    },
-    {
-      "command": ".venv/Scripts/python.exe scripts/verify_toolchain.py",
-      "status": "passed",
-      "solidValid": true,
-      "solidVolume": 6000.0
-    },
-    {
-      "command": ".venv/Scripts/python.exe -m pytest",
-      "status": "passed",
-      "testsPassed": 126,
-      "testsFailed": 0
-    },
-    {
-      "command": ".venv/Scripts/python.exe scripts/verify_maturity.py",
-      "status": "passed",
-      "manifestsVerified": 1,
-      "issues": 0
-    },
-    {
-      "command": ".venv/Scripts/python.exe scripts/verify_artifacts.py",
-      "status": "passed",
-      "recordsVerified": 13
-    },
-    {
-      "command": "npm --prefix apps/web run lint",
-      "status": "passed"
-    },
-    {
-      "command": "npm --prefix apps/web run typecheck",
-      "status": "passed"
-    },
-    {
-      "command": "npm --prefix apps/web test -- --run",
-      "status": "passed",
-      "testsPassed": 9,
-      "testsFailed": 0
-    },
-    {
-      "command": "npm --prefix apps/web run build",
-      "status": "passed"
-    },
-    {
-      "command": "GitHub Actions Baseline CI run 35434585295",
-      "status": "passed",
-      "headSha": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-      "durationSeconds": 134
+      "checksPassed": 27,
+      "boundaryPassed": 10,
+      "negativeErrored": 14,
+      "silentSuccess": 0
     }
   ],
   "boundaries": {
@@ -88,7 +45,7 @@
     "localOnly": true,
     "otherProjectDirectoriesModified": false,
     "engineeringArtifactsGenerated": true,
-    "engineeringArtifactsClassification": "FEASIBILITY_SPIKE",
+    "engineeringArtifactsClassification": null,
     "releaseArtifactsGenerated": false
   }
 }

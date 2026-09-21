@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G2-REV-001",
+  "status": "passed",
+  "method": "clean checkout within workspace",
+  "cleanCheckoutPath": ".runs/g2-rev-001-clean",
+  "reviewCommit": "fafa3ec7b850655da48b605a6138e6a4be3120b7",
+  "reviewedAt": "2026-09-21T18:50:00+08:00",
+  "controlPlane": {
+    "command": "node scripts/verify-control-plane.mjs",
+    "status": "passed",
+    "output": "Control plane valid: 74 work items, 14 gates, current G2-REV-001, 0 migration deferrals"
+  },
+  "tests": {
+    "command": "pytest tests/test_g1_*.py tests/test_g2_*.py",
+    "status": "passed",
+    "testsPassed": 92,
+    "testsFailed": 0
+  },
+  "verifyScripts": [
+    { "command": "scripts/verify_fixture_base.py", "status": "passed", "exitCode": 0 },
+    { "command": "scripts/verify_fixture_assembly.py", "status": "passed", "exitCode": 0 },
+    { "command": "scripts/verify_g2_cad_004.py", "status": "passed", "exitCode": 0, "checksPassed": 30 },
+    {
+      "command": "scripts/verify_g2_neg_001.py",
+      "status": "passed",
+      "exitCode": 0,
+      "checksPassed": 27,
+      "boundaryPassed": 10,
+      "boundaryTotal": 10,
+      "negativeErrored": 14,
+      "negativeTotal": 14,
+      "silentSuccess": 0
+    }
+  ],
+  "findings": [],
+  "engineeringArtifactsGenerated": false,
+  "releaseArtifactsGenerated": false
+}
