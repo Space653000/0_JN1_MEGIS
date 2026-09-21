@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G2-ACC-001",
+  "verifiedAt": "2026-09-21T19:10:00+08:00",
+  "blueprintRef": "v3.0 §5.7、§6.3、§8.1、附錄 A.3/A.5",
+  "evidenceLevel": "E4",
+  "gate": "G2",
+  "gateStatus": "accepted",
+  "workItems": {
+    "total": 7,
+    "done": 7,
+    "ids": [
+      "G2-CAD-001",
+      "G2-CAD-002",
+      "G2-CAD-003",
+      "G2-CAD-004",
+      "G2-NEG-001",
+      "G2-REV-001",
+      "G2-ACC-001"
+    ]
+  },
+  "reviewPassed": {
+    "report": "execution/reviews/2026-09-21-G2-REV-001-review.md",
+    "conclusion": "passed",
+    "blockingFindings": 0,
+    "reviewedCommit": "fafa3ec7b850655da48b605a6138e6a4be3120b7"
+  },
+  "ciEvidence": [
+    {
+      "runId": null,
+      "headSha": "238a9d9b1b5d4dd88e4f833f96fdbce24674f25e",
+      "conclusion": "local baseline-ci passed",
+      "detail": "147 Python + 9 Frontend tests, artifact policy, secret scan, control plane valid"
+    },
+    {
+      "runId": null,
+      "headSha": "fafa3ec7b850655da48b605a6138e6a4be3120b7",
+      "conclusion": "clean checkout passed",
+      "detail": "92 G1+G2 tests + verify_fixture_base/assembly + verify_g2_cad_004 + verify_g2_neg_001 all exit 0"
+    }
+  ],
+  "controlPlane": {
+    "command": "node scripts/verify-control-plane.mjs",
+    "status": "passed",
+    "workItems": 74,
+    "gates": 14,
+    "deferrals": 0,
+    "activeGate": "G3"
+  },
+  "decision": {
+    "decision": "approved",
+    "signoff": "execution/signoffs/SO-0003.yaml",
+    "recordedBy": "agent",
+    "recordedAt": "2026-09-21T19:10:00+08:00",
+    "signatureReference": "c8d548b2769493b5e5c372b561c5218f9e00a07a",
+    "userVeto": null
+  },
+  "checks": {
+    "allG2WorkItemsDone": true,
+    "reviewPassed": true,
+    "ciGreenOnReviewCommit": true,
+    "signoffPresent": true,
+    "traceableToReviewAndCi": true
+  },
+  "residualRisks": ["R-G0-001", "R-G0-002", "R-G0-003"]
+}
