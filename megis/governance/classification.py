@@ -29,7 +29,7 @@ MATURITY_STATES = frozenset(
 )
 NON_DESIGN_CLASSIFICATIONS = ARTIFACT_CLASSIFICATIONS - {"DESIGN_RUN"}
 IGNORED_DIRECTORIES = frozenset(
-    {".git", ".venv", ".temp", ".cache", ".pytest_cache", "node_modules", "dist"}
+    {".git", ".venv", ".temp", ".cache", ".pytest_cache", ".runs", "node_modules", "dist"}
 )
 
 

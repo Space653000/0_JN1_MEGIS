@@ -86,6 +86,10 @@ def test_scanner_finds_nested_manifests_and_ignores_cache_directories(tmp_path: 
     ignored.parent.mkdir(parents=True)
     ignored.write_text("not json", encoding="utf-8")
 
+    runs_ignored = tmp_path / ".runs" / "clean-checkout" / "manifest.json"
+    runs_ignored.parent.mkdir(parents=True)
+    runs_ignored.write_text("not json", encoding="utf-8")
+
     assert discover_manifests(tmp_path) == [good]
     manifests, issues = verify_repository_manifests(tmp_path)
     assert manifests == [good]
