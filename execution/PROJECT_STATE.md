@@ -1,16 +1,18 @@
 # MEGIS Project State
 
 - Current gate: `G3 — 規則與驗證`
-- Current work item: `G3-SRC-001 — 規則來源登錄與核對流程`
-- Last green commit: `162d09d95df517c5123e4f7916ff19a0e2cfb087`
+- Current work item: `G3-VAL-001 — 建立 geometry、collision 與 clearance validators`
+- Last green commit: `eac514c7339a2f280ccd2f12078bfb5fcc247263`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-21T20:00:00+08:00`
+- Updated at: `2026-09-21T21:30:00+08:00`
 
 ## Active gate: G3
 
 G2 已 closed（`SO-0003`，2026-09-21）。G3 — 規則與驗證 現在為 active gate。
 
 G3-RUL-001 已閉合（2026-09-21）：rule schema（`schemas/v3/rule.schema.json`）、waiver schema（`schemas/v3/waiver.schema.json`）、生命週期狀態機與 waiver 到期／不可豁免邏輯（`megis/rules/`）、golden corpus（`contracts/g3/golden/rule-governance.json`）；14 tests + `verify_g3_rul_001.py` 18/18 checks 全綠，新增 `MEGIS-RUL-002／003`。
+
+G3-SRC-001 已閉合（2026-09-21）：規則來源登錄與核對流程（`schemas/v3/rule-source.schema.json`、`config/rule-sources/sources.yaml`、`megis/rules/sources.py`）；8 個來源登錄、0 approved（保守狀態），review_due 過期自動降為 `needs_review`、draft 規則不可支撐核准；13 tests + `verify_g3_src_001.py` 18/18 checks 全綠，新增 `MEGIS-RUL-004`。
 
 ## G1 閉合摘要
 
@@ -38,9 +40,9 @@ G3-RUL-001 已閉合（2026-09-21）：rule schema（`schemas/v3/rule.schema.jso
 | ID | Status | Evidence |
 |---|---|---|
 | G3-RUL-001 | done | schemas/v3/rule.schema.json、schemas/v3/waiver.schema.json、megis/rules/、contracts/g3/golden/rule-governance.json；14 tests + verify_g3_rul_001.py 18/18 checks |
-| G3-VAL-001 | planned | geometry / collision / clearance validators |
+| G3-VAL-001 | in_progress | geometry / collision / clearance validators（見 `execution/AGENT_CLAIM.json`） |
 | G3-VAL-002 | planned | CNC DFM rule pack（20–30 條規則） |
-| G3-SRC-001 | in_progress | 規則來源登錄與核對流程（`docs/RULE_SOURCES.md`，見 `execution/AGENT_CLAIM.json`） |
+| G3-SRC-001 | done | schemas/v3/rule-source.schema.json、config/rule-sources/sources.yaml、megis/rules/sources.py；13 tests + verify_g3_src_001.py 18/18 checks |
 | G3-MAT-001 | planned | Maturity evaluator（§1.4 table-driven tests） |
 | G3-BEN-001 | planned | benchmark metrics（defect ≥ 30、clean ≥ 10、precision/recall/FP/Wilson CI） |
 | G3-REV-001 | planned | G3 自我審查（全新 session） |

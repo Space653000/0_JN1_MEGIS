@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-21T20:00:00+08:00",
+  "updatedAt": "2026-09-21T21:30:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G3-SRC-001",
+  "currentWorkItem": "G3-VAL-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -1477,7 +1477,7 @@
       "id": "G3-VAL-001",
       "title": "建立 geometry、collision 與 clearance validators",
       "gate": "G3",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G3-RUL-001"
       ],
@@ -2639,7 +2639,7 @@
       "id": "G3-SRC-001",
       "title": "規則來源登錄與核對流程",
       "gate": "G3",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G3-RUL-001"
       ],
@@ -2655,8 +2655,18 @@
       "acceptanceResults": [
         {
           "criterion": "RULE_SOURCES.md、來源過期處理與 draft 規則限制具有自動測試",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "schemas/v3/rule-source.schema.json",
+            "config/rule-sources/sources.yaml",
+            "megis/rules/sources.py",
+            "tests/test_g3_src_001.py",
+            "scripts/verify_g3_src_001.py",
+            "docs/RULE_SOURCES.md",
+            "docs/G3_RULE_GOVERNANCE.md",
+            "docs/ERROR_CODES.md",
+            "artifacts/g3-src-001/verification.json"
+          ]
         }
       ],
       "verificationCommands": [
@@ -2664,9 +2674,19 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "schemas/v3/rule-source.schema.json",
+        "config/rule-sources/sources.yaml",
+        "megis/rules/sources.py",
+        "tests/test_g3_src_001.py",
+        "scripts/verify_g3_src_001.py",
+        "docs/RULE_SOURCES.md",
+        "docs/G3_RULE_GOVERNANCE.md",
+        "docs/ERROR_CODES.md",
+        "artifacts/g3-src-001/verification.json"
+      ],
+      "verification": "passed",
+      "commitSha": "eac514c7339a2f280ccd2f12078bfb5fcc247263"
     },
     {
       "id": "G3-MAT-001",
