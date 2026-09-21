@@ -14,6 +14,7 @@ from .contracts import (
     GeometryErrorCode,
     GeometryPlan,
 )
+from megis.envelope import check_within_envelope
 
 
 # Transitional values for the v2 Reference Fixture slice. They are deliberately
@@ -76,6 +77,11 @@ def plan_fixture_base(document: dict[str, Any]) -> GeometryPlan:
         )
     base = bases[0]
     axes = document["coordinateSystem"]["axes"]
+    width_mm = _nominal_mm(base, "width")
+    depth_mm = _nominal_mm(base, "depth")
+    height_mm = _nominal_mm(base, "height")
+    # Invariant 18: out-of-envelope parts surface MEGIS-ENV-001 instead of clamping.
+    check_within_envelope(width_mm, depth_mm, height_mm, correlation_id=document["designId"])
     return GeometryPlan(
         plan_id=f"PLAN-{document['designId']}-{document['revision']}-BASE",
         design_id=document["designId"],
@@ -85,9 +91,9 @@ def plan_fixture_base(document: dict[str, Any]) -> GeometryPlan:
             BoxSpec(
                 operation_id="OP-FIXTURE-BASE-BOX",
                 component_id=base["id"],
-                width_mm=_nominal_mm(base, "width"),
-                depth_mm=_nominal_mm(base, "depth"),
-                height_mm=_nominal_mm(base, "height"),
+                width_mm=width_mm,
+                depth_mm=depth_mm,
+                height_mm=height_mm,
             ),
         ),
     )
@@ -143,6 +149,9 @@ def plan_fixture_assembly(document: dict[str, Any]) -> FixtureAssemblyPlan:
     depth_mm = _nominal_mm(base, "depth")
     height_mm = _nominal_mm(base, "height")
     defaults = _REFERENCE_ASSEMBLY_DEFAULTS
+
+    # Invariant 18: an out-of-envelope assembly surfaces MEGIS-ENV-001, not a clamp.
+    check_within_envelope(width_mm, depth_mm, height_mm, correlation_id=document["designId"])
 
     if 2 * wall_mm >= min(width_mm, depth_mm) or wall_mm >= height_mm:
         raise GeometryContractError(

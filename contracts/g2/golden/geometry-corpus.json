@@ -1,0 +1,289 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G2-NEG-001",
+  "title": "Reference Fixture geometry boundary and negative corpus",
+  "baseDocumentRef": "contracts/g1/golden/reference-fixture.json",
+  "envelopeRef": "config/envelope/envelope.yaml",
+  "boundaryCases": [
+    {
+      "caseId": "BND-001",
+      "label": "golden base exactly at verified envelope 120x80x20",
+      "operation": "fixture_base",
+      "edits": [],
+      "expected": { "status": "pass" }
+    },
+    {
+      "caseId": "BND-002",
+      "label": "width at envelope cap with smaller depth",
+      "operation": "fixture_base",
+      "edits": [
+        {
+          "op": "set_dimensions",
+          "component": "fixture_base",
+          "values": { "width": 120.0, "depth": 60.0 }
+        }
+      ],
+      "expected": { "status": "pass" }
+    },
+    {
+      "caseId": "BND-003",
+      "label": "depth at envelope cap with smaller width",
+      "operation": "fixture_base",
+      "edits": [
+        {
+          "op": "set_dimensions",
+          "component": "fixture_base",
+          "values": { "width": 100.0, "depth": 80.0 }
+        }
+      ],
+      "expected": { "status": "pass" }
+    },
+    {
+      "caseId": "BND-004",
+      "label": "height at envelope cap with sub-cap width and depth",
+      "operation": "fixture_base",
+      "edits": [
+        {
+          "op": "set_dimensions",
+          "component": "fixture_base",
+          "values": { "width": 100.0, "depth": 60.0, "height": 20.0 }
+        }
+      ],
+      "expected": { "status": "pass" }
+    },
+    {
+      "caseId": "BND-005",
+      "label": "width and depth at cap with sub-cap height",
+      "operation": "fixture_base",
+      "edits": [
+        {
+          "op": "set_dimensions",
+          "component": "fixture_base",
+          "values": { "width": 120.0, "depth": 80.0, "height": 19.0 }
+        }
+      ],
+      "expected": { "status": "pass" }
+    },
+    {
+      "caseId": "BND-006",
+      "label": "all axes just below every envelope cap",
+      "operation": "fixture_base",
+      "edits": [
+        {
+          "op": "set_dimensions",
+          "component": "fixture_base",
+          "values": { "width": 119.75, "depth": 79.75, "height": 19.75 }
+        }
+      ],
+      "expected": { "status": "pass" }
+    },
+    {
+      "caseId": "BND-007",
+      "label": "golden assembly with minimum wall 2.0",
+      "operation": "fixture_assembly",
+      "edits": [],
+      "expected": { "status": "pass" }
+    },
+    {
+      "caseId": "BND-008",
+      "label": "assembly at maximum wall 3.0",
+      "operation": "fixture_assembly",
+      "edits": [
+        { "op": "set_wall", "min": 3.0, "max": 3.0 }
+      ],
+      "expected": { "status": "pass" }
+    },
+    {
+      "caseId": "BND-009",
+      "label": "assembly at intermediate wall 2.5",
+      "operation": "fixture_assembly",
+      "edits": [
+        { "op": "set_wall", "min": 2.5, "max": 2.5 }
+      ],
+      "expected": { "status": "pass" }
+    },
+    {
+      "caseId": "BND-010",
+      "label": "assembly at envelope cap with maximum wall 3.0",
+      "operation": "fixture_assembly",
+      "edits": [
+        {
+          "op": "set_dimensions",
+          "component": "fixture_base",
+          "values": { "width": 120.0, "depth": 80.0, "height": 20.0 }
+        },
+        { "op": "set_wall", "min": 3.0, "max": 3.0 }
+      ],
+      "expected": { "status": "pass" }
+    }
+  ],
+  "negativeCases": [
+    {
+      "caseId": "NEG-001",
+      "label": "width exceeds verified cap by 1 mm",
+      "operation": "fixture_base",
+      "edits": [
+        {
+          "op": "set_dimensions",
+          "component": "fixture_base",
+          "values": { "width": 121.0 }
+        }
+      ],
+      "expected": { "status": "error", "code": "MEGIS-ENV-001", "notClamped": true }
+    },
+    {
+      "caseId": "NEG-002",
+      "label": "depth exceeds verified cap by 1 mm",
+      "operation": "fixture_base",
+      "edits": [
+        {
+          "op": "set_dimensions",
+          "component": "fixture_base",
+          "values": { "depth": 81.0 }
+        }
+      ],
+      "expected": { "status": "error", "code": "MEGIS-ENV-001", "notClamped": true }
+    },
+    {
+      "caseId": "NEG-003",
+      "label": "height exceeds verified cap by 1 mm",
+      "operation": "fixture_base",
+      "edits": [
+        {
+          "op": "set_dimensions",
+          "component": "fixture_base",
+          "values": { "height": 21.0 }
+        }
+      ],
+      "expected": { "status": "error", "code": "MEGIS-ENV-001", "notClamped": true }
+    },
+    {
+      "caseId": "NEG-004",
+      "label": "all three axes exceed verified caps",
+      "operation": "fixture_base",
+      "edits": [
+        {
+          "op": "set_dimensions",
+          "component": "fixture_base",
+          "values": { "width": 121.0, "depth": 81.0, "height": 21.0 }
+        }
+      ],
+      "expected": { "status": "error", "code": "MEGIS-ENV-001", "notClamped": true }
+    },
+    {
+      "caseId": "NEG-005",
+      "label": "height reaches unverified v3 target 35 mm",
+      "operation": "fixture_base",
+      "edits": [
+        {
+          "op": "set_dimensions",
+          "component": "fixture_base",
+          "values": { "height": 35.0 }
+        }
+      ],
+      "expected": { "status": "error", "code": "MEGIS-ENV-001", "notClamped": true }
+    },
+    {
+      "caseId": "NEG-006",
+      "label": "assembly height exceeds verified cap",
+      "operation": "fixture_assembly",
+      "edits": [
+        {
+          "op": "set_dimensions",
+          "component": "fixture_base",
+          "values": { "height": 35.0 }
+        }
+      ],
+      "expected": { "status": "error", "code": "MEGIS-ENV-001", "notClamped": true }
+    },
+    {
+      "caseId": "NEG-007",
+      "label": "zero width is not a positive dimension",
+      "operation": "fixture_base",
+      "edits": [
+        {
+          "op": "set_dimensions",
+          "component": "fixture_base",
+          "values": { "width": 0.0 }
+        }
+      ],
+      "expected": { "status": "error", "code": "INVALID_DIMENSION" }
+    },
+    {
+      "caseId": "NEG-008",
+      "label": "negative depth is not a positive dimension",
+      "operation": "fixture_base",
+      "edits": [
+        {
+          "op": "set_dimensions",
+          "component": "fixture_base",
+          "values": { "depth": -5.0 }
+        }
+      ],
+      "expected": { "status": "error", "code": "INVALID_DIMENSION" }
+    },
+    {
+      "caseId": "NEG-009",
+      "label": "missing width dimension is rejected",
+      "operation": "fixture_base",
+      "edits": [
+        { "op": "delete_dimension", "component": "fixture_base", "dimension": "width" }
+      ],
+      "expected": { "status": "error", "code": "INVALID_DIMENSION" }
+    },
+    {
+      "caseId": "NEG-010",
+      "label": "duplicate width dimension is rejected",
+      "operation": "fixture_base",
+      "edits": [
+        {
+          "op": "add_dimension",
+          "component": "fixture_base",
+          "dimension": "width",
+          "nominal": 119.0
+        }
+      ],
+      "expected": { "status": "error", "code": "INVALID_DIMENSION" }
+    },
+    {
+      "caseId": "NEG-011",
+      "label": "wall leaves no positive fixture cavity",
+      "operation": "fixture_assembly",
+      "edits": [
+        { "op": "set_wall", "min": 40.0, "max": 41.0 }
+      ],
+      "expected": { "status": "error", "code": "INVALID_DIMENSION" }
+    },
+    {
+      "caseId": "NEG-012",
+      "label": "wall equals the full base height",
+      "operation": "fixture_assembly",
+      "edits": [
+        { "op": "set_wall", "min": 20.0, "max": 21.0 }
+      ],
+      "expected": { "status": "error", "code": "INVALID_DIMENSION" }
+    },
+    {
+      "caseId": "NEG-013",
+      "label": "dangling material reference in base",
+      "operation": "fixture_base",
+      "edits": [
+        { "op": "set_path", "path": ["components", 0, "materialId"], "value": "MAT-MISSING" }
+      ],
+      "expected": { "status": "error", "code": "INVALID_IR" }
+    },
+    {
+      "caseId": "NEG-014",
+      "label": "dangling constraint target reference",
+      "operation": "fixture_base",
+      "edits": [
+        {
+          "op": "set_path",
+          "path": ["constraints", 0, "targetIds", 1],
+          "value": "COMP-MISSING"
+        }
+      ],
+      "expected": { "status": "error", "code": "INVALID_IR" }
+    }
+  ]
+}

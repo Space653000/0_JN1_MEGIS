@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v2/geometry-corpus.schema.json",
+  "title": "MEGIS G2 geometry boundary/negative corpus",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "workItem", "baseDocumentRef", "envelopeRef",
+    "boundaryCases", "negativeCases"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "workItem": { "const": "G2-NEG-001" },
+    "title": { "type": "string", "minLength": 1 },
+    "baseDocumentRef": { "type": "string", "minLength": 1 },
+    "envelopeRef": { "type": "string", "minLength": 1 },
+    "boundaryCases": {
+      "type": "array",
+      "minItems": 10,
+      "items": { "$ref": "#/$defs/case" }
+    },
+    "negativeCases": {
+      "type": "array",
+      "minItems": 10,
+      "items": { "$ref": "#/$defs/case" }
+    }
+  },
+  "$defs": {
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["caseId", "label", "operation", "edits", "expected"],
+      "properties": {
+        "caseId": { "type": "string", "pattern": "^(BND|NEG)-[0-9]{3}$" },
+        "label": { "type": "string", "minLength": 1 },
+        "operation": { "enum": ["fixture_base", "fixture_assembly"] },
+        "edits": { "type": "array", "items": { "$ref": "#/$defs/edit" } },
+        "expected": { "$ref": "#/$defs/expected" }
+      }
+    },
+    "edit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["op"],
+      "properties": {
+        "op": {
+          "enum": [
+            "set_dimensions", "set_wall", "delete_dimension",
+            "add_dimension", "set_path"
+          ]
+        },
+        "component": { "enum": ["fixture_base", "cover", "pcb"] },
+        "dimension": { "type": "string", "minLength": 1 },
+        "values": {
+          "type": "object",
+          "additionalProperties": { "type": "number" }
+        },
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "nominal": { "type": "number" },
+        "path": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": ["string", "integer"] }
+        },
+        "value": { "type": ["string", "number"] }
+      },
+      "anyOf": [
+        {
+          "properties": { "op": { "const": "set_dimensions" } },
+          "required": ["component", "values"]
+        },
+        {
+          "properties": { "op": { "const": "set_wall" } },
+          "required": ["min", "max"]
+        },
+        {
+          "properties": { "op": { "const": "delete_dimension" } },
+          "required": ["component", "dimension"]
+        },
+        {
+          "properties": { "op": { "const": "add_dimension" } },
+          "required": ["component", "dimension", "nominal"]
+        },
+        {
+          "properties": { "op": { "const": "set_path" } },
+          "required": ["path", "value"]
+        }
+      ]
+    },
+    "expected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["pass", "error"] },
+        "code": { "type": "string" },
+        "notClamped": { "type": "boolean" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "error" } } },
+          "then": { "required": ["code"] }
+        }
+      ]
+    }
+  }
+}

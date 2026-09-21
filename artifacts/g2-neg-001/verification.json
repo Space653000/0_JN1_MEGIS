@@ -1,0 +1,717 @@
+{
+  "allChecksPassed": true,
+  "backend": {
+    "backend_id": "cadquery",
+    "backend_version": "2.8.0"
+  },
+  "boundary": [
+    {
+      "actualBboxMm": [
+        120.0,
+        80.0,
+        20.0
+      ],
+      "caseId": "BND-001",
+      "expectedDimsMm": [
+        120.0,
+        80.0,
+        20.0
+      ],
+      "label": "golden base exactly at verified envelope 120x80x20",
+      "operation": "fixture_base",
+      "passed": true,
+      "solidCount": 1,
+      "valid": true
+    },
+    {
+      "actualBboxMm": [
+        120.0,
+        60.0,
+        20.0
+      ],
+      "caseId": "BND-002",
+      "expectedDimsMm": [
+        120.0,
+        60.0,
+        20.0
+      ],
+      "label": "width at envelope cap with smaller depth",
+      "operation": "fixture_base",
+      "passed": true,
+      "solidCount": 1,
+      "valid": true
+    },
+    {
+      "actualBboxMm": [
+        100.0,
+        80.0,
+        20.0
+      ],
+      "caseId": "BND-003",
+      "expectedDimsMm": [
+        100.0,
+        80.0,
+        20.0
+      ],
+      "label": "depth at envelope cap with smaller width",
+      "operation": "fixture_base",
+      "passed": true,
+      "solidCount": 1,
+      "valid": true
+    },
+    {
+      "actualBboxMm": [
+        100.0,
+        60.0,
+        20.0
+      ],
+      "caseId": "BND-004",
+      "expectedDimsMm": [
+        100.0,
+        60.0,
+        20.0
+      ],
+      "label": "height at envelope cap with sub-cap width and depth",
+      "operation": "fixture_base",
+      "passed": true,
+      "solidCount": 1,
+      "valid": true
+    },
+    {
+      "actualBboxMm": [
+        120.0,
+        80.0,
+        19.0
+      ],
+      "caseId": "BND-005",
+      "expectedDimsMm": [
+        120.0,
+        80.0,
+        19.0
+      ],
+      "label": "width and depth at cap with sub-cap height",
+      "operation": "fixture_base",
+      "passed": true,
+      "solidCount": 1,
+      "valid": true
+    },
+    {
+      "actualBboxMm": [
+        119.75,
+        79.75,
+        19.75
+      ],
+      "caseId": "BND-006",
+      "expectedDimsMm": [
+        119.75,
+        79.75,
+        19.75
+      ],
+      "label": "all axes just below every envelope cap",
+      "operation": "fixture_base",
+      "passed": true,
+      "solidCount": 1,
+      "valid": true
+    },
+    {
+      "caseId": "BND-007",
+      "clearancesMm": [
+        0.19999999999999996,
+        18.0,
+        12.4
+      ],
+      "label": "golden assembly with minimum wall 2.0",
+      "operation": "fixture_assembly",
+      "passed": true,
+      "solidCount": 7,
+      "unintendedInterferenceVolumeMm3": 0.0,
+      "usbCutoutOpen": true,
+      "valid": true
+    },
+    {
+      "caseId": "BND-008",
+      "clearancesMm": [
+        0.19999999999999996,
+        17.0,
+        12.4
+      ],
+      "label": "assembly at maximum wall 3.0",
+      "operation": "fixture_assembly",
+      "passed": true,
+      "solidCount": 7,
+      "unintendedInterferenceVolumeMm3": 0.0,
+      "usbCutoutOpen": true,
+      "valid": true
+    },
+    {
+      "caseId": "BND-009",
+      "clearancesMm": [
+        0.19999999999999996,
+        17.5,
+        12.4
+      ],
+      "label": "assembly at intermediate wall 2.5",
+      "operation": "fixture_assembly",
+      "passed": true,
+      "solidCount": 7,
+      "unintendedInterferenceVolumeMm3": 0.0,
+      "usbCutoutOpen": true,
+      "valid": true
+    },
+    {
+      "caseId": "BND-010",
+      "clearancesMm": [
+        0.19999999999999996,
+        17.0,
+        12.4
+      ],
+      "label": "assembly at envelope cap with maximum wall 3.0",
+      "operation": "fixture_assembly",
+      "passed": true,
+      "solidCount": 7,
+      "unintendedInterferenceVolumeMm3": 0.0,
+      "usbCutoutOpen": true,
+      "valid": true
+    }
+  ],
+  "checks": [
+    {
+      "detail": {
+        "actualBboxMm": [
+          120.0,
+          80.0,
+          20.0
+        ],
+        "expectedDimsMm": [
+          120.0,
+          80.0,
+          20.0
+        ],
+        "solidCount": 1,
+        "valid": true
+      },
+      "name": "boundary BND-001 golden base exactly at verified envelope 120x80x20",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualBboxMm": [
+          120.0,
+          60.0,
+          20.0
+        ],
+        "expectedDimsMm": [
+          120.0,
+          60.0,
+          20.0
+        ],
+        "solidCount": 1,
+        "valid": true
+      },
+      "name": "boundary BND-002 width at envelope cap with smaller depth",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualBboxMm": [
+          100.0,
+          80.0,
+          20.0
+        ],
+        "expectedDimsMm": [
+          100.0,
+          80.0,
+          20.0
+        ],
+        "solidCount": 1,
+        "valid": true
+      },
+      "name": "boundary BND-003 depth at envelope cap with smaller width",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualBboxMm": [
+          100.0,
+          60.0,
+          20.0
+        ],
+        "expectedDimsMm": [
+          100.0,
+          60.0,
+          20.0
+        ],
+        "solidCount": 1,
+        "valid": true
+      },
+      "name": "boundary BND-004 height at envelope cap with sub-cap width and depth",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualBboxMm": [
+          120.0,
+          80.0,
+          19.0
+        ],
+        "expectedDimsMm": [
+          120.0,
+          80.0,
+          19.0
+        ],
+        "solidCount": 1,
+        "valid": true
+      },
+      "name": "boundary BND-005 width and depth at cap with sub-cap height",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualBboxMm": [
+          119.75,
+          79.75,
+          19.75
+        ],
+        "expectedDimsMm": [
+          119.75,
+          79.75,
+          19.75
+        ],
+        "solidCount": 1,
+        "valid": true
+      },
+      "name": "boundary BND-006 all axes just below every envelope cap",
+      "passed": true
+    },
+    {
+      "detail": {
+        "clearancesMm": [
+          0.19999999999999996,
+          18.0,
+          12.4
+        ],
+        "solidCount": 7,
+        "unintendedInterferenceVolumeMm3": 0.0,
+        "usbCutoutOpen": true,
+        "valid": true
+      },
+      "name": "boundary BND-007 golden assembly with minimum wall 2.0",
+      "passed": true
+    },
+    {
+      "detail": {
+        "clearancesMm": [
+          0.19999999999999996,
+          17.0,
+          12.4
+        ],
+        "solidCount": 7,
+        "unintendedInterferenceVolumeMm3": 0.0,
+        "usbCutoutOpen": true,
+        "valid": true
+      },
+      "name": "boundary BND-008 assembly at maximum wall 3.0",
+      "passed": true
+    },
+    {
+      "detail": {
+        "clearancesMm": [
+          0.19999999999999996,
+          17.5,
+          12.4
+        ],
+        "solidCount": 7,
+        "unintendedInterferenceVolumeMm3": 0.0,
+        "usbCutoutOpen": true,
+        "valid": true
+      },
+      "name": "boundary BND-009 assembly at intermediate wall 2.5",
+      "passed": true
+    },
+    {
+      "detail": {
+        "clearancesMm": [
+          0.19999999999999996,
+          17.0,
+          12.4
+        ],
+        "solidCount": 7,
+        "unintendedInterferenceVolumeMm3": 0.0,
+        "usbCutoutOpen": true,
+        "valid": true
+      },
+      "name": "boundary BND-010 assembly at envelope cap with maximum wall 3.0",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualCode": "MEGIS-ENV-001",
+        "expectedCode": "MEGIS-ENV-001",
+        "notClamped": true,
+        "reportedInputMm": [
+          121.0,
+          80.0,
+          20.0
+        ]
+      },
+      "name": "negative NEG-001 width exceeds verified cap by 1 mm -> MEGIS-ENV-001",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualCode": "MEGIS-ENV-001",
+        "expectedCode": "MEGIS-ENV-001",
+        "notClamped": true,
+        "reportedInputMm": [
+          120.0,
+          81.0,
+          20.0
+        ]
+      },
+      "name": "negative NEG-002 depth exceeds verified cap by 1 mm -> MEGIS-ENV-001",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualCode": "MEGIS-ENV-001",
+        "expectedCode": "MEGIS-ENV-001",
+        "notClamped": true,
+        "reportedInputMm": [
+          120.0,
+          80.0,
+          21.0
+        ]
+      },
+      "name": "negative NEG-003 height exceeds verified cap by 1 mm -> MEGIS-ENV-001",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualCode": "MEGIS-ENV-001",
+        "expectedCode": "MEGIS-ENV-001",
+        "notClamped": true,
+        "reportedInputMm": [
+          121.0,
+          81.0,
+          21.0
+        ]
+      },
+      "name": "negative NEG-004 all three axes exceed verified caps -> MEGIS-ENV-001",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualCode": "MEGIS-ENV-001",
+        "expectedCode": "MEGIS-ENV-001",
+        "notClamped": true,
+        "reportedInputMm": [
+          120.0,
+          80.0,
+          35.0
+        ]
+      },
+      "name": "negative NEG-005 height reaches unverified v3 target 35 mm -> MEGIS-ENV-001",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualCode": "MEGIS-ENV-001",
+        "expectedCode": "MEGIS-ENV-001",
+        "notClamped": true,
+        "reportedInputMm": [
+          120.0,
+          80.0,
+          35.0
+        ]
+      },
+      "name": "negative NEG-006 assembly height exceeds verified cap -> MEGIS-ENV-001",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualCode": "INVALID_DIMENSION",
+        "expectedCode": "INVALID_DIMENSION",
+        "notClamped": false,
+        "reportedInputMm": null
+      },
+      "name": "negative NEG-007 zero width is not a positive dimension -> INVALID_DIMENSION",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualCode": "INVALID_DIMENSION",
+        "expectedCode": "INVALID_DIMENSION",
+        "notClamped": false,
+        "reportedInputMm": null
+      },
+      "name": "negative NEG-008 negative depth is not a positive dimension -> INVALID_DIMENSION",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualCode": "INVALID_DIMENSION",
+        "expectedCode": "INVALID_DIMENSION",
+        "notClamped": false,
+        "reportedInputMm": null
+      },
+      "name": "negative NEG-009 missing width dimension is rejected -> INVALID_DIMENSION",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualCode": "INVALID_DIMENSION",
+        "expectedCode": "INVALID_DIMENSION",
+        "notClamped": false,
+        "reportedInputMm": null
+      },
+      "name": "negative NEG-010 duplicate width dimension is rejected -> INVALID_DIMENSION",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualCode": "INVALID_DIMENSION",
+        "expectedCode": "INVALID_DIMENSION",
+        "notClamped": false,
+        "reportedInputMm": null
+      },
+      "name": "negative NEG-011 wall leaves no positive fixture cavity -> INVALID_DIMENSION",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualCode": "INVALID_DIMENSION",
+        "expectedCode": "INVALID_DIMENSION",
+        "notClamped": false,
+        "reportedInputMm": null
+      },
+      "name": "negative NEG-012 wall equals the full base height -> INVALID_DIMENSION",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualCode": "INVALID_IR",
+        "expectedCode": "INVALID_IR",
+        "notClamped": false,
+        "reportedInputMm": null
+      },
+      "name": "negative NEG-013 dangling material reference in base -> INVALID_IR",
+      "passed": true
+    },
+    {
+      "detail": {
+        "actualCode": "INVALID_IR",
+        "expectedCode": "INVALID_IR",
+        "notClamped": false,
+        "reportedInputMm": null
+      },
+      "name": "negative NEG-014 dangling constraint target reference -> INVALID_IR",
+      "passed": true
+    },
+    {
+      "detail": {
+        "passed": 10,
+        "total": 10
+      },
+      "name": "boundary corpus has at least 10 cases and all pass",
+      "passed": true
+    },
+    {
+      "detail": {
+        "errored": 14,
+        "silentSuccess": 0,
+        "total": 14
+      },
+      "name": "negative corpus has at least 10 cases and all return expected errors",
+      "passed": true
+    },
+    {
+      "detail": {
+        "envCases": 6
+      },
+      "name": "over-envelope cases report original values, not clamped caps",
+      "passed": true
+    }
+  ],
+  "engineeringArtifactGenerated": false,
+  "input": {
+    "baseDocument": "contracts/g1/golden/reference-fixture.json",
+    "corpus": "contracts/g2/golden/geometry-corpus.json",
+    "envelope": "config/envelope/envelope.yaml"
+  },
+  "negative": [
+    {
+      "actualCode": "MEGIS-ENV-001",
+      "caseId": "NEG-001",
+      "codeMatches": true,
+      "expectedCode": "MEGIS-ENV-001",
+      "label": "width exceeds verified cap by 1 mm",
+      "notClamped": true,
+      "operation": "fixture_base",
+      "reportedInputMm": [
+        121.0,
+        80.0,
+        20.0
+      ]
+    },
+    {
+      "actualCode": "MEGIS-ENV-001",
+      "caseId": "NEG-002",
+      "codeMatches": true,
+      "expectedCode": "MEGIS-ENV-001",
+      "label": "depth exceeds verified cap by 1 mm",
+      "notClamped": true,
+      "operation": "fixture_base",
+      "reportedInputMm": [
+        120.0,
+        81.0,
+        20.0
+      ]
+    },
+    {
+      "actualCode": "MEGIS-ENV-001",
+      "caseId": "NEG-003",
+      "codeMatches": true,
+      "expectedCode": "MEGIS-ENV-001",
+      "label": "height exceeds verified cap by 1 mm",
+      "notClamped": true,
+      "operation": "fixture_base",
+      "reportedInputMm": [
+        120.0,
+        80.0,
+        21.0
+      ]
+    },
+    {
+      "actualCode": "MEGIS-ENV-001",
+      "caseId": "NEG-004",
+      "codeMatches": true,
+      "expectedCode": "MEGIS-ENV-001",
+      "label": "all three axes exceed verified caps",
+      "notClamped": true,
+      "operation": "fixture_base",
+      "reportedInputMm": [
+        121.0,
+        81.0,
+        21.0
+      ]
+    },
+    {
+      "actualCode": "MEGIS-ENV-001",
+      "caseId": "NEG-005",
+      "codeMatches": true,
+      "expectedCode": "MEGIS-ENV-001",
+      "label": "height reaches unverified v3 target 35 mm",
+      "notClamped": true,
+      "operation": "fixture_base",
+      "reportedInputMm": [
+        120.0,
+        80.0,
+        35.0
+      ]
+    },
+    {
+      "actualCode": "MEGIS-ENV-001",
+      "caseId": "NEG-006",
+      "codeMatches": true,
+      "expectedCode": "MEGIS-ENV-001",
+      "label": "assembly height exceeds verified cap",
+      "notClamped": true,
+      "operation": "fixture_assembly",
+      "reportedInputMm": [
+        120.0,
+        80.0,
+        35.0
+      ]
+    },
+    {
+      "actualCode": "INVALID_DIMENSION",
+      "caseId": "NEG-007",
+      "codeMatches": true,
+      "expectedCode": "INVALID_DIMENSION",
+      "label": "zero width is not a positive dimension",
+      "notClamped": false,
+      "operation": "fixture_base",
+      "reportedInputMm": null
+    },
+    {
+      "actualCode": "INVALID_DIMENSION",
+      "caseId": "NEG-008",
+      "codeMatches": true,
+      "expectedCode": "INVALID_DIMENSION",
+      "label": "negative depth is not a positive dimension",
+      "notClamped": false,
+      "operation": "fixture_base",
+      "reportedInputMm": null
+    },
+    {
+      "actualCode": "INVALID_DIMENSION",
+      "caseId": "NEG-009",
+      "codeMatches": true,
+      "expectedCode": "INVALID_DIMENSION",
+      "label": "missing width dimension is rejected",
+      "notClamped": false,
+      "operation": "fixture_base",
+      "reportedInputMm": null
+    },
+    {
+      "actualCode": "INVALID_DIMENSION",
+      "caseId": "NEG-010",
+      "codeMatches": true,
+      "expectedCode": "INVALID_DIMENSION",
+      "label": "duplicate width dimension is rejected",
+      "notClamped": false,
+      "operation": "fixture_base",
+      "reportedInputMm": null
+    },
+    {
+      "actualCode": "INVALID_DIMENSION",
+      "caseId": "NEG-011",
+      "codeMatches": true,
+      "expectedCode": "INVALID_DIMENSION",
+      "label": "wall leaves no positive fixture cavity",
+      "notClamped": false,
+      "operation": "fixture_assembly",
+      "reportedInputMm": null
+    },
+    {
+      "actualCode": "INVALID_DIMENSION",
+      "caseId": "NEG-012",
+      "codeMatches": true,
+      "expectedCode": "INVALID_DIMENSION",
+      "label": "wall equals the full base height",
+      "notClamped": false,
+      "operation": "fixture_assembly",
+      "reportedInputMm": null
+    },
+    {
+      "actualCode": "INVALID_IR",
+      "caseId": "NEG-013",
+      "codeMatches": true,
+      "expectedCode": "INVALID_IR",
+      "label": "dangling material reference in base",
+      "notClamped": false,
+      "operation": "fixture_base",
+      "reportedInputMm": null
+    },
+    {
+      "actualCode": "INVALID_IR",
+      "caseId": "NEG-014",
+      "codeMatches": true,
+      "expectedCode": "INVALID_IR",
+      "label": "dangling constraint target reference",
+      "notClamped": false,
+      "operation": "fixture_base",
+      "reportedInputMm": null
+    }
+  ],
+  "releaseArtifactGenerated": false,
+  "schemaVersion": "1.0.0",
+  "summary": {
+    "boundaryPassed": 10,
+    "boundaryTotal": 10,
+    "negativeErrored": 14,
+    "negativeTotal": 14,
+    "silentSuccess": 0
+  },
+  "workItem": "G2-NEG-001"
+}
