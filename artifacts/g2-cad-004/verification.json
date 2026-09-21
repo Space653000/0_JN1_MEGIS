@@ -1,0 +1,705 @@
+{
+  "allChecksPassed": true,
+  "assembly": {
+    "backend_id": "cadquery",
+    "backend_version": "2.8.0",
+    "base_model_token": "cadquery:01646e877172be69ae8afaac",
+    "component_ids": [
+      "COMP-FIXTURE-BASE",
+      "COMP-FIXTURE-COVER",
+      "COMP-FIXTURE-PCB"
+    ],
+    "cover_model_token": "cadquery:522839870891ac9d10712a3d",
+    "fastener_model_tokens": [
+      "cadquery:ca37b2394660521c2144d4d3",
+      "cadquery:b59b4888aac099a96019f970",
+      "cadquery:3ac597c260f11093ebf4ff39",
+      "cadquery:f7a0dae2cb6c298bc93178e5"
+    ],
+    "pcb_envelope_model_token": "cadquery:c431d9a890b8fe81f287d986",
+    "pcb_side_clearance_mm": 18.0,
+    "pcb_top_clearance_mm": 12.4,
+    "plan_id": "PLAN-FIXTURE-REFERENCE-001-A-ASSEMBLY",
+    "radial_fastener_clearance_mm": 0.19999999999999996,
+    "solid_count": 7,
+    "unintended_interference_volume_mm3": 0.0,
+    "usb_cutout_open": true,
+    "valid": true
+  },
+  "backend": {
+    "backend_id": "cadquery",
+    "backend_version": "2.8.0",
+    "export_formats": [
+      "DXF",
+      "STEP",
+      "STL"
+    ]
+  },
+  "checks": [
+    {
+      "detail": {
+        "bounding_box_mm": {
+          "depth": 80.0,
+          "height": 20.0,
+          "width": 120.0
+        },
+        "import_format": "STEP",
+        "input_path": "C:\\0_JN1_MEGIS\\artifacts\\g2-cad-004\\base.step",
+        "metrics": {
+          "normalization": {
+            "author": "MEGIS",
+            "changed": true,
+            "fileNameTimestamp": "1970-01-01T00:00:00",
+            "format": "STEP",
+            "organization": "MEGIS",
+            "policyVersion": "1.0.0"
+          }
+        },
+        "solids": 1,
+        "topology": {
+          "edges": 36,
+          "faces": 15,
+          "shells": 1,
+          "solids": 1,
+          "valid": true,
+          "vertices": 24
+        },
+        "valid": true,
+        "volume_mm3": 33232.00000000003
+      },
+      "name": "base STEP reloads twice with non-empty geometry",
+      "passed": true
+    },
+    {
+      "detail": {
+        "exportVolumeMm3": 33232.00000000003,
+        "reloadVolumeMm3": 33232.00000000003
+      },
+      "name": "base STEP reload equals export volume",
+      "passed": true
+    },
+    {
+      "detail": {
+        "changed": false
+      },
+      "name": "base STEP normalization is idempotent",
+      "passed": true
+    },
+    {
+      "detail": {
+        "bounding_box_mm": {
+          "depth": 80.0,
+          "height": 20.0,
+          "width": 120.0
+        },
+        "import_format": "STL",
+        "input_path": "C:\\0_JN1_MEGIS\\artifacts\\g2-cad-004\\base.stl",
+        "metrics": {
+          "normalization": {
+            "binary": true,
+            "changed": true,
+            "format": "STL",
+            "header": "MEGIS BINARY STL | policy 1.0.0",
+            "policyVersion": "1.0.0",
+            "triangleCount": 48
+          },
+          "triangleCount": 48,
+          "vertexCount": 24
+        },
+        "solids": 1,
+        "topology": {
+          "edges": 0,
+          "faces": 48,
+          "shells": 0,
+          "solids": 1,
+          "valid": true,
+          "vertices": 24
+        },
+        "valid": true,
+        "volume_mm3": 33231.99999999999
+      },
+      "name": "base STL reload has triangles and bbox",
+      "passed": true
+    },
+    {
+      "detail": {
+        "deltaMm3": 3.637978807091713e-11,
+        "meshVolumeMm3": 33231.99999999999,
+        "stepVolumeMm3": 33232.00000000003,
+        "toleranceMm3": 33.23200000000003
+      },
+      "name": "base STL mesh volume within tolerance",
+      "passed": true
+    },
+    {
+      "detail": {
+        "changed": false
+      },
+      "name": "base STL normalization is idempotent",
+      "passed": true
+    },
+    {
+      "detail": {
+        "bounding_box_mm": null,
+        "import_format": "DXF",
+        "input_path": "C:\\0_JN1_MEGIS\\artifacts\\g2-cad-004\\base.dxf",
+        "metrics": {
+          "edgeCount": 72,
+          "normalization": {
+            "changed": true,
+            "format": "DXF",
+            "normalizedMetadataRecords": 2,
+            "normalizedVariables": [
+              "$FINGERPRINTGUID",
+              "$HANDSEED",
+              "$LASTSAVEDBY",
+              "$TDCREATE",
+              "$TDINDWG",
+              "$TDUCREATE",
+              "$TDUPDATE",
+              "$TDUSRTIMER",
+              "$TDUUPDATE",
+              "$VERSIONGUID"
+            ],
+            "policyVersion": "1.0.0",
+            "sortedClassRecords": 15
+          },
+          "semanticFingerprint": "656dbeaf1b980abefb8be3092ccfc5b8d733f73556df9a4bf443e1bc4e2f09ed"
+        },
+        "solids": 0,
+        "topology": {
+          "edges": 72,
+          "faces": 0,
+          "shells": 0,
+          "solids": 0,
+          "valid": true,
+          "vertices": 0
+        },
+        "valid": true,
+        "volume_mm3": null
+      },
+      "name": "base DXF reload has vector entities",
+      "passed": true
+    },
+    {
+      "detail": {
+        "edgeCount": 72
+      },
+      "name": "base DXF fingerprint is stable",
+      "passed": true
+    },
+    {
+      "detail": {
+        "changed": false
+      },
+      "name": "base DXF normalization is idempotent",
+      "passed": true
+    },
+    {
+      "detail": {
+        "bounding_box_mm": {
+          "depth": 80.0,
+          "height": 2.0,
+          "width": 120.0
+        },
+        "import_format": "STEP",
+        "input_path": "C:\\0_JN1_MEGIS\\artifacts\\g2-cad-004\\cover.step",
+        "metrics": {
+          "normalization": {
+            "author": "MEGIS",
+            "changed": true,
+            "fileNameTimestamp": "1970-01-01T00:00:00",
+            "format": "STEP",
+            "organization": "MEGIS",
+            "policyVersion": "1.0.0"
+          }
+        },
+        "solids": 1,
+        "topology": {
+          "edges": 36,
+          "faces": 18,
+          "shells": 1,
+          "solids": 1,
+          "valid": true,
+          "vertices": 24
+        },
+        "valid": true,
+        "volume_mm3": 19011.66780360258
+      },
+      "name": "cover STEP reloads twice with non-empty geometry",
+      "passed": true
+    },
+    {
+      "detail": {
+        "exportVolumeMm3": 19011.66780360258,
+        "reloadVolumeMm3": 19011.66780360258
+      },
+      "name": "cover STEP reload equals export volume",
+      "passed": true
+    },
+    {
+      "detail": {
+        "changed": false
+      },
+      "name": "cover STEP normalization is idempotent",
+      "passed": true
+    },
+    {
+      "detail": {
+        "bounding_box_mm": {
+          "depth": 80.0,
+          "height": 2.0,
+          "width": 120.0
+        },
+        "import_format": "STL",
+        "input_path": "C:\\0_JN1_MEGIS\\artifacts\\g2-cad-004\\cover.stl",
+        "metrics": {
+          "normalization": {
+            "binary": true,
+            "changed": true,
+            "format": "STL",
+            "header": "MEGIS BINARY STL | policy 1.0.0",
+            "policyVersion": "1.0.0",
+            "triangleCount": 4060
+          },
+          "triangleCount": 4060,
+          "vertexCount": 2024
+        },
+        "solids": 1,
+        "topology": {
+          "edges": 0,
+          "faces": 4060,
+          "shells": 0,
+          "solids": 1,
+          "valid": true,
+          "vertices": 2024
+        },
+        "valid": true,
+        "volume_mm3": 19011.74579429253
+      },
+      "name": "cover STL reload has triangles and bbox",
+      "passed": true
+    },
+    {
+      "detail": {
+        "deltaMm3": 0.07799068994791014,
+        "meshVolumeMm3": 19011.74579429253,
+        "stepVolumeMm3": 19011.66780360258,
+        "toleranceMm3": 19.01166780360258
+      },
+      "name": "cover STL mesh volume within tolerance",
+      "passed": true
+    },
+    {
+      "detail": {
+        "changed": false
+      },
+      "name": "cover STL normalization is idempotent",
+      "passed": true
+    },
+    {
+      "detail": {
+        "bounding_box_mm": null,
+        "import_format": "DXF",
+        "input_path": "C:\\0_JN1_MEGIS\\artifacts\\g2-cad-004\\cover.dxf",
+        "metrics": {
+          "edgeCount": 40,
+          "normalization": {
+            "changed": true,
+            "format": "DXF",
+            "normalizedMetadataRecords": 2,
+            "normalizedVariables": [
+              "$FINGERPRINTGUID",
+              "$HANDSEED",
+              "$LASTSAVEDBY",
+              "$TDCREATE",
+              "$TDINDWG",
+              "$TDUCREATE",
+              "$TDUPDATE",
+              "$TDUSRTIMER",
+              "$TDUUPDATE",
+              "$VERSIONGUID"
+            ],
+            "policyVersion": "1.0.0",
+            "sortedClassRecords": 15
+          },
+          "semanticFingerprint": "43b9eecf82886384a151a30501dd107cc8d9c10e61e72bd06e9f7e6d70a91e05"
+        },
+        "solids": 0,
+        "topology": {
+          "edges": 40,
+          "faces": 0,
+          "shells": 0,
+          "solids": 0,
+          "valid": true,
+          "vertices": 0
+        },
+        "valid": true,
+        "volume_mm3": null
+      },
+      "name": "cover DXF reload has vector entities",
+      "passed": true
+    },
+    {
+      "detail": {
+        "edgeCount": 40
+      },
+      "name": "cover DXF fingerprint is stable",
+      "passed": true
+    },
+    {
+      "detail": {
+        "changed": false
+      },
+      "name": "cover DXF normalization is idempotent",
+      "passed": true
+    },
+    {
+      "detail": {
+        "bounding_box_mm": {
+          "depth": 40.0,
+          "height": 1.5999999999999996,
+          "width": 60.0
+        },
+        "import_format": "STEP",
+        "input_path": "C:\\0_JN1_MEGIS\\artifacts\\g2-cad-004\\pcb.step",
+        "metrics": {
+          "normalization": {
+            "author": "MEGIS",
+            "changed": true,
+            "fileNameTimestamp": "1970-01-01T00:00:00",
+            "format": "STEP",
+            "organization": "MEGIS",
+            "policyVersion": "1.0.0"
+          }
+        },
+        "solids": 1,
+        "topology": {
+          "edges": 12,
+          "faces": 6,
+          "shells": 1,
+          "solids": 1,
+          "valid": true,
+          "vertices": 8
+        },
+        "valid": true,
+        "volume_mm3": 3840.0
+      },
+      "name": "pcb STEP reloads twice with non-empty geometry",
+      "passed": true
+    },
+    {
+      "detail": {
+        "exportVolumeMm3": 3840.0,
+        "reloadVolumeMm3": 3840.0
+      },
+      "name": "pcb STEP reload equals export volume",
+      "passed": true
+    },
+    {
+      "detail": {
+        "changed": false
+      },
+      "name": "pcb STEP normalization is idempotent",
+      "passed": true
+    },
+    {
+      "detail": {
+        "bounding_box_mm": {
+          "depth": 40.0,
+          "height": 1.5999999046325684,
+          "width": 60.0
+        },
+        "import_format": "STL",
+        "input_path": "C:\\0_JN1_MEGIS\\artifacts\\g2-cad-004\\pcb.stl",
+        "metrics": {
+          "normalization": {
+            "binary": true,
+            "changed": true,
+            "format": "STL",
+            "header": "MEGIS BINARY STL | policy 1.0.0",
+            "policyVersion": "1.0.0",
+            "triangleCount": 12
+          },
+          "triangleCount": 12,
+          "vertexCount": 8
+        },
+        "solids": 1,
+        "topology": {
+          "edges": 0,
+          "faces": 12,
+          "shells": 0,
+          "solids": 1,
+          "valid": true,
+          "vertices": 8
+        },
+        "valid": true,
+        "volume_mm3": 3839.999771118164
+      },
+      "name": "pcb STL reload has triangles and bbox",
+      "passed": true
+    },
+    {
+      "detail": {
+        "deltaMm3": 0.0002288818359375,
+        "meshVolumeMm3": 3839.999771118164,
+        "stepVolumeMm3": 3840.0,
+        "toleranceMm3": 3.84
+      },
+      "name": "pcb STL mesh volume within tolerance",
+      "passed": true
+    },
+    {
+      "detail": {
+        "changed": false
+      },
+      "name": "pcb STL normalization is idempotent",
+      "passed": true
+    },
+    {
+      "detail": {
+        "bounding_box_mm": null,
+        "import_format": "DXF",
+        "input_path": "C:\\0_JN1_MEGIS\\artifacts\\g2-cad-004\\pcb.dxf",
+        "metrics": {
+          "edgeCount": 24,
+          "normalization": {
+            "changed": true,
+            "format": "DXF",
+            "normalizedMetadataRecords": 2,
+            "normalizedVariables": [
+              "$FINGERPRINTGUID",
+              "$HANDSEED",
+              "$LASTSAVEDBY",
+              "$TDCREATE",
+              "$TDINDWG",
+              "$TDUCREATE",
+              "$TDUPDATE",
+              "$TDUSRTIMER",
+              "$TDUUPDATE",
+              "$VERSIONGUID"
+            ],
+            "policyVersion": "1.0.0",
+            "sortedClassRecords": 15
+          },
+          "semanticFingerprint": "2bae608c46e57eea4d6ff7356fde5e16d20204b1a5b8a1d85513f7014df7acf8"
+        },
+        "solids": 0,
+        "topology": {
+          "edges": 24,
+          "faces": 0,
+          "shells": 0,
+          "solids": 0,
+          "valid": true,
+          "vertices": 0
+        },
+        "valid": true,
+        "volume_mm3": null
+      },
+      "name": "pcb DXF reload has vector entities",
+      "passed": true
+    },
+    {
+      "detail": {
+        "edgeCount": 24
+      },
+      "name": "pcb DXF fingerprint is stable",
+      "passed": true
+    },
+    {
+      "detail": {
+        "changed": false
+      },
+      "name": "pcb DXF normalization is idempotent",
+      "passed": true
+    },
+    {
+      "detail": {
+        "gltfTriangles": 48,
+        "stlTriangles": 48
+      },
+      "name": "glTF reload matches STL triangle count",
+      "passed": true
+    },
+    {
+      "detail": {
+        "gltfBboxMm": [
+          120.0,
+          80.0,
+          20.0
+        ],
+        "gltfWriter": {
+          "boundingBoxMm": [
+            120.0,
+            80.0,
+            20.0
+          ],
+          "byteLength": 576,
+          "generator": "MEGIS G2-CAD-004 glTF bridge 1.0.0",
+          "indexComponentType": 5123,
+          "indexCount": 144,
+          "sha256": "02f600ae973fb0438530243718f41a1b030fcb0e65eee389fa5bf32b4cf911e0",
+          "triangleCount": 48,
+          "vertexCount": 24
+        },
+        "stlBboxMm": [
+          120.0,
+          80.0,
+          20.0
+        ],
+        "toleranceMm3": 33.23200000000003
+      },
+      "name": "glTF bbox matches STL mesh bbox",
+      "passed": true
+    },
+    {
+      "detail": {
+        "reloadSha256": "02f600ae973fb0438530243718f41a1b030fcb0e65eee389fa5bf32b4cf911e0",
+        "writerSha256": "02f600ae973fb0438530243718f41a1b030fcb0e65eee389fa5bf32b4cf911e0"
+      },
+      "name": "glTF writer and reload shas agree",
+      "passed": true
+    }
+  ],
+  "components": {
+    "base": {
+      "dxf": {
+        "byteCount": 28209,
+        "edges": 72,
+        "normalizedSha256": "7b54d69b8fcd47ae04e56e7a5ef5a57a209355ca3e5b50d329adc0991f407d9c",
+        "semanticFingerprint": "656dbeaf1b980abefb8be3092ccfc5b8d733f73556df9a4bf443e1bc4e2f09ed",
+        "sha256": "77ff0d6500a11afce5df5770e6956f3bd18a25420521b01f926ba136a3fe17a6"
+      },
+      "step": {
+        "boundingBoxMm": [
+          120.0,
+          80.0,
+          20.0
+        ],
+        "byteCount": 43203,
+        "normalizedSha256": "4cc85fa185d72181db33d51bd2c88f88c2e15b9d5297293ebc9b24d65be51112",
+        "sha256": "c1e8317ea47db2ef7a8a4cfbd8567df9ccc1ab33c50a8ac033abd6a365a34763",
+        "topology": {
+          "edges": 36,
+          "faces": 15,
+          "shells": 1,
+          "solids": 1,
+          "valid": true,
+          "vertices": 24
+        },
+        "volumeMm3": 33232.00000000003
+      },
+      "stl": {
+        "boundingBoxMm": [
+          120.0,
+          80.0,
+          20.0
+        ],
+        "byteCount": 2484,
+        "meshVolumeMm3": 33231.99999999999,
+        "normalizedSha256": "487ab24353a4522c21c7c95edd128bc3b5ccd1648a68843045f1754d8ed26861",
+        "sha256": "1f12e4d8cd814d41fe53e24f72e920f95b2daf95d9b3510591c8cb39a7dd7087",
+        "triangles": 48,
+        "vertices": 24
+      }
+    },
+    "cover": {
+      "dxf": {
+        "byteCount": 27697,
+        "edges": 40,
+        "normalizedSha256": "31d9f7ed2d7778f87e9392a632d52760a13cd9104874971263dc6380bef531a8",
+        "semanticFingerprint": "43b9eecf82886384a151a30501dd107cc8d9c10e61e72bd06e9f7e6d70a91e05",
+        "sha256": "0189dbcd29401b7bfab151040f483db265486725b5acb61338c24b7ec1bc0c77"
+      },
+      "step": {
+        "boundingBoxMm": [
+          120.0,
+          80.0,
+          2.0
+        ],
+        "byteCount": 47951,
+        "normalizedSha256": "60973df274c7c92d4320e6a734f984f51e5be18ad955602608b93986321c16c2",
+        "sha256": "d58e7334b41cdedf2f86ec49005d3daee69e5d4e8f227227bce7139c4a662cfd",
+        "topology": {
+          "edges": 36,
+          "faces": 18,
+          "shells": 1,
+          "solids": 1,
+          "valid": true,
+          "vertices": 24
+        },
+        "volumeMm3": 19011.66780360258
+      },
+      "stl": {
+        "boundingBoxMm": [
+          120.0,
+          80.0,
+          2.0
+        ],
+        "byteCount": 203084,
+        "meshVolumeMm3": 19011.74579429253,
+        "normalizedSha256": "d34fc4daa355dbe9917b8eb0ba17e2acd0e71ca373c944c05d84a84b847841c0",
+        "sha256": "c142162694beb80a491d99a0270d695d55dcad7aed39f2ca125387538de07f17",
+        "triangles": 4060,
+        "vertices": 2024
+      }
+    },
+    "pcb": {
+      "dxf": {
+        "byteCount": 21681,
+        "edges": 24,
+        "normalizedSha256": "44e5a9ce4f40655467668e91c1d44c73d129c7489e36fef7c3977bbb59ffb20d",
+        "semanticFingerprint": "2bae608c46e57eea4d6ff7356fde5e16d20204b1a5b8a1d85513f7014df7acf8",
+        "sha256": "7bbe3e29662518849ab1214d276f3303a59a8f2ae5ff56f0080fba0f0c0af7d5"
+      },
+      "step": {
+        "boundingBoxMm": [
+          60.0,
+          40.0,
+          1.5999999999999996
+        ],
+        "byteCount": 15470,
+        "normalizedSha256": "eb80663157b7be8af79bbe9b3022e2559d245ce1604dab48b2cc9206c85e297a",
+        "sha256": "7d83bfd1d7368215ba896f5559948320a73509c6ee91248f7d217b86f10ffe5d",
+        "topology": {
+          "edges": 12,
+          "faces": 6,
+          "shells": 1,
+          "solids": 1,
+          "valid": true,
+          "vertices": 8
+        },
+        "volumeMm3": 3840.0
+      },
+      "stl": {
+        "boundingBoxMm": [
+          60.0,
+          40.0,
+          1.5999999046325684
+        ],
+        "byteCount": 684,
+        "meshVolumeMm3": 3839.999771118164,
+        "normalizedSha256": "047c65f11a6a869b4d8ead81b1bd0775ef0879ace89ac7e25c6928a455acfdf4",
+        "sha256": "80c7285d83173231f2abaf3a873a05afe5bad86adaea2ad5dc1555e8607418ee",
+        "triangles": 12,
+        "vertices": 8
+      }
+    }
+  },
+  "engineeringArtifactGenerated": true,
+  "gltfBridge": {
+    "boundingBoxMm": [
+      120.0,
+      80.0,
+      20.0
+    ],
+    "generator": "MEGIS G2-CAD-004 glTF bridge 1.0.0",
+    "indexCount": 144,
+    "triangleCount": 48,
+    "vertexCount": 24
+  },
+  "input": "contracts/g1/golden/reference-fixture.json",
+  "releaseArtifactGenerated": false,
+  "schemaVersion": "1.0.0",
+  "workItem": "G2-CAD-004"
+}

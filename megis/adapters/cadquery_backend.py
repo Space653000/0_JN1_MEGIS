@@ -6,6 +6,9 @@ from dataclasses import dataclass
 from hashlib import sha256
 import importlib.metadata
 import json
+from math import isfinite
+from pathlib import Path
+import struct
 
 import cadquery as cq
 
@@ -19,6 +22,17 @@ from megis.geometry import (
     GeometryErrorCode,
     GeometryOperation,
     GeometryPlan,
+    GeometryExportResult,
+    GeometryReloadResult,
+    TopologyMetrics,
+)
+
+from megis.adapters.gltf import reload_gltf
+from megis.determinism.normalization import (
+    dxf_vector_semantic_fingerprint,
+    normalize_dxf_file,
+    normalize_step_file,
+    normalize_stl_file,
 )
 
 
@@ -55,7 +69,7 @@ class CadQueryBackend:
                     GeometryOperation.MOUNT,
                 }
             ),
-            export_formats=frozenset({"STEP", "STL"}),
+            export_formats=frozenset({"STEP", "STL", "DXF"}),
             deterministic=True,
         )
 
@@ -285,4 +299,253 @@ class CadQueryBackend:
             faces=len(shape.Faces()),
             edges=len(shape.Edges()),
             vertices=len(shape.Vertices()),
+        )
+
+    def export_model(
+        self, model_token: str, output_path: str | Path, export_format: str
+    ) -> GeometryExportResult:
+        try:
+            shape = self._models[model_token]
+        except KeyError as error:
+            raise GeometryContractError(
+                GeometryErrorCode.BACKEND_CONTRACT_VIOLATION,
+                f"Unknown model token {model_token}",
+            ) from error
+        normalized_format = export_format.upper()
+        if normalized_format not in self.capabilities().export_formats:
+            raise GeometryContractError(
+                GeometryErrorCode.UNSUPPORTED_OPERATION,
+                f"Unsupported export format {export_format!r}",
+            )
+        target = Path(output_path)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        export_type = {
+            "STEP": cq.exporters.ExportTypes.STEP,
+            "STL": cq.exporters.ExportTypes.STL,
+            "DXF": cq.exporters.ExportTypes.DXF,
+        }[normalized_format]
+        cq.exporters.export(shape, str(target), exportType=export_type)
+        if not target.is_file() or target.stat().st_size == 0:
+            raise GeometryContractError(
+                GeometryErrorCode.BACKEND_CONTRACT_VIOLATION,
+                f"Export for {normalized_format} produced an empty artifact",
+            )
+        payload = target.read_bytes()
+        bounds = shape.BoundingBox()
+        return GeometryExportResult(
+            export_format=normalized_format,
+            output_path=str(target),
+            byte_count=len(payload),
+            sha256=sha256(payload).hexdigest(),
+            volume_mm3=shape.Volume(),
+            topology=self._topology(shape),
+            metrics={
+                "widthMm": bounds.xlen,
+                "depthMm": bounds.ylen,
+                "heightMm": bounds.zlen,
+            },
+        )
+
+    def reload_model(
+        self, input_path: str | Path, import_format: str
+    ) -> GeometryReloadResult:
+        source = Path(input_path)
+        normalized_format = import_format.upper()
+        if not source.is_file():
+            raise GeometryContractError(
+                GeometryErrorCode.BACKEND_CONTRACT_VIOLATION,
+                f"Reload input does not exist: {source}",
+            )
+        reloaders = {
+            "STEP": self._reload_step,
+            "STL": self._reload_stl,
+            "DXF": self._reload_dxf,
+            "GLTF": self._reload_gltf,
+        }
+        try:
+            reloader = reloaders[normalized_format]
+        except KeyError as error:
+            raise GeometryContractError(
+                GeometryErrorCode.UNSUPPORTED_OPERATION,
+                f"Unsupported reload format {import_format!r}",
+            ) from error
+        return reloader(source)
+
+    def _topology(self, shape: object) -> TopologyMetrics:
+        return TopologyMetrics(
+            valid=shape.isValid(),
+            solids=len(shape.Solids()),
+            shells=len(shape.Shells()),
+            faces=len(shape.Faces()),
+            edges=len(shape.Edges()),
+            vertices=len(shape.Vertices()),
+        )
+
+    def _reload_step(self, source: Path) -> GeometryReloadResult:
+        try:
+            shape = cq.importers.importStep(str(source)).val()
+        except Exception as error:
+            raise GeometryContractError(
+                GeometryErrorCode.BACKEND_CONTRACT_VIOLATION,
+                "STEP reload failed",
+            ) from error
+        if shape.isNull() or not shape.isValid():
+            raise GeometryContractError(
+                GeometryErrorCode.BACKEND_CONTRACT_VIOLATION,
+                "STEP reload produced a null or invalid shape",
+            )
+        volume = shape.Volume()
+        if not isfinite(volume) or volume <= 0:
+            raise GeometryContractError(
+                GeometryErrorCode.BACKEND_CONTRACT_VIOLATION,
+                "STEP reload produced zero or invalid volume",
+            )
+        bounds = shape.BoundingBox()
+        normalized = normalize_step_file(source)
+        return GeometryReloadResult(
+            import_format="STEP",
+            input_path=str(source),
+            valid=True,
+            solids=len(shape.Solids()),
+            volume_mm3=volume,
+            bounding_box_mm=BoundingBoxMm(bounds.xlen, bounds.ylen, bounds.zlen),
+            topology=self._topology(shape),
+            metrics={"normalization": normalized},
+        )
+
+    def _reload_stl(self, source: Path) -> GeometryReloadResult:
+        payload = source.read_bytes()
+        if len(payload) < 84:
+            raise GeometryContractError(
+                GeometryErrorCode.BACKEND_CONTRACT_VIOLATION,
+                "STL reload input is truncated",
+            )
+        triangle_count = struct.unpack_from("<I", payload, 80)[0]
+        expected_bytes = 84 + triangle_count * 50
+        if len(payload) != expected_bytes:
+            raise GeometryContractError(
+                GeometryErrorCode.BACKEND_CONTRACT_VIOLATION,
+                "STL reload input is not a structurally valid binary STL",
+            )
+        if triangle_count == 0:
+            raise GeometryContractError(
+                GeometryErrorCode.BACKEND_CONTRACT_VIOLATION,
+                "STL reload input contains no triangles",
+            )
+        vertices: set[tuple[float, float, float]] = set()
+        min_values = [float("inf"), float("inf"), float("inf")]
+        max_values = [float("-inf"), float("-inf"), float("-inf")]
+        signed_volume = 0.0
+        for triangle_index in range(triangle_count):
+            base_offset = 84 + triangle_index * 50
+            values = struct.unpack_from("<12fH", payload, base_offset)
+            triangle = [
+                (
+                    values[vertex_offset],
+                    values[vertex_offset + 1],
+                    values[vertex_offset + 2],
+                )
+                for vertex_offset in (3, 6, 9)
+            ]
+            for vertex in triangle:
+                vertices.add(vertex)
+                for axis in range(3):
+                    min_values[axis] = min(min_values[axis], vertex[axis])
+                    max_values[axis] = max(max_values[axis], vertex[axis])
+            first, second, third = triangle
+            signed_volume += (
+                first[0] * (second[1] * third[2] - second[2] * third[1])
+                + second[0] * (third[1] * first[2] - third[2] * first[1])
+                + third[0] * (first[1] * second[2] - first[2] * second[1])
+            ) / 6.0
+        normalized = normalize_stl_file(source)
+        return GeometryReloadResult(
+            import_format="STL",
+            input_path=str(source),
+            valid=True,
+            solids=1,
+            volume_mm3=abs(signed_volume),
+            bounding_box_mm=BoundingBoxMm(
+                max_values[0] - min_values[0],
+                max_values[1] - min_values[1],
+                max_values[2] - min_values[2],
+            ),
+            topology=TopologyMetrics(
+                valid=True,
+                solids=1,
+                shells=0,
+                faces=triangle_count,
+                edges=0,
+                vertices=len(vertices),
+            ),
+            metrics={
+                "triangleCount": triangle_count,
+                "vertexCount": len(vertices),
+                "normalization": normalized,
+            },
+        )
+
+    def _reload_dxf(self, source: Path) -> GeometryReloadResult:
+        normalized = normalize_dxf_file(source)
+        fingerprint = dxf_vector_semantic_fingerprint(source)
+        edge_count = int(fingerprint["canonical"]["edge_count"])
+        if edge_count == 0:
+            raise GeometryContractError(
+                GeometryErrorCode.BACKEND_CONTRACT_VIOLATION,
+                "DXF reload input contains no vector entities",
+            )
+        return GeometryReloadResult(
+            import_format="DXF",
+            input_path=str(source),
+            valid=True,
+            solids=0,
+            volume_mm3=None,
+            bounding_box_mm=None,
+            topology=TopologyMetrics(
+                valid=True,
+                solids=0,
+                shells=0,
+                faces=0,
+                edges=edge_count,
+                vertices=0,
+            ),
+            metrics={
+                "edgeCount": edge_count,
+                "semanticFingerprint": fingerprint["semanticFingerprint"],
+                "normalization": normalized,
+            },
+        )
+
+    def _reload_gltf(self, source: Path) -> GeometryReloadResult:
+        try:
+            reloaded = reload_gltf(source)
+        except Exception as error:
+            raise GeometryContractError(
+                GeometryErrorCode.BACKEND_CONTRACT_VIOLATION,
+                "glTF reload failed",
+            ) from error
+        bbox = reloaded["boundingBoxMm"]
+        return GeometryReloadResult(
+            import_format="GLTF",
+            input_path=str(source),
+            valid=bool(reloaded["valid"]),
+            solids=0,
+            volume_mm3=None,
+            bounding_box_mm=BoundingBoxMm(bbox[0], bbox[1], bbox[2]),
+            topology=TopologyMetrics(
+                valid=True,
+                solids=0,
+                shells=0,
+                faces=int(reloaded["triangleCount"]),
+                edges=0,
+                vertices=int(reloaded["vertexCount"]),
+            ),
+            metrics={
+                "vertexCount": reloaded["vertexCount"],
+                "triangleCount": reloaded["triangleCount"],
+                "indexCount": reloaded["indexCount"],
+                "indexComponentType": reloaded["indexComponentType"],
+                "assetVersion": reloaded["assetVersion"],
+                "sha256": reloaded["sha256"],
+            },
         )

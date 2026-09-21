@@ -140,6 +140,45 @@ class FixtureAssemblyBuildResult:
     unintended_interference_volume_mm3: float
 
 
+@dataclass(frozen=True)
+class TopologyMetrics:
+    """Kernel-neutral B-rep metric record shared by inspection and reloads."""
+
+    valid: bool
+    solids: int
+    shells: int
+    faces: int
+    edges: int
+    vertices: int
+
+
+@dataclass(frozen=True)
+class GeometryExportResult:
+    """Kernel-neutral evidence for one exported artifact."""
+
+    export_format: str
+    output_path: str
+    byte_count: int
+    sha256: str
+    volume_mm3: float | None
+    topology: TopologyMetrics
+    metrics: dict[str, object]
+
+
+@dataclass(frozen=True)
+class GeometryReloadResult:
+    """Kernel-neutral evidence for reloading one artifact through a backend."""
+
+    import_format: str
+    input_path: str
+    valid: bool
+    solids: int
+    volume_mm3: float | None
+    bounding_box_mm: BoundingBoxMm | None
+    topology: TopologyMetrics
+    metrics: dict[str, object]
+
+
 @runtime_checkable
 class GeometryBackend(Protocol):
     """Replaceable adapter seam; no CAD-kernel type crosses this boundary."""
@@ -151,3 +190,11 @@ class GeometryBackend(Protocol):
     def build_fixture_assembly(
         self, plan: FixtureAssemblyPlan
     ) -> FixtureAssemblyBuildResult: ...
+
+    def export_model(
+        self, model_token: str, output_path: str, export_format: str
+    ) -> GeometryExportResult: ...
+
+    def reload_model(
+        self, input_path: str, import_format: str
+    ) -> GeometryReloadResult: ...

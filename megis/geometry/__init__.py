@@ -11,8 +11,11 @@ from .contracts import (
     GeometryCapabilities,
     GeometryContractError,
     GeometryErrorCode,
+    GeometryExportResult,
     GeometryOperation,
     GeometryPlan,
+    GeometryReloadResult,
+    TopologyMetrics,
 )
 from .planning import plan_fixture_assembly, plan_fixture_base
 from .service import build_fixture_assembly, build_fixture_base
@@ -28,8 +31,11 @@ __all__ = [
     "GeometryCapabilities",
     "GeometryContractError",
     "GeometryErrorCode",
+    "GeometryExportResult",
     "GeometryOperation",
     "GeometryPlan",
+    "GeometryReloadResult",
+    "TopologyMetrics",
     "build_fixture_assembly",
     "build_fixture_base",
     "plan_fixture_assembly",
