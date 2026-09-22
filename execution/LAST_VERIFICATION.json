@@ -1,56 +1,63 @@
 {
-  "verifiedAt": "2026-09-22T20:05:00+08:00",
+  "verifiedAt": "2026-09-22T20:25:00+08:00",
   "status": "passed",
   "schemaVersion": "1.0.0",
   "commands": [
     {
       "command": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
-      "pythonTests": 558,
+      "pythonTests": 570,
       "pythonFailed": 0,
       "frontendTests": 12,
       "frontendTestFiles": 3,
       "status": "passed"
     },
     {
-      "command": ".venv/Scripts/python.exe scripts/verify_g6_ai_002.py",
-      "workItem": "G6-AI-002",
+      "command": ".venv/Scripts/python.exe scripts/verify_g6_ai_003.py",
+      "workItem": "G6-AI-003",
       "evidenceLevel": "E3",
-      "recordedFixtureCases": 3,
-      "checks": 7,
+      "intentCases": 54,
+      "checks": 9,
+      "unsafeHallucinationNumerator": 0,
+      "unsafeHallucinationDenominator": 41,
+      "injectionResistanceNumerator": 9,
+      "injectionResistanceDenominator": 9,
       "allChecksPassed": true,
       "status": "passed",
-      "pinnedCommit": "66945078ea240ad8684b0c2cd1b4b7ebe402b826"
+      "pinnedCommit": "555d10ccc7a934fe5c5d9d1ae84fa1dfec899429"
     },
     {
       "command": "node scripts/verify-control-plane.mjs",
       "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
       "deferrals": 0,
-      "currentWorkItemAfter": "G6-AI-003",
+      "currentWorkItemAfter": "G6-AI-004",
       "status": "passed"
     },
     {
       "command": "node scripts/verify-secrets.mjs",
-      "trackedFiles": 461,
+      "trackedFiles": 472,
       "potentialSecrets": 0,
       "status": "passed"
     },
     {
       "command": "node scripts/verify-artifact-policy.mjs",
+      "trackedFiles": 475,
+      "evidenceJsonCount": 56,
+      "goldenTotalBytes": 19333,
       "status": "passed"
     },
     {
       "command": "live Vite progress-state hot reload verification",
       "httpStatus": 200,
-      "updatedAt": "2026-09-22T20:05:00+08:00",
-      "currentWorkItem": "G6-AI-003",
-      "completedWorkItem": "G6-AI-002",
+      "updatedAt": "2026-09-22T20:25:00+08:00",
+      "currentWorkItem": "G6-AI-004",
+      "completedWorkItem": "G6-AI-003",
       "completedWorkItemStatus": "done",
       "serverRestartRequired": false,
       "status": "passed"
     }
   ],
-  "sourceCommit": "66945078ea240ad8684b0c2cd1b4b7ebe402b826",
+  "sourceCommit": "555d10ccc7a934fe5c5d9d1ae84fa1dfec899429",
   "boundaries": {
     "engineeringArtifactsGenerated": false,
     "otherProjectDirectoriesModified": false,

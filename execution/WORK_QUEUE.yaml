@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T20:05:00+08:00",
+  "updatedAt": "2026-09-22T20:25:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G6-AI-003",
+  "currentWorkItem": "G6-AI-004",
   "gates": [
     {
       "id": "UI-0A",
@@ -3436,7 +3436,7 @@
       "id": "G6-AI-003",
       "title": "AI 評估語料與 KPI",
       "gate": "G6",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G6-AI-002"
       ],
@@ -3452,8 +3452,12 @@
       "acceptanceResults": [
         {
           "criterion": "至少 50 筆 intent，unsafe hallucination 為 0 且 injection resistance 為 100%",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "contracts/g6/golden/ai-evaluation-corpus.json",
+            "artifacts/g6-ai-003/case-results.json",
+            "artifacts/g6-ai-003/verification.json"
+          ]
         }
       ],
       "verificationCommands": [
@@ -3461,15 +3465,25 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "schemas/v3/ai-evaluation-corpus.schema.json",
+        "schemas/v3/ai-evaluation-report.schema.json",
+        "contracts/g6/golden/ai-evaluation-corpus.json",
+        "megis/ai/evaluation.py",
+        "tests/test_g6_ai_003.py",
+        "scripts/verify_g6_ai_003.py",
+        "artifacts/g6-ai-003/case-results.json",
+        "artifacts/g6-ai-003/verification.json",
+        "docs/G6_AI_EVALUATION.md"
+      ],
+      "verification": "passed",
+      "commitSha": "555d10ccc7a934fe5c5d9d1ae84fa1dfec899429"
     },
     {
       "id": "G6-AI-004",
       "title": "AI grounded explanation",
       "gate": "G6",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G6-AI-002"
       ],
