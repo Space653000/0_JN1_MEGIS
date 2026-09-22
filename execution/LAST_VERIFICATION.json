@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-22T15:45:00+08:00",
+  "verifiedAt": "2026-09-22T16:05:00+08:00",
   "sourceCommit": "eef0afcae87731a83497c81ff7277cfa5a67495c",
   "status": "passed",
   "commands": [
@@ -30,25 +30,21 @@
       "deferrals": 0
     },
     {
-      "command": "G4-REV-001 clean checkout self review (@eef0afc)",
+      "command": "G4-ACC-001 gate acceptance traceability (@1e8434d)",
       "status": "passed",
-      "reviewCommit": "eef0afcae87731a83497c81ff7277cfa5a67495c",
-      "reviewDir": ".runs/g4-rev-001-clean",
+      "accCommit": "1e8434d9c90c71ff5f3fcd70a77127b0b35f1449",
       "workItemStatus": "done",
-      "evidenceLevel": "E3",
-      "controlPlaneCurrentAfter": "G4-ACC-001",
+      "evidenceLevel": "E4",
+      "controlPlaneCurrentAfter": "G5-PKG-001",
       "checks": {
-        "pytestG4Tests": 115,
-        "pytestG4Failed": 0,
-        "verifyScripts": 3,
-        "verifyChecksTotal": 90,
-        "verifyScriptsAllPassed": true,
-        "mod001Checks": 27,
-        "grf001Checks": 39,
-        "mod002Checks": 24,
-        "importPytestTests": 32,
-        "importCorpusCases": 16,
-        "controlPlaneValid": true,
+        "signoffPresent": true,
+        "verificationPresent": true,
+        "reviewPassed": true,
+        "allG4WorkItemsDone": true,
+        "traceableToReview": true,
+        "traceableToCi": true,
+        "g4GateStatus": "accepted",
+        "g5GateStatus": "active",
         "blockingFindings": 0
       }
     }

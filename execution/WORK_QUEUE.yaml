@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T15:45:00+08:00",
+  "updatedAt": "2026-09-22T16:05:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G4-ACC-001",
+  "currentWorkItem": "G5-PKG-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -69,7 +69,7 @@
     {
       "id": "G4",
       "title": "模組與限制條件組合",
-      "status": "active",
+      "status": "accepted",
       "dependsOn": [
         "G3"
       ]
@@ -77,7 +77,7 @@
     {
       "id": "G5",
       "title": "原型套件與可重現性",
-      "status": "planned",
+      "status": "active",
       "dependsOn": [
         "G4"
       ]
@@ -1802,7 +1802,7 @@
       "id": "G5-PKG-001",
       "title": "建立 manifest 與 content hashes",
       "gate": "G5",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G4-ACC-001"
       ],
@@ -3079,7 +3079,7 @@
       "id": "G4-ACC-001",
       "title": "G4 acceptance 決策紀錄",
       "gate": "G4",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G4-REV-001"
       ],
@@ -3095,8 +3095,14 @@
       "acceptanceResults": [
         {
           "criterion": "gate_acceptance 決策紀錄可追溯至 G4 審查與 CI",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "execution/signoffs/SO-0005.yaml",
+            "artifacts/g4-acc-001/verification.json",
+            "execution/reviews/2026-09-22-G4-REV-001-review.md",
+            "execution/LAST_VERIFICATION.json",
+            "docs/ACCEPTANCE.md"
+          ]
         }
       ],
       "verificationCommands": [
@@ -3104,9 +3110,15 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "execution/signoffs/SO-0005.yaml",
+        "artifacts/g4-acc-001/verification.json",
+        "execution/reviews/2026-09-22-G4-REV-001-review.md",
+        "execution/LAST_VERIFICATION.json",
+        "docs/ACCEPTANCE.md"
+      ],
+      "verification": "passed",
+      "commitSha": "1e8434d9c90c71ff5f3fcd70a77127b0b35f1449"
     },
     {
       "id": "G5-REV-001",
