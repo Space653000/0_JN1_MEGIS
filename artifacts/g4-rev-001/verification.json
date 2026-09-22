@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G4-REV-001",
+  "status": "passed",
+  "method": "clean checkout within workspace",
+  "cleanCheckoutPath": ".runs/g4-rev-001-clean",
+  "reviewCommit": "eef0afcae87731a83497c81ff7277cfa5a67495c",
+  "reviewedAt": "2026-09-22T15:40:00+08:00",
+  "reviewedAt": "2026-09-22T15:30:00+08:00",
+  "controlPlane": {
+    "command": "node scripts/verify-control-plane.mjs",
+    "status": "passed",
+    "output": "Control plane valid: 74 work items, 14 gates, current G4-REV-001, 0 migration deferrals"
+  },
+  "tests": {
+    "command": "pytest tests/test_g4_grf_001.py tests/test_g4_mod_001.py tests/test_g4_mod_002.py tests/test_g4_imp_001.py",
+    "status": "passed",
+    "testsPassed": 115,
+    "testsFailed": 0,
+    "perFile": {
+      "test_g4_grf_001.py": 26,
+      "test_g4_mod_001.py": 28,
+      "test_g4_mod_002.py": 29,
+      "test_g4_imp_001.py": 32
+    }
+  },
+  "verifyScripts": [
+    {
+      "command": "scripts/verify_g4_mod_001.py",
+      "status": "passed",
+      "exitCode": 0,
+      "checksPassed": 27
+    },
+    {
+      "command": "scripts/verify_g4_grf_001.py",
+      "status": "passed",
+      "exitCode": 0,
+      "checksPassed": 39
+    },
+    {
+      "command": "scripts/verify_g4_mod_002.py",
+      "status": "passed",
+      "exitCode": 0,
+      "checksPassed": 24
+    }
+  ],
+  "importEvidence": {
+    "pytestTests": 32,
+    "corpusCases": 16,
+    "validCases": 6,
+    "errorCases": 10,
+    "note": "G4-IMP-001 has no standalone verify script; covered by tests/test_g4_imp_001.py and schemas/v3/import-report.schema.json"
+  },
+  "findings": [],
+  "engineeringArtifactsGenerated": false,
+  "releaseArtifactsGenerated": false
+}
