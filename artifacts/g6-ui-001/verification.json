@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G6-UI-001",
+  "blueprintRef": "v3.0 G6-UI-001 capability-driven guided flow (blueprint §14 and §26.9): adapter replaces PrototypeViewModel; only proven capabilities rendered; UI and API produce equivalent IR",
+  "evidenceLevel": "E3",
+  "referenceDate": "2026-09-22",
+  "verifiedAt": "2026-09-22T20:10:00+08:00",
+  "allChecksPassed": true,
+  "pinnedCommit": "abe895a34de1ed86acf21861303ffcd56bef7b78",
+  "goldenPath": "C:\\0_JN1_MEGIS\\contracts\\g6\\golden\\capability-manifest.json",
+  "goldenFingerprint": "7bfc576a849ac31998cdb1cc33a92af4b3f200e1c346482fb7adab2c2342ca25",
+  "liveFingerprint": "7bfc576a849ac31998cdb1cc33a92af4b3f200e1c346482fb7adab2c2342ca25",
+  "checks": [
+    {
+      "name": "capability manifest schema is valid for golden and live",
+      "passed": true,
+      "detail": {
+        "manifestSchema": "C:\\0_JN1_MEGIS\\schemas\\v3\\capability-manifest.schema.json",
+        "questionsOk": true
+      }
+    },
+    {
+      "name": "live capability manifest matches frozen golden",
+      "passed": true,
+      "detail": {
+        "goldenFingerprint": "7bfc576a849ac31998cdb1cc33a92af4b3f200e1c346482fb7adab2c2342ca25",
+        "liveFingerprint": "7bfc576a849ac31998cdb1cc33a92af4b3f200e1c346482fb7adab2c2342ca25"
+      }
+    },
+    {
+      "name": "every guided question binds an IR field and envelope",
+      "passed": true,
+      "detail": {
+        "questionCount": 11,
+        "issue": ""
+      }
+    },
+    {
+      "name": "guided flow builds a schema-valid Engineering IR draft",
+      "passed": true,
+      "detail": {
+        "designId": "FIXTURE-GUIDED-001"
+      }
+    },
+    {
+      "name": "UI-form and direct-API routes produce byte-identical IR",
+      "passed": true,
+      "detail": {
+        "routeCount": 2
+      }
+    },
+    {
+      "name": "unsafe / unsupported / out-of-envelope inputs are blocked with the intended codes",
+      "passed": true,
+      "detail": {
+        "MEGIS-UI-001": [
+          "missing outer dimension",
+          "PCB envelope abstention"
+        ],
+        "MEGIS-UI-002": [
+          "unsupported connector",
+          "unsupported pcb_count"
+        ],
+        "MEGIS-ENV-001": [
+          "dimensions exceed proven envelope"
+        ],
+        "cases": [
+          {
+            "expected": "MEGIS-UI-001",
+            "issue": null
+          },
+          {
+            "expected": "MEGIS-UI-001",
+            "issue": null
+          },
+          {
+            "expected": "MEGIS-UI-002",
+            "issue": null
+          },
+          {
+            "expected": "MEGIS-UI-002",
+            "issue": null
+          },
+          {
+            "expected": "MEGIS-ENV-001",
+            "issue": null
+          }
+        ]
+      }
+    },
+    {
+      "name": "error code registry is consistent",
+      "passed": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "guided flow writes no engineering artifact",
+      "passed": true,
+      "detail": {
+        "artifactVolume": 0
+      }
+    }
+  ],
+  "boundaries": {
+    "workspaceRoot": "C:\\0_JN1_MEGIS",
+    "localOnly": true,
+    "otherProjectDirectoriesModified": false,
+    "engineeringArtifactsGenerated": false,
+    "releaseArtifactsGenerated": false
+  }
+}

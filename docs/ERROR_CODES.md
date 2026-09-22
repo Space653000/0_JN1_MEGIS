@@ -36,6 +36,8 @@
 | MEGIS-DRW-001 | DRW | error | no | 草圖 SVG 指紋或尺寸與 IR 不符。 |
 | MEGIS-DRW-002 | DRW | error | no | 草圖宣告內容不符。 |
 | MEGIS-REP-001 | REP | error | no | 乾淨環境重建指紋不符，需 ADR。 |
+| MEGIS-UI-001 | UI | error | no | 存在不安全的未知值，阻止建立 IR。 |
+| MEGIS-UI-002 | UI | error | no | 要求的能力超出已驗證的 capability envelope。 |
 | MEGIS-JOB-001 | JOB | error | yes | 工作逾時。 |
 | MEGIS-AI-001 | AI | error | yes | AI 輸出格式無效。 |
 | MEGIS-IMP-001 | IMP | error | no | 輸入檔案超出限制。 |

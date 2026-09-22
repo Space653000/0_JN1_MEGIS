@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "1.0.0",
+  "corpusId": "megis-capability-manifest@1.0.0",
+  "designTypes": [
+    {
+      "id": "fixture-enclosure",
+      "label": "治具／電子外殼",
+      "proven": true
+    }
+  ],
+  "geometry": {
+    "backendId": "cadquery",
+    "backendVersion": "2.8.0",
+    "deterministic": true,
+    "operations": [
+      {
+        "id": "box",
+        "proven": true
+      },
+      {
+        "id": "counterbore",
+        "proven": true
+      },
+      {
+        "id": "cutout",
+        "proven": true
+      },
+      {
+        "id": "fastener",
+        "proven": true
+      },
+      {
+        "id": "hole",
+        "proven": true
+      },
+      {
+        "id": "mount",
+        "proven": true
+      },
+      {
+        "id": "pcb_envelope",
+        "proven": true
+      },
+      {
+        "id": "plate",
+        "proven": true
+      },
+      {
+        "id": "shell",
+        "proven": true
+      }
+    ],
+    "exportFormats": [
+      "DXF",
+      "STEP",
+      "STL"
+    ]
+  },
+  "modules": {
+    "capabilityLevels": [
+      {
+        "level": "metadata_only",
+        "uiDisplay": "僅資料",
+        "layoutAllowed": false,
+        "geometryAllowed": false,
+        "maturityCap": "DRAFT",
+        "proven": true
+      },
+      {
+        "level": "layout_capable",
+        "uiDisplay": "可放置 envelope",
+        "layoutAllowed": true,
+        "geometryAllowed": false,
+        "maturityCap": "CONCEPT",
+        "proven": true
+      },
+      {
+        "level": "geometry_capable",
+        "uiDisplay": "可放置",
+        "layoutAllowed": true,
+        "geometryAllowed": true,
+        "maturityCap": "PROTOTYPE",
+        "proven": true
+      },
+      {
+        "level": "validated",
+        "uiDisplay": "可放置",
+        "layoutAllowed": true,
+        "geometryAllowed": true,
+        "maturityCap": "PROTOTYPE",
+        "proven": true
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "type": "contains",
+      "meaning": "A 的內腔容納 B；B 的 clearance envelope 完全在 A 內腔內",
+      "requiredParameters": [
+        "envelope_ref",
+        "cavity_ref"
+      ],
+      "proven": true
+    },
+    {
+      "type": "mounts_to",
+      "meaning": "B 以 fastener 固定於 A；孔位對齊、boss 存在、嚙合長度",
+      "requiredParameters": [
+        "fastener_ref",
+        "boss_ref",
+        "engagement_length_mm",
+        "hole_alignment_tolerance_mm"
+      ],
+      "proven": true
+    },
+    {
+      "type": "fastens",
+      "meaning": "fastener 連接 A 與 B；螺絲長度、通孔、內螺紋",
+      "requiredParameters": [
+        "screw_length_mm",
+        "through_hole_ref",
+        "thread_ref"
+      ],
+      "proven": true
+    },
+    {
+      "type": "opens_through",
+      "meaning": "介面 B 穿過 A 的壁面；開口存在、開口 ≥ 介面 envelope + 間隙",
+      "requiredParameters": [
+        "opening_ref",
+        "interface_envelope_ref",
+        "clearance_gap_mm"
+      ],
+      "proven": true
+    },
+    {
+      "type": "clears",
+      "meaning": "A 與 B 最小距離 ≥ d；距離計算",
+      "requiredParameters": [
+        "minimum_distance_mm"
+      ],
+      "proven": true
+    },
+    {
+      "type": "aligns",
+      "meaning": "A 與 B 在指定軸對齊；軸向偏差 ≤ 容差",
+      "requiredParameters": [
+        "axis",
+        "tolerance_mm"
+      ],
+      "proven": true
+    },
+    {
+      "type": "covers",
+      "meaning": "A 覆蓋 B 的開口；配合面與干涉檢查",
+      "requiredParameters": [
+        "opening_ref",
+        "mating_face_ref",
+        "interference_check_ref"
+      ],
+      "proven": true
+    },
+    {
+      "type": "removable_along",
+      "meaning": "A 可沿方向移除；掃掠干涉檢查",
+      "requiredParameters": [
+        "direction",
+        "sweep_check_ref"
+      ],
+      "proven": true
+    }
+  ],
+  "envelope": {
+    "envelopeId": "legacy-reference-fixture",
+    "label": "Legacy Reference Fixture 已驗證範圍",
+    "verified": true,
+    "outerDimensionsMm": {
+      "widthMm": 120.0,
+      "depthMm": 80.0,
+      "heightMm": 20.0
+    },
+    "minimumWallMm": 2.0,
+    "materials": [
+      "AL6061"
+    ],
+    "machining": [
+      "3-axis CNC"
+    ],
+    "fixture": {
+      "coverCount": 1,
+      "fastenerCount": 4
+    },
+    "unsupportedErrorCodes": [
+      "MEGIS-ENV-001"
+    ]
+  },
+  "confidenceLabels": [
+    "Verified",
+    "Supported",
+    "Partially supported",
+    "Unknown",
+    "Needs engineering review"
+  ],
+  "maturityTiers": [
+    "DRAFT",
+    "CONCEPT",
+    "PROTOTYPE",
+    "ENGINEERING_REVIEWED",
+    "RELEASED"
+  ],
+  "manifestFingerprint": "7bfc576a849ac31998cdb1cc33a92af4b3f200e1c346482fb7adab2c2342ca25"
+}

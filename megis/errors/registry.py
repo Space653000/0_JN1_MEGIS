@@ -38,6 +38,7 @@ class ErrorDomain(StrEnum):
     BOM = "BOM"
     DRW = "DRW"
     REP = "REP"
+    UI = "UI"
     JOB = "JOB"
     AI = "AI"
     IMP = "IMP"
@@ -80,6 +81,8 @@ _ERROR_CODES: list[ErrorCode] = [
     ErrorCode("MEGIS-DRW-001", ErrorDomain.DRW, 1, ErrorSeverity.ERROR, False, "草圖 SVG 指紋或尺寸與 IR 不符。", "draft drawing svg fingerprint or whitelist dimension drifted from the IR"),
     ErrorCode("MEGIS-DRW-002", ErrorDomain.DRW, 2, ErrorSeverity.ERROR, False, "草圖宣告內容不符。", "draft drawing declarative mismatch (title block, watermark, whitelist, QA drift)"),
     ErrorCode("MEGIS-REP-001", ErrorDomain.REP, 1, ErrorSeverity.ERROR, False, "乾淨環境重建指紋不符，需 ADR。", "clean-environment rebuild fingerprint drift requires an ADR before acceptance"),
+    ErrorCode("MEGIS-UI-001", ErrorDomain.UI, 1, ErrorSeverity.ERROR, False, "存在不安全的未知值，阻止建立 IR。", "unsafe-to-default unknown blocks guided-flow IR generation"),
+    ErrorCode("MEGIS-UI-002", ErrorDomain.UI, 2, ErrorSeverity.ERROR, False, "要求的能力超出已驗證的 capability envelope。", "requested capability is outside the proven capability envelope"),
     ErrorCode("MEGIS-JOB-001", ErrorDomain.JOB, 1, ErrorSeverity.ERROR, True, "工作逾時。", "job timeout"),
     ErrorCode("MEGIS-AI-001", ErrorDomain.AI, 1, ErrorSeverity.ERROR, True, "AI 輸出格式無效。", "schema-invalid AI model output"),
     ErrorCode("MEGIS-IMP-001", ErrorDomain.IMP, 1, ErrorSeverity.ERROR, False, "輸入檔案超出限制。", "import file exceeds size or structural limit"),

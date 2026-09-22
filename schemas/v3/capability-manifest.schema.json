@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v3/capability-manifest.schema.json",
+  "title": "MEGIS Capability Manifest (v3)",
+  "description": "Deterministic capability manifest (G6-UI-001). The single source of truth a guided-flow UI may render from: it lists only capabilities the backend has proven across the G0-G5 contracts. The manifest is byte-deterministic and frozen in contracts/g6/golden/capability-manifest.json.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "corpusId",
+    "designTypes",
+    "geometry",
+    "modules",
+    "relationships",
+    "envelope",
+    "confidenceLabels",
+    "maturityTiers",
+    "manifestFingerprint"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "corpusId": { "const": "megis-capability-manifest@1.0.0" },
+    "designTypes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "proven"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "label": { "type": "string", "minLength": 1 },
+          "proven": { "const": true }
+        },
+        "additionalProperties": false
+      }
+    },
+    "geometry": {
+      "type": "object",
+      "required": ["backendId", "backendVersion", "deterministic", "operations", "exportFormats"],
+      "properties": {
+        "backendId": { "type": "string", "minLength": 1 },
+        "backendVersion": { "type": "string", "minLength": 1 },
+        "deterministic": { "const": true },
+        "operations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "proven"],
+            "properties": {
+              "id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+              "proven": { "const": true }
+            },
+            "additionalProperties": false
+          }
+        },
+        "exportFormats": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^(STEP|STL|DXF)$" },
+          "uniqueItems": true,
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "modules": {
+      "type": "object",
+      "required": ["capabilityLevels"],
+      "properties": {
+        "capabilityLevels": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["level", "uiDisplay", "layoutAllowed", "geometryAllowed", "maturityCap", "proven"],
+            "properties": {
+              "level": { "type": "string", "enum": ["metadata_only", "layout_capable", "geometry_capable", "validated"] },
+              "uiDisplay": { "type": "string", "minLength": 1 },
+              "layoutAllowed": { "type": "boolean" },
+              "geometryAllowed": { "type": "boolean" },
+              "maturityCap": { "type": "string", "enum": ["DRAFT", "CONCEPT", "PROTOTYPE", "ENGINEERING_REVIEWED", "RELEASED"] },
+              "proven": { "const": true }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "relationships": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["type", "meaning", "requiredParameters", "proven"],
+        "properties": {
+          "type": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "meaning": { "type": "string", "minLength": 1 },
+          "requiredParameters": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true
+          },
+          "proven": { "const": true }
+        },
+        "additionalProperties": false
+      }
+    },
+    "envelope": {
+      "type": "object",
+      "required": ["envelopeId", "label", "verified", "outerDimensionsMm", "minimumWallMm", "materials", "machining", "fixture", "unsupportedErrorCodes"],
+      "properties": {
+        "envelopeId": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1 },
+        "verified": { "const": true },
+        "outerDimensionsMm": {
+          "type": "object",
+          "required": ["widthMm", "depthMm", "heightMm"],
+          "properties": {
+            "widthMm": { "type": "number", "exclusiveMinimum": 0 },
+            "depthMm": { "type": "number", "exclusiveMinimum": 0 },
+            "heightMm": { "type": "number", "exclusiveMinimum": 0 }
+          },
+          "additionalProperties": false
+        },
+        "minimumWallMm": { "type": "number", "exclusiveMinimum": 0 },
+        "materials": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        },
+        "machining": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        },
+        "fixture": {
+          "type": "object",
+          "required": ["coverCount", "fastenerCount"],
+          "properties": {
+            "coverCount": { "type": "integer", "minimum": 0 },
+            "fastenerCount": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": false
+        },
+        "unsupportedErrorCodes": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^MEGIS-[A-Z]{2,4}-[0-9]{3}$" },
+          "minItems": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "confidenceLabels": {
+      "type": "array",
+      "minItems": 5,
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "maturityTiers": {
+      "type": "array",
+      "minItems": 5,
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "manifestFingerprint": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  },
+  "additionalProperties": false
+}
