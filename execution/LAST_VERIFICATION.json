@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-22T13:00:00+08:00",
-  "sourceCommit": "d86ffff824b6beb451d60d89e64e6c87606adeeb",
+  "verifiedAt": "2026-09-22T14:00:00+08:00",
+  "sourceCommit": "8303595ac2a693ddda48647201062673720f1bb2",
   "status": "passed",
   "commands": [
     {
@@ -10,11 +10,11 @@
       "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
       "deferrals": 0,
-      "secretScanTrackedFiles": 319,
+      "secretScanTrackedFiles": 328,
       "secretScanFindings": 0,
       "artifactPolicyNegativeTests": 8,
-      "artifactPolicyTrackedFiles": 322,
-      "artifactPolicyEvidenceJson": 36,
+      "artifactPolicyTrackedFiles": 331,
+      "artifactPolicyEvidenceJson": 37,
       "artifactPolicyGoldenBytes": 19333,
       "artifactPolicyHeavyArtifacts": 5,
       "pythonTests": 306,
@@ -30,28 +30,15 @@
       "deferrals": 0
     },
     {
-      "command": ".venv/Scripts/python.exe scripts/verify_g3_ben_001.py",
+      "command": "G3-REV-001 clean checkout review (@8303595)",
       "status": "passed",
-      "devCases": 40,
-      "devDefect": 30,
-      "devClean": 10,
-      "devPrecision": 1.0,
-      "devRecall": 1.0,
-      "devFalsePositives": 0,
-      "devFalseReleases": 0,
-      "holdoutCases": 10,
-      "holdoutSha256": "73a25950c4b45d904daa6bab963a16ae11599f6bfa660966582ba0d60ed5a96b",
-      "holdoutMatchedSealed": true,
-      "holdoutFalsePositives": 0,
-      "holdoutFalseReleases": 0,
-      "checksPassed": 13,
-      "runtime": "megis.benchmark@0.1.0"
-    },
-    {
-      "command": ".venv/Scripts/python.exe -m pytest tests/test_g3_ben_001.py",
-      "status": "passed",
-      "testsPassed": 12,
-      "testsFailed": 0
+      "method": "clean clone .runs/g3-rev-001-clean",
+      "g3TestsPassed": 159,
+      "g3TestsFailed": 0,
+      "verifyScriptsPassed": 6,
+      "verifyScriptChecks": 95,
+      "holdoutShaMismatch": false,
+      "findings": []
     }
   ],
   "boundaries": {

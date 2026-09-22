@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T13:00:00+08:00",
+  "updatedAt": "2026-09-22T14:00:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G3-REV-001",
+  "currentWorkItem": "G3-ACC-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -2823,7 +2823,7 @@
       "id": "G3-REV-001",
       "title": "G3 自我審查",
       "gate": "G3",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G3-SRC-001",
         "G3-BEN-001"
@@ -2840,24 +2840,47 @@
       "acceptanceResults": [
         {
           "criterion": "全新 session 在乾淨 checkout 重跑 G3 全部驗證並出具 passed 報告",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "execution/reviews/2026-09-22-G3-REV-001-review.md",
+            "artifacts/g3-rev-001/verification.json",
+            "tests/test_g3_rul_001.py",
+            "tests/test_g3_src_001.py",
+            "tests/test_g3_val_001.py",
+            "tests/test_g3_val_002.py",
+            "tests/test_g3_mat_001.py",
+            "tests/test_g3_ben_001.py",
+            "execution/LAST_VERIFICATION.json",
+            "docs/ACCEPTANCE.md"
+          ]
         }
       ],
       "verificationCommands": [
-        "node scripts/verify-control-plane.mjs"
+        "node scripts/verify-control-plane.mjs",
+        ".venv/Scripts/python.exe -m pytest tests/test_g3_rul_001.py tests/test_g3_src_001.py tests/test_g3_val_001.py tests/test_g3_val_002.py tests/test_g3_mat_001.py tests/test_g3_ben_001.py"
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "execution/reviews/2026-09-22-G3-REV-001-review.md",
+        "artifacts/g3-rev-001/verification.json",
+        "tests/test_g3_rul_001.py",
+        "tests/test_g3_src_001.py",
+        "tests/test_g3_val_001.py",
+        "tests/test_g3_val_002.py",
+        "tests/test_g3_mat_001.py",
+        "tests/test_g3_ben_001.py",
+        "execution/LAST_VERIFICATION.json",
+        "docs/ACCEPTANCE.md"
+      ],
+      "verification": "passed",
+      "commitSha": "ccf7b8129782303b4e09eaa2636c7be25d0aa90f"
     },
     {
       "id": "G3-ACC-001",
       "title": "G3 acceptance 決策紀錄",
       "gate": "G3",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G3-REV-001"
       ],
