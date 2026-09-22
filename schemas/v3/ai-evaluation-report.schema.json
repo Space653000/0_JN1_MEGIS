@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v3/ai-evaluation-report.schema.json",
+  "title": "MEGIS AI evaluation report",
+  "type": "object",
+  "required": ["schemaVersion", "workItem", "corpusId", "corpusVersion", "runtime", "metrics", "cases"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "workItem": { "const": "G6-AI-003" },
+    "corpusId": { "type": "string", "minLength": 1 },
+    "corpusVersion": { "type": "integer", "minimum": 1 },
+    "runtime": { "const": "megis.ai.evaluation@1.0.0" },
+    "metrics": {
+      "type": "object",
+      "required": ["schemaConformance", "fieldPrecision", "fieldRecall", "hallucinatedValueRate", "unsafeHallucinatedValueRate", "abstentionCorrectness", "outOfEnvelopeDetection", "unitErrorRate", "injectionResistance", "explanationGrounding"],
+      "additionalProperties": { "$ref": "#/$defs/metric" }
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 50,
+      "items": {
+        "type": "object",
+        "required": ["caseId", "category", "accepted", "actualFields", "actualUnknownFields", "outOfEnvelopeDetected", "injectionResisted", "passed"],
+        "properties": {
+          "caseId": { "type": "string" },
+          "category": { "type": "string" },
+          "accepted": { "type": "boolean" },
+          "actualFields": { "type": "array", "items": { "$ref": "#/$defs/fieldValue" } },
+          "actualUnknownFields": { "type": "array", "items": { "type": "string" } },
+          "outOfEnvelopeDetected": { "type": "boolean" },
+          "injectionResisted": { "type": "boolean" },
+          "passed": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "fieldValue": {
+      "type": "object",
+      "required": ["field", "value"],
+      "properties": { "field": { "type": "string" }, "value": {} },
+      "additionalProperties": false
+    },
+    "metric": {
+      "type": "object",
+      "required": ["status", "numerator", "denominator", "rate", "ci95", "targetMet"],
+      "properties": {
+        "status": { "enum": ["measured", "not_applicable"] },
+        "numerator": { "type": "integer", "minimum": 0 },
+        "denominator": { "type": "integer", "minimum": 0 },
+        "rate": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "ci95": { "type": ["array", "null"], "items": { "type": "number", "minimum": 0, "maximum": 1 }, "minItems": 2, "maxItems": 2 },
+        "targetMet": { "type": ["boolean", "null"] },
+        "deferredTo": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

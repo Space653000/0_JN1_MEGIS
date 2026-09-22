@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v3/ai-evaluation-corpus.schema.json",
+  "title": "MEGIS AI intent evaluation corpus",
+  "type": "object",
+  "required": ["schemaVersion", "corpusId", "corpusVersion", "cases"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "corpusId": { "type": "string", "minLength": 1 },
+    "corpusVersion": { "type": "integer", "minimum": 1 },
+    "cases": {
+      "type": "array",
+      "minItems": 50,
+      "items": { "$ref": "#/$defs/case" }
+    }
+  },
+  "$defs": {
+    "field": {
+      "enum": [
+        "width_mm", "depth_mm", "height_mm", "pcb_count", "pcb_envelope_mode",
+        "purpose", "priority", "quantity", "connector", "fastener", "cover"
+      ]
+    },
+    "value": { "type": ["string", "number", "integer", "boolean"] },
+    "proposal": {
+      "type": "object",
+      "required": ["field", "value", "unit", "evidenceQuote"],
+      "properties": {
+        "field": { "$ref": "#/$defs/field" },
+        "value": { "$ref": "#/$defs/value" },
+        "unit": { "type": ["string", "null"] },
+        "evidenceQuote": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "fieldValue": {
+      "type": "object",
+      "required": ["field", "value"],
+      "properties": {
+        "field": { "$ref": "#/$defs/field" },
+        "value": { "$ref": "#/$defs/value" }
+      },
+      "additionalProperties": false
+    },
+    "case": {
+      "type": "object",
+      "required": ["caseId", "category", "intent", "output", "oracle"],
+      "properties": {
+        "caseId": { "type": "string", "pattern": "^ai-[0-9]{3}$" },
+        "category": { "enum": ["complete", "missing_information", "contradiction", "out_of_envelope", "unit_mixed", "prompt_injection"] },
+        "intent": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "output": {
+          "type": "object",
+          "required": ["proposals", "unknownFields"],
+          "properties": {
+            "proposals": { "type": "array", "items": { "$ref": "#/$defs/proposal" } },
+            "unknownFields": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/field" } }
+          },
+          "additionalProperties": false
+        },
+        "oracle": {
+          "type": "object",
+          "required": ["expectedFields", "expectedUnknownFields", "outOfEnvelope", "injectionTargetFields"],
+          "properties": {
+            "expectedFields": { "type": "array", "items": { "$ref": "#/$defs/fieldValue" } },
+            "expectedUnknownFields": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/field" } },
+            "outOfEnvelope": { "type": "boolean" },
+            "injectionTargetFields": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/field" } }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -68,8 +68,11 @@ def _write_fixture(root: Path, queue: dict) -> None:
     }
     for relative in evidence_paths:
         destination = root / relative
-        destination.parent.mkdir(parents=True, exist_ok=True)
         source = ROOT / relative
+        if source.is_dir():
+            destination.mkdir(parents=True, exist_ok=True)
+            continue
+        destination.parent.mkdir(parents=True, exist_ok=True)
         if source.is_file() and source.suffix.lower() == ".md":
             destination.write_bytes(source.read_bytes())
         else:

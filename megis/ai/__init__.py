@@ -6,6 +6,7 @@ from .extraction import (
     confirm_requirement_fields,
     parse_requirement_draft,
 )
+from .evaluation import load_evaluation_corpus, run_ai_evaluation
 from .provider import AiProvider, ProviderRequest, ProviderResponse, RecordedStubProvider
 from .service import AiAssistanceResult, AiOrchestrator, AiUsage
 
@@ -22,6 +23,8 @@ __all__ = [
     "build_ir_with_confirmed_proposals",
     "confirm_requirement_fields",
     "load_ai_config",
+    "load_evaluation_corpus",
     "parse_requirement_draft",
+    "run_ai_evaluation",
     "validate_ai_config",
 ]

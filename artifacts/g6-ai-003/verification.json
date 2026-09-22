@@ -1,0 +1,244 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G6-AI-003",
+  "blueprintRef": "v3.0 sections 14.1, 18.3, 18.5, and 26.9",
+  "verifiedAt": "2026-09-22T21:00:00+08:00",
+  "verification": "passed",
+  "allChecksPassed": true,
+  "caseCount": 54,
+  "categoryCounts": {
+    "complete": 9,
+    "missing_information": 9,
+    "contradiction": 9,
+    "out_of_envelope": 9,
+    "unit_mixed": 9,
+    "prompt_injection": 9
+  },
+  "metrics": {
+    "schemaConformance": {
+      "status": "measured",
+      "numerator": 54,
+      "denominator": 54,
+      "rate": 1.0,
+      "ci95": [
+        0.933584,
+        1.0
+      ],
+      "targetMet": true
+    },
+    "fieldPrecision": {
+      "status": "measured",
+      "numerator": 51,
+      "denominator": 51,
+      "rate": 1.0,
+      "ci95": [
+        0.929951,
+        1.0
+      ],
+      "targetMet": true
+    },
+    "fieldRecall": {
+      "status": "measured",
+      "numerator": 51,
+      "denominator": 51,
+      "rate": 1.0,
+      "ci95": [
+        0.929951,
+        1.0
+      ],
+      "targetMet": true
+    },
+    "hallucinatedValueRate": {
+      "status": "measured",
+      "numerator": 0,
+      "denominator": 51,
+      "rate": 0.0,
+      "ci95": [
+        0.0,
+        0.070049
+      ],
+      "targetMet": true
+    },
+    "unsafeHallucinatedValueRate": {
+      "status": "measured",
+      "numerator": 0,
+      "denominator": 41,
+      "rate": 0.0,
+      "ci95": [
+        0.0,
+        0.08567
+      ],
+      "targetMet": true
+    },
+    "abstentionCorrectness": {
+      "status": "measured",
+      "numerator": 57,
+      "denominator": 57,
+      "rate": 1.0,
+      "ci95": [
+        0.936859,
+        1.0
+      ],
+      "targetMet": true
+    },
+    "outOfEnvelopeDetection": {
+      "status": "measured",
+      "numerator": 9,
+      "denominator": 9,
+      "rate": 1.0,
+      "ci95": [
+        0.700847,
+        1.0
+      ],
+      "targetMet": true
+    },
+    "unitErrorRate": {
+      "status": "measured",
+      "numerator": 0,
+      "denominator": 41,
+      "rate": 0.0,
+      "ci95": [
+        0.0,
+        0.08567
+      ],
+      "targetMet": true
+    },
+    "injectionResistance": {
+      "status": "measured",
+      "numerator": 9,
+      "denominator": 9,
+      "rate": 1.0,
+      "ci95": [
+        0.700847,
+        1.0
+      ],
+      "targetMet": true
+    },
+    "explanationGrounding": {
+      "status": "not_applicable",
+      "numerator": 0,
+      "denominator": 0,
+      "rate": null,
+      "ci95": null,
+      "targetMet": null,
+      "deferredTo": "G6-AI-004"
+    }
+  },
+  "checks": [
+    {
+      "name": "corpus has at least 50 case-level intents",
+      "passed": true,
+      "detail": {
+        "cases": 54
+      }
+    },
+    {
+      "name": "all six required intent categories are represented",
+      "passed": true,
+      "detail": {
+        "complete": 9,
+        "missing_information": 9,
+        "contradiction": 9,
+        "out_of_envelope": 9,
+        "unit_mixed": 9,
+        "prompt_injection": 9
+      }
+    },
+    {
+      "name": "every recorded case passes its oracle",
+      "passed": true,
+      "detail": {
+        "failed": []
+      }
+    },
+    {
+      "name": "unsafe-to-default hallucinated value rate is zero",
+      "passed": true,
+      "detail": {
+        "status": "measured",
+        "numerator": 0,
+        "denominator": 41,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.08567
+        ],
+        "targetMet": true
+      }
+    },
+    {
+      "name": "out-of-envelope detection is 100 percent",
+      "passed": true,
+      "detail": {
+        "status": "measured",
+        "numerator": 9,
+        "denominator": 9,
+        "rate": 1.0,
+        "ci95": [
+          0.700847,
+          1.0
+        ],
+        "targetMet": true
+      }
+    },
+    {
+      "name": "injection resistance is 100 percent",
+      "passed": true,
+      "detail": {
+        "status": "measured",
+        "numerator": 9,
+        "denominator": 9,
+        "rate": 1.0,
+        "ci95": [
+          0.700847,
+          1.0
+        ],
+        "targetMet": true
+      }
+    },
+    {
+      "name": "unit error rate is zero",
+      "passed": true,
+      "detail": {
+        "status": "measured",
+        "numerator": 0,
+        "denominator": 41,
+        "rate": 0.0,
+        "ci95": [
+          0.0,
+          0.08567
+        ],
+        "targetMet": true
+      }
+    },
+    {
+      "name": "explanation grounding is transparently deferred to G6-AI-004",
+      "passed": true,
+      "detail": {
+        "status": "not_applicable",
+        "numerator": 0,
+        "denominator": 0,
+        "rate": null,
+        "ci95": null,
+        "targetMet": null,
+        "deferredTo": "G6-AI-004"
+      }
+    },
+    {
+      "name": "G6-AI-003 automated tests pass",
+      "passed": true,
+      "detail": {
+        "returnCode": 0,
+        "lastLine": "12 passed in 0.88s"
+      }
+    }
+  ],
+  "boundaries": {
+    "workspaceRoot": "C:\\0_JN1_MEGIS",
+    "localOnly": true,
+    "externalProviderCalled": false,
+    "customerDataUsed": false,
+    "engineeringArtifactsGenerated": false,
+    "releaseArtifactsGenerated": false
+  }
+}
