@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-22T16:00:00+08:00",
-  "sourceCommit": "58ba30b2a55659eae632da2c7064b44a0b040bb9",
+  "verifiedAt": "2026-09-22T18:00:00+08:00",
+  "sourceCommit": "80081f74994773ad18ff7826b50cb842c686d404",
   "status": "passed",
   "commands": [
     {
@@ -10,14 +10,14 @@
       "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
       "deferrals": 0,
-      "secretScanTrackedFiles": 344,
+      "secretScanTrackedFiles": 356,
       "secretScanFindings": 0,
       "artifactPolicyNegativeTests": 8,
-      "artifactPolicyTrackedFiles": 347,
-      "artifactPolicyEvidenceJson": 40,
+      "artifactPolicyTrackedFiles": 359,
+      "artifactPolicyEvidenceJson": 41,
       "artifactPolicyGoldenBytes": 19333,
       "artifactPolicyHeavyArtifacts": 5,
-      "pythonTests": 334,
+      "pythonTests": 360,
       "maturityScanManifests": 1,
       "artifactSmokeRecords": 13,
       "frontendTests": 9
@@ -30,21 +30,21 @@
       "deferrals": 0
     },
     {
-      "command": "G4-MOD-001 implementation and closure traceability (@58ba30b2)",
+      "command": "G4-GRF-001 implementation and closure traceability (@80081f74)",
       "status": "passed",
-      "implCommit": "58ba30b2a55659eae632da2c7064b44a0b040bb9",
+      "implCommit": "80081f74994773ad18ff7826b50cb842c686d404",
       "workItemStatus": "done",
       "evidenceLevel": "E3",
-      "controlPlaneCurrentAfter": "G4-GRF-001",
+      "controlPlaneCurrentAfter": "G4-MOD-002",
       "checks": {
-        "modCorpusCases": 18,
-        "positiveCases": 6,
+        "corpusCases": 20,
+        "positiveCases": 8,
         "negativeCases": 12,
+        "everyTypeHasPositiveAndNegativeEvidence": true,
         "pytestG4Green": true,
         "verifyScriptAllChecksPassed": true,
         "baselineCiGreen": true,
-        "capabilityPoliciesMatchBlueprint12": true,
-        "provenanceMandatoryPerMetadataField": true
+        "closedVocabularyStable": true
       }
     }
   ],

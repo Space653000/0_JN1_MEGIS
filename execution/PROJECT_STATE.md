@@ -1,14 +1,18 @@
 # MEGIS Project State
 
 - Current gate: `G4 — 模組與限制條件組合`
-- Current work item: `G4-GRF-001 — Relationship vocabulary 語意`
-- Last green commit: `58ba30b2a55659eae632da2c7064b44a0b040bb9`
+- Current work item: `G4-MOD-002 — PCB、USB-C 與 M3 composition`
+- Last green commit: `80081f74994773ad18ff7826b50cb842c686d404`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-22T16:00:00+08:00`
+- Updated at: `2026-09-22T18:00:00+08:00`
 
 ## Active gate: G4
 
-G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 — 模組與限制條件組合 現在為 active gate，當前工項為 `G4-GRF-001 — Relationship vocabulary 語意`。
+G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 — 模組與限制條件組合 現在為 active gate，當前工項為 `G4-MOD-002 — PCB、USB-C 與 M3 composition`。
+
+G4-MOD-001 已閉合（2026-09-22）：四級 capability 閉集合（metadata_only／layout_capable／geometry_capable／validated）與 §12 policy 表；`megis/module`、`schemas/v3/module.schema.json`、18 cases；28 tests + `verify_g4_mod_001.py` allChecksPassed（E3）。
+
+G4-GRF-001 已閉合（2026-09-22）：Relationship vocabulary 八型別閉集合（contains／mounts_to／fastens／opens_through／clears／aligns／covers／removable_along），每型別語意與必要驗證、參數不變量；`megis/relationship`、`schemas/v3/relationship.schema.json`、20 cases（8 positive／12 negative）；26 tests + `verify_g4_grf_001.py` allChecksPassed（E3）。
 
 G3-RUL-001 已閉合（2026-09-21）：rule schema（`schemas/v3/rule.schema.json`）、waiver schema（`schemas/v3/waiver.schema.json`）、生命週期狀態機與 waiver 到期／不可豁免邏輯（`megis/rules/`）、golden corpus（`contracts/g3/golden/rule-governance.json`）；14 tests + `verify_g3_rul_001.py` 18/18 checks 全綠，新增 `MEGIS-RUL-002／003`。
 
@@ -65,9 +69,9 @@ G3-ACC-001 已閉合（2026-09-22）：G3 gate acceptance 決策紀錄（E4，`e
 | ID | Status | Evidence |
 |---|---|---|
 | G4-MOD-001 | done | schemas/v3/module.schema.json、megis/module/、contracts/g4/golden/module-corpus.json（18 cases）、tests/test_g4_mod_001.py（28 tests）、scripts/verify_g4_mod_001.py（E3）、artifacts/g4-mod-001/verification.json、docs/G4_MODULE_CAPABILITY.md |
-| G4-MOD-002 | planned | PCB、USB-C 與 M3 composition |
+| G4-MOD-002 | in_progress | PCB、USB-C 與 M3 composition（見 `execution/AGENT_CLAIM.json`） |
 | G4-IMP-001 | planned | 安全 STEP 與 DXF metadata extraction |
-| G4-GRF-001 | in_progress | Relationship vocabulary 語意（見 `execution/AGENT_CLAIM.json`） |
+| G4-GRF-001 | done | schemas/v3/relationship.schema.json、megis/relationship/、contracts/g4/golden/relationship-corpus.json（20 cases）、tests/test_g4_grf_001.py（26 tests）、scripts/verify_g4_grf_001.py（E3）、artifacts/g4-grf-001/verification.json、docs/G4_RELATIONSHIP_VOCABULARY.md |
 | G4-REV-001 | planned | G4 自我審查 |
 | G4-ACC-001 | planned | G4 acceptance 決策紀錄 |
 

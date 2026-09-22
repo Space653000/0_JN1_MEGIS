@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T16:00:00+08:00",
+  "updatedAt": "2026-09-22T18:00:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G4-GRF-001",
+  "currentWorkItem": "G4-MOD-002",
   "gates": [
     {
       "id": "UI-0A",
@@ -1702,7 +1702,7 @@
       "id": "G4-MOD-002",
       "title": "PCB、USB-C 與 M3 composition",
       "gate": "G4",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G4-GRF-001"
       ],
@@ -2947,7 +2947,7 @@
       "id": "G4-GRF-001",
       "title": "Relationship vocabulary 語意",
       "gate": "G4",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G4-MOD-001"
       ],
@@ -2963,18 +2963,37 @@
       "acceptanceResults": [
         {
           "criterion": "v3 §4.16 每一關係型別都有語意測試與反例",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "schemas/v3/relationship.schema.json",
+            "schemas/v3/relationship-corpus.schema.json",
+            "contracts/g4/golden/relationship-corpus.json",
+            "tests/test_g4_grf_001.py",
+            "artifacts/g4-grf-001/verification.json"
+          ]
         }
       ],
       "verificationCommands": [
+        ".venv/Scripts/python.exe -m pytest tests/test_g4_grf_001.py",
+        ".venv/Scripts/python.exe scripts/verify_g4_grf_001.py",
         "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "schemas/v3/relationship.schema.json",
+        "schemas/v3/relationship-corpus.schema.json",
+        "megis/relationship/vocabulary.py",
+        "megis/relationship/schema.py",
+        "megis/contracts/schema_findings.py",
+        "contracts/g4/golden/relationship-corpus.json",
+        "tests/test_g4_grf_001.py",
+        "scripts/verify_g4_grf_001.py",
+        "artifacts/g4-grf-001/verification.json",
+        "docs/G4_RELATIONSHIP_VOCABULARY.md"
+      ],
+      "verification": "passed",
+      "commitSha": "80081f74994773ad18ff7826b50cb842c686d404"
     },
     {
       "id": "G4-REV-001",

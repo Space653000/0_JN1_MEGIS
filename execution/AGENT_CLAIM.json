@@ -1,8 +1,8 @@
 {
   "agent": "codex",
   "role": "builder",
-  "work_item": "G4-GRF-001",
-  "claimed_at": "2026-09-22T16:00:00+08:00",
-  "expires_at": "2026-09-23T16:00:00+08:00",
-  "base_commit": "58ba30b2a55659eae632da2c7064b44a0b040bb9"
+  "work_item": "G4-MOD-002",
+  "claimed_at": "2026-09-22T18:00:00+08:00",
+  "expires_at": "2026-09-23T18:00:00+08:00",
+  "base_commit": "80081f74994773ad18ff7826b50cb842c686d404"
 }
