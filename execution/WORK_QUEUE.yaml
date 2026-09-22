@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T20:42:00+08:00",
+  "updatedAt": "2026-09-22T21:34:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
   "currentWorkItem": "G6-A11Y-001",
   "gates": [
@@ -2141,7 +2141,10 @@
         {
           "criterion": "UI 輸入可追溯至 IR、驗證與 package，失敗狀態不遺失",
           "status": "pending",
-          "evidence": []
+          "evidence": [
+            "artifacts/g6-a11y-001/verification.json",
+            "docs/G6_ACCESSIBILITY.md"
+          ]
         }
       ],
       "verificationCommands": [],
@@ -3548,11 +3551,18 @@
         }
       ],
       "verificationCommands": [
+        "node scripts/verify_g6_a11y_001.mjs",
         "npm --prefix apps/web test -- --run"
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
+      "evidence": [
+        "apps/web/src/pages/accessibility.test.tsx",
+        "scripts/verify_g6_a11y_001.mjs",
+        "artifacts/g6-a11y-001/verification.json",
+        "docs/G6_ACCESSIBILITY.md",
+        "outputs/2026-09-22-G6-A11Y-001-自動化施工進度報告.md"
+      ],
       "verification": "not_run",
       "commitSha": null
     },

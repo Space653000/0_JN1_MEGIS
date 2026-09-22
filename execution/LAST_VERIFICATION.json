@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-09-22T20:42:00+08:00",
+  "verifiedAt": "2026-09-22T21:34:00+08:00",
   "status": "passed",
   "schemaVersion": "1.0.0",
   "commands": [
@@ -7,21 +7,23 @@
       "command": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
       "pythonTests": 585,
       "pythonFailed": 0,
-      "frontendTests": 12,
-      "frontendTestFiles": 3,
+      "frontendTests": 21,
+      "frontendTestFiles": 4,
       "status": "passed"
     },
     {
-      "command": ".venv/Scripts/python.exe scripts/verify_g6_ai_004.py",
-      "workItem": "G6-AI-004",
-      "evidenceLevel": "E3",
-      "checks": 8,
-      "groundedNumbers": 4,
-      "totalNumbers": 4,
-      "groundingRate": 1.0,
-      "allChecksPassed": true,
+      "command": "node scripts/verify_g6_a11y_001.mjs",
+      "workItem": "G6-A11Y-001",
+      "evidenceLevel": "E3-partial",
+      "axeRoutes": 5,
+      "axeViolations": 0,
+      "contrastPairs": 8,
+      "automatedStatus": "passed",
+      "manualKeyboardStatus": "pending",
+      "manualScreenReaderStatus": "pending",
+      "closureEligible": false,
       "status": "passed",
-      "pinnedCommit": "d27d16e17ed81eb0fb8ac4e8b0be83891df14d82"
+      "pinnedCommit": "cf919841813f1ab28171b215e1de78d4e44dc53b"
     },
     {
       "command": "node scripts/verify-control-plane.mjs",
@@ -33,36 +35,37 @@
     },
     {
       "command": "node scripts/verify-secrets.mjs",
-      "trackedFiles": 480,
+      "trackedFiles": 485,
       "potentialSecrets": 0,
       "status": "passed"
     },
     {
       "command": "node scripts/verify-artifact-policy.mjs",
-      "trackedFiles": 483,
-      "evidenceJsonCount": 58,
+      "trackedFiles": 488,
+      "evidenceJsonCount": 59,
       "goldenTotalBytes": 19333,
       "status": "passed"
     },
     {
       "command": "live Vite progress-state hot reload verification",
       "httpStatus": 200,
-      "updatedAt": "2026-09-22T20:42:00+08:00",
+      "updatedAt": "2026-09-22T21:34:00+08:00",
       "currentWorkItem": "G6-A11Y-001",
-      "completedWorkItem": "G6-AI-004",
-      "completedWorkItemStatus": "done",
+      "workItemStatus": "in_progress",
+      "automatedEvidencePublished": true,
+      "manualEvidencePending": true,
       "serverRestartRequired": false,
       "status": "passed"
     }
   ],
-  "sourceCommit": "d27d16e17ed81eb0fb8ac4e8b0be83891df14d82",
+  "sourceCommit": "cf919841813f1ab28171b215e1de78d4e44dc53b",
   "boundaries": {
     "engineeringArtifactsGenerated": false,
     "otherProjectDirectoriesModified": false,
     "engineeringArtifactsClassification": null,
     "releaseArtifactsGenerated": false,
     "externalProviderCalled": false,
-    "unconfirmedValuesEnteredIr": false,
+    "humanEvidenceSimulated": false,
     "workspaceRoot": "C:/0_JN1_MEGIS",
     "localOnly": true
   }

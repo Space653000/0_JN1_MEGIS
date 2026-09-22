@@ -26,7 +26,8 @@ V3.0 採 Gate-driven construction，不以日期或推測百分比宣稱完成�
 - `G6-AI-002`：schema-bound Requirement draft、exact evidence span、`llm_proposed` quarantine 與逐欄 confirmation；未確認值不得進入 confirmed IR。
 - `G6-AI-003`：54 筆六類 intent corpus 與 case-level KPI；unsafe hallucination 0、injection resistance 100%，並附 Wilson 95% CI。
 - `G6-AI-004`：白話解釋的每次數值出現都必須以 hash-bound source＋JSON Pointer 追溯至 IR、rule result 或 manifest。
-- 最新完整 baseline：585 個 Python tests、12 個 frontend tests，以及 control-plane、secret、artifact、toolchain、maturity、lint、typecheck、build 全綠。
+- `G6-A11Y-001`（施工中）：axe WCAG 2.2 A／AA 五路由 0 violations，鍵盤／焦點契約自動化已通過；真人鍵盤與螢幕閱讀器抽查尚待完成。
+- 最新完整 baseline：585 個 Python tests、21 個 frontend tests，以及 control-plane、secret、artifact、toolchain、maturity、lint、typecheck、build 全綠。
 
 UI-0 是本機端使用者體驗原型，用來先確認施工進度中心與治具／電子外殼引導流程。它使用有版本的 `PrototypeViewModel` 展示資料，不是藍圖中的 G6 工程能力，也不會產生 STEP、工程圖面、BOM、Prototype Package 或可供製造的工程製品。
 
