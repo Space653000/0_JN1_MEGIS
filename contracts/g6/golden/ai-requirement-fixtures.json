@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "1.0.0",
+  "fixtureSetId": "g6-ai-requirement-fixtures@1.0.0",
+  "cases": [
+    {
+      "caseId": "fixture-width-connector",
+      "sourceText": "外殼寬度 120 mm，使用 USB-C。",
+      "providerOutput": {
+        "schemaVersion": "1.0.0",
+        "sourceSha256": "8ff019836d5ef1b5a36fedc7500c6824b8ff5670292744aa0d0aa0de8ba39aed",
+        "proposals": [
+          {
+            "field": "width_mm",
+            "value": 120,
+            "unit": "mm",
+            "knowledgeState": "llm_proposed",
+            "evidenceSpan": { "start": 5, "end": 11, "quote": "120 mm" }
+          },
+          {
+            "field": "connector",
+            "value": "USB-C",
+            "unit": null,
+            "knowledgeState": "llm_proposed",
+            "evidenceSpan": { "start": 15, "end": 20, "quote": "USB-C" }
+          }
+        ],
+        "unknownFields": ["depth_mm", "height_mm"]
+      }
+    },
+    {
+      "caseId": "fixture-three-dimensions",
+      "sourceText": "尺寸為 110 x 70 x 25 mm。",
+      "providerOutput": {
+        "schemaVersion": "1.0.0",
+        "sourceSha256": "5fad2c752e0649f9dc4b639cd73ac0084a39afb58525fe57de1fe53cb516aaff",
+        "proposals": [
+          {
+            "field": "width_mm",
+            "value": 110,
+            "unit": "mm",
+            "knowledgeState": "llm_proposed",
+            "evidenceSpan": { "start": 4, "end": 20, "quote": "110 x 70 x 25 mm" }
+          },
+          {
+            "field": "depth_mm",
+            "value": 70,
+            "unit": "mm",
+            "knowledgeState": "llm_proposed",
+            "evidenceSpan": { "start": 4, "end": 20, "quote": "110 x 70 x 25 mm" }
+          },
+          {
+            "field": "height_mm",
+            "value": 25,
+            "unit": "mm",
+            "knowledgeState": "llm_proposed",
+            "evidenceSpan": { "start": 4, "end": 20, "quote": "110 x 70 x 25 mm" }
+          }
+        ],
+        "unknownFields": []
+      }
+    },
+    {
+      "caseId": "fixture-pcb-count",
+      "sourceText": "需要 2 片 PCB，外殼高度 20 mm。",
+      "providerOutput": {
+        "schemaVersion": "1.0.0",
+        "sourceSha256": "d5bbc5202d49146934c610dde8d76342152bcc99ce4268fefa7c77c3a56dae44",
+        "proposals": [
+          {
+            "field": "pcb_count",
+            "value": 2,
+            "unit": null,
+            "knowledgeState": "llm_proposed",
+            "evidenceSpan": { "start": 3, "end": 6, "quote": "2 片" }
+          },
+          {
+            "field": "height_mm",
+            "value": 20,
+            "unit": "mm",
+            "knowledgeState": "llm_proposed",
+            "evidenceSpan": { "start": 16, "end": 21, "quote": "20 mm" }
+          }
+        ],
+        "unknownFields": ["width_mm", "depth_mm"]
+      }
+    }
+  ]
+}

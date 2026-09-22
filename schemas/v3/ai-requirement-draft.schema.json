@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v3/ai-requirement-draft.schema.json",
+  "title": "MEGIS AI-proposed Requirement draft",
+  "type": "object",
+  "required": ["schemaVersion", "sourceSha256", "proposals", "unknownFields"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "sourceSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "proposals": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/proposal" },
+      "maxItems": 11
+    },
+    "unknownFields": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/field" }
+    }
+  },
+  "$defs": {
+    "field": {
+      "enum": [
+        "width_mm", "depth_mm", "height_mm", "pcb_count", "pcb_envelope_mode",
+        "purpose", "priority", "quantity", "connector", "fastener", "cover"
+      ]
+    },
+    "evidenceSpan": {
+      "type": "object",
+      "required": ["start", "end", "quote"],
+      "properties": {
+        "start": { "type": "integer", "minimum": 0 },
+        "end": { "type": "integer", "minimum": 1 },
+        "quote": { "type": "string", "minLength": 1, "maxLength": 500 }
+      },
+      "additionalProperties": false
+    },
+    "proposal": {
+      "type": "object",
+      "required": ["field", "value", "unit", "knowledgeState", "evidenceSpan"],
+      "properties": {
+        "field": { "$ref": "#/$defs/field" },
+        "value": { "type": ["string", "number", "integer", "boolean"] },
+        "unit": { "type": ["string", "null"], "maxLength": 20 },
+        "knowledgeState": { "const": "llm_proposed" },
+        "evidenceSpan": { "$ref": "#/$defs/evidenceSpan" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

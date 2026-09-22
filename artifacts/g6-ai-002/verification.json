@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G6-AI-002",
+  "blueprintRef": "v3.0 sections 14.1, 20.2-20.3, and 26.9",
+  "verifiedAt": "2026-09-22T20:00:00+08:00",
+  "verification": "passed",
+  "allChecksPassed": true,
+  "recordedFixtureCases": 3,
+  "checks": [
+    {
+      "name": "Requirement draft JSON Schema is valid",
+      "passed": true,
+      "detail": {
+        "schemaVersion": "1.0.0"
+      }
+    },
+    {
+      "name": "100% of recorded provider outputs pass the Requirement schema and evidence checks",
+      "passed": true,
+      "detail": {
+        "cases": 3,
+        "results": [
+          {
+            "caseId": "fixture-width-connector",
+            "passed": true,
+            "proposalCount": 2
+          },
+          {
+            "caseId": "fixture-three-dimensions",
+            "passed": true,
+            "proposalCount": 3
+          },
+          {
+            "caseId": "fixture-pcb-count",
+            "passed": true,
+            "proposalCount": 2
+          }
+        ]
+      }
+    },
+    {
+      "name": "confirmation ledger contains only explicitly confirmed fields",
+      "passed": true,
+      "detail": {
+        "schemaVersion": "1.0.0",
+        "sourceSha256": "8ff019836d5ef1b5a36fedc7500c6824b8ff5670292744aa0d0aa0de8ba39aed",
+        "confirmedValues": {
+          "connector": "USB-C"
+        },
+        "confirmedFields": [
+          "connector"
+        ],
+        "unconfirmedFields": [
+          "width_mm"
+        ]
+      }
+    },
+    {
+      "name": "unconfirmed AI values cannot enter confirmed Engineering IR",
+      "passed": true,
+      "detail": {
+        "confirmedIrDimensions": {
+          "width": 110.0,
+          "depth": 80.0,
+          "height": 20.0
+        }
+      }
+    },
+    {
+      "name": "schema-invalid output is rejected without repair as MEGIS-AI-002",
+      "passed": true,
+      "detail": {
+        "accepted": false,
+        "errorCode": "MEGIS-AI-002"
+      }
+    },
+    {
+      "name": "numeric value without matching evidence is rejected",
+      "passed": true,
+      "detail": {
+        "accepted": false,
+        "errorCode": "MEGIS-AI-002"
+      }
+    },
+    {
+      "name": "G6-AI-002 automated tests pass",
+      "passed": true,
+      "detail": {
+        "returnCode": 0,
+        "lastLine": "18 passed in 0.48s"
+      }
+    }
+  ],
+  "boundaries": {
+    "workspaceRoot": "C:\\0_JN1_MEGIS",
+    "localOnly": true,
+    "externalProviderCalled": false,
+    "unconfirmedValuesEnteredIr": false,
+    "engineeringArtifactsGenerated": false,
+    "releaseArtifactsGenerated": false
+  }
+}
