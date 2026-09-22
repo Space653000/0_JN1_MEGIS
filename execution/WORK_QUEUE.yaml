@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T14:30:00+08:00",
+  "updatedAt": "2026-09-22T16:00:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G4-MOD-001",
+  "currentWorkItem": "G4-GRF-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -1650,7 +1650,7 @@
       "id": "G4-MOD-001",
       "title": "建立 Module capability levels",
       "gate": "G4",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G3-ACC-001"
       ],
@@ -1667,16 +1667,36 @@
       "acceptanceResults": [
         {
           "criterion": "模組能力等級可被 schema 與測試消費",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "schemas/v3/module.schema.json",
+            "schemas/v3/module-corpus.schema.json",
+            "contracts/g4/golden/module-corpus.json",
+            "tests/test_g4_mod_001.py",
+            "artifacts/g4-mod-001/verification.json"
+          ]
         }
       ],
-      "verificationCommands": [],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe -m pytest tests/test_g4_mod_001.py",
+        ".venv/Scripts/python.exe scripts/verify_g4_mod_001.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "schemas/v3/module.schema.json",
+        "schemas/v3/module-corpus.schema.json",
+        "megis/module/capability.py",
+        "megis/module/schema.py",
+        "contracts/g4/golden/module-corpus.json",
+        "tests/test_g4_mod_001.py",
+        "scripts/verify_g4_mod_001.py",
+        "artifacts/g4-mod-001/verification.json",
+        "docs/G4_MODULE_CAPABILITY.md"
+      ],
+      "verification": "passed",
+      "commitSha": "58ba30b2a55659eae632da2c7064b44a0b040bb9"
     },
     {
       "id": "G4-MOD-002",
@@ -2927,7 +2947,7 @@
       "id": "G4-GRF-001",
       "title": "Relationship vocabulary 語意",
       "gate": "G4",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G4-MOD-001"
       ],

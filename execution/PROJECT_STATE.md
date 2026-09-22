@@ -1,14 +1,14 @@
 # MEGIS Project State
 
 - Current gate: `G4 — 模組與限制條件組合`
-- Current work item: `G4-MOD-001 — 建立 Module capability levels`
-- Last green commit: `645b8141c7ce941197a2afec45bd3c1e4a54bb85`
+- Current work item: `G4-GRF-001 — Relationship vocabulary 語意`
+- Last green commit: `58ba30b2a55659eae632da2c7064b44a0b040bb9`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-22T14:30:00+08:00`
+- Updated at: `2026-09-22T16:00:00+08:00`
 
 ## Active gate: G4
 
-G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 — 模組與限制條件組合 現在為 active gate，當前工項為 `G4-MOD-001 — 建立 Module capability levels`。
+G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 — 模組與限制條件組合 現在為 active gate，當前工項為 `G4-GRF-001 — Relationship vocabulary 語意`。
 
 G3-RUL-001 已閉合（2026-09-21）：rule schema（`schemas/v3/rule.schema.json`）、waiver schema（`schemas/v3/waiver.schema.json`）、生命週期狀態機與 waiver 到期／不可豁免邏輯（`megis/rules/`）、golden corpus（`contracts/g3/golden/rule-governance.json`）；14 tests + `verify_g3_rul_001.py` 18/18 checks 全綠，新增 `MEGIS-RUL-002／003`。
 
@@ -64,10 +64,10 @@ G3-ACC-001 已閉合（2026-09-22）：G3 gate acceptance 決策紀錄（E4，`e
 
 | ID | Status | Evidence |
 |---|---|---|
-| G4-MOD-001 | in_progress | Module capability levels（見 `execution/AGENT_CLAIM.json`） |
+| G4-MOD-001 | done | schemas/v3/module.schema.json、megis/module/、contracts/g4/golden/module-corpus.json（18 cases）、tests/test_g4_mod_001.py（28 tests）、scripts/verify_g4_mod_001.py（E3）、artifacts/g4-mod-001/verification.json、docs/G4_MODULE_CAPABILITY.md |
 | G4-MOD-002 | planned | PCB、USB-C 與 M3 composition |
 | G4-IMP-001 | planned | 安全 STEP 與 DXF metadata extraction |
-| G4-GRF-001 | planned | Relationship vocabulary 語意 |
+| G4-GRF-001 | in_progress | Relationship vocabulary 語意（見 `execution/AGENT_CLAIM.json`） |
 | G4-REV-001 | planned | G4 自我審查 |
 | G4-ACC-001 | planned | G4 acceptance 決策紀錄 |
 

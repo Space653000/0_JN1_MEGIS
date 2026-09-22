@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-22T14:30:00+08:00",
-  "sourceCommit": "645b8141c7ce941197a2afec45bd3c1e4a54bb85",
+  "verifiedAt": "2026-09-22T16:00:00+08:00",
+  "sourceCommit": "58ba30b2a55659eae632da2c7064b44a0b040bb9",
   "status": "passed",
   "commands": [
     {
@@ -10,14 +10,14 @@
       "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
       "deferrals": 0,
-      "secretScanTrackedFiles": 328,
+      "secretScanTrackedFiles": 344,
       "secretScanFindings": 0,
       "artifactPolicyNegativeTests": 8,
-      "artifactPolicyTrackedFiles": 331,
-      "artifactPolicyEvidenceJson": 37,
+      "artifactPolicyTrackedFiles": 347,
+      "artifactPolicyEvidenceJson": 40,
       "artifactPolicyGoldenBytes": 19333,
       "artifactPolicyHeavyArtifacts": 5,
-      "pythonTests": 306,
+      "pythonTests": 334,
       "maturityScanManifests": 1,
       "artifactSmokeRecords": 13,
       "frontendTests": 9
@@ -30,18 +30,21 @@
       "deferrals": 0
     },
     {
-      "command": "G3-ACC-001 gate acceptance traceability (@645b814)",
+      "command": "G4-MOD-001 implementation and closure traceability (@58ba30b2)",
       "status": "passed",
-      "signoff": "execution/signoffs/SO-0004.yaml",
-      "reviewReport": "execution/reviews/2026-09-22-G3-REV-001-review.md",
-      "gateStatus": "accepted",
-      "activeGateAfter": "G4",
+      "implCommit": "58ba30b2a55659eae632da2c7064b44a0b040bb9",
+      "workItemStatus": "done",
+      "evidenceLevel": "E3",
+      "controlPlaneCurrentAfter": "G4-GRF-001",
       "checks": {
-        "allG3WorkItemsDone": true,
-        "reviewPassed": true,
-        "ciGreenOnReviewCommit": true,
-        "signoffPresent": true,
-        "traceableToReviewAndCi": true
+        "modCorpusCases": 18,
+        "positiveCases": 6,
+        "negativeCases": 12,
+        "pytestG4Green": true,
+        "verifyScriptAllChecksPassed": true,
+        "baselineCiGreen": true,
+        "capabilityPoliciesMatchBlueprint12": true,
+        "provenanceMandatoryPerMetadataField": true
       }
     }
   ],
