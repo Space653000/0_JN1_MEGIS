@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-22T16:45:00+08:00",
-  "sourceCommit": "1e299e5d6d94e43a48c8135aba3e1fc7e5a52b5e",
+  "verifiedAt": "2026-09-22T17:35:00+08:00",
+  "sourceCommit": "eb7a2d203b047e7bb625f36a1677f6f1c22cdceb",
   "status": "passed",
   "commands": [
     {
@@ -10,14 +10,14 @@
       "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
       "deferrals": 0,
-      "secretScanTrackedFiles": 395,
+      "secretScanTrackedFiles": 410,
       "secretScanFindings": 0,
       "artifactPolicyNegativeTests": 8,
-      "artifactPolicyTrackedFiles": 398,
-      "artifactPolicyEvidenceJson": 45,
+      "artifactPolicyTrackedFiles": 413,
+      "artifactPolicyEvidenceJson": 47,
       "artifactPolicyGoldenBytes": 19333,
       "artifactPolicyHeavyArtifacts": 5,
-      "pythonTests": 471,
+      "pythonTests": 492,
       "maturityScanManifests": 1,
       "artifactSmokeRecords": 13,
       "frontendTests": 9
@@ -27,21 +27,22 @@
       "status": "passed",
       "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
-      "deferrals": 0
+      "deferrals": 0,
+      "currentWorkItemAfter": "G5-REP-001"
     },
     {
-      "command": "G5-BOM-001 close traceability (@1e299e5)",
+      "command": "G5-DRW-001 close traceability (@eb7a2d2)",
       "status": "passed",
-      "bomCommit": "1e299e5d6d94e43a48c8135aba3e1fc7e5a52b5e",
+      "drwCommit": "eb7a2d203b047e7bb625f36a1677f6f1c22cdceb",
       "workItemStatus": "done",
       "evidenceLevel": "E3",
-      "controlPlaneCurrentAfter": "G5-DRW-001",
+      "controlPlaneCurrentAfter": "G5-REP-001",
       "checks": {
         "verificationPresent": true,
         "acceptancePassed": true,
         "commitShaPresent": true,
         "corpusPresent": true,
-        "schemaPresent": true,
+        "schemasPresent": true,
         "testsPresent": true,
         "errorCodesRegistered": true,
         "blockingFindings": 0
