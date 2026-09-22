@@ -1,14 +1,16 @@
 # MEGIS Project State
 
-- Current gate: `G5 — 原型套件與可重現性`
-- Current work item: `G5-ACC-001 — G5 acceptance 決策紀錄（in_progress）`
-- Last green commit: `51259f6430cee2b1ea4c390e79d268a4dc187696`
+- Current gate: `G6 — 引導式介面工程整合`
+- Current work item: `G6-UI-001 — 建立 capability-driven guided flow（in_progress）`
+- Last green commit: `9587b2ddccf74e9b1de1b8a5e781880a752a4813`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-22T19:10:00+08:00`
+- Updated at: `2026-09-22T19:30:00+08:00`
 
-## Active gate: G5
+## Active gate: G6
 
-G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 已 accepted（`SO-0005`，2026-09-22，E4）。G5 — 原型套件與可重現性 現在為 active gate，下一個工項為 `G5-ACC-001 — G5 acceptance 決策紀錄`（in_progress）。
+G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 已 accepted（`SO-0005`，2026-09-22，E4）。G5 已 accepted（`SO-0006`，2026-09-22，E4）。G6 — 引導式介面工程整合 現在為 active gate，下一個工項為 `G6-UI-001 — 建立 capability-driven guided flow`（in_progress）。
+
+G5-ACC-001 已閉合（2026-09-22）：G5 gate acceptance 決策紀錄（E4，`execution/signoffs/SO-0006.yaml` + `artifacts/g5-acc-001/verification.json`），可追溯至 G5 審查與 CI；G5 gate 標為 accepted，G6 gate 轉 active，`G6-UI-001` 施工開始。
 
 G5-REV-001 已閉合（2026-09-22）：G5 自我審查於工作區內 `.runs/g5-rev-001-clean` 乾淨 clone 固定 commit `51259f6` 重跑 G5 全部驗證（77 tests、`verify_g5_rep_001.py` allChecksPassed 三方 reportFingerprint 全等、control-plane verifier），審查報告 passed、無 blocking finding；`execution/reviews/2026-09-22-G5-REV-001-review.md` + `artifacts/g5-rev-001/verification.json`（E3）。下一工項 `G5-ACC-001`（in_progress）。
 
@@ -100,6 +102,13 @@ G3-ACC-001 已閉合（2026-09-22）：G3 gate acceptance 決策紀錄（E4，`e
 | G5-DRW-001 | done | schemas/v3/draft-drawing.schema.json、schemas/v3/drawing-corpus.schema.json、contracts/g5/golden/drawing-corpus.json（12 cases）、megis/package/drawing.py、tests/test_g5_drw_001.py（21 tests）、artifacts/g5-drw-001/verification.json；baseline CI 492 Python + 9 Frontend 全綠（E3） |
 | G5-REP-001 | done | schemas/v3/repro-fingerprints.schema.json、contracts/g5/golden/repro-fingerprints.json、megis/package/repro.py、tests/test_g5_rep_001.py（6 tests）、scripts/verify_g5_rep_001.py、artifacts/g5-rep-001/verification.json；baseline CI 498 Python + 9 Frontend 全綠（E3） |
 | G5-REV-001 | done | execution/reviews/2026-09-22-G5-REV-001-review.md、artifacts/g5-rev-001/verification.json；乾淨 clone 重跑 77 tests + verify_g5_rep_001.py allChecksPassed + control-plane verifier 全綠（E3） |
+| G5-ACC-001 | done | execution/signoffs/SO-0006.yaml、artifacts/g5-acc-001/verification.json；G5 gate accepted（E4，可追溯至 G5 審查與 CI） |
+
+## G6 work items
+
+| ID | Status | Evidence |
+|---|---|---|
+| G6-UI-001 | in_progress | 建立 capability-driven guided flow；介面只呈現後端已證明的能力並可產生合法 IR |
 
 ## Boundaries
 

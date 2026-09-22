@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G5-ACC-001",
+  "verifiedAt": "2026-09-22T19:30:00+08:00",
+  "blueprintRef": "v3.0 §5.7、§6.3、§8.1、附錄 A.3/A.5",
+  "evidenceLevel": "E4",
+  "gate": "G5",
+  "gateStatus": "accepted",
+  "workItems": {
+    "total": 6,
+    "done": 6,
+    "ids": [
+      "G5-PKG-001",
+      "G5-BOM-001",
+      "G5-DRW-001",
+      "G5-REP-001",
+      "G5-REV-001",
+      "G5-ACC-001"
+    ]
+  },
+  "reviewPassed": {
+    "report": "execution/reviews/2026-09-22-G5-REV-001-review.md",
+    "conclusion": "passed",
+    "blockingFindings": 0,
+    "reviewedCommit": "51259f6430cee2b1ea4c390e79d268a4dc187696",
+    "reviewDocsCommit": "9587b2ddccf74e9b1de1b8a5e781880a752a4813"
+  },
+  "ciEvidence": [
+    {
+      "runId": null,
+      "headSha": "51259f6430cee2b1ea4c390e79d268a4dc187696",
+      "conclusion": "local baseline-ci passed",
+      "detail": "498 Python + 9 Frontend tests, artifact policy, secret scan, control plane valid"
+    },
+    {
+      "runId": null,
+      "headSha": "51259f6430cee2b1ea4c390e79d268a4dc187696",
+      "conclusion": "clean checkout review passed",
+      "detail": "77 G5 tests + verify_g5_rep_001.py (5 checks, allChecksPassed) + control-plane verifier all green"
+    }
+  ],
+  "controlPlane": {
+    "command": "node scripts/verify-control-plane.mjs",
+    "status": "passed",
+    "workItems": 74,
+    "gates": 14,
+    "deferrals": 0,
+    "activeGateAfterAcceptance": "G6"
+  },
+  "decision": {
+    "decision": "approved",
+    "signoff": "execution/signoffs/SO-0006.yaml",
+    "recordedBy": "agent",
+    "recordedAt": "2026-09-22T19:30:00+08:00",
+    "signatureReference": "9587b2ddccf74e9b1de1b8a5e781880a752a4813",
+    "reviewReferenceCommit": "9587b2ddccf74e9b1de1b8a5e781880a752a4813",
+    "userVeto": null
+  },
+  "checks": {
+    "allG5WorkItemsDone": true,
+    "reviewPassed": true,
+    "ciGreenOnReviewCommit": true,
+    "signoffPresent": true,
+    "traceableToReviewAndCi": true,
+    "engineeringArtifactsGenerated": false,
+    "releaseArtifactsGenerated": false
+  },
+  "residualRisks": [
+    "R-G0-001",
+    "R-G0-002",
+    "R-G0-003"
+  ],
+  "resolvedRisks": []
+}

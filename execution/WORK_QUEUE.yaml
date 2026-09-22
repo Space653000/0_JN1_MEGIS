@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T18:45:00+08:00",
+  "updatedAt": "2026-09-22T19:30:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G5-ACC-001",
+  "currentWorkItem": "G6-UI-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -77,7 +77,7 @@
     {
       "id": "G5",
       "title": "原型套件與可重現性",
-      "status": "active",
+      "status": "accepted",
       "dependsOn": [
         "G4"
       ]
@@ -85,7 +85,7 @@
     {
       "id": "G6",
       "title": "引導式介面工程整合",
-      "status": "planned",
+      "status": "active",
       "dependsOn": [
         "G5"
       ]
@@ -2011,7 +2011,7 @@
       "id": "G6-UI-001",
       "title": "建立 capability-driven guided flow",
       "gate": "G6",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G5-ACC-001"
       ],
@@ -3246,7 +3246,7 @@
       "id": "G5-ACC-001",
       "title": "G5 acceptance 決策紀錄",
       "gate": "G5",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G5-REV-001"
       ],
@@ -3262,8 +3262,14 @@
       "acceptanceResults": [
         {
           "criterion": "gate_acceptance 決策紀錄可追溯至 G5 審查與 CI",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "execution/signoffs/SO-0006.yaml",
+            "artifacts/g5-acc-001/verification.json",
+            "execution/reviews/2026-09-22-G5-REV-001-review.md",
+            "execution/LAST_VERIFICATION.json",
+            "docs/ACCEPTANCE.md"
+          ]
         }
       ],
       "verificationCommands": [
@@ -3271,9 +3277,15 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "execution/signoffs/SO-0006.yaml",
+        "artifacts/g5-acc-001/verification.json",
+        "execution/reviews/2026-09-22-G5-REV-001-review.md",
+        "execution/LAST_VERIFICATION.json",
+        "docs/ACCEPTANCE.md"
+      ],
+      "verification": "passed",
+      "commitSha": "9587b2ddccf74e9b1de1b8a5e781880a752a4813"
     },
     {
       "id": "G6-AI-001",

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-22T19:15:00+08:00",
-  "sourceCommit": "51259f6430cee2b1ea4c390e79d268a4dc187696",
+  "verifiedAt": "2026-09-22T19:30:00+08:00",
+  "sourceCommit": "9587b2ddccf74e9b1de1b8a5e781880a752a4813",
   "status": "passed",
   "commands": [
     {
@@ -28,7 +28,7 @@
       "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
       "deferrals": 0,
-      "currentWorkItemAfter": "G5-ACC-001"
+      "currentWorkItemAfter": "G6-UI-001"
     },
     {
       "command": "G5-REV-001 clean checkout self review (@51259f6)",
@@ -51,6 +51,25 @@
         "semanticDrift": 0,
         "adrRequired": false,
         "controlPlaneValid": true,
+        "blockingFindings": 0
+      }
+    },
+    {
+      "command": "G5-ACC-001 gate acceptance (E4, SO-0006)",
+      "status": "passed",
+      "decision": "approved",
+      "signoff": "execution/signoffs/SO-0006.yaml",
+      "gate": "G5",
+      "evidenceLevel": "E4",
+      "workItemStatus": "done",
+      "activeGateAfter": "G6",
+      "currentWorkItemAfter": "G6-UI-001",
+      "checks": {
+        "allG5WorkItemsDone": true,
+        "reviewPassed": true,
+        "ciGreenOnReviewCommit": true,
+        "signoffPresent": true,
+        "traceableToReviewAndCi": true,
         "blockingFindings": 0
       }
     }
