@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v3/accessibility-manual-audit.schema.json",
+  "title": "MEGIS G6 manual accessibility audit",
+  "type": "object",
+  "required": ["schemaVersion", "workItem", "evidenceType", "keyboard", "screenReader"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "workItem": { "const": "G6-A11Y-001" },
+    "evidenceType": { "const": "human_manual_audit" },
+    "keyboard": { "$ref": "#/$defs/keyboardAudit" },
+    "screenReader": { "$ref": "#/$defs/screenReaderAudit" }
+  },
+  "$defs": {
+    "status": { "enum": ["pending", "passed", "failed"] },
+    "result": { "enum": ["pending", "passed", "failed"] },
+    "reviewer": {
+      "type": ["object", "null"],
+      "required": ["name", "attestation"],
+      "properties": {
+        "name": { "type": "string", "minLength": 2 },
+        "attestation": { "const": "I personally performed this manual accessibility audit." }
+      },
+      "additionalProperties": false
+    },
+    "browserEnvironment": {
+      "type": "object",
+      "required": ["operatingSystem", "browser", "browserVersion"],
+      "properties": {
+        "operatingSystem": { "type": ["string", "null"], "minLength": 1 },
+        "browser": { "type": ["string", "null"], "minLength": 1 },
+        "browserVersion": { "type": ["string", "null"], "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "check": {
+      "type": "object",
+      "required": ["id", "result", "notes"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "result": { "$ref": "#/$defs/result" },
+        "notes": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "keyboardAudit": {
+      "type": "object",
+      "required": ["status", "reviewer", "performedAt", "environment", "checks"],
+      "properties": {
+        "status": { "$ref": "#/$defs/status" },
+        "reviewer": { "$ref": "#/$defs/reviewer" },
+        "performedAt": { "type": ["string", "null"], "format": "date-time" },
+        "environment": { "$ref": "#/$defs/browserEnvironment" },
+        "checks": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "items": { "$ref": "#/$defs/check" }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "pending" } }, "required": ["status"] },
+          "then": { "properties": { "reviewer": { "type": "null" }, "performedAt": { "type": "null" } } }
+        },
+        {
+          "if": { "properties": { "status": { "enum": ["passed", "failed"] } }, "required": ["status"] },
+          "then": {
+            "properties": {
+              "reviewer": { "type": "object" },
+              "performedAt": { "type": "string", "format": "date-time" },
+              "environment": {
+                "properties": {
+                  "operatingSystem": { "type": "string", "minLength": 1 },
+                  "browser": { "type": "string", "minLength": 1 },
+                  "browserVersion": { "type": "string", "minLength": 1 }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "screenReaderAudit": {
+      "type": "object",
+      "required": ["status", "reviewer", "performedAt", "environment", "checks"],
+      "properties": {
+        "status": { "$ref": "#/$defs/status" },
+        "reviewer": { "$ref": "#/$defs/reviewer" },
+        "performedAt": { "type": ["string", "null"], "format": "date-time" },
+        "environment": {
+          "type": "object",
+          "required": ["operatingSystem", "browser", "browserVersion", "assistiveTechnology", "assistiveTechnologyVersion"],
+          "properties": {
+            "operatingSystem": { "type": ["string", "null"], "minLength": 1 },
+            "browser": { "type": ["string", "null"], "minLength": 1 },
+            "browserVersion": { "type": ["string", "null"], "minLength": 1 },
+            "assistiveTechnology": { "type": ["string", "null"], "minLength": 1 },
+            "assistiveTechnologyVersion": { "type": ["string", "null"], "minLength": 1 }
+          },
+          "additionalProperties": false
+        },
+        "checks": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "items": { "$ref": "#/$defs/check" }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "pending" } }, "required": ["status"] },
+          "then": { "properties": { "reviewer": { "type": "null" }, "performedAt": { "type": "null" } } }
+        },
+        {
+          "if": { "properties": { "status": { "enum": ["passed", "failed"] } }, "required": ["status"] },
+          "then": {
+            "properties": {
+              "reviewer": { "type": "object" },
+              "performedAt": { "type": "string", "format": "date-time" },
+              "environment": {
+                "properties": {
+                  "operatingSystem": { "type": "string", "minLength": 1 },
+                  "browser": { "type": "string", "minLength": 1 },
+                  "browserVersion": { "type": "string", "minLength": 1 },
+                  "assistiveTechnology": { "type": "string", "minLength": 1 },
+                  "assistiveTechnologyVersion": { "type": "string", "minLength": 1 }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

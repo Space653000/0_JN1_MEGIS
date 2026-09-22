@@ -32,6 +32,14 @@
 
 抽查者、日期、瀏覽器版本與實際結果不得由 Agent 代填。
 
+人工紀錄必須由實際執行者複製 `contracts/g6/templates/accessibility-manual-audit.template.json` 後填寫，並保留 `evidenceType: human_manual_audit`。完成後執行：
+
+```powershell
+.\.venv\Scripts\python.exe scripts\verify_g6_a11y_manual.py --require-complete --input <倉庫內的真人紀錄.json> --output artifacts\g6-a11y-001\manual-audit-verification.json
+```
+
+驗證器要求 12 個固定檢查 ID、具名 reviewer、帶時區時間、瀏覽器／作業系統版本與個人執行聲明。重複／缺漏 ID、額外欄位、完成狀態含 pending、失敗卻無 notes、路徑超出工作區，全部 fail closed；驗證器不會補值或替人簽名。
+
 | 路徑／情境 | 驗證步驟 | 預期 | 結果 |
 |---|---|---|---|
 | 全站首個焦點 | 只用 Tab 進入頁面 | skip link 可見且 Enter 移至主要內容 | pending |
@@ -62,4 +70,4 @@
 
 ## 封板規則
 
-只有下列條件同時成立才可把 G6-A11Y-001 設為 `done`：自動化維持全綠、真人鍵盤表完成、真人螢幕閱讀器表完成、發現問題均修正或有具名 blocker。`artifacts/g6-a11y-001/verification.json` 的 `closureEligible` 在此之前必須保持 `false`。
+只有下列條件同時成立才可把 G6-A11Y-001 設為 `done`：自動化維持全綠、真人鍵盤表完成、真人螢幕閱讀器表完成、人工紀錄通過 `--require-complete` 驗證、發現問題均修正或有具名 blocker。`artifacts/g6-a11y-001/verification.json` 的 `closureEligible` 在此之前必須保持 `false`。

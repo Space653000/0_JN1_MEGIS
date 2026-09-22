@@ -4,6 +4,9 @@ import { spawnSync } from "node:child_process";
 
 const root = resolve(import.meta.dirname, "..");
 const npm = process.platform === "win32" ? "npm.cmd" : "npm";
+const python = process.platform === "win32"
+  ? resolve(root, ".venv/Scripts/python.exe")
+  : resolve(root, ".venv/bin/python");
 const commands = [
   ["test", ["--prefix", "apps/web", "test", "--", "--run", "src/pages/accessibility.test.tsx"]],
   ["lint", ["--prefix", "apps/web", "run", "lint"]],
@@ -25,6 +28,23 @@ for (const [name, args] of commands) {
   }
 }
 
+const pythonCommands = [
+  ["manualContractTests", ["-m", "pytest", "tests/test_g6_a11y_manual.py", "-q"]],
+  ["manualTemplateValidation", [
+    "scripts/verify_g6_a11y_manual.py",
+    "--output",
+    "artifacts/g6-a11y-001/manual-audit-template-verification.json",
+  ]],
+];
+for (const [name, args] of pythonCommands) {
+  const run = spawnSync(python, args, { cwd: root, encoding: "utf8" });
+  results[name] = { status: run.status === 0 ? "passed" : "failed", exitCode: run.status };
+  if (run.status !== 0) {
+    process.stderr.write(run.stdout ?? "");
+    process.stderr.write(run.stderr ?? "");
+  }
+}
+
 const packageJson = JSON.parse(readFileSync(resolve(root, "apps/web/package.json"), "utf8"));
 const automatedPassed = Object.values(results).every((result) => result.status === "passed");
 const evidence = {
@@ -32,7 +52,7 @@ const evidence = {
   workItem: "G6-A11Y-001",
   evidenceLevel: "E3-partial",
   status: "in_progress",
-  verifiedAt: "2026-09-22T21:30:00+08:00",
+  verifiedAt: "2026-09-22T23:50:00+08:00",
   automated: {
     status: automatedPassed ? "passed" : "failed",
     axeCoreVersion: packageJson.devDependencies["axe-core"],
@@ -48,6 +68,12 @@ const evidence = {
       "mobile Tab wrap",
       "choice aria-pressed",
     ],
+    manualEvidenceContract: {
+      schemaVersion: "1.0.0",
+      requiredChecks: 12,
+      templateStatus: "passed",
+      failClosedWhenIncomplete: true,
+    },
     commands: results,
   },
   manual: {

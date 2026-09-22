@@ -2,9 +2,9 @@
 
 - Current gate: `G6 — 引導式介面工程整合`
 - Current work item: `G6-A11Y-001 — 無障礙驗證（in_progress）`
-- Last green commit: `c9bec35ccfab977fdd9e050bffa40014354633d7`
+- Last green commit: `b5d5e2a17b19045620467ec21ab7489d5386b45f`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-22T23:30:00+08:00`
+- Updated at: `2026-09-22T23:50:00+08:00`
 
 ## Active gate: G6
 
@@ -16,7 +16,7 @@ G6-AI-001 已閉合（2026-09-22）：新增 `megis/ai/` provider-neutral seam�
 G6-AI-002 已閉合（2026-09-22）：新增 schema-bound AI Requirement draft quarantine（`schemas/v3/ai-requirement-draft.schema.json`、`megis/ai/extraction.py`）。所有 proposal 固定為 `llm_proposed` 並綁定原文 SHA-256 與 exact `evidenceSpan`；數值必須在 span 中出現，尺寸必須明示 `mm`。JSON／schema／hash／span／單位錯誤一律 `MEGIS-AI-002` 拒收且不修補；confirmation ledger 只提升使用者逐欄確認值，未確認值不能覆寫表單或進入 confirmed IR。3 筆 recorded fixtures、18 tests、7 verifier checks 與 baseline 558 Python + 12 Frontend 全綠（E3）；實作 commit `6694507` 已同步 GitHub。下一工項 `G6-AI-003`（in_progress）。
 G6-AI-003 已閉合（2026-09-22）：建立 54 筆、六類平衡 intent corpus（complete／missing information／contradiction／out of envelope／unit mixed／prompt injection），以 case-level report 計算 schema conformance、field precision／recall、hallucination、unsafe hallucination、abstention、out-of-envelope detection、unit error 與 injection resistance，並附 Wilson 95% CI。54/54 cases、9/9 verifier checks、unsafe hallucination 0/41、injection resistance 9/9；explanation grounding 明確標為 not applicable 並交由 G6-AI-004，未虛報 100%。baseline 570 Python + 12 Frontend 全綠（E3）；實作 commit `555d10c` 已同步 GitHub。下一工項 `G6-AI-004`（in_progress）。
 G6-AI-004 已閉合（2026-09-22）：新增 grounded explanation schema 與 fail-closed verifier（`megis/ai/explanation.py`），AI 只能引用 Engineering IR、rule result、manifest；核心重算 canonical SHA-256，逐一比對解釋文字中的每次數值出現、citation token、JSON Pointer 與來源數值。漏引、多引、錯值、錯 pointer、非數值來源、來源竄改、偽造 hash 或非法來源均整份回 `MEGIS-AI-002`，不修補。15 tests、8 verifier checks、4/4 example numbers grounded，baseline 585 Python + 12 Frontend 全綠（E3）；實作 commit `d27d16e` 已同步 GitHub。下一工項 `G6-A11Y-001`（in_progress）。
-G6-A11Y-001 自動化段已完成（2026-09-22，工項仍 in_progress）：加入 `axe-core 4.10.3`，五個主要路由以 WCAG 2.2 A／AA tags 掃描為 0 violations；8 組 palette 對比度、skip link、route focus、aria-current、行動選單 Escape／Tab wrap、aria-pressed 等共 9 tests 全綠。完整 baseline 585 Python + 21 Frontend 全綠；實作 commit `cf91984` 已同步 GitHub。另以實際 Chrome（1536×729）完成 8 項代理自動化瀏覽器稽核：最新控制面呈現、landmarks、skip link target、SPA route focus、aria-current、choice semantics、桌面水平溢位與驗收 disclosure 全數通過，證據為 `artifacts/g6-a11y-001/browser-audit.json`。此稽核不冒充真人操作；真人鍵盤與螢幕閱讀器抽查仍 pending，`closureEligible: false`，不得移交 G6-USE-001。
+G6-A11Y-001 自動化段已完成（2026-09-22，工項仍 in_progress）：加入 `axe-core 4.10.3`，五個主要路由以 WCAG 2.2 A／AA tags 掃描為 0 violations；8 組 palette 對比度、skip link、route focus、aria-current、行動選單 Escape／Tab wrap、aria-pressed 等共 9 tests 全綠。另以實際 Chrome（1536×729）完成 8 項代理自動化瀏覽器稽核，證據為 `artifacts/g6-a11y-001/browser-audit.json`。人工證據契約補上 Draft 2020-12 schema、12 個 canonical checks、版本化空白範本與 fail-closed verifier；空白範本格式通過但 `--require-complete` 以 exit code 1 拒絕，12 contract tests 與完整 baseline 597 Python + 21 Frontend 全綠。這些工具不冒充真人操作；真人鍵盤與螢幕閱讀器抽查仍 pending，`closureEligible: false`，不得移交 G6-USE-001。
 
 G5-ACC-001 已閉合（2026-09-22）：G5 gate acceptance 決策紀錄（E4，`execution/signoffs/SO-0006.yaml` + `artifacts/g5-acc-001/verification.json`），可追溯至 G5 審查與 CI；G5 gate 標為 accepted，G6 gate 轉 active，`G6-UI-001` 施工開始。
 

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G6-A11Y-001",
+  "evidenceType": "human_manual_audit_verification",
+  "schemaValid": true,
+  "recordFingerprint": "e041d6dd17a9457bb1513ab9b4b13a9dda01550c0fa3a915e36683dbbcbef84f",
+  "keyboardStatus": "pending",
+  "screenReaderStatus": "pending",
+  "passedChecks": 0,
+  "failedChecks": 0,
+  "pendingChecks": 12,
+  "closureEligible": false,
+  "boundaries": {
+    "humanIdentityRequiredForCompletion": true,
+    "agentGeneratedHumanEvidence": false,
+    "engineeringArtifactsGenerated": false
+  }
+}

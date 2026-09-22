@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G6-A11Y-001",
+  "evidenceType": "human_manual_audit",
+  "keyboard": {
+    "status": "pending",
+    "reviewer": null,
+    "performedAt": null,
+    "environment": {
+      "operatingSystem": null,
+      "browser": null,
+      "browserVersion": null
+    },
+    "checks": [
+      { "id": "skip-link", "result": "pending", "notes": "" },
+      { "id": "desktop-navigation", "result": "pending", "notes": "" },
+      { "id": "mobile-navigation", "result": "pending", "notes": "" },
+      { "id": "design-form", "result": "pending", "notes": "" },
+      { "id": "review-flow", "result": "pending", "notes": "" },
+      { "id": "progress-disclosure", "result": "pending", "notes": "" }
+    ]
+  },
+  "screenReader": {
+    "status": "pending",
+    "reviewer": null,
+    "performedAt": null,
+    "environment": {
+      "operatingSystem": null,
+      "browser": null,
+      "browserVersion": null,
+      "assistiveTechnology": null,
+      "assistiveTechnologyVersion": null
+    },
+    "checks": [
+      { "id": "landmarks", "result": "pending", "notes": "" },
+      { "id": "design-form", "result": "pending", "notes": "" },
+      { "id": "review-unknowns", "result": "pending", "notes": "" },
+      { "id": "run-announcements", "result": "pending", "notes": "" },
+      { "id": "results-boundaries", "result": "pending", "notes": "" },
+      { "id": "progress-table", "result": "pending", "notes": "" }
+    ]
+  }
+}

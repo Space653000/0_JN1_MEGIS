@@ -3,7 +3,7 @@
   "workItem": "G6-A11Y-001",
   "evidenceLevel": "E3-partial",
   "status": "in_progress",
-  "verifiedAt": "2026-09-22T21:30:00+08:00",
+  "verifiedAt": "2026-09-22T23:50:00+08:00",
   "automated": {
     "status": "passed",
     "axeCoreVersion": "4.10.3",
@@ -30,6 +30,12 @@
       "mobile Tab wrap",
       "choice aria-pressed"
     ],
+    "manualEvidenceContract": {
+      "schemaVersion": "1.0.0",
+      "requiredChecks": 12,
+      "templateStatus": "passed",
+      "failClosedWhenIncomplete": true
+    },
     "commands": {
       "test": {
         "status": "passed",
@@ -44,6 +50,14 @@
         "exitCode": 0
       },
       "build": {
+        "status": "passed",
+        "exitCode": 0
+      },
+      "manualContractTests": {
+        "status": "passed",
+        "exitCode": 0
+      },
+      "manualTemplateValidation": {
         "status": "passed",
         "exitCode": 0
       }
