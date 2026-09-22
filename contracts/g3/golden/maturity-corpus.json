@@ -1,0 +1,405 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G3-MAT-001",
+  "referenceDate": "2026-09-22",
+  "cases": [
+    {
+      "case_id": "mat-001-draft-positive",
+      "name": "DRAFT positive: requirement schema valid but IR not evaluated",
+      "input": {
+        "requirements_schema_valid": true
+      },
+      "expect": {
+        "state": "DRAFT",
+        "achievedIndex": 0,
+        "blockingContain": [
+          "Engineering IR"
+        ]
+      }
+    },
+    {
+      "case_id": "mat-002-draft-negative",
+      "name": "DRAFT negative: requirement fails schema validation",
+      "input": {
+        "requirements_schema_valid": false
+      },
+      "expect": {
+        "state": null,
+        "achievedIndex": -1,
+        "blockingContain": [
+          "需求未通過 schema"
+        ]
+      }
+    },
+    {
+      "case_id": "mat-003-concept-positive",
+      "name": "CONCEPT positive: IR valid and layout check clean",
+      "input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true
+      },
+      "expect": {
+        "state": "CONCEPT",
+        "achievedIndex": 1,
+        "blockingContain": [
+          "kernel 有效性"
+        ]
+      }
+    },
+    {
+      "case_id": "mat-004-concept-negative-unsafe",
+      "name": "CONCEPT negative: unresolved unsafe_to_default",
+      "input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "unresolved_unsafe_to_default": true
+      },
+      "expect": {
+        "state": "DRAFT",
+        "achievedIndex": 0,
+        "blockingContain": [
+          "unsafe_to_default"
+        ]
+      }
+    },
+    {
+      "case_id": "mat-005-concept-negative-ir",
+      "name": "CONCEPT negative: referential integrity broken",
+      "input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": false,
+        "layout_collision_no_error": true
+      },
+      "expect": {
+        "state": "DRAFT",
+        "achievedIndex": 0,
+        "blockingContain": [
+          "參照完整性"
+        ]
+      }
+    },
+    {
+      "case_id": "mat-006-prototype-positive",
+      "name": "PROTOTYPE positive: all prototype gates clear",
+      "input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "named_engineer_available": true
+      },
+      "expect": {
+        "state": "PROTOTYPE",
+        "achievedIndex": 2,
+        "blockingContain": [
+          "缺少具名"
+        ]
+      }
+    },
+    {
+      "case_id": "mat-007-prototype-negative-error",
+      "name": "PROTOTYPE negative: unresolved error present",
+      "input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "unresolved_errors": [
+          "MEGIS-VAL-001 碰撞未處置"
+        ]
+      },
+      "expect": {
+        "state": "CONCEPT",
+        "achievedIndex": 1,
+        "blockingContain": [
+          "未處置的 error"
+        ]
+      }
+    },
+    {
+      "case_id": "mat-008-prototype-negative-unknown",
+      "name": "PROTOTYPE negative: critical unknown present",
+      "input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "critical_unknowns": [
+          "材料介電常數未知"
+        ]
+      },
+      "expect": {
+        "state": "CONCEPT",
+        "achievedIndex": 1,
+        "blockingContain": [
+          "critical unknown"
+        ]
+      }
+    },
+    {
+      "case_id": "mat-009-engineered-positive",
+      "name": "ENGINEERING_REVIEWED positive with named reviewer",
+      "input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "engineering_review_signoff": true,
+        "named_engineer_available": true
+      },
+      "expect": {
+        "state": "ENGINEERING_REVIEWED",
+        "achievedIndex": 3,
+        "blockingContain": [
+          "外部組織放行紀錄"
+        ]
+      }
+    },
+    {
+      "case_id": "mat-010-engineered-negative-d6",
+      "name": "ENGINEERING_REVIEWED negative: no named engineer under D6",
+      "input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "engineering_review_signoff": true
+      },
+      "expect": {
+        "state": "PROTOTYPE",
+        "achievedIndex": 2,
+        "blockingContain": [
+          "D6"
+        ]
+      }
+    },
+    {
+      "case_id": "mat-011-released-positive",
+      "name": "RELEASED positive with external release record",
+      "input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "engineering_review_signoff": true,
+        "named_engineer_available": true,
+        "release_record_ref": "RELEASE-EXTERNAL-2026-0001"
+      },
+      "expect": {
+        "state": "RELEASED",
+        "achievedIndex": 4,
+        "blockingContain": []
+      }
+    },
+    {
+      "case_id": "mat-012-released-negative-record",
+      "name": "RELEASED negative: external release record missing",
+      "input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "engineering_review_signoff": true,
+        "named_engineer_available": true
+      },
+      "expect": {
+        "state": "ENGINEERING_REVIEWED",
+        "achievedIndex": 3,
+        "blockingContain": [
+          "放行紀錄"
+        ]
+      }
+    },
+    {
+      "case_id": "mat-013-recompute-input-change",
+      "name": "Input change invalidates ENGINEERING_REVIEWED and forces recompute",
+      "input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "engineering_review_signoff": true,
+        "named_engineer_available": true,
+        "input_changed": true,
+        "design_params": {
+          "wall_thickness_mm": 1.2
+        }
+      },
+      "expect": {
+        "state": "PROTOTYPE",
+        "achievedIndex": 2,
+        "blockingContain": [],
+        "recomputedContain": [
+          "輸入已變更"
+        ]
+      }
+    },
+    {
+      "case_id": "mat-014-recompute-waiver-expired",
+      "name": "Waiver expiry forces maturity recompute",
+      "input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "engineering_review_signoff": true,
+        "named_engineer_available": true,
+        "waiver_expired": true
+      },
+      "expect": {
+        "state": "PROTOTYPE",
+        "achievedIndex": 2,
+        "blockingContain": [],
+        "recomputedContain": [
+          "waiver 已到期"
+        ]
+      }
+    },
+    {
+      "case_id": "mat-015-prohibited-robot-cap",
+      "name": "Prohibited Robot category caps maturity at CONCEPT",
+      "input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "engineering_review_signoff": true,
+        "named_engineer_available": true,
+        "maturity_cap": "CONCEPT"
+      },
+      "expect": {
+        "state": "CONCEPT",
+        "achievedIndex": 1,
+        "blockingContain": [
+          "最高為 CONCEPT"
+        ]
+      }
+    },
+    {
+      "case_id": "mat-016-prohibited-prototype-cap",
+      "name": "Prohibited category cap at PROTOTYPE",
+      "input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "named_engineer_available": true,
+        "maturity_cap": "PROTOTYPE"
+      },
+      "expect": {
+        "state": "PROTOTYPE",
+        "achievedIndex": 2,
+        "blockingContain": [
+          "最高為 PROTOTYPE"
+        ]
+      }
+    },
+    {
+      "case_id": "mat-017-below-draft",
+      "name": "Below DRAFT: no formal maturity state",
+      "input": {},
+      "expect": {
+        "state": null,
+        "achievedIndex": -1,
+        "blockingContain": [
+          "需求未通過"
+        ]
+      }
+    },
+    {
+      "case_id": "mat-018-signed-off-stays-on-input-change",
+      "name": "Unchanged inputs keep ENGINEERING_REVIEWED sign-off",
+      "input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "engineering_review_signoff": true,
+        "named_engineer_available": true
+      },
+      "expect": {
+        "state": "ENGINEERING_REVIEWED",
+        "achievedIndex": 3,
+        "blockingContain": [],
+        "recomputedContain": []
+      }
+    }
+  ]
+}

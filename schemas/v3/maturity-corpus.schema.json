@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/maturity-corpus.schema.json",
+  "title": "Maturity Corpus",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "workItem",
+    "referenceDate",
+    "cases"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "workItem": {
+      "const": "G3-MAT-001"
+    },
+    "referenceDate": {
+      "type": "string"
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 18,
+      "items": {
+        "type": "object",
+        "required": [
+          "case_id",
+          "name",
+          "input",
+          "expect"
+        ],
+        "properties": {
+          "case_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "input": {
+            "type": "object"
+          },
+          "expect": {
+            "type": "object",
+            "required": [
+              "state",
+              "achievedIndex",
+              "blockingContain"
+            ],
+            "properties": {
+              "state": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "DRAFT",
+                      "CONCEPT",
+                      "PROTOTYPE",
+                      "ENGINEERING_REVIEWED",
+                      "RELEASED"
+                    ]
+                  }
+                ]
+              },
+              "achievedIndex": {
+                "type": "integer",
+                "minimum": -1,
+                "maximum": 4
+              },
+              "blockingContain": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "recomputedContain": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

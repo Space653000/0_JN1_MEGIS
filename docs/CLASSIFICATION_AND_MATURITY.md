@@ -10,6 +10,8 @@
 
 MEGIS v3 將「製品種類」與「工程成熟度」分開治理，避免可行性 spike、UX 展示或測試資料被誤認為正式工程輸出。這份規範落實藍圖 §1.4、§1.5；它只執行邊界檢查，不取代 G3 才會建立的 `megis.maturity` evaluator。
 
+G3-MAT-001 已實作 `megis/maturity` evaluator（§1.4 狀態表、唯一寫入者、D6／禁止類別上限與重算規則），詳見 `docs/G3_MATURITY.md`；本檔仍只負責 schema 層的manifest 邊界掃描。
+
 ## 分類契約
 
 | classification | 用途 | maturity |

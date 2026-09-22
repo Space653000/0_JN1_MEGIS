@@ -1,0 +1,277 @@
+{
+  "allChecksPassed": true,
+  "blueprintRef": "v3.0 1.4 maturity states, 11.5 maturity evaluator, 26.6 G3-MAT-001",
+  "evidenceLevel": "E3",
+  "referenceDate": "2026-09-22",
+  "schemaVersion": "1.0.0",
+  "workItem": "G3-MAT-001",
+  "verifiedAt": "2026-09-22T11:00:00+08:00",
+  "evaluatorVersion": "megis.maturity@1.0.0",
+  "engineeringArtifactGenerated": false,
+  "releaseArtifactGenerated": false,
+  "input": {
+    "corpus": "contracts\\g3\\golden\\maturity-corpus.json",
+    "corpusSchema": "schemas\\v3\\maturity-corpus.schema.json",
+    "evaluationSchema": "schemas\\v3\\maturity-evaluation.schema.json"
+  },
+  "summary": {
+    "cases": 18,
+    "passedCases": 16,
+    "blockedBelowDraft": 2,
+    "recomputeCases": 2
+  },
+  "checks": [
+    {
+      "name": "golden corpus is schema conformant",
+      "passed": true,
+      "detail": {
+        "errors": []
+      }
+    },
+    {
+      "name": "corpus covers at least 18 table-driven cases",
+      "passed": true,
+      "detail": {
+        "cases": 18
+      }
+    },
+    {
+      "name": "case mat-001-draft-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "DRAFT positive: requirement schema valid but IR not evaluated",
+        "expectState": "DRAFT",
+        "state": "DRAFT",
+        "expectIndex": 0,
+        "achievedIndex": 0,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "case mat-002-draft-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "DRAFT negative: requirement fails schema validation",
+        "expectState": null,
+        "state": null,
+        "expectIndex": -1,
+        "achievedIndex": -1,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "case mat-003-concept-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "CONCEPT positive: IR valid and layout check clean",
+        "expectState": "CONCEPT",
+        "state": "CONCEPT",
+        "expectIndex": 1,
+        "achievedIndex": 1,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "case mat-004-concept-negative-unsafe matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "CONCEPT negative: unresolved unsafe_to_default",
+        "expectState": "DRAFT",
+        "state": "DRAFT",
+        "expectIndex": 0,
+        "achievedIndex": 0,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "case mat-005-concept-negative-ir matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "CONCEPT negative: referential integrity broken",
+        "expectState": "DRAFT",
+        "state": "DRAFT",
+        "expectIndex": 0,
+        "achievedIndex": 0,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "case mat-006-prototype-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "PROTOTYPE positive: all prototype gates clear",
+        "expectState": "PROTOTYPE",
+        "state": "PROTOTYPE",
+        "expectIndex": 2,
+        "achievedIndex": 2,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "case mat-007-prototype-negative-error matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "PROTOTYPE negative: unresolved error present",
+        "expectState": "CONCEPT",
+        "state": "CONCEPT",
+        "expectIndex": 1,
+        "achievedIndex": 1,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "case mat-008-prototype-negative-unknown matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "PROTOTYPE negative: critical unknown present",
+        "expectState": "CONCEPT",
+        "state": "CONCEPT",
+        "expectIndex": 1,
+        "achievedIndex": 1,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "case mat-009-engineered-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "ENGINEERING_REVIEWED positive with named reviewer",
+        "expectState": "ENGINEERING_REVIEWED",
+        "state": "ENGINEERING_REVIEWED",
+        "expectIndex": 3,
+        "achievedIndex": 3,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "case mat-010-engineered-negative-d6 matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "ENGINEERING_REVIEWED negative: no named engineer under D6",
+        "expectState": "PROTOTYPE",
+        "state": "PROTOTYPE",
+        "expectIndex": 2,
+        "achievedIndex": 2,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "case mat-011-released-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "RELEASED positive with external release record",
+        "expectState": "RELEASED",
+        "state": "RELEASED",
+        "expectIndex": 4,
+        "achievedIndex": 4,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "case mat-012-released-negative-record matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "RELEASED negative: external release record missing",
+        "expectState": "ENGINEERING_REVIEWED",
+        "state": "ENGINEERING_REVIEWED",
+        "expectIndex": 3,
+        "achievedIndex": 3,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "case mat-013-recompute-input-change matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Input change invalidates ENGINEERING_REVIEWED and forces recompute",
+        "expectState": "PROTOTYPE",
+        "state": "PROTOTYPE",
+        "expectIndex": 2,
+        "achievedIndex": 2,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "case mat-014-recompute-waiver-expired matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Waiver expiry forces maturity recompute",
+        "expectState": "PROTOTYPE",
+        "state": "PROTOTYPE",
+        "expectIndex": 2,
+        "achievedIndex": 2,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "case mat-015-prohibited-robot-cap matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Prohibited Robot category caps maturity at CONCEPT",
+        "expectState": "CONCEPT",
+        "state": "CONCEPT",
+        "expectIndex": 1,
+        "achievedIndex": 1,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "case mat-016-prohibited-prototype-cap matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Prohibited category cap at PROTOTYPE",
+        "expectState": "PROTOTYPE",
+        "state": "PROTOTYPE",
+        "expectIndex": 2,
+        "achievedIndex": 2,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "case mat-017-below-draft matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Below DRAFT: no formal maturity state",
+        "expectState": null,
+        "state": null,
+        "expectIndex": -1,
+        "achievedIndex": -1,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "case mat-018-signed-off-stays-on-input-change matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Unchanged inputs keep ENGINEERING_REVIEWED sign-off",
+        "expectState": "ENGINEERING_REVIEWED",
+        "state": "ENGINEERING_REVIEWED",
+        "expectIndex": 3,
+        "achievedIndex": 3,
+        "evaluationSchemaValid": true
+      }
+    },
+    {
+      "name": "digest is deterministic and sensitive to design params",
+      "passed": true,
+      "detail": {
+        "digest": "5c86de7861e21d235bc5831aa45a22b493f920c0fa39fd5c1f8ffbd8e859b6f5"
+      }
+    },
+    {
+      "name": "recompute flags are exposed",
+      "passed": true,
+      "detail": {
+        "recomputeRequired": true
+      }
+    },
+    {
+      "name": "evaluator is the only provenance-aware maturity writer",
+      "passed": true,
+      "detail": {
+        "state": "PROTOTYPE",
+        "evaluatorVersion": "megis.maturity@1.0.0"
+      }
+    }
+  ]
+}

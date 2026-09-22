@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/maturity-evaluation.schema.json",
+  "title": "Maturity Evaluation",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "workItem",
+    "state",
+    "achievedIndex",
+    "blocking_reasons",
+    "recomputed_reasons",
+    "inputs_digest",
+    "evaluator_version"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "workItem": {
+      "const": "G3-MAT-001"
+    },
+    "state": {
+      "oneOf": [
+        {
+          "type": "null",
+          "description": "Design Run does not reach DRAFT"
+        },
+        {
+          "type": "string",
+          "enum": [
+            "DRAFT",
+            "CONCEPT",
+            "PROTOTYPE",
+            "ENGINEERING_REVIEWED",
+            "RELEASED"
+          ]
+        }
+      ]
+    },
+    "achievedIndex": {
+      "type": "integer",
+      "minimum": -1,
+      "maximum": 4
+    },
+    "blocking_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recomputed_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "inputs_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "evaluator_version": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": false
+}
