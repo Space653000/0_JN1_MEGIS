@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-22T16:05:00+08:00",
-  "sourceCommit": "eef0afcae87731a83497c81ff7277cfa5a67495c",
+  "verifiedAt": "2026-09-22T16:15:00+08:00",
+  "sourceCommit": "a88f61a92cebe35702a724eaa537e780454c744a",
   "status": "passed",
   "commands": [
     {
@@ -17,7 +17,7 @@
       "artifactPolicyEvidenceJson": 42,
       "artifactPolicyGoldenBytes": 19333,
       "artifactPolicyHeavyArtifacts": 5,
-      "pythonTests": 421,
+      "pythonTests": 446,
       "maturityScanManifests": 1,
       "artifactSmokeRecords": 13,
       "frontendTests": 9
@@ -30,21 +30,19 @@
       "deferrals": 0
     },
     {
-      "command": "G4-ACC-001 gate acceptance traceability (@1e8434d)",
+      "command": "G5-PKG-001 close traceability (@a88f61a)",
       "status": "passed",
-      "accCommit": "1e8434d9c90c71ff5f3fcd70a77127b0b35f1449",
+      "pkgCommit": "a88f61a92cebe35702a724eaa537e780454c744a",
       "workItemStatus": "done",
-      "evidenceLevel": "E4",
-      "controlPlaneCurrentAfter": "G5-PKG-001",
+      "evidenceLevel": "E3",
+      "controlPlaneCurrentAfter": "G5-BOM-001",
       "checks": {
-        "signoffPresent": true,
         "verificationPresent": true,
-        "reviewPassed": true,
-        "allG4WorkItemsDone": true,
-        "traceableToReview": true,
-        "traceableToCi": true,
-        "g4GateStatus": "accepted",
-        "g5GateStatus": "active",
+        "acceptancePassed": true,
+        "commitShaPresent": true,
+        "corpusPresent": true,
+        "schemaPresent": true,
+        "testsPresent": true,
         "blockingFindings": 0
       }
     }

@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T16:05:00+08:00",
+  "updatedAt": "2026-09-22T16:15:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G5-PKG-001",
+  "currentWorkItem": "G5-BOM-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -1802,7 +1802,7 @@
       "id": "G5-PKG-001",
       "title": "建立 manifest 與 content hashes",
       "gate": "G5",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G4-ACC-001"
       ],
@@ -1819,22 +1819,42 @@
       "acceptanceResults": [
         {
           "criterion": "manifest 可重建且所有 artifact hash 可驗證",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "schemas/v3/package-manifest.schema.json",
+            "contracts/g5/golden/manifest-corpus.json",
+            "tests/test_g5_pkg_001.py",
+            "artifacts/g5-pkg-001/verification.json"
+          ]
         }
       ],
-      "verificationCommands": [],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe -m pytest tests/test_g5_pkg_001.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+        "node scripts/verify-control-plane.mjs"
+      ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "schemas/v3/package-manifest.schema.json",
+        "schemas/v3/manifest-corpus.schema.json",
+        "contracts/g5/golden/manifest-corpus.json",
+        "megis/package/manifest.py",
+        "megis/package/verify.py",
+        "tests/test_g5_pkg_001.py",
+        "artifacts/g5-pkg-001/verification.json",
+        "docs/G5_PACKAGE_MANIFEST.md",
+        "megis/errors/registry.py",
+        "docs/ERROR_CODES.md"
+      ],
+      "verification": "passed",
+      "commitSha": "a88f61a92cebe35702a724eaa537e780454c744a"
     },
     {
       "id": "G5-BOM-001",
       "title": "建立 BOM exporter",
       "gate": "G5",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G5-PKG-001"
       ],

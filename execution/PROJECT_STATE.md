@@ -1,14 +1,16 @@
 # MEGIS Project State
 
 - Current gate: `G5 — 原型套件與可重現性`
-- Current work item: `G5-PKG-001 — 建立 manifest 與 content hashes（in_progress）`
-- Last green commit: `eef0afcae87731a83497c81ff7277cfa5a67495c`
+- Current work item: `G5-BOM-001 — 建立 BOM exporter（in_progress）`
+- Last green commit: `a88f61a92cebe35702a724eaa537e780454c744a`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-22T16:05:00+08:00`
+- Updated at: `2026-09-22T16:15:00+08:00`
 
 ## Active gate: G5
 
-G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 已 accepted（`SO-0005`，2026-09-22，E4）。G5 — 原型套件與可重現性 現在為 active gate，下一個工項為 `G5-PKG-001 — 建立 manifest 與 content hashes`（in_progress）。
+G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 已 accepted（`SO-0005`，2026-09-22，E4）。G5 — 原型套件與可重現性 現在為 active gate，下一個工項為 `G5-BOM-001 — 建立 BOM exporter`（in_progress）。
+
+G5-PKG-001 已閉合（2026-09-22）：package manifest（`schemas/v3/package-manifest.schema.json`）提供六種 fingerprint kind（byte_sha256／normalized_text_sha256／gltf_sha256／step_sha256／dxf_sha256／csv_sha256），`megis/package/manifest.py` 逐檔算 byte SHA-256、`megis/package/verify.py` 可重建與核對；`schemas/v3/manifest-corpus.schema.json` + `contracts/g5/golden/manifest-corpus.json`（18 cases：7 positive／11 negative，PKG-001×5、PKG-002×6）；`tests/test_g5_pkg_001.py` 25 tests；`megis/errors/registry.py` 新增 `MEGIS-PKG-001/002`；baseline CI 446 Python + 9 Frontend 全綠（E3）。下一工項 `G5-BOM-001`（in_progress）。
 
 G4-MOD-001 已閉合（2026-09-22）：四級 capability 閉集合（metadata_only／layout_capable／geometry_capable／validated）與 §12 policy 表；`megis/module`、`schemas/v3/module.schema.json`、18 cases；28 tests + `verify_g4_mod_001.py` allChecksPassed（E3）。
 
@@ -85,7 +87,8 @@ G3-ACC-001 已閉合（2026-09-22）：G3 gate acceptance 決策紀錄（E4，`e
 
 | ID | Status | Evidence |
 |---|---|---|
-| G5-PKG-001 | in_progress | 建立 manifest 與 content hashes
+| G5-PKG-001 | done | schemas/v3/package-manifest.schema.json、schemas/v3/manifest-corpus.schema.json、contracts/g5/golden/manifest-corpus.json（18 cases）、megis/package/、tests/test_g5_pkg_001.py（25 tests）、artifacts/g5-pkg-001/verification.json；baseline CI 446 Python + 9 Frontend 全綠（E3） |
+| G5-BOM-001 | in_progress | 建立 BOM exporter |
 
 ## Boundaries
 
