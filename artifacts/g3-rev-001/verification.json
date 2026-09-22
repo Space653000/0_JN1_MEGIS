@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G3-REV-001",
+  "status": "passed",
+  "method": "clean checkout within workspace",
+  "cleanCheckoutPath": ".runs/g3-rev-001-clean",
+  "reviewCommit": "8303595ac2a693ddda48647201062673720f1bb2",
+  "reviewedAt": "2026-09-22T14:00:00+08:00",
+  "controlPlane": {
+    "command": "node scripts/verify-control-plane.mjs",
+    "status": "passed",
+    "output": "Control plane valid: 74 work items, 14 gates, current G3-REV-001, 0 migration deferrals"
+  },
+  "tests": {
+    "command": "pytest tests/test_g3_rul_001.py tests/test_g3_src_001.py tests/test_g3_val_001.py tests/test_g3_val_002.py tests/test_g3_mat_001.py tests/test_g3_ben_001.py",
+    "status": "passed",
+    "testsPassed": 159,
+    "testsFailed": 0,
+    "perFile": {
+      "test_g3_rul_001.py": 14,
+      "test_g3_src_001.py": 13,
+      "test_g3_val_001.py": 24,
+      "test_g3_val_002.py": 68,
+      "test_g3_mat_001.py": 28,
+      "test_g3_ben_001.py": 12
+    }
+  },
+  "verifyScripts": [
+    {
+      "command": "scripts/verify_g3_rul_001.py",
+      "status": "passed",
+      "exitCode": 0,
+      "checksPassed": 18
+    },
+    {
+      "command": "scripts/verify_g3_src_001.py",
+      "status": "passed",
+      "exitCode": 0,
+      "checksPassed": 16
+    },
+    {
+      "command": "scripts/verify_g3_val_001.py",
+      "status": "passed",
+      "exitCode": 0,
+      "checksPassed": 17
+    },
+    {
+      "command": "scripts/verify_g3_val_002.py",
+      "status": "passed",
+      "exitCode": 0,
+      "checksPassed": 8
+    },
+    {
+      "command": "scripts/verify_g3_mat_001.py",
+      "status": "passed",
+      "exitCode": 0,
+      "checksPassed": 23
+    },
+    {
+      "command": "scripts/verify_g3_ben_001.py",
+      "status": "passed",
+      "exitCode": 0,
+      "checksPassed": 13
+    }
+  ],
+  "holdout": {
+    "sha256": "73a25950c4b45d904daa6bab963a16ae11599f6bfa660966582ba0d60ed5a96b",
+    "casesPassed": 10,
+    "casesTotal": 10
+  },
+  "findings": [],
+  "engineeringArtifactsGenerated": false,
+  "releaseArtifactsGenerated": false
+}
