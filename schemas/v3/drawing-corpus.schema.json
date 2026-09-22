@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/drawing-corpus.schema.json",
+  "title": "MEGIS Draft Drawing Verification Corpus",
+  "description": "Table-driven corpus for G5-DRW-001: whitelist and dial operations against the reference fixture with expected verification outcome and QA gate flags.",
+  "type": "object",
+  "required": ["schemaVersion", "workItem", "corpus_id", "cases"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "workItem": { "const": "G5-DRW-001" },
+    "corpus_id": { "type": "string", "minLength": 1 },
+    "cases": {
+      "type": "array",
+      "minItems": 12,
+      "items": {
+        "type": "object",
+        "required": ["case_id", "dial", "expect"],
+        "properties": {
+          "case_id": { "type": "string", "minLength": 1 },
+          "dial": {
+            "type": ["object", "null"],
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "whitelist_subset",
+                  "reverse_components",
+                  "unknown_whitelist",
+                  "tamper_svg",
+                  "drift_dimension",
+                  "remove_watermark",
+                  "remove_not_for_manufacturing",
+                  "drop_title_field",
+                  "qa_status_drift",
+                  "set_doc_revision"
+                ]
+              },
+              "dim_ids": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "id": { "type": "string" },
+              "nominal": { "type": "number" },
+              "status": { "type": "string" },
+              "revision": { "type": "string" }
+            },
+            "required": ["action"],
+            "additionalProperties": false
+          },
+          "expect": {
+            "type": "object",
+            "required": ["valid", "error_code", "qa_pass"],
+            "properties": {
+              "valid": { "type": "boolean" },
+              "error_code": {
+                "type": ["string", "null"],
+                "enum": [null, "MEGIS-DRW-001", "MEGIS-DRW-002"]
+              },
+              "qa_pass": { "type": ["boolean", "null"] }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

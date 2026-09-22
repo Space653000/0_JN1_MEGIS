@@ -20,6 +20,20 @@ from .bom import (
     validate_bom_schema,
     verify_bom,
 )
+from .drawing import (
+    DEFAULT_TOLERANCE,
+    DEFAULT_VIEW_SCALE,
+    DEFAULT_WHITELIST,
+    DRAWING_BUILDER_VERSION,
+    DRAWING_SCHEMA_PATH,
+    DRAWING_TEMPLATE_VERSION,
+    NOT_FOR_MANUFACTURING,
+    WATERMARK,
+    build_draft_drawing,
+    qa_all_passed,
+    validate_drawing_schema,
+    verify_draft_drawing,
+)
 
 __all__ = [
     "FINGERPRINT_POLICY_VERSION",
@@ -36,4 +50,16 @@ __all__ = [
     "build_bom",
     "validate_bom_schema",
     "verify_bom",
+    "DEFAULT_TOLERANCE",
+    "DEFAULT_VIEW_SCALE",
+    "DEFAULT_WHITELIST",
+    "DRAWING_BUILDER_VERSION",
+    "DRAWING_SCHEMA_PATH",
+    "DRAWING_TEMPLATE_VERSION",
+    "NOT_FOR_MANUFACTURING",
+    "WATERMARK",
+    "build_draft_drawing",
+    "qa_all_passed",
+    "validate_drawing_schema",
+    "verify_draft_drawing",
 ]

@@ -36,6 +36,7 @@ class ErrorDomain(StrEnum):
     RUL = "RUL"
     PKG = "PKG"
     BOM = "BOM"
+    DRW = "DRW"
     JOB = "JOB"
     AI = "AI"
     IMP = "IMP"
@@ -75,6 +76,8 @@ _ERROR_CODES: list[ErrorCode] = [
     ErrorCode("MEGIS-PKG-003", ErrorDomain.PKG, 3, ErrorSeverity.ERROR, False, "BOM 數量與 IR component quantity 不一致。", "BOM quantity does not match the IR component quantity"),
     ErrorCode("MEGIS-BOM-001", ErrorDomain.BOM, 1, ErrorSeverity.ERROR, False, "BOM CSV 或指紋不符。", "BOM csv does not match rows or the semantic fingerprint drifted"),
     ErrorCode("MEGIS-BOM-002", ErrorDomain.BOM, 2, ErrorSeverity.ERROR, False, "BOM 宣告內容或 IR 欄位不符。", "BOM declarative mismatch or invalid IR field (part set, material, revision)"),
+    ErrorCode("MEGIS-DRW-001", ErrorDomain.DRW, 1, ErrorSeverity.ERROR, False, "草圖 SVG 指紋或尺寸與 IR 不符。", "draft drawing svg fingerprint or whitelist dimension drifted from the IR"),
+    ErrorCode("MEGIS-DRW-002", ErrorDomain.DRW, 2, ErrorSeverity.ERROR, False, "草圖宣告內容不符。", "draft drawing declarative mismatch (title block, watermark, whitelist, QA drift)"),
     ErrorCode("MEGIS-JOB-001", ErrorDomain.JOB, 1, ErrorSeverity.ERROR, True, "工作逾時。", "job timeout"),
     ErrorCode("MEGIS-AI-001", ErrorDomain.AI, 1, ErrorSeverity.ERROR, True, "AI 輸出格式無效。", "schema-invalid AI model output"),
     ErrorCode("MEGIS-IMP-001", ErrorDomain.IMP, 1, ErrorSeverity.ERROR, False, "輸入檔案超出限制。", "import file exceeds size or structural limit"),

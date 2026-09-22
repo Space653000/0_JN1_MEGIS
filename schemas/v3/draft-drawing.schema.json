@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/draft-drawing.schema.json",
+  "title": "MEGIS Draft Drawing Document",
+  "description": "V3 fixed-template draft drawing document (G5-DRW-001). IR-metadata-driven SVG with a fixed A4 Fixture template, dimension whitelist, DRAFT watermark and a QA checklist.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "documentType",
+    "classification",
+    "drawing_builder",
+    "template_version",
+    "design_id",
+    "revision",
+    "maturity",
+    "view_scale",
+    "general_tolerance",
+    "watermark",
+    "not_for_manufacturing",
+    "title_block",
+    "dimension_whitelist",
+    "dimensions",
+    "qa",
+    "svg",
+    "svgSemanticFingerprint"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "documentType": { "const": "DRAFT_DRAWING" },
+    "classification": { "const": "DESIGN_RUN" },
+    "drawing_builder": { "const": "megis.drawing@1.0.0" },
+    "template_version": { "const": "fixture-a4-landscape@1.0.0" },
+    "design_id": { "type": "string", "minLength": 1 },
+    "revision": { "type": "string", "minLength": 1 },
+    "maturity": { "type": "string" },
+    "view_scale": { "type": "string", "minLength": 1 },
+    "general_tolerance": { "type": "string", "minLength": 1 },
+    "watermark": { "const": "DRAFT - ENGINEERING REVIEW REQUIRED" },
+    "not_for_manufacturing": { "const": "NOT FOR MANUFACTURING" },
+    "title_block": {
+      "type": "object",
+      "required": ["design_id", "revision", "material", "general_tolerance", "unit", "projection"],
+      "properties": {
+        "design_id": { "type": "string", "minLength": 1 },
+        "revision": { "type": "string", "minLength": 1 },
+        "material": { "type": "string", "minLength": 1 },
+        "general_tolerance": { "type": "string", "minLength": 1 },
+        "unit": { "type": "string", "minLength": 1 },
+        "projection": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "dimension_whitelist": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "dimensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "present"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "present": { "type": "boolean" },
+          "name": { "type": "string" },
+          "unit": { "type": "string" },
+          "nominal": { "type": ["number", "null"] },
+          "detail": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "qa": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "status", "detail"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "label": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["pass", "fail", "N/A"] },
+          "detail": {}
+        },
+        "additionalProperties": false
+      }
+    },
+    "svg": { "type": "string", "minLength": 100 },
+    "svgSemanticFingerprint": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  },
+  "additionalProperties": false
+}

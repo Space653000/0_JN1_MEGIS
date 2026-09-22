@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G5-DRW-001",
+  "corpus_id": "drawing-corpus@1.0.0",
+  "cases": [
+    {
+      "case_id": "default-whitelist-pass",
+      "dial": null,
+      "expect": { "valid": true, "error_code": null, "qa_pass": true }
+    },
+    {
+      "case_id": "whitelist-subset",
+      "dial": {
+        "action": "whitelist_subset",
+        "dim_ids": ["DIM-FIXTURE-WIDTH", "DIM-FIXTURE-DEPTH"]
+      },
+      "expect": { "valid": true, "error_code": null, "qa_pass": true }
+    },
+    {
+      "case_id": "reverse-components-stable",
+      "dial": { "action": "reverse_components" },
+      "expect": { "valid": true, "error_code": null, "qa_pass": true }
+    },
+    {
+      "case_id": "dims-values-pinned",
+      "dial": null,
+      "expect": { "valid": true, "error_code": null, "qa_pass": true }
+    },
+    {
+      "case_id": "unknown-whitelist-qa-fail",
+      "dial": { "action": "unknown_whitelist", "id": "DIM-NOPE" },
+      "expect": { "valid": true, "error_code": null, "qa_pass": false }
+    },
+    {
+      "case_id": "tamper-svg-fails",
+      "dial": { "action": "tamper_svg" },
+      "expect": { "valid": false, "error_code": "MEGIS-DRW-001", "qa_pass": null }
+    },
+    {
+      "case_id": "drift-dimension-value-fails",
+      "dial": { "action": "drift_dimension", "id": "DIM-FIXTURE-WIDTH", "nominal": 121.0 },
+      "expect": { "valid": false, "error_code": "MEGIS-DRW-001", "qa_pass": null }
+    },
+    {
+      "case_id": "remove-watermark-fails",
+      "dial": { "action": "remove_watermark" },
+      "expect": { "valid": false, "error_code": "MEGIS-DRW-002", "qa_pass": null }
+    },
+    {
+      "case_id": "remove-not-for-manufacturing-fails",
+      "dial": { "action": "remove_not_for_manufacturing" },
+      "expect": { "valid": false, "error_code": "MEGIS-DRW-002", "qa_pass": null }
+    },
+    {
+      "case_id": "drop-title-field-fails",
+      "dial": { "action": "drop_title_field", "id": "general_tolerance" },
+      "expect": { "valid": false, "error_code": "MEGIS-DRW-002", "qa_pass": null }
+    },
+    {
+      "case_id": "qa-status-drift-fails",
+      "dial": { "action": "qa_status_drift", "id": "watermark", "status": "fail" },
+      "expect": { "valid": false, "error_code": "MEGIS-DRW-002", "qa_pass": null }
+    },
+    {
+      "case_id": "set-doc-revision-fails",
+      "dial": { "action": "set_doc_revision", "revision": "B" },
+      "expect": { "valid": false, "error_code": "MEGIS-DRW-002", "qa_pass": null }
+    }
+  ]
+}
