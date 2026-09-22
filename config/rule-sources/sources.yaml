@@ -6,9 +6,9 @@ sources:
     revision: "2026-A"
     owner: "mechanical_engineering"
     review_due: "2026-12-31"
-    url: null
-    accessed_at: null
-    notes: "一般公差；待 G3 公開查證後核准"
+    url: "https://www.ronleigh.com/stan/iso2768.pdf"
+    accessed_at: "2026-09-22"
+    notes: "一般公差；公開 PDF 已可達（2026-09-22），尚未正式核准"
   - source_id: "SRC-ISO-273"
     type: "standard"
     status: "needs_review"
@@ -17,7 +17,7 @@ sources:
     review_due: "2026-12-31"
     url: null
     accessed_at: null
-    notes: "緊固件通孔；待 G3 公開查證後核准"
+    notes: "緊固件通孔；尚未找到可直接引用之公開通孔表，內部過渡值（如 M3 3.4 mm）不算已核准"
   - source_id: "SRC-ISO-261-262"
     type: "standard"
     status: "needs_review"
@@ -33,8 +33,8 @@ sources:
     revision: "2026-A"
     owner: "mechanical_engineering"
     review_due: "2026-12-31"
-    url: null
-    accessed_at: null
+    url: "https://www.fasteners.eu/standards/ISO/4762/"
+    accessed_at: "2026-09-22"
     notes: "內六角圓柱頭螺絲；待查證後核准"
   - source_id: "SRC-USB-TYPEC"
     type: "datasheet"
@@ -42,8 +42,8 @@ sources:
     revision: "2026-A"
     owner: "mechanical_engineering"
     review_due: "2026-12-31"
-    url: null
-    accessed_at: null
+    url: "https://www.usb.org/document-library/usb-type-cr-cable-and-connector-specification-revision-21"
+    accessed_at: "2026-09-22"
     notes: "優先以實際零件 datasheet 與 USB Type-C 規格為準"
   - source_id: "SRC-IPC-2221"
     type: "standard"
@@ -51,8 +51,8 @@ sources:
     revision: "2026-A"
     owner: "mechanical_engineering"
     review_due: "2026-12-31"
-    url: null
-    accessed_at: null
+    url: "https://www.ipc.org/TOC/IPC-2221B.pdf"
+    accessed_at: "2026-09-22"
     notes: "PCB 通則；只作 warning／info 級規則"
   - source_id: "SRC-INTERNAL-ME-001"
     type: "internal"
@@ -62,13 +62,13 @@ sources:
     review_due: "2026-12-31"
     url: null
     accessed_at: null
-    notes: "內部機構準則；核准前必須附公開依據（URL＋取用日期）"
+    notes: "內部機構準則；rule pack 內的過渡數值（如 M3 通孔 3.4 mm）皆標明 unapproved，核准前必須附公開依據"
   - source_id: "SRC-CNC-DFM-001"
     type: "internal"
     status: "draft"
     revision: "2026-A"
     owner: "mechanical_engineering"
     review_due: "2026-12-31"
-    url: null
-    accessed_at: null
+    url: "https://www.wevolver.com/article/cnc-machining-design-guide"
+    accessed_at: "2026-09-22"
     notes: "CNC DFM 加工廠設計準則；核准前必須查證提交 URL"

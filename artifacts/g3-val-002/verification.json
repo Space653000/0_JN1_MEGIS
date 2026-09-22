@@ -1,0 +1,103 @@
+{
+  "allChecksPassed": true,
+  "blueprintRef": "v3.0 11.1 rule governance, 11.2 first rule set, 26.6 G3-VAL-002",
+  "evidenceLevel": "E3",
+  "referenceDate": "2026-09-22",
+  "schemaVersion": "1.0.0",
+  "workItem": "G3-VAL-002",
+  "verifiedAt": "2026-09-22T10:00:00+08:00",
+  "engineeringArtifactGenerated": false,
+  "releaseArtifactGenerated": false,
+  "input": {
+    "pack": "contracts\\g3\\golden\\cnc-dfm-rulepack.json",
+    "packSchema": "schemas\\v3\\rule-pack.schema.json",
+    "ruleSchema": "schemas\\v3\\rule.schema.json",
+    "sources": "config/rule-sources/sources.yaml"
+  },
+  "summary": {
+    "rules": 24,
+    "fixtures": 72,
+    "fixtureFailures": 0,
+    "sourceCount": 8,
+    "verifiedSourceCount": 5
+  },
+  "checks": [
+    {
+      "name": "rule pack loads and validates",
+      "passed": true,
+      "detail": {
+        "rules": 24,
+        "packSchema": "schemas\\v3\\rule-pack.schema.json",
+        "ruleSchema": "schemas\\v3\\rule.schema.json",
+        "workItem": "G3-VAL-002"
+      }
+    },
+    {
+      "name": "no rule claims approval while sources are unapproved",
+      "passed": true,
+      "detail": {
+        "statuses": [
+          "in_review"
+        ]
+      }
+    },
+    {
+      "name": "all embedded rule fixtures pass",
+      "passed": true,
+      "detail": {
+        "fixtures": 72,
+        "rules": 24,
+        "failures": []
+      }
+    },
+    {
+      "name": "release governance gate rejects unapproved rules",
+      "passed": true,
+      "detail": {
+        "code": "MEGIS-RUL-001",
+        "reason": "no approved rule / source yet"
+      }
+    },
+    {
+      "name": "registry has no issues at reference date",
+      "passed": true,
+      "detail": {
+        "issues": []
+      }
+    },
+    {
+      "name": "verified public sources carry URL and access date",
+      "passed": true,
+      "detail": {
+        "verified": [
+          "SRC-CNC-DFM-001",
+          "SRC-IPC-2221",
+          "SRC-ISO-2768-1",
+          "SRC-ISO-4762",
+          "SRC-USB-TYPEC"
+        ],
+        "expected": [
+          "SRC-ISO-2768-1",
+          "SRC-ISO-4762",
+          "SRC-USB-TYPEC",
+          "SRC-IPC-2221",
+          "SRC-CNC-DFM-001"
+        ]
+      }
+    },
+    {
+      "name": "unregistered sources are detected",
+      "passed": true,
+      "detail": {
+        "probe": "SRC-NOPE-001"
+      }
+    },
+    {
+      "name": "guard_release_evaluation is conservative while unapproved",
+      "passed": true,
+      "detail": {
+        "code": "MEGIS-RUL-001"
+      }
+    }
+  ]
+}

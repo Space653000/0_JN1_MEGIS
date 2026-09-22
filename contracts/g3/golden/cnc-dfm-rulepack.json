@@ -1,0 +1,1383 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G3-VAL-002",
+  "pack_id": "cnc-dfm-rulepack@1.0.0",
+  "title": "CNC DFM 第一批規則（Reference Fixture）",
+  "rules": [
+    {
+      "rule_id": "CNC_MIN_WALL_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-CNC-DFM-001",
+      "source_revision": "2026-A",
+      "source_clause": "design guidance: minimum wall thickness",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "cnc",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "gte",
+        "field": "wall_thickness_mm",
+        "limit_mm": 0.8
+      },
+      "severity": "error",
+      "recommendation": "increase minimum wall thickness to >= 0.8 mm",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "wall_1.5_mm_sufficient",
+            "inputs": {"wall_thickness_mm": 1.5},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "thin_wall_0.5_mm",
+            "inputs": {"wall_thickness_mm": 0.5},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "wall_at_lower_limit",
+            "inputs": {"wall_thickness_mm": 0.8},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "CNC_TAP_BLIND_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-CNC-DFM-001",
+      "source_revision": "2026-A",
+      "source_clause": "design guidance: blind tapped hole drill depth",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "cnc",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "ratio_gte",
+        "numerator": "drill_depth_mm",
+        "denominator": "required_thread_plus_allowance_mm",
+        "limit": 1.0
+      },
+      "severity": "error",
+      "recommendation": "increase blind hole drill depth beyond thread length plus allowance",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "drill_depth_above_required",
+            "inputs": {"drill_depth_mm": 12.0, "required_thread_plus_allowance_mm": 10.0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "drill_depth_below_required",
+            "inputs": {"drill_depth_mm": 9.0, "required_thread_plus_allowance_mm": 10.0},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "drill_depth_at_required",
+            "inputs": {"drill_depth_mm": 10.0, "required_thread_plus_allowance_mm": 10.0},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "CNC_HOLE_ASPECT_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-CNC-DFM-001",
+      "source_revision": "2026-A",
+      "source_clause": "design guidance: hole depth to diameter aspect ratio",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "cnc",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "ratio_lte",
+        "numerator": "hole_depth_mm",
+        "denominator": "hole_diameter_mm",
+        "limit": 3.0
+      },
+      "severity": "error",
+      "recommendation": "reduce hole depth or increase diameter so aspect ratio stays within 3",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "aspect_2_sufficient",
+            "inputs": {"hole_depth_mm": 12.0, "hole_diameter_mm": 6.0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "deep_hole_aspect_3_5",
+            "inputs": {"hole_depth_mm": 21.0, "hole_diameter_mm": 6.0},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "aspect_at_limit",
+            "inputs": {"hole_depth_mm": 18.0, "hole_diameter_mm": 6.0},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "CNC_INT_RADIUS_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-CNC-DFM-001",
+      "source_revision": "2026-A",
+      "source_clause": "design guidance: internal corner radius versus tool radius",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "cnc",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "ratio_gte",
+        "numerator": "internal_radius_mm",
+        "denominator": "tool_radius_mm",
+        "limit": 1.2
+      },
+      "severity": "error",
+      "recommendation": "increase internal corner radius above tool radius plus margin",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "radius_with_margin",
+            "inputs": {"internal_radius_mm": 1.8, "tool_radius_mm": 1.0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "radius_without_margin",
+            "inputs": {"internal_radius_mm": 1.0, "tool_radius_mm": 1.0},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "radius_at_limit",
+            "inputs": {"internal_radius_mm": 1.2, "tool_radius_mm": 1.0},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "CNC_DEPTH_RATIO_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-CNC-DFM-001",
+      "source_revision": "2026-A",
+      "source_clause": "design guidance: pocket depth to tool diameter ratio",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "cnc",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "ratio_lte",
+        "numerator": "pocket_depth_mm",
+        "denominator": "tool_diameter_mm",
+        "limit": 4.0
+      },
+      "severity": "warning",
+      "recommendation": "reduce pocket depth below 4 times tool diameter or use a larger tool",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": false,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "shallow_pocket",
+            "inputs": {"pocket_depth_mm": 20.0, "tool_diameter_mm": 10.0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "deep_pocket_5x",
+            "inputs": {"pocket_depth_mm": 50.0, "tool_diameter_mm": 10.0},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "pocket_at_4x",
+            "inputs": {"pocket_depth_mm": 40.0, "tool_diameter_mm": 10.0},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "CNC_TOOL_ACCESS_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-CNC-DFM-001",
+      "source_revision": "2026-A",
+      "source_clause": "design guidance: tool access opening",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "cnc",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "ratio_gte",
+        "numerator": "access_opening_mm",
+        "denominator": "tool_diameter_mm",
+        "limit": 1.1
+      },
+      "severity": "error",
+      "recommendation": "widen tool access opening beyond tool diameter plus clearance",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "clear_tool_access",
+            "inputs": {"access_opening_mm": 26.0, "tool_diameter_mm": 20.0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "opening_equals_tool",
+            "inputs": {"access_opening_mm": 20.0, "tool_diameter_mm": 20.0},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "opening_at_limit",
+            "inputs": {"access_opening_mm": 22.0, "tool_diameter_mm": 20.0},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "CNC_SETUP_COUNT_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-INTERNAL-ME-001",
+      "source_revision": "2026-A",
+      "source_clause": "envelope capability: maximum permitted fixture orientations",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "cnc",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "lte",
+        "field": "setup_count",
+        "limit": 3
+      },
+      "severity": "error",
+      "recommendation": "consolidate machining setups to at most 3 fixture orientations",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "two_setups",
+            "inputs": {"setup_count": 2},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "four_setups",
+            "inputs": {"setup_count": 4},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "three_setups",
+            "inputs": {"setup_count": 3},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "CNC_MIN_HOLE_DIA_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-CNC-DFM-001",
+      "source_revision": "2026-A",
+      "source_clause": "design guidance: minimum drilled hole diameter",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "cnc",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "gte",
+        "field": "hole_diameter_mm",
+        "limit_mm": 0.5
+      },
+      "severity": "error",
+      "recommendation": "increase drilled hole diameter to at least 0.5 mm",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "hole_2_mm",
+            "inputs": {"hole_diameter_mm": 2.0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "hole_0_3_mm",
+            "inputs": {"hole_diameter_mm": 0.3},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "hole_at_lower_limit",
+            "inputs": {"hole_diameter_mm": 0.5},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "CNC_UNDERCUT_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-CNC-DFM-001",
+      "source_revision": "2026-A",
+      "source_clause": "design guidance: no undercuts for 3-axis machining",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "cnc",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "zero",
+        "field": "undercut_count"
+      },
+      "severity": "error",
+      "recommendation": "remove internal undercuts or switch to a 5-axis process",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "no_undercuts",
+            "inputs": {"undercut_count": 0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "one_undercut",
+            "inputs": {"undercut_count": 1},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "still_no_undercuts",
+            "inputs": {"undercut_count": 0},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "CNC_EDGE_DIST_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-CNC-DFM-001",
+      "source_revision": "2026-A",
+      "source_clause": "design guidance: hole edge to part edge distance",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "cnc",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "gte",
+        "field": "hole_edge_distance_mm",
+        "limit_mm": 2.0
+      },
+      "severity": "warning",
+      "recommendation": "move holes away from part edges to avoid thin webs and breakout",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": false,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "edge_distance_4_mm",
+            "inputs": {"hole_edge_distance_mm": 4.0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "edge_distance_1_mm",
+            "inputs": {"hole_edge_distance_mm": 1.0},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "edge_distance_at_limit",
+            "inputs": {"hole_edge_distance_mm": 2.0},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "FAS_ENGAGE_AL_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-INTERNAL-ME-001",
+      "source_revision": "2026-A",
+      "source_clause": "internal criterion: aluminum thread engagement minimum 2.0 D (proposed, to verify before approval)",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "fastener",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "ratio_gte",
+        "numerator": "thread_engagement_mm",
+        "denominator": "fastener_diameter_mm",
+        "limit": 2.0
+      },
+      "severity": "error",
+      "recommendation": "increase thread engagement to at least 2.0 times fastener diameter for aluminum",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "engagement_2_5d",
+            "inputs": {"thread_engagement_mm": 7.5, "fastener_diameter_mm": 3.0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "engagement_1_5d",
+            "inputs": {"thread_engagement_mm": 4.5, "fastener_diameter_mm": 3.0},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "engagement_2_0d",
+            "inputs": {"thread_engagement_mm": 6.0, "fastener_diameter_mm": 3.0},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "FAS_BOSS_WALL_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-INTERNAL-ME-001",
+      "source_revision": "2026-A",
+      "source_clause": "internal criterion: remaining boss wall around threaded hole minimum 1.5 mm (proposed)",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "fastener",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "gte",
+        "field": "boss_wall_thickness_mm",
+        "limit_mm": 1.5
+      },
+      "severity": "error",
+      "recommendation": "increase remaining boss wall around the threaded hole to at least 1.5 mm",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "boss_wall_2_5_mm",
+            "inputs": {"boss_wall_thickness_mm": 2.5},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "boss_wall_0_9_mm",
+            "inputs": {"boss_wall_thickness_mm": 0.9},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "boss_wall_at_limit",
+            "inputs": {"boss_wall_thickness_mm": 1.5},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "FAS_CBORE_DEPTH_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-ISO-4762",
+      "source_revision": "2026-A",
+      "source_clause": "ISO 4762 head height plus internal margin for counterbore depth",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "fastener",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "ratio_gte",
+        "numerator": "cbore_depth_mm",
+        "denominator": "fastener_head_height_mm",
+        "limit": 1.1
+      },
+      "severity": "warning",
+      "recommendation": "increase counterbore depth above fastener head height to sink the head",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": false,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "cbore_below_head_height",
+            "inputs": {"cbore_depth_mm": 2.6, "fastener_head_height_mm": 2.0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "cbore_shallower_than_head",
+            "inputs": {"cbore_depth_mm": 1.6, "fastener_head_height_mm": 2.0},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "cbore_at_limit",
+            "inputs": {"cbore_depth_mm": 2.2, "fastener_head_height_mm": 2.0},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "FAS_CLEAR_HOLE_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-INTERNAL-ME-001",
+      "source_revision": "2026-A",
+      "source_clause": "transitional internal value: M3 clearance hole 3.4 mm (ISO 273 verification pending, do not treat as ISO-approved)",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "fastener",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "gte",
+        "field": "clearance_hole_diameter_mm",
+        "limit_mm": 3.4
+      },
+      "severity": "error",
+      "recommendation": "enlarge the clearance hole to at least 3.4 mm for M3 fasteners",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "clearance_hole_3_6_mm",
+            "inputs": {"clearance_hole_diameter_mm": 3.6},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "clearance_hole_3_2_mm",
+            "inputs": {"clearance_hole_diameter_mm": 3.2},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "clearance_hole_at_limit",
+            "inputs": {"clearance_hole_diameter_mm": 3.4},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "FAS_SCREW_PROTRUDE_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-INTERNAL-ME-001",
+      "source_revision": "2026-A",
+      "source_clause": "internal criterion: screw tip must not protrude beyond the threaded blind hole",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "fastener",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "zero",
+        "field": "screw_protrusion_mm"
+      },
+      "severity": "error",
+      "recommendation": "shorten the screw or deepen the blind hole so the screw does not protrude",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "no_protrusion",
+            "inputs": {"screw_protrusion_mm": 0.0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "screw_protrudes_1_5_mm",
+            "inputs": {"screw_protrusion_mm": 1.5},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "flush_screw_tip",
+            "inputs": {"screw_protrusion_mm": 0.0},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "PCB_EDGE_CLEAR_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-INTERNAL-ME-001",
+      "source_revision": "2026-A",
+      "source_clause": "internal criterion: PCB edge to inner wall minimum gap 1.5 mm",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "pcb",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "gte",
+        "field": "pcb_edge_gap_mm",
+        "limit_mm": 1.5
+      },
+      "severity": "error",
+      "recommendation": "add space between the PCB edge and the enclosure wall",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "edge_gap_3_mm",
+            "inputs": {"pcb_edge_gap_mm": 3.0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "edge_gap_1_mm",
+            "inputs": {"pcb_edge_gap_mm": 1.0},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "edge_gap_at_limit",
+            "inputs": {"pcb_edge_gap_mm": 1.5},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "PCB_STANDOFF_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-INTERNAL-ME-001",
+      "source_revision": "2026-A",
+      "source_clause": "internal criterion: standoff height covers bottom component height plus clearance",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "pcb",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "ratio_gte",
+        "numerator": "standoff_height_mm",
+        "denominator": "required_height_mm",
+        "limit": 1.0
+      },
+      "severity": "error",
+      "recommendation": "increase standoff height to at least the bottom component height plus clearance",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "standoff_above_required",
+            "inputs": {"standoff_height_mm": 9.0, "required_height_mm": 8.0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "standoff_below_required",
+            "inputs": {"standoff_height_mm": 7.0, "required_height_mm": 8.0},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "standoff_at_required",
+            "inputs": {"standoff_height_mm": 8.0, "required_height_mm": 8.0},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "PCB_TOP_CLEAR_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-INTERNAL-ME-001",
+      "source_revision": "2026-A",
+      "source_clause": "internal criterion: top component clearance to cover underside minimum 2.0 mm",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "pcb",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "gte",
+        "field": "pcb_top_gap_mm",
+        "limit_mm": 2.0
+      },
+      "severity": "error",
+      "recommendation": "add clearance between the tallest component and the cover underside",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "top_gap_4_mm",
+            "inputs": {"pcb_top_gap_mm": 4.0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "top_gap_1_2_mm",
+            "inputs": {"pcb_top_gap_mm": 1.2},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "top_gap_at_limit",
+            "inputs": {"pcb_top_gap_mm": 2.0},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "PCB_STANDOFF_SPACING_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-INTERNAL-ME-001",
+      "source_revision": "2026-A",
+      "source_clause": "internal criterion: maximum standoff spacing to limit board flex 100 mm",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "pcb",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "lte",
+        "field": "standoff_spacing_mm",
+        "limit": 100.0
+      },
+      "severity": "warning",
+      "recommendation": "reduce standoff spacing to at most 100 mm to prevent board flex",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": false,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "spacing_80_mm",
+            "inputs": {"standoff_spacing_mm": 80.0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "spacing_120_mm",
+            "inputs": {"standoff_spacing_mm": 120.0},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "spacing_at_limit",
+            "inputs": {"standoff_spacing_mm": 100.0},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "CON_USBC_OPEN_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-USB-TYPEC",
+      "source_revision": "2026-A",
+      "source_clause": "flush USB-C receptacle: opening must clear shell plus clearance",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "connector",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "ratio_gte",
+        "numerator": "usbc_opening_width_mm",
+        "denominator": "usbc_shell_width_mm",
+        "limit": 1.05
+      },
+      "severity": "error",
+      "recommendation": "widen the USB-C opening beyond the receptacle shell plus clearance",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "flush_opening_wide_enough",
+            "inputs": {"usbc_opening_width_mm": 11.2, "usbc_shell_width_mm": 10.4},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "flush_opening_tight",
+            "inputs": {"usbc_opening_width_mm": 10.6, "usbc_shell_width_mm": 10.4},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "flush_opening_at_limit",
+            "inputs": {"usbc_opening_width_mm": 10.92, "usbc_shell_width_mm": 10.4},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "CON_USBC_RECESS_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-USB-TYPEC",
+      "source_revision": "2026-A",
+      "source_clause": "recessed USB-C: opening must clear plug overmold envelope plus clearance",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "connector",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "ratio_gte",
+        "numerator": "usbc_recess_opening_mm",
+        "denominator": "usbc_plug_overmold_mm",
+        "limit": 1.05
+      },
+      "severity": "error",
+      "recommendation": "widen the recessed USB-C opening beyond the plug overmold envelope",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "recessed_opening_wide_enough",
+            "inputs": {"usbc_recess_opening_mm": 19.8, "usbc_plug_overmold_mm": 18.0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "recessed_opening_tight",
+            "inputs": {"usbc_recess_opening_mm": 18.5, "usbc_plug_overmold_mm": 18.0},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "recessed_opening_at_limit",
+            "inputs": {"usbc_recess_opening_mm": 18.9, "usbc_plug_overmold_mm": 18.0},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "ASM_COVER_REMOVE_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-INTERNAL-ME-001",
+      "source_revision": "2026-A",
+      "source_clause": "assembly: cover removal path along +Z must be free of interference",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "assembly",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "zero",
+        "field": "removal_path_interferences"
+      },
+      "severity": "error",
+      "recommendation": "clear the +Z cover removal path of any interfering component",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["assembly"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "cover_path_free",
+            "inputs": {"removal_path_interferences": 0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "cover_path_blocked",
+            "inputs": {"removal_path_interferences": 1},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "cover_path_still_free",
+            "inputs": {"removal_path_interferences": 0},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "ASM_COLLISION_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-INTERNAL-ME-001",
+      "source_revision": "2026-A",
+      "source_clause": "assembly: no two components may interfere (geometry kernel check owners MEGIS-VAL-001)",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "assembly",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "zero",
+        "field": "collision_count"
+      },
+      "severity": "error",
+      "recommendation": "reposition components until no interference remains",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["assembly"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": true,
+        "requires_signoff": true,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "no_collisions",
+            "inputs": {"collision_count": 0},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "two_collisions",
+            "inputs": {"collision_count": 2},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "still_no_collisions",
+            "inputs": {"collision_count": 0},
+            "expect": "pass"
+          }
+        ]
+      }
+    },
+    {
+      "rule_id": "TOL_GENERAL_001",
+      "version": "1.0.0",
+      "status": "in_review",
+      "source": "SRC-ISO-2768-1",
+      "source_revision": "2026-A",
+      "source_clause": "ISO 2768-1 general tolerance class deviation limit for unchecked dimensions",
+      "owner": "mechanical_engineering",
+      "reviewed_by": null,
+      "scope": {
+        "domain": "tolerance",
+        "component_types": ["enclosure"]
+      },
+      "condition": {
+        "type": "within",
+        "field": "dimension_deviation_mm",
+        "nominal": 0.0,
+        "tolerance": 0.3
+      },
+      "severity": "info",
+      "recommendation": "apply a general tolerance class when dimensions are left unchecked",
+      "auto_fix": false,
+      "effective_date": "2026-09-22",
+      "applicability": {
+        "envelope_ref": "envelope.cnc_enclosure@1.0.0",
+        "materials": ["AL6061-T6"],
+        "processes": ["cnc_3axis"]
+      },
+      "waiver_category": "standard",
+      "waiver_policy": {
+        "waivable": false,
+        "requires_signoff": false,
+        "revalidation_required": true
+      },
+      "tests": {
+        "positive": [
+          {
+            "name": "deviation_within_class",
+            "inputs": {"dimension_deviation_mm": 0.2},
+            "expect": "pass"
+          }
+        ],
+        "negative": [
+          {
+            "name": "deviation_exceeds_class",
+            "inputs": {"dimension_deviation_mm": 0.6},
+            "expect": "fail"
+          }
+        ],
+        "boundary": [
+          {
+            "name": "deviation_at_class_limit",
+            "inputs": {"dimension_deviation_mm": 0.3},
+            "expect": "pass"
+          }
+        ]
+      }
+    }
+  ]
+}

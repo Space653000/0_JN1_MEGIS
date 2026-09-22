@@ -39,6 +39,20 @@ from .sources import (
     source_by_id,
     validate_source,
 )
+
+from .packs import (
+    PACK_SCHEMA_PATH,
+    RULEPACK_PATH,
+    RuleEvaluation,
+    RulePackError,
+    condition_holds,
+    evaluate_pack_tests,
+    evaluate_rule,
+    guard_release_evaluation,
+    load_rule_pack,
+    run_rule_tests,
+    severity_message,
+)
 __all__ = [
     "ALLOWED_TRANSITIONS",
     "EVENT_CONDITIONS",
@@ -72,4 +86,15 @@ __all__ = [
     "registry_issues",
     "source_by_id",
     "validate_source",
+    "PACK_SCHEMA_PATH",
+    "RULEPACK_PATH",
+    "RuleEvaluation",
+    "RulePackError",
+    "condition_holds",
+    "evaluate_pack_tests",
+    "evaluate_rule",
+    "guard_release_evaluation",
+    "load_rule_pack",
+    "run_rule_tests",
+    "severity_message",
 ]

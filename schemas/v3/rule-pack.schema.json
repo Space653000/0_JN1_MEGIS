@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v3/rule-pack.schema.json",
+  "title": "MEGIS Rule Pack Container (v3)",
+  "description": "Container for a versioned rule pack (G3-VAL-002). Each rule inside must also satisfy schemas/v3/rule.schema.json, which is enforced by the pack loader; this schema only constrains the pack envelope.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "workItem",
+    "pack_id",
+    "title",
+    "rules"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "workItem": { "const": "G3-VAL-002" },
+    "pack_id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "rules": {
+      "type": "array",
+      "minItems": 20,
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "required": ["rule_id", "version", "status", "source", "severity", "condition", "tests"],
+        "properties": {
+          "rule_id": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]+$" },
+          "version": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["draft", "in_review", "approved", "deprecated"] },
+          "source": { "type": "string", "pattern": "^SRC-[A-Z0-9-]+$" },
+          "severity": { "enum": ["error", "warning", "info"] },
+          "condition": { "type": "object" },
+          "tests": {
+            "type": "object",
+            "required": ["positive", "negative", "boundary"],
+            "properties": {
+              "positive": { "type": "array" },
+              "negative": { "type": "array" },
+              "boundary": { "type": "array" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}
