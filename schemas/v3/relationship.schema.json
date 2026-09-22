@@ -1,0 +1,255 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v3/relationship.schema.json",
+  "title": "MEGIS Relationship (v3)",
+  "description": "Relationship between module or interface entities following the closed 4.16 vocabulary; every relationship carries provenance and the type-specific validation parameters (G4-GRF-001).",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "relationship_id",
+    "type",
+    "source",
+    "target",
+    "parameters",
+    "provenance"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "relationship_id": {
+      "type": "string",
+      "pattern": "^rel\\.[a-z][a-z0-9_]*$"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "contains",
+        "mounts_to",
+        "fastens",
+        "opens_through",
+        "clears",
+        "aligns",
+        "covers",
+        "removable_along"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "value",
+          "provenance"
+        ],
+        "properties": {
+          "value": {},
+          "provenance": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "contains"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "required": [
+              "envelope_ref",
+              "cavity_ref"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "mounts_to"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "required": [
+              "fastener_ref",
+              "boss_ref",
+              "engagement_length_mm",
+              "hole_alignment_tolerance_mm"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "fastens"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "required": [
+              "screw_length_mm",
+              "through_hole_ref",
+              "thread_ref"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "opens_through"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "required": [
+              "opening_ref",
+              "interface_envelope_ref",
+              "clearance_gap_mm"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "clears"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "required": [
+              "minimum_distance_mm"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "aligns"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "required": [
+              "axis",
+              "tolerance_mm"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "covers"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "required": [
+              "opening_ref",
+              "mating_face_ref",
+              "interference_check_ref"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "removable_along"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "parameters": {
+            "required": [
+              "direction",
+              "sweep_check_ref"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

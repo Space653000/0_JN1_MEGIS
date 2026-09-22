@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/relationship-corpus.schema.json",
+  "title": "Relationship Vocabulary Corpus",
+  "description": "Table-driven positive and negative cases for G4-GRF-001 relationship vocabulary semantics.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "workItem",
+    "referenceDate",
+    "cases"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "workItem": {
+      "const": "G4-GRF-001"
+    },
+    "referenceDate": {
+      "type": "string"
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 16,
+      "items": {
+        "type": "object",
+        "required": [
+          "case_id",
+          "name",
+          "input",
+          "expect"
+        ],
+        "properties": {
+          "case_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "input": {
+            "type": "object"
+          },
+          "expect": {
+            "type": "object",
+            "required": [
+              "valid",
+              "type",
+              "typeIndex",
+              "errorContains"
+            ],
+            "properties": {
+              "valid": {
+                "type": "boolean"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "contains",
+                  "mounts_to",
+                  "fastens",
+                  "opens_through",
+                  "clears",
+                  "aligns",
+                  "covers",
+                  "removable_along",
+                  "invalid"
+                ]
+              },
+              "typeIndex": {
+                "type": "integer",
+                "minimum": -1,
+                "maximum": 7
+              },
+              "schemaErrorContains": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "semanticErrorContains": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "errorContains": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

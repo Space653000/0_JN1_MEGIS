@@ -1,0 +1,464 @@
+{
+  "allChecksPassed": true,
+  "blueprintRef": "v3.0 4.16 relationship vocabulary, 4.16 type meanings, 26.7 G4-GRF-001",
+  "evidenceLevel": "E3",
+  "referenceDate": "2026-09-22",
+  "schemaVersion": "1.0.0",
+  "workItem": "G4-GRF-001",
+  "verifiedAt": "2026-09-22T17:00:00+08:00",
+  "relationshipVersion": "megis.relationship@1.0.0",
+  "engineeringArtifactGenerated": false,
+  "releaseArtifactGenerated": false,
+  "input": {
+    "corpus": "contracts\\g4\\golden\\relationship-corpus.json",
+    "corpusSchema": "schemas\\v3\\relationship-corpus.schema.json",
+    "relationshipSchema": "schemas\\v3\\relationship.schema.json"
+  },
+  "summary": {
+    "cases": 20,
+    "positiveCases": 8,
+    "negativeCases": 12,
+    "relationshipTypes": [
+      "contains",
+      "mounts_to",
+      "fastens",
+      "opens_through",
+      "clears",
+      "aligns",
+      "covers",
+      "removable_along"
+    ]
+  },
+  "checks": [
+    {
+      "name": "golden corpus is schema conformant",
+      "passed": true,
+      "detail": {
+        "errors": []
+      }
+    },
+    {
+      "name": "corpus covers at least 16 table-driven cases",
+      "passed": true,
+      "detail": {
+        "cases": 20
+      }
+    },
+    {
+      "name": "case enclosure-contains-pcb-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Enclosure contains PCB inside its cavity",
+        "expectValid": true,
+        "valid": true,
+        "schemaConformant": true,
+        "semanticConformant": true,
+        "type": "contains",
+        "expectTypeIndex": 0,
+        "achievedTypeIndex": 0
+      }
+    },
+    {
+      "name": "case pcb-mounts-to-base-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "PCB mounts to fixture base with fasteners",
+        "expectValid": true,
+        "valid": true,
+        "schemaConformant": true,
+        "semanticConformant": true,
+        "type": "mounts_to",
+        "expectTypeIndex": 1,
+        "achievedTypeIndex": 1
+      }
+    },
+    {
+      "name": "case m3-fastens-pcb-to-base-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "M3 fastener connects PCB to base",
+        "expectValid": true,
+        "valid": true,
+        "schemaConformant": true,
+        "semanticConformant": true,
+        "type": "fastens",
+        "expectTypeIndex": 2,
+        "achievedTypeIndex": 2
+      }
+    },
+    {
+      "name": "case usbc-opens-through-wall-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "USB-C interface opens through enclosure wall",
+        "expectValid": true,
+        "valid": true,
+        "schemaConformant": true,
+        "semanticConformant": true,
+        "type": "opens_through",
+        "expectTypeIndex": 3,
+        "achievedTypeIndex": 3
+      }
+    },
+    {
+      "name": "case pcb-clears-bracket-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "PCB maintains minimum distance to bracket",
+        "expectValid": true,
+        "valid": true,
+        "schemaConformant": true,
+        "semanticConformant": true,
+        "type": "clears",
+        "expectTypeIndex": 4,
+        "achievedTypeIndex": 4
+      }
+    },
+    {
+      "name": "case usbc-aligns-axis-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "USB-C aligns to receptacle axis",
+        "expectValid": true,
+        "valid": true,
+        "schemaConformant": true,
+        "semanticConformant": true,
+        "type": "aligns",
+        "expectTypeIndex": 5,
+        "achievedTypeIndex": 5
+      }
+    },
+    {
+      "name": "case cover-covers-top-opening-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Cover covers the enclosure top opening",
+        "expectValid": true,
+        "valid": true,
+        "schemaConformant": true,
+        "semanticConformant": true,
+        "type": "covers",
+        "expectTypeIndex": 6,
+        "achievedTypeIndex": 6
+      }
+    },
+    {
+      "name": "case pcb-removable-along-z-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "PCB removable along Z direction",
+        "expectValid": true,
+        "valid": true,
+        "schemaConformant": true,
+        "semanticConformant": true,
+        "type": "removable_along",
+        "expectTypeIndex": 7,
+        "achievedTypeIndex": 7
+      }
+    },
+    {
+      "name": "case contains-missing-cavity-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "contains without cavity reference rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": false,
+        "semanticConformant": false,
+        "type": "contains",
+        "expectTypeIndex": 0,
+        "achievedTypeIndex": 0
+      }
+    },
+    {
+      "name": "case mounts-to-negative-tolerance-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "mounts_to with negative alignment tolerance rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": true,
+        "semanticConformant": false,
+        "type": "mounts_to",
+        "expectTypeIndex": 1,
+        "achievedTypeIndex": 1
+      }
+    },
+    {
+      "name": "case fastens-zero-screw-length-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "fastens with zero screw length rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": true,
+        "semanticConformant": false,
+        "type": "fastens",
+        "expectTypeIndex": 2,
+        "achievedTypeIndex": 2
+      }
+    },
+    {
+      "name": "case opens-through-missing-gap-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "opens_through without clearance gap rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": false,
+        "semanticConformant": false,
+        "type": "opens_through",
+        "expectTypeIndex": 3,
+        "achievedTypeIndex": 3
+      }
+    },
+    {
+      "name": "case clears-negative-distance-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "clears with negative minimum distance rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": true,
+        "semanticConformant": false,
+        "type": "clears",
+        "expectTypeIndex": 4,
+        "achievedTypeIndex": 4
+      }
+    },
+    {
+      "name": "case aligns-empty-axis-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "aligns with empty axis rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": true,
+        "semanticConformant": false,
+        "type": "aligns",
+        "expectTypeIndex": 5,
+        "achievedTypeIndex": 5
+      }
+    },
+    {
+      "name": "case covers-missing-interference-check-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "covers without interference check rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": false,
+        "semanticConformant": false,
+        "type": "covers",
+        "expectTypeIndex": 6,
+        "achievedTypeIndex": 6
+      }
+    },
+    {
+      "name": "case removable-along-empty-direction-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "removable_along with empty direction rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": true,
+        "semanticConformant": false,
+        "type": "removable_along",
+        "expectTypeIndex": 7,
+        "achievedTypeIndex": 7
+      }
+    },
+    {
+      "name": "case unknown-type-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Unknown relationship type rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": false,
+        "semanticConformant": false,
+        "type": "bonded",
+        "expectTypeIndex": -1,
+        "achievedTypeIndex": -1
+      }
+    },
+    {
+      "name": "case self-relationship-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Relationship between an entity and itself rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": true,
+        "semanticConformant": false,
+        "type": "contains",
+        "expectTypeIndex": 0,
+        "achievedTypeIndex": 0
+      }
+    },
+    {
+      "name": "case missing-top-provenance-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Relationship without provenance rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": false,
+        "semanticConformant": false,
+        "type": "contains",
+        "expectTypeIndex": 0,
+        "achievedTypeIndex": 0
+      }
+    },
+    {
+      "name": "case parameter-missing-provenance-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Parameter entry without provenance rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": false,
+        "semanticConformant": false,
+        "type": "clears",
+        "expectTypeIndex": 4,
+        "achievedTypeIndex": 4
+      }
+    },
+    {
+      "name": "type contains has positive and negative evidence",
+      "passed": true,
+      "detail": {
+        "positive": true,
+        "negative": true
+      }
+    },
+    {
+      "name": "type contains has a defined meaning",
+      "passed": true,
+      "detail": {
+        "meaning": "A 的內腔容納 B；B 的 clearance envelope 完全在 A 內腔內"
+      }
+    },
+    {
+      "name": "type mounts_to has positive and negative evidence",
+      "passed": true,
+      "detail": {
+        "positive": true,
+        "negative": true
+      }
+    },
+    {
+      "name": "type mounts_to has a defined meaning",
+      "passed": true,
+      "detail": {
+        "meaning": "B 以 fastener 固定於 A；孔位對齊、boss 存在、嚙合長度"
+      }
+    },
+    {
+      "name": "type fastens has positive and negative evidence",
+      "passed": true,
+      "detail": {
+        "positive": true,
+        "negative": true
+      }
+    },
+    {
+      "name": "type fastens has a defined meaning",
+      "passed": true,
+      "detail": {
+        "meaning": "fastener 連接 A 與 B；螺絲長度、通孔、內螺紋"
+      }
+    },
+    {
+      "name": "type opens_through has positive and negative evidence",
+      "passed": true,
+      "detail": {
+        "positive": true,
+        "negative": true
+      }
+    },
+    {
+      "name": "type opens_through has a defined meaning",
+      "passed": true,
+      "detail": {
+        "meaning": "介面 B 穿過 A 的壁面；開口存在、開口 ≥ 介面 envelope + 間隙"
+      }
+    },
+    {
+      "name": "type clears has positive and negative evidence",
+      "passed": true,
+      "detail": {
+        "positive": true,
+        "negative": true
+      }
+    },
+    {
+      "name": "type clears has a defined meaning",
+      "passed": true,
+      "detail": {
+        "meaning": "A 與 B 最小距離 ≥ d；距離計算"
+      }
+    },
+    {
+      "name": "type aligns has positive and negative evidence",
+      "passed": true,
+      "detail": {
+        "positive": true,
+        "negative": true
+      }
+    },
+    {
+      "name": "type aligns has a defined meaning",
+      "passed": true,
+      "detail": {
+        "meaning": "A 與 B 在指定軸對齊；軸向偏差 ≤ 容差"
+      }
+    },
+    {
+      "name": "type covers has positive and negative evidence",
+      "passed": true,
+      "detail": {
+        "positive": true,
+        "negative": true
+      }
+    },
+    {
+      "name": "type covers has a defined meaning",
+      "passed": true,
+      "detail": {
+        "meaning": "A 覆蓋 B 的開口；配合面與干涉檢查"
+      }
+    },
+    {
+      "name": "type removable_along has positive and negative evidence",
+      "passed": true,
+      "detail": {
+        "positive": true,
+        "negative": true
+      }
+    },
+    {
+      "name": "type removable_along has a defined meaning",
+      "passed": true,
+      "detail": {
+        "meaning": "A 可沿方向移除；掃掠干涉檢查"
+      }
+    },
+    {
+      "name": "closed eight-type vocabulary is stable",
+      "passed": true,
+      "detail": {
+        "types": [
+          "contains",
+          "mounts_to",
+          "fastens",
+          "opens_through",
+          "clears",
+          "aligns",
+          "covers",
+          "removable_along"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,584 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G4-GRF-001",
+  "referenceDate": "2026-09-22",
+  "cases": [
+    {
+      "case_id": "enclosure-contains-pcb-positive",
+      "name": "Enclosure contains PCB inside its cavity",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.enclosure_contains_pcb",
+        "type": "contains",
+        "source": "mod.enclosure",
+        "target": "mod.pcb",
+        "parameters": {
+          "envelope_ref": {
+            "value": "env.pcb_clearance@1.0.0",
+            "provenance": ["spec.enclosure@2026-09-22"]
+          },
+          "cavity_ref": {
+            "value": "cavity.enclosure_main@1.0.0",
+            "provenance": ["spec.enclosure@2026-09-22"]
+          }
+        },
+        "provenance": ["spec.enclosure@2026-09-22"]
+      },
+      "expect": {
+        "valid": true,
+        "type": "contains",
+        "typeIndex": 0,
+        "errorContains": []
+      }
+    },
+    {
+      "case_id": "pcb-mounts-to-base-positive",
+      "name": "PCB mounts to fixture base with fasteners",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.pcb_mounts_to_base",
+        "type": "mounts_to",
+        "source": "mod.pcb",
+        "target": "mod.base",
+        "parameters": {
+          "fastener_ref": {
+            "value": "mod.m3_fastener@1.0.0",
+            "provenance": ["spec.pcb@2026-09-22"]
+          },
+          "boss_ref": {
+            "value": "face.base_mount_boss",
+            "provenance": ["spec.pcb@2026-09-22"]
+          },
+          "engagement_length_mm": {
+            "value": 4.0,
+            "provenance": ["datasheet.iso4762@2026-09-22"]
+          },
+          "hole_alignment_tolerance_mm": {
+            "value": 0.1,
+            "provenance": ["datasheet.iso4762@2026-09-22"]
+          }
+        },
+        "provenance": ["spec.pcb@2026-09-22"]
+      },
+      "expect": {
+        "valid": true,
+        "type": "mounts_to",
+        "typeIndex": 1,
+        "errorContains": []
+      }
+    },
+    {
+      "case_id": "m3-fastens-pcb-to-base-positive",
+      "name": "M3 fastener connects PCB to base",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.m3_fastens_pcb_base",
+        "type": "fastens",
+        "source": "mod.m3_fastener",
+        "target": "mod.pcb",
+        "parameters": {
+          "screw_length_mm": {
+            "value": 6.0,
+            "provenance": ["datasheet.iso4762@2026-09-22"]
+          },
+          "through_hole_ref": {
+            "value": "hole.pcb_counterbore",
+            "provenance": ["spec.pcb@2026-09-22"]
+          },
+          "thread_ref": {
+            "value": "thread.base_thread_insert",
+            "provenance": ["spec.base@2026-09-22"]
+          }
+        },
+        "provenance": ["datasheet.iso4762@2026-09-22"]
+      },
+      "expect": {
+        "valid": true,
+        "type": "fastens",
+        "typeIndex": 2,
+        "errorContains": []
+      }
+    },
+    {
+      "case_id": "usbc-opens-through-wall-positive",
+      "name": "USB-C interface opens through enclosure wall",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.usbc_opens_through_wall",
+        "type": "opens_through",
+        "source": "mod.usbc",
+        "target": "mod.enclosure",
+        "parameters": {
+          "opening_ref": {
+            "value": "opening.wall_usbc",
+            "provenance": ["spec.enclosure@2026-09-22"]
+          },
+          "interface_envelope_ref": {
+            "value": "env.usbc_cavity@1.0.0",
+            "provenance": ["datasheet.usbc@2026-09-22"]
+          },
+          "clearance_gap_mm": {
+            "value": 1.5,
+            "provenance": ["spec.enclosure@2026-09-22"]
+          }
+        },
+        "provenance": ["spec.enclosure@2026-09-22"]
+      },
+      "expect": {
+        "valid": true,
+        "type": "opens_through",
+        "typeIndex": 3,
+        "errorContains": []
+      }
+    },
+    {
+      "case_id": "pcb-clears-bracket-positive",
+      "name": "PCB maintains minimum distance to bracket",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.pcb_clears_bracket",
+        "type": "clears",
+        "source": "mod.pcb",
+        "target": "face.bracket_inner",
+        "parameters": {
+          "minimum_distance_mm": {
+            "value": 3.0,
+            "provenance": ["spec.layout@2026-09-22"]
+          }
+        },
+        "provenance": ["spec.layout@2026-09-22"]
+      },
+      "expect": {
+        "valid": true,
+        "type": "clears",
+        "typeIndex": 4,
+        "errorContains": []
+      }
+    },
+    {
+      "case_id": "usbc-aligns-axis-positive",
+      "name": "USB-C aligns to receptacle axis",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.usbc_aligns_receptacle",
+        "type": "aligns",
+        "source": "mod.usbc",
+        "target": "receptacle.panel_usbc",
+        "parameters": {
+          "axis": {
+            "value": "z",
+            "provenance": ["spec.layout@2026-09-22"]
+          },
+          "tolerance_mm": {
+            "value": 0.05,
+            "provenance": ["datasheet.usbc@2026-09-22"]
+          }
+        },
+        "provenance": ["spec.layout@2026-09-22"]
+      },
+      "expect": {
+        "valid": true,
+        "type": "aligns",
+        "typeIndex": 5,
+        "errorContains": []
+      }
+    },
+    {
+      "case_id": "cover-covers-top-opening-positive",
+      "name": "Cover covers the enclosure top opening",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.cover_covers_top",
+        "type": "covers",
+        "source": "mod.cover",
+        "target": "mod.enclosure",
+        "parameters": {
+          "opening_ref": {
+            "value": "opening.enclosure_top",
+            "provenance": ["spec.enclosure@2026-09-22"]
+          },
+          "mating_face_ref": {
+            "value": "face.cover_seal",
+            "provenance": ["spec.cover@2026-09-22"]
+          },
+          "interference_check_ref": {
+            "value": "check.cover_seal@1.0.0",
+            "provenance": ["spec.cover@2026-09-22"]
+          }
+        },
+        "provenance": ["spec.cover@2026-09-22"]
+      },
+      "expect": {
+        "valid": true,
+        "type": "covers",
+        "typeIndex": 6,
+        "errorContains": []
+      }
+    },
+    {
+      "case_id": "pcb-removable-along-z-positive",
+      "name": "PCB removable along Z direction",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.pcb_removable_z",
+        "type": "removable_along",
+        "source": "mod.pcb",
+        "target": "dir.z_axis",
+        "parameters": {
+          "direction": {
+            "value": "z",
+            "provenance": ["spec.layout@2026-09-22"]
+          },
+          "sweep_check_ref": {
+            "value": "check.pcb_extract@1.0.0",
+            "provenance": ["spec.layout@2026-09-22"]
+          }
+        },
+        "provenance": ["spec.layout@2026-09-22"]
+      },
+      "expect": {
+        "valid": true,
+        "type": "removable_along",
+        "typeIndex": 7,
+        "errorContains": []
+      }
+    },
+    {
+      "case_id": "contains-missing-cavity-negative",
+      "name": "contains without cavity reference rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.bad_contains",
+        "type": "contains",
+        "source": "mod.enclosure",
+        "target": "mod.pcb",
+        "parameters": {
+          "envelope_ref": {
+            "value": "env.pcb_clearance@1.0.0",
+            "provenance": ["spec.enclosure@2026-09-22"]
+          }
+        },
+        "provenance": ["spec.enclosure@2026-09-22"]
+      },
+      "expect": {
+        "valid": false,
+        "type": "contains",
+        "typeIndex": 0,
+        "schemaErrorContains": ["/parameters/cavity_ref"],
+        "errorContains": ["/parameters/cavity_ref"]
+      }
+    },
+    {
+      "case_id": "mounts-to-negative-tolerance-negative",
+      "name": "mounts_to with negative alignment tolerance rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.bad_mounts",
+        "type": "mounts_to",
+        "source": "mod.pcb",
+        "target": "mod.base",
+        "parameters": {
+          "fastener_ref": {
+            "value": "mod.m3_fastener@1.0.0",
+            "provenance": ["spec.pcb@2026-09-22"]
+          },
+          "boss_ref": {
+            "value": "face.base_mount_boss",
+            "provenance": ["spec.pcb@2026-09-22"]
+          },
+          "engagement_length_mm": {
+            "value": 4.0,
+            "provenance": ["datasheet.iso4762@2026-09-22"]
+          },
+          "hole_alignment_tolerance_mm": {
+            "value": -0.1,
+            "provenance": ["datasheet.iso4762@2026-09-22"]
+          }
+        },
+        "provenance": ["spec.pcb@2026-09-22"]
+      },
+      "expect": {
+        "valid": false,
+        "type": "mounts_to",
+        "typeIndex": 1,
+        "semanticErrorContains": ["/parameters/hole_alignment_tolerance_mm"],
+        "errorContains": ["/parameters/hole_alignment_tolerance_mm"]
+      }
+    },
+    {
+      "case_id": "fastens-zero-screw-length-negative",
+      "name": "fastens with zero screw length rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.bad_fastens",
+        "type": "fastens",
+        "source": "mod.m3_fastener",
+        "target": "mod.pcb",
+        "parameters": {
+          "screw_length_mm": {
+            "value": 0.0,
+            "provenance": ["datasheet.iso4762@2026-09-22"]
+          },
+          "through_hole_ref": {
+            "value": "hole.pcb_counterbore",
+            "provenance": ["spec.pcb@2026-09-22"]
+          },
+          "thread_ref": {
+            "value": "thread.base_thread_insert",
+            "provenance": ["spec.base@2026-09-22"]
+          }
+        },
+        "provenance": ["datasheet.iso4762@2026-09-22"]
+      },
+      "expect": {
+        "valid": false,
+        "type": "fastens",
+        "typeIndex": 2,
+        "semanticErrorContains": ["/parameters/screw_length_mm"],
+        "errorContains": ["/parameters/screw_length_mm"]
+      }
+    },
+    {
+      "case_id": "opens-through-missing-gap-negative",
+      "name": "opens_through without clearance gap rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.bad_opens",
+        "type": "opens_through",
+        "source": "mod.usbc",
+        "target": "mod.enclosure",
+        "parameters": {
+          "opening_ref": {
+            "value": "opening.wall_usbc",
+            "provenance": ["spec.enclosure@2026-09-22"]
+          },
+          "interface_envelope_ref": {
+            "value": "env.usbc_cavity@1.0.0",
+            "provenance": ["datasheet.usbc@2026-09-22"]
+          }
+        },
+        "provenance": ["spec.enclosure@2026-09-22"]
+      },
+      "expect": {
+        "valid": false,
+        "type": "opens_through",
+        "typeIndex": 3,
+        "schemaErrorContains": ["/parameters/clearance_gap_mm"],
+        "errorContains": ["/parameters/clearance_gap_mm"]
+      }
+    },
+    {
+      "case_id": "clears-negative-distance-negative",
+      "name": "clears with negative minimum distance rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.bad_clears",
+        "type": "clears",
+        "source": "mod.pcb",
+        "target": "face.bracket_inner",
+        "parameters": {
+          "minimum_distance_mm": {
+            "value": -1.0,
+            "provenance": ["spec.layout@2026-09-22"]
+          }
+        },
+        "provenance": ["spec.layout@2026-09-22"]
+      },
+      "expect": {
+        "valid": false,
+        "type": "clears",
+        "typeIndex": 4,
+        "semanticErrorContains": ["/parameters/minimum_distance_mm"],
+        "errorContains": ["/parameters/minimum_distance_mm"]
+      }
+    },
+    {
+      "case_id": "aligns-empty-axis-negative",
+      "name": "aligns with empty axis rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.bad_aligns",
+        "type": "aligns",
+        "source": "mod.usbc",
+        "target": "receptacle.panel_usbc",
+        "parameters": {
+          "axis": {
+            "value": "",
+            "provenance": ["spec.layout@2026-09-22"]
+          },
+          "tolerance_mm": {
+            "value": 0.05,
+            "provenance": ["datasheet.usbc@2026-09-22"]
+          }
+        },
+        "provenance": ["spec.layout@2026-09-22"]
+      },
+      "expect": {
+        "valid": false,
+        "type": "aligns",
+        "typeIndex": 5,
+        "semanticErrorContains": ["/parameters/axis"],
+        "errorContains": ["/parameters/axis"]
+      }
+    },
+    {
+      "case_id": "covers-missing-interference-check-negative",
+      "name": "covers without interference check rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.bad_covers",
+        "type": "covers",
+        "source": "mod.cover",
+        "target": "mod.enclosure",
+        "parameters": {
+          "opening_ref": {
+            "value": "opening.enclosure_top",
+            "provenance": ["spec.enclosure@2026-09-22"]
+          },
+          "mating_face_ref": {
+            "value": "face.cover_seal",
+            "provenance": ["spec.cover@2026-09-22"]
+          }
+        },
+        "provenance": ["spec.cover@2026-09-22"]
+      },
+      "expect": {
+        "valid": false,
+        "type": "covers",
+        "typeIndex": 6,
+        "schemaErrorContains": ["/parameters/interference_check_ref"],
+        "errorContains": ["/parameters/interference_check_ref"]
+      }
+    },
+    {
+      "case_id": "removable-along-empty-direction-negative",
+      "name": "removable_along with empty direction rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.bad_removable",
+        "type": "removable_along",
+        "source": "mod.pcb",
+        "target": "dir.z_axis",
+        "parameters": {
+          "direction": {
+            "value": "",
+            "provenance": ["spec.layout@2026-09-22"]
+          },
+          "sweep_check_ref": {
+            "value": "check.pcb_extract@1.0.0",
+            "provenance": ["spec.layout@2026-09-22"]
+          }
+        },
+        "provenance": ["spec.layout@2026-09-22"]
+      },
+      "expect": {
+        "valid": false,
+        "type": "removable_along",
+        "typeIndex": 7,
+        "semanticErrorContains": ["/parameters/direction"],
+        "errorContains": ["/parameters/direction"]
+      }
+    },
+    {
+      "case_id": "unknown-type-negative",
+      "name": "Unknown relationship type rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.bad_type",
+        "type": "bonded",
+        "source": "mod.pcb",
+        "target": "mod.base",
+        "parameters": {},
+        "provenance": ["spec.pcb@2026-09-22"]
+      },
+      "expect": {
+        "valid": false,
+        "type": "invalid",
+        "typeIndex": -1,
+        "schemaErrorContains": ["/type"],
+        "errorContains": ["/type"]
+      }
+    },
+    {
+      "case_id": "self-relationship-negative",
+      "name": "Relationship between an entity and itself rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.self_loop",
+        "type": "contains",
+        "source": "mod.self",
+        "target": "mod.self",
+        "parameters": {
+          "envelope_ref": {
+            "value": "env.self@1.0.0",
+            "provenance": ["spec.self@2026-09-22"]
+          },
+          "cavity_ref": {
+            "value": "cavity.self@1.0.0",
+            "provenance": ["spec.self@2026-09-22"]
+          }
+        },
+        "provenance": ["spec.self@2026-09-22"]
+      },
+      "expect": {
+        "valid": false,
+        "type": "contains",
+        "typeIndex": 0,
+        "semanticErrorContains": ["/target", "cannot relate"],
+        "errorContains": ["/target", "cannot relate"]
+      }
+    },
+    {
+      "case_id": "missing-top-provenance-negative",
+      "name": "Relationship without provenance rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.unprovenanced",
+        "type": "contains",
+        "source": "mod.enclosure",
+        "target": "mod.pcb",
+        "parameters": {
+          "envelope_ref": {
+            "value": "env.pcb_clearance@1.0.0",
+            "provenance": ["spec.enclosure@2026-09-22"]
+          },
+          "cavity_ref": {
+            "value": "cavity.enclosure_main@1.0.0",
+            "provenance": ["spec.enclosure@2026-09-22"]
+          }
+        }
+      },
+      "expect": {
+        "valid": false,
+        "type": "contains",
+        "typeIndex": 0,
+        "schemaErrorContains": ["/provenance"],
+        "errorContains": ["/provenance"]
+      }
+    },
+    {
+      "case_id": "parameter-missing-provenance-negative",
+      "name": "Parameter entry without provenance rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "relationship_id": "rel.unprovenanced_param",
+        "type": "clears",
+        "source": "mod.pcb",
+        "target": "face.bracket_inner",
+        "parameters": {
+          "minimum_distance_mm": {
+            "value": 3.0
+          }
+        },
+        "provenance": ["spec.layout@2026-09-22"]
+      },
+      "expect": {
+        "valid": false,
+        "type": "clears",
+        "typeIndex": 4,
+        "schemaErrorContains": ["/parameters/minimum_distance_mm/provenance"],
+        "errorContains": ["/parameters/minimum_distance_mm/provenance"]
+      }
+    }
+  ]
+}
