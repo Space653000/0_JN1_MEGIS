@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "1.0.0",
+  "locale": "zh-TW",
+  "sourceFingerprints": {
+    "ir": "2b2a9f5e2701bd37c326806d087dea344f11cefac59ae63617d0c60b6bb98968",
+    "rules": "73f8b697be566f91a3811cce6cdc95f39a5fb9d2f02a3658193a0f53c8cfe28c",
+    "manifest": "44b3096bab2630c245c24a7f629b8511a8de1d0c631dc2002380fdf88828c32c"
+  },
+  "paragraphs": [
+    {
+      "text": "寬度 120 mm；要求餘隙 2.0 mm，實際 2.5 mm；成熟度索引 2。",
+      "numericCitations": [
+        {
+          "token": "120",
+          "sourceId": "ir",
+          "jsonPointer": "/dimensions/width_mm"
+        },
+        {
+          "token": "2.0",
+          "sourceId": "rules",
+          "jsonPointer": "/clearance/required_mm"
+        },
+        {
+          "token": "2.5",
+          "sourceId": "rules",
+          "jsonPointer": "/clearance/actual_mm"
+        },
+        {
+          "token": "2",
+          "sourceId": "manifest",
+          "jsonPointer": "/maturity/achieved_index"
+        }
+      ]
+    }
+  ],
+  "grounding": {
+    "groundedNumbers": 4,
+    "totalNumbers": 4,
+    "rate": 1.0,
+    "verifiedSourceTypes": [
+      "engineering_ir",
+      "manifest",
+      "rule_result"
+    ]
+  }
+}

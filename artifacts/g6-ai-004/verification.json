@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G6-AI-004",
+  "evidenceLevel": "E3",
+  "checks": {
+    "schemaBound": true,
+    "traditionalChinese": true,
+    "allNumbersGrounded": true,
+    "fourOfFourNumbers": true,
+    "threeSourceTypes": true,
+    "testsPassed": true,
+    "noExternalProvider": true,
+    "noEngineeringArtifact": true
+  },
+  "allChecksPassed": true,
+  "pytest": "...............                                                          [100%]\n15 passed in 0.20s",
+  "boundaries": {
+    "externalProviderCalled": false,
+    "engineeringArtifactsGenerated": false
+  }
+}
