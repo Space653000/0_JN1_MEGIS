@@ -39,7 +39,9 @@
 | MEGIS-UI-001 | UI | error | no | 存在不安全的未知值，阻止建立 IR。 |
 | MEGIS-UI-002 | UI | error | no | 要求的能力超出已驗證的 capability envelope。 |
 | MEGIS-JOB-001 | JOB | error | yes | 工作逾時。 |
-| MEGIS-AI-001 | AI | error | yes | AI 輸出格式無效。 |
+| MEGIS-AI-001 | AI | error | yes | AI 服務目前不可用，已切換回表單流程。 |
+| MEGIS-AI-002 | AI | error | no | AI 輸出格式無效，內容未被採用。 |
+| MEGIS-AI-003 | AI | error | yes | AI 使用上限已到，已切換回表單流程。 |
 | MEGIS-IMP-001 | IMP | error | no | 輸入檔案超出限制。 |
 | MEGIS-IMP-002 | IMP | error | no | 檔案副檔名與內容不符。 |
 | MEGIS-IMP-003 | IMP | error | no | 匯入檔案無法解析。 |

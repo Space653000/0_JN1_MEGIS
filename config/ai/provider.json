@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "1.0.0",
+  "enabled": false,
+  "provider": "none",
+  "modelVersion": null,
+  "promptVersion": "intent-draft@1.0.0",
+  "limits": {
+    "timeoutMs": 5000,
+    "maxCallsPerRun": 3,
+    "maxInputTokens": 4096,
+    "maxOutputTokens": 1024,
+    "maxCostMicrounits": 0
+  }
+}

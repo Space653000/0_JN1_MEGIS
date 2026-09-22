@@ -98,8 +98,10 @@ def _normalise_ai_involvement(involvement: Mapping[str, Any] | None) -> dict[str
     source = dict(involvement) if involvement is not None else {}
     return {
         "ai_used": bool(source.get("ai_used", False)),
+        "provider": source.get("provider"),
         "model": source.get("model"),
         "prompt_versions": list(source.get("prompt_versions", [])),
+        "schema_version": source.get("schema_version", "none"),
         "llm_proposed_fields": list(source.get("llm_proposed_fields", [])),
     }
 

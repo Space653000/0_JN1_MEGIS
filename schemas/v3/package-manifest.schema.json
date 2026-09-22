@@ -170,11 +170,13 @@
     },
     "ai_involvement": {
       "type": "object",
-      "required": ["ai_used", "model", "prompt_versions", "llm_proposed_fields"],
+      "required": ["ai_used", "provider", "model", "prompt_versions", "schema_version", "llm_proposed_fields"],
       "properties": {
         "ai_used": { "type": "boolean" },
+        "provider": { "type": ["string", "null"] },
         "model": { "type": ["string", "null"] },
         "prompt_versions": { "type": "array", "items": { "type": "string" } },
+        "schema_version": { "type": "string", "minLength": 1 },
         "llm_proposed_fields": { "type": "array", "items": { "type": "string" } }
       },
       "additionalProperties": false

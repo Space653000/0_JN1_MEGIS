@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G6-AI-001",
+  "blueprintRef": "v3.0 sections 14.1, 20.3, and 26.9",
+  "verifiedAt": "2026-09-22T19:00:00+08:00",
+  "verification": "passed",
+  "allChecksPassed": true,
+  "checks": [
+    {
+      "name": "repository default is disabled and makes zero provider calls",
+      "passed": true,
+      "detail": {
+        "enabled": false,
+        "providerCalls": 0
+      }
+    },
+    {
+      "name": "deterministic form-to-IR path remains available with AI disabled",
+      "passed": true,
+      "detail": {
+        "designId": "FIXTURE-GUIDED-001",
+        "maturity": "PROTOTYPE"
+      }
+    },
+    {
+      "name": "recorded stub uses versioned provider boundary and isolated user data",
+      "passed": true,
+      "detail": {
+        "mode": "ai_assisted",
+        "provider": "recorded_stub",
+        "promptVersion": "intent-draft@1.0.0",
+        "isolatedUserData": true
+      }
+    },
+    {
+      "name": "provider failure returns MEGIS-AI error and deterministic form fallback",
+      "passed": true,
+      "detail": {
+        "mode": "form_fallback",
+        "error": {
+          "code": "MEGIS-AI-001",
+          "severity": "error",
+          "retryable": true,
+          "user_message_zh_tw": "AI 服務目前不可用，已切換回表單流程。",
+          "engineer_detail": {
+            "reason": "provider_failure",
+            "fallback": "deterministic_form",
+            "provider": "recorded_stub"
+          },
+          "entity_refs": [],
+          "correlation_id": ""
+        }
+      }
+    },
+    {
+      "name": "cost ceiling rejects output and falls back without accepting usage",
+      "passed": true,
+      "detail": {
+        "mode": "form_fallback",
+        "errorCode": "MEGIS-AI-003"
+      }
+    },
+    {
+      "name": "audit retains versions and input hash but not raw intent",
+      "passed": true,
+      "detail": {
+        "auditKeys": [
+          "inputSha256",
+          "modelVersion",
+          "outcome",
+          "promptVersion",
+          "provider",
+          "schemaVersion"
+        ],
+        "rawIntentStored": false
+      }
+    },
+    {
+      "name": "AI error registry covers provider, schema, and limit failures",
+      "passed": true,
+      "detail": {
+        "codes": [
+          "MEGIS-AI-001",
+          "MEGIS-AI-002",
+          "MEGIS-AI-003"
+        ]
+      }
+    },
+    {
+      "name": "adapter verification writes no engineering artifact",
+      "passed": true,
+      "detail": {
+        "engineeringArtifactCount": 0
+      }
+    },
+    {
+      "name": "G6-AI-001 automated tests pass",
+      "passed": true,
+      "detail": {
+        "returnCode": 0,
+        "lastLine": "17 passed in 0.24s"
+      }
+    }
+  ],
+  "boundaries": {
+    "workspaceRoot": "C:\\0_JN1_MEGIS",
+    "localOnly": true,
+    "externalProviderCalled": false,
+    "otherProjectDirectoriesModified": false,
+    "engineeringArtifactsGenerated": false,
+    "releaseArtifactsGenerated": false
+  }
+}

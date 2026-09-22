@@ -247,6 +247,8 @@ def test_build_records_truthful_content_hashes(tmp_path: Path) -> None:
         "skipped": [],
     }
     assert manifest["ai_involvement"]["ai_used"] is False
+    assert manifest["ai_involvement"]["provider"] is None
+    assert manifest["ai_involvement"]["schema_version"] == "none"
 
 
 def test_verify_valid_returns_check_ledger(tmp_path: Path) -> None:

@@ -20,7 +20,7 @@ export function ProgressPage() {
 
   return <>
     <section className="page-heading"><div><p className="eyebrow">施工管制</p><h1>施工進度中心</h1><p>只呈現具有儲存庫證據的狀態；不以推測百分比代替關卡驗收。</p></div><div className="sync-meta"><Clock3 size={16} /><span>最後更新<br /><strong>{updated}</strong></span></div></section>
-    <section className="truth-banner" aria-label="原型狀態提醒"><AlertTriangle size={20} /><div><strong>UI-0 是使用者體驗原型，不是工程生成能力。</strong><span>CAD、DFM、BOM 與工程原型套件尚未實作；G6 仍須通過真實使用者介面至 IR 驗證。</span></div></section>
+    <section className="truth-banner" aria-label="施工狀態提醒"><AlertTriangle size={20} /><div><strong>施工進度頁只顯示控制面證據，不產生工程製品。</strong><span>G5 Prototype Package 已通過 Gate；G6 正在整合正式引導流程與可關閉的 AI 輔助，尚未完成 Gate acceptance。</span></div></section>
     <section className="summary-grid" aria-label="進度摘要">
       <article className="summary-card current-summary"><div className="summary-icon"><Wrench size={20} /></div><div><span>目前關卡</span><strong>{current?.gate}</strong><small>{currentGate?.title}</small></div></article>
       <article className="summary-card"><div className="summary-icon neutral"><CheckCircle2 size={20} /></div><div><span>已驗收關卡</span><strong>{counts.accepted}</strong><small>需完整證據才計入</small></div></article>

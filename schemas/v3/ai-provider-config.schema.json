@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v3/ai-provider-config.schema.json",
+  "title": "MEGIS optional AI provider configuration",
+  "type": "object",
+  "required": ["schemaVersion", "enabled", "provider", "modelVersion", "promptVersion", "limits"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "enabled": { "type": "boolean", "default": false },
+    "provider": { "type": "string", "minLength": 1 },
+    "modelVersion": { "type": ["string", "null"], "minLength": 1 },
+    "promptVersion": { "type": "string", "minLength": 1 },
+    "limits": {
+      "type": "object",
+      "required": ["timeoutMs", "maxCallsPerRun", "maxInputTokens", "maxOutputTokens", "maxCostMicrounits"],
+      "properties": {
+        "timeoutMs": { "type": "integer", "minimum": 100, "maximum": 120000 },
+        "maxCallsPerRun": { "type": "integer", "minimum": 1, "maximum": 20 },
+        "maxInputTokens": { "type": "integer", "minimum": 1, "maximum": 100000 },
+        "maxOutputTokens": { "type": "integer", "minimum": 1, "maximum": 10000 },
+        "maxCostMicrounits": { "type": "integer", "minimum": 0, "maximum": 1000000000 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "enabled": { "const": false } }, "required": ["enabled"] },
+      "then": {
+        "properties": {
+          "provider": { "const": "none" },
+          "modelVersion": { "type": "null" }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "enabled": { "const": true } }, "required": ["enabled"] },
+      "then": {
+        "properties": {
+          "provider": { "not": { "const": "none" } },
+          "modelVersion": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}
