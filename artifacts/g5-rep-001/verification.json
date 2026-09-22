@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G5-REP-001",
+  "blueprintRef": "v3.0 G5-REP-001 clean-environment reproducibility test (blueprint §26.8: clean env and CI rebuild fingerprint identical or difference requires ADR)",
+  "evidenceLevel": "E3",
+  "referenceDate": "2026-09-22",
+  "verifiedAt": "2026-09-22T18:00:00+08:00",
+  "allChecksPassed": true,
+  "pinnedCommit": "20c74d569434c05d49a4bbb9746a15872ba65eac",
+  "goldenPath": "C:\\0_JN1_MEGIS\\contracts\\g5\\golden\\repro-fingerprints.json",
+  "goldenReportFingerprint": "316e6ed58a75d49b3b0c6cd0950f3c1c656390c901423c24e3b0c1d7c100bc58",
+  "sourceReportFingerprint": "316e6ed58a75d49b3b0c6cd0950f3c1c656390c901423c24e3b0c1d7c100bc58",
+  "cleanReportFingerprint": "316e6ed58a75d49b3b0c6cd0950f3c1c656390c901423c24e3b0c1d7c100bc58",
+  "toolchain": {
+    "os": "Windows",
+    "python": "3.11.9",
+    "machine": "AMD64",
+    "cadquery": "2.8.0",
+    "cadqueryOcp": "7.9.3.1.1",
+    "fingerprintPolicyVersion": "1.0.0"
+  },
+  "semanticDriftRequiresAdr": true,
+  "adrRequired": false,
+  "byteDriftRecording": {
+    "step": "STEP exporter embeds FILE_NAME metadata; bytes may differ, semantic fingerprint is stable",
+    "dxf": "DXF exporter embeds metadata; bytes may differ, semantic fingerprint is stable",
+    "stl": "byte-stable in the locked toolchain",
+    "bomCsv": "byte-stable (deterministic UTF-8/LF)",
+    "draftDrawingSvg": "byte-stable (no runtime fields)"
+  },
+  "artifacts": [
+    "bom.csv",
+    "draft_drawing.svg",
+    "reference_case.step",
+    "reference_case.stl",
+    "reference_case_section_z10.dxf"
+  ],
+  "inputs": {
+    "goldenSchema": "C:\\0_JN1_MEGIS\\schemas\\v3\\repro-fingerprints.schema.json",
+    "ir": "C:\\0_JN1_MEGIS\\contracts\\g1\\golden\\reference-fixture.json",
+    "tests": "C:\\0_JN1_MEGIS\\tests\\test_g5_rep_001.py"
+  },
+  "checks": [
+    {
+      "name": "source rebuild matches frozen golden fingerprints",
+      "passed": true,
+      "detail": {
+        "identical": true,
+        "differences": []
+      }
+    },
+    {
+      "name": "clean-clone rebuild matches the same frozen golden fingerprints",
+      "passed": true,
+      "detail": {
+        "identical": true,
+        "differences": []
+      }
+    },
+    {
+      "name": "source and clean-clone rebuild reports are identical",
+      "passed": true,
+      "detail": {
+        "sourceReportFingerprint": "316e6ed58a75d49b3b0c6cd0950f3c1c656390c901423c24e3b0c1d7c100bc58",
+        "cleanReportFingerprint": "316e6ed58a75d49b3b0c6cd0950f3c1c656390c901423c24e3b0c1d7c100bc58"
+      }
+    },
+    {
+      "name": "frozen CAD fingerprints equal committed g0-cad semantic fingerprints",
+      "passed": true,
+      "detail": {
+        "mismatches": []
+      }
+    },
+    {
+      "name": "error code registry is consistent",
+      "passed": true,
+      "detail": {
+        "issues": []
+      }
+    }
+  ],
+  "boundaries": {
+    "workspaceRoot": "C:\\0_JN1_MEGIS",
+    "localOnly": true,
+    "otherProjectDirectoriesModified": false,
+    "engineeringArtifactsGenerated": false,
+    "releaseArtifactsGenerated": false
+  }
+}

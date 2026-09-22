@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T17:10:00+08:00",
+  "updatedAt": "2026-09-22T18:15:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G5-REP-001",
+  "currentWorkItem": "G5-REV-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -1958,7 +1958,7 @@
       "id": "G5-REP-001",
       "title": "Clean-environment reproducibility test",
       "gate": "G5",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G5-DRW-001"
       ],
@@ -1975,16 +1975,37 @@
       "acceptanceResults": [
         {
           "criterion": "乾淨環境可依 README 重建相同內容 hash",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "schemas/v3/repro-fingerprints.schema.json",
+            "contracts/g5/golden/repro-fingerprints.json",
+            "tests/test_g5_rep_001.py",
+            "artifacts/g5-rep-001/verification.json"
+          ]
         }
       ],
-      "verificationCommands": [],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe -m pytest tests/test_g5_rep_001.py",
+        ".venv/Scripts/python.exe scripts/verify_g5_rep_001.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+        "node scripts/verify-control-plane.mjs"
+      ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "schemas/v3/repro-fingerprints.schema.json",
+        "contracts/g5/golden/repro-fingerprints.json",
+        "megis/package/repro.py",
+        "megis/package/__init__.py",
+        "tests/test_g5_rep_001.py",
+        "scripts/verify_g5_rep_001.py",
+        "artifacts/g5-rep-001/verification.json",
+        "docs/G5_REPRODUCIBILITY.md",
+        "megis/errors/registry.py",
+        "docs/ERROR_CODES.md"
+      ],
+      "verification": "passed",
+      "commitSha": "20c74d569434c05d49a4bbb9746a15872ba65eac"
     },
     {
       "id": "G6-UI-001",
@@ -3184,7 +3205,7 @@
       "id": "G5-REV-001",
       "title": "G5 自我審查",
       "gate": "G5",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G5-REP-001"
       ],

@@ -1,18 +1,20 @@
 # MEGIS Project State
 
 - Current gate: `G5 — 原型套件與可重現性`
-- Current work item: `G5-REP-001 — Clean-environment reproducibility test（in_progress）`
-- Last green commit: `eb7a2d203b047e7bb625f36a1677f6f1c22cdceb`
+- Current work item: `G5-REV-001 — G5 自我審查（in_progress）`
+- Last green commit: `20c74d569434c05d49a4bbb9746a15872ba65eac`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-22T17:15:00+08:00`
+- Updated at: `2026-09-22T18:15:00+08:00`
 
 ## Active gate: G5
 
-G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 已 accepted（`SO-0005`，2026-09-22，E4）。G5 — 原型套件與可重現性 現在為 active gate，下一個工項為 `G5-REP-001 — Clean-environment reproducibility test`（in_progress）。
+G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 已 accepted（`SO-0005`，2026-09-22，E4）。G5 — 原型套件與可重現性 現在為 active gate，下一個工項為 `G5-REV-001 — G5 自我審查`（in_progress）。
+
+G5-REP-001 已閉合（2026-09-22）：clean-environment reproducibility test（`megis/package/repro.py`）把可重現契約定義為 semantic fingerprint（STEP→normalized text、STL→triangles、DXF→vectors、BOM CSV→utf8 text、drawing SVG→svg text）；`bom.csv`／`draft_drawing.svg`／`reference_case.stl` 還 byte-穩定（byte_sha256 一致），STEP/DXF 的 bytes 因 exporter 寫入 run metadata 允許跨 run 差異，但語意指紋固定；`contracts/g5/golden/repro-fingerprints.json`（corpusId `g5-repro-fingerprints@1.0.0`）+ `schemas/v3/repro-fingerprints.schema.json`；`tests/test_g5_rep_001.py` 6 tests；`scripts/verify_g5_rep_001.py` 以乾淨 clone（子程序）三方比對 source／clean／golden 的 `reportFingerprint`，全等且 g0-cad 三格式語意指紋對齊，semantic drift 0、無需 ADR；新錯誤碼 `MEGIS-REP-001`、ErrorDomain `REP`；baseline CI 498 Python + 9 Frontend 全綠（E3）。下一工項 `G5-REV-001`（in_progress）。
 
 G5-DRW-001 已閉合（2026-09-22）：fixed-template draft drawing（`megis/package/drawing.py`）以 Engineering IR metadata 驅動、不從 STEP 猜 critical dimension，只允許固定 `fixture-a4-landscape@1.0.0` 模板，輸出不含時間戳的確定性 SVG（`svgSemanticFingerprint` 為其 SHA-256）；白名單維度只印與 IR nominal 一致的數值，永久標示 `DRAFT - ENGINEERING REVIEW REQUIRED` 與 `NOT FOR MANUFACTURING`，QA checklist 逐項記錄並可寫入 manifest；`schemas/v3/draft-drawing.schema.json` + `drawing-corpus.schema.json` + `contracts/g5/golden/drawing-corpus.json`（12 cases：5 positive／7 negative）、`tests/test_g5_drw_001.py` 21 tests、錯誤碼 `MEGIS-DRW-001/002`、ErrorDomain `DRW`；SVG 屬 draft，不含 release 宣告，也不生成工程/release artifact（E3）。baseline CI 492 Python + 9 Frontend 全綠。下一工項 `G5-REP-001`（in_progress）。
 
-G5-BOM-001 已閉合（2026-09-22）：BOM exporter（`megis/package/bom.py`）把已驗證 IR 落成十二欄、item 升冪、UTF-8／LF 的確定性 CSV；數量一律讀 IR component quantity（現行 v2 schema 下為 1，不臆測），material／revision／provenance 全來自 IR，module 由 provenance marker 追溯；`schemas/v3/bom.schema.json` + `bom-corpus.schema.json` + `contracts/g5/golden/bom-corpus.json`（12 cases：5 positive／7 negative）、`tests/test_g5_bom_001.py` 25 tests、錯誤碼 `MEGIS-PKG-003／BOM-001／002`；baseline CI 471 Python + 9 Frontend 全綠（E3）。下一工項 `G5-REP-001`（in_progress）。
+G5-BOM-001 已閉合（2026-09-22）：BOM exporter（`megis/package/bom.py`）把已驗證 IR 落成十二欄、item 升冪、UTF-8／LF 的確定性 CSV；數量一律讀 IR component quantity（現行 v2 schema 下為 1，不臆測），material／revision／provenance 全來自 IR，module 由 provenance marker 追溯；`schemas/v3/bom.schema.json` + `bom-corpus.schema.json` + `contracts/g5/golden/bom-corpus.json`（12 cases：5 positive／7 negative）、`tests/test_g5_bom_001.py` 25 tests、錯誤碼 `MEGIS-PKG-003／BOM-001／002`；baseline CI 471 Python + 9 Frontend 全綠（E3）。下一工項 `G5-REV-001`（in_progress）。
 
 G5-PKG-001 已閉合（2026-09-22）：package manifest（`schemas/v3/package-manifest.schema.json`）提供六種 fingerprint kind（byte_sha256／normalized_text_sha256／gltf_sha256／step_sha256／dxf_sha256／csv_sha256），`megis/package/manifest.py` 逐檔算 byte SHA-256、`megis/package/verify.py` 可重建與核對；`schemas/v3/manifest-corpus.schema.json` + `contracts/g5/golden/manifest-corpus.json`（18 cases：7 positive／11 negative，PKG-001×5、PKG-002×6）；`tests/test_g5_pkg_001.py` 25 tests；`megis/errors/registry.py` 新增 `MEGIS-PKG-001/002`；baseline CI 446 Python + 9 Frontend 全綠（E3）。下一工項 `G5-BOM-001`（in_progress）。
 
@@ -94,7 +96,8 @@ G3-ACC-001 已閉合（2026-09-22）：G3 gate acceptance 決策紀錄（E4，`e
 | G5-PKG-001 | done | schemas/v3/package-manifest.schema.json、schemas/v3/manifest-corpus.schema.json、contracts/g5/golden/manifest-corpus.json（18 cases）、megis/package/、tests/test_g5_pkg_001.py（25 tests）、artifacts/g5-pkg-001/verification.json；baseline CI 446 Python + 9 Frontend 全綠（E3） |
 | G5-BOM-001 | done | schemas/v3/bom.schema.json、schemas/v3/bom-corpus.schema.json、contracts/g5/golden/bom-corpus.json（12 cases）、megis/package/bom.py、tests/test_g5_bom_001.py（25 tests）、artifacts/g5-bom-001/verification.json；baseline CI 471 Python + 9 Frontend 全綠（E3） |
 | G5-DRW-001 | done | schemas/v3/draft-drawing.schema.json、schemas/v3/drawing-corpus.schema.json、contracts/g5/golden/drawing-corpus.json（12 cases）、megis/package/drawing.py、tests/test_g5_drw_001.py（21 tests）、artifacts/g5-drw-001/verification.json；baseline CI 492 Python + 9 Frontend 全綠（E3） |
-| G5-REP-001 | in_progress | Clean-environment reproducibility test |
+| G5-REP-001 | done | schemas/v3/repro-fingerprints.schema.json、contracts/g5/golden/repro-fingerprints.json、megis/package/repro.py、tests/test_g5_rep_001.py（6 tests）、scripts/verify_g5_rep_001.py、artifacts/g5-rep-001/verification.json；baseline CI 498 Python + 9 Frontend 全綠（E3） |
+| G5-REV-001 | in_progress | G5 自我審查 |
 
 ## Boundaries
 

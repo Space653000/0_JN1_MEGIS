@@ -1,8 +1,8 @@
 {
   "agent": "codex",
   "role": "builder",
-  "work_item": "G5-REP-001",
-  "claimed_at": "2026-09-22T17:15:00+08:00",
-  "expires_at": "2026-09-23T17:15:00+08:00",
-  "base_commit": "eb7a2d203b047e7bb625f36a1677f6f1c22cdceb"
+  "work_item": "G5-REV-001",
+  "claimed_at": "2026-09-22T18:15:00+08:00",
+  "expires_at": "2026-09-23T18:15:00+08:00",
+  "base_commit": "20c74d569434c05d49a4bbb9746a15872ba65eac"
 }
