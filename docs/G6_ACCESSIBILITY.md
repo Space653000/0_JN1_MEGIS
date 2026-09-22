@@ -40,6 +40,8 @@
 
 驗證器要求 12 個固定檢查 ID、具名 reviewer、帶時區時間、瀏覽器／作業系統版本與個人執行聲明。重複／缺漏 ID、額外欄位、完成狀態含 pending、失敗卻無 notes、路徑超出工作區，全部 fail closed；驗證器不會補值或替人簽名。
 
+`/progress` 的驗收 disclosure 會直接列出目前工項已備妥的支援證據與 `verificationCommands`。支援材料與 acceptance evidence 分區呈現：即使 schema、範本、測試與 verifier 均存在，只要人工紀錄仍 pending，頁面就必須顯示「待施工驗證」與「G6 尚未完成」，不得用檔案存在取代人工通過。
+
 | 路徑／情境 | 驗證步驟 | 預期 | 結果 |
 |---|---|---|---|
 | 全站首個焦點 | 只用 Tab 進入頁面 | skip link 可見且 Enter 移至主要內容 | pending |

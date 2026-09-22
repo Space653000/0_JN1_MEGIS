@@ -20,9 +20,16 @@ export function validateProgressState(state: ProgressState, options: ProgressVal
       }
     }
     validateAcceptanceResults(item, options, errors);
+    validateActivePreparation(item, errors);
     validateDoneItem(item, options, errors);
   }
   return errors;
+}
+
+function validateActivePreparation(item: WorkItem, errors: string[]) {
+  if (item.status !== "in_progress") return;
+  if (item.evidence.length === 0) errors.push(`${item.id} is in progress without supporting evidence`);
+  if (!item.verificationCommands?.length) errors.push(`${item.id} is in progress without a verification command`);
 }
 
 function validateAcceptanceResults(item: WorkItem, options: ProgressValidationOptions, errors: string[]) {

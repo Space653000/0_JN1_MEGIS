@@ -100,6 +100,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .acceptance-evidence-list ul { display: grid; gap: 6px; margin: 12px 0 0 31px; padding: 0; list-style: none; }
 .acceptance-evidence-list code { color: #8da3aa; font: .69rem ui-monospace, monospace; overflow-wrap: anywhere; }
 .acceptance-evidence-list p { margin: 11px 0 0 31px; color: #81969d; font-size: .72rem; line-height: 1.55; }
+.prepared-evidence, .verification-commands { padding: 18px 21px; border-top: 1px solid var(--line); }
+.prepared-evidence h3, .verification-commands h3 { margin: 0; color: #d7e5e8; font-size: .8rem; }
+.prepared-evidence p, .verification-commands p { margin: 7px 0 0; color: #81969d; font-size: .72rem; line-height: 1.55; }
+.prepared-evidence ul, .verification-commands ul { display: grid; gap: 7px; margin: 12px 0 0; padding: 0; list-style: none; }
+.prepared-evidence li, .verification-commands li { min-width: 0; padding: 8px 10px; border: 1px solid #243d44; border-radius: 7px; background: #09171b; }
+.prepared-evidence code, .verification-commands code { color: #9cb1b7; font: .68rem/1.45 ui-monospace, monospace; overflow-wrap: anywhere; }
+.verification-commands { background: #0b171a; }
 .acceptance-boundary { display: flex; align-items: flex-start; gap: 10px; padding: 15px 21px; color: var(--amber); background: #171512; }
 .acceptance-boundary p { margin: 0; color: #a8977e; font-size: .72rem; line-height: 1.5; } .acceptance-boundary strong { color: var(--amber); }
 .queue-table { padding: 5px 20px 10px; }

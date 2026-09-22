@@ -53,4 +53,15 @@ describe("Project progress truthfulness contract", () => {
     secondItem.status = "in_progress";
     expect(validateProgressState(state)).toContain("Expected exactly one in-progress item, found 2");
   });
+
+  it("rejects an in-progress item that cannot expose evidence and a verification path", () => {
+    const state = structuredClone(loadState());
+    const current = getWorkItem(state, state.currentWorkItem);
+    current.evidence = [];
+    current.verificationCommands = [];
+    expect(validateProgressState(state)).toEqual(expect.arrayContaining([
+      `${current.id} is in progress without supporting evidence`,
+      `${current.id} is in progress without a verification command`,
+    ]));
+  });
 });

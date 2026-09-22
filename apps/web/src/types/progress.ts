@@ -20,6 +20,7 @@ export interface WorkItem {
     status: "pending" | "passed";
     evidence: string[];
   }>;
+  verificationCommands?: string[];
   evidence: string[];
   verification: "not_run" | "passed" | "failed";
   commitSha: string | null;
