@@ -1,14 +1,16 @@
 # MEGIS Project State
 
 - Current gate: `G5 — 原型套件與可重現性`
-- Current work item: `G5-REV-001 — G5 自我審查（in_progress）`
-- Last green commit: `20c74d569434c05d49a4bbb9746a15872ba65eac`
+- Current work item: `G5-ACC-001 — G5 acceptance 決策紀錄（in_progress）`
+- Last green commit: `51259f6430cee2b1ea4c390e79d268a4dc187696`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-22T18:15:00+08:00`
+- Updated at: `2026-09-22T19:10:00+08:00`
 
 ## Active gate: G5
 
-G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 已 accepted（`SO-0005`，2026-09-22，E4）。G5 — 原型套件與可重現性 現在為 active gate，下一個工項為 `G5-REV-001 — G5 自我審查`（in_progress）。
+G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 已 accepted（`SO-0005`，2026-09-22，E4）。G5 — 原型套件與可重現性 現在為 active gate，下一個工項為 `G5-ACC-001 — G5 acceptance 決策紀錄`（in_progress）。
+
+G5-REV-001 已閉合（2026-09-22）：G5 自我審查於工作區內 `.runs/g5-rev-001-clean` 乾淨 clone 固定 commit `51259f6` 重跑 G5 全部驗證（77 tests、`verify_g5_rep_001.py` allChecksPassed 三方 reportFingerprint 全等、control-plane verifier），審查報告 passed、無 blocking finding；`execution/reviews/2026-09-22-G5-REV-001-review.md` + `artifacts/g5-rev-001/verification.json`（E3）。下一工項 `G5-ACC-001`（in_progress）。
 
 G5-REP-001 已閉合（2026-09-22）：clean-environment reproducibility test（`megis/package/repro.py`）把可重現契約定義為 semantic fingerprint（STEP→normalized text、STL→triangles、DXF→vectors、BOM CSV→utf8 text、drawing SVG→svg text）；`bom.csv`／`draft_drawing.svg`／`reference_case.stl` 還 byte-穩定（byte_sha256 一致），STEP/DXF 的 bytes 因 exporter 寫入 run metadata 允許跨 run 差異，但語意指紋固定；`contracts/g5/golden/repro-fingerprints.json`（corpusId `g5-repro-fingerprints@1.0.0`）+ `schemas/v3/repro-fingerprints.schema.json`；`tests/test_g5_rep_001.py` 6 tests；`scripts/verify_g5_rep_001.py` 以乾淨 clone（子程序）三方比對 source／clean／golden 的 `reportFingerprint`，全等且 g0-cad 三格式語意指紋對齊，semantic drift 0、無需 ADR；新錯誤碼 `MEGIS-REP-001`、ErrorDomain `REP`；baseline CI 498 Python + 9 Frontend 全綠（E3）。下一工項 `G5-REV-001`（in_progress）。
 
@@ -97,7 +99,7 @@ G3-ACC-001 已閉合（2026-09-22）：G3 gate acceptance 決策紀錄（E4，`e
 | G5-BOM-001 | done | schemas/v3/bom.schema.json、schemas/v3/bom-corpus.schema.json、contracts/g5/golden/bom-corpus.json（12 cases）、megis/package/bom.py、tests/test_g5_bom_001.py（25 tests）、artifacts/g5-bom-001/verification.json；baseline CI 471 Python + 9 Frontend 全綠（E3） |
 | G5-DRW-001 | done | schemas/v3/draft-drawing.schema.json、schemas/v3/drawing-corpus.schema.json、contracts/g5/golden/drawing-corpus.json（12 cases）、megis/package/drawing.py、tests/test_g5_drw_001.py（21 tests）、artifacts/g5-drw-001/verification.json；baseline CI 492 Python + 9 Frontend 全綠（E3） |
 | G5-REP-001 | done | schemas/v3/repro-fingerprints.schema.json、contracts/g5/golden/repro-fingerprints.json、megis/package/repro.py、tests/test_g5_rep_001.py（6 tests）、scripts/verify_g5_rep_001.py、artifacts/g5-rep-001/verification.json；baseline CI 498 Python + 9 Frontend 全綠（E3） |
-| G5-REV-001 | in_progress | G5 自我審查 |
+| G5-REV-001 | done | execution/reviews/2026-09-22-G5-REV-001-review.md、artifacts/g5-rev-001/verification.json；乾淨 clone 重跑 77 tests + verify_g5_rep_001.py allChecksPassed + control-plane verifier 全綠（E3） |
 
 ## Boundaries
 

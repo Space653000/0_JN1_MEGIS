@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-22T18:15:00+08:00",
-  "sourceCommit": "20c74d569434c05d49a4bbb9746a15872ba65eac",
+  "verifiedAt": "2026-09-22T19:15:00+08:00",
+  "sourceCommit": "51259f6430cee2b1ea4c390e79d268a4dc187696",
   "status": "passed",
   "commands": [
     {
@@ -10,11 +10,11 @@
       "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
       "deferrals": 0,
-      "secretScanTrackedFiles": 417,
+      "secretScanTrackedFiles": 419,
       "secretScanFindings": 0,
       "artifactPolicyNegativeTests": 8,
-      "artifactPolicyTrackedFiles": 420,
-      "artifactPolicyEvidenceJson": 47,
+      "artifactPolicyTrackedFiles": 422,
+      "artifactPolicyEvidenceJson": 48,
       "artifactPolicyGoldenBytes": 19333,
       "artifactPolicyHeavyArtifacts": 5,
       "pythonTests": 498,
@@ -28,36 +28,29 @@
       "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
       "deferrals": 0,
-      "currentWorkItemAfter": "G5-REV-001"
+      "currentWorkItemAfter": "G5-ACC-001"
     },
     {
-      "command": ".venv/Scripts/python.exe scripts/verify_g5_rep_001.py",
+      "command": "G5-REV-001 clean checkout self review (@51259f6)",
       "status": "passed",
-      "evidenceLevel": "E3",
-      "pinnedCommit": "20c74d569434c05d49a4bbb9746a15872ba65eac",
-      "sourceCleanGoldenIdentical": true,
-      "sourceCleanReportIdentical": true,
-      "semanticDrift": 0,
-      "adrRequired": false,
-      "g0CadFingerprintsMatched": true,
-      "cleanCloneDir": ".runs/g5-rep-001-clean"
-    },
-    {
-      "command": "G5-REP-001 close traceability (@20c74d5)",
-      "status": "passed",
-      "repCommit": "20c74d569434c05d49a4bbb9746a15872ba65eac",
+      "reviewCommit": "51259f6430cee2b1ea4c390e79d268a4dc187696",
+      "reviewDir": ".runs/g5-rev-001-clean",
       "workItemStatus": "done",
       "evidenceLevel": "E3",
-      "controlPlaneCurrentAfter": "G5-REV-001",
+      "controlPlaneCurrentAfter": "G5-ACC-001",
       "checks": {
-        "verificationPresent": true,
-        "acceptancePassed": true,
-        "commitShaPresent": true,
-        "goldenCorpusPresent": true,
-        "schemaPresent": true,
-        "testsPresent": true,
-        "verifyScriptPresent": true,
-        "errorCodesRegistered": true,
+        "pytestG5Tests": 77,
+        "pytestG5Failed": 0,
+        "pytestDetail": "pkg 25, bom 25, drw 21, rep 6",
+        "verifyScript": "scripts/verify_g5_rep_001.py",
+        "verifyScriptChecks": 5,
+        "verifyScriptAllChecksPassed": true,
+        "reportFingerprint": "316e6ed58a75d49b3b0c6cd0950f3c1c656390c901423c24e3b0c1d7c100bc58",
+        "sourceCleanGoldenIdentical": true,
+        "g0CadFingerprintsMatched": true,
+        "semanticDrift": 0,
+        "adrRequired": false,
+        "controlPlaneValid": true,
         "blockingFindings": 0
       }
     }

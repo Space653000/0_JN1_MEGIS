@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T18:15:00+08:00",
+  "updatedAt": "2026-09-22T18:45:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G5-REV-001",
+  "currentWorkItem": "G5-ACC-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -3205,7 +3205,7 @@
       "id": "G5-REV-001",
       "title": "G5 自我審查",
       "gate": "G5",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G5-REP-001"
       ],
@@ -3221,24 +3221,32 @@
       "acceptanceResults": [
         {
           "criterion": "全新 session 在乾淨 checkout 重跑 G5 全部驗證並出具 passed 報告",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "execution/reviews/2026-09-22-G5-REV-001-review.md",
+            "artifacts/g5-rev-001/verification.json"
+          ]
         }
       ],
       "verificationCommands": [
-        "node scripts/verify-control-plane.mjs"
+        "node scripts/verify-control-plane.mjs",
+        ".venv/Scripts/python.exe -m pytest tests/test_g5_pkg_001.py tests/test_g5_bom_001.py tests/test_g5_drw_001.py tests/test_g5_rep_001.py",
+        ".venv/Scripts/python.exe scripts/verify_g5_rep_001.py"
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "execution/reviews/2026-09-22-G5-REV-001-review.md",
+        "artifacts/g5-rev-001/verification.json"
+      ],
+      "verification": "passed",
+      "commitSha": "51259f6430cee2b1ea4c390e79d268a4dc187696"
     },
     {
       "id": "G5-ACC-001",
       "title": "G5 acceptance 決策紀錄",
       "gate": "G5",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G5-REV-001"
       ],

@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G5-REV-001",
+  "blueprintRef": "v3.0 G5-REV-001 G5 self-review (fresh session reruns all G5 verification in a clean checkout and issues a passed report)",
+  "evidenceLevel": "E3",
+  "referenceDate": "2026-09-22",
+  "verifiedAt": "2026-09-22T18:40:00+08:00",
+  "allChecksPassed": true,
+  "pinnedCommit": "51259f6430cee2b1ea4c390e79d268a4dc187696",
+  "cleanCloneDir": ".runs/g5-rev-001-clean",
+  "cleanCloneMethod": "git clone at pinned commit",
+  "environment": {
+    "os": "Windows",
+    "python": "3.11.9",
+    "machine": "AMD64",
+    "cadquery": "2.8.0",
+    "cadqueryOcp": "7.9.3.1.1",
+    "node": "24.17.0"
+  },
+  "summary": {
+    "gate": "G5",
+    "workItem": "G5-REV-001",
+    "implementationCommits": {
+      "G5-PKG-001": "a88f61a92cebe35702a724eaa537e780454c744a",
+      "G5-BOM-001": "1e299e5d6d94e43a48c8135aba3e1fc7e5a52b5e",
+      "G5-DRW-001": "eb7a2d203b047e7bb625f36a1677f6f1c22cdceb",
+      "G5-REP-001": "20c74d569434c05d49a4bbb9746a15872ba65eac"
+    },
+    "g5Tests": 77,
+    "g5TestsDetail": {
+      "pkg": 25,
+      "bom": 25,
+      "drw": 21,
+      "rep": 6
+    },
+    "verifyScript": "scripts/verify_g5_rep_001.py",
+    "verifyScriptChecks": 5,
+    "controlPlaneWorkItems": 74,
+    "controlPlaneGates": 14,
+    "baselineCiPythonTests": 498,
+    "baselineCiFrontendTests": 9,
+    "secretScanTrackedFiles": 417,
+    "secretScanFindings": 0,
+    "artifactPolicyTrackedFiles": 420,
+    "adrRequired": false
+  },
+  "checks": [
+    {
+      "name": "clean checkout pinned to G5 review base commit",
+      "passed": true,
+      "detail": {
+        "pinnedCommit": "51259f6430cee2b1ea4c390e79d268a4dc187696",
+        "headMatchesSource": true
+      }
+    },
+    {
+      "name": "control plane valid in clean checkout",
+      "passed": true,
+      "detail": {
+        "workItems": 74,
+        "gates": 14,
+        "currentWorkItem": "G5-REV-001",
+        "deferrals": 0
+      }
+    },
+    {
+      "name": "all G5 unit tests pass in clean checkout",
+      "passed": true,
+      "detail": {
+        "tests": 77,
+        "passed": 77,
+        "detail": "pkg 25, bom 25, drw 21, rep 6"
+      }
+    },
+    {
+      "name": "G5-REP-001 E3 verifier passes inside clean checkout",
+      "passed": true,
+      "detail": {
+        "allChecksPassed": true,
+        "reportFingerprint": "316e6ed58a75d49b3b0c6cd0950f3c1c656390c901423c24e3b0c1d7c100bc58",
+        "sourceCleanGoldenIdentical": true,
+        "g0CadFingerprintsMatched": true
+      }
+    },
+    {
+      "name": "G5 dependency chain complete",
+      "passed": true,
+      "detail": {
+        "G5-PKG-001": "done",
+        "G5-BOM-001": "done",
+        "G5-DRW-001": "done",
+        "G5-REP-001": "done",
+        "G5-REV-001": "in_progress"
+      }
+    }
+  ],
+  "findings": {
+    "blocking": 0,
+    "high": 0,
+    "notes": [
+      "Clean clone requires a pre-created .temp/pytest directory before pytest can create its basetemp; git-ignored environment prerequisite, consistent with G2/G3/G4 reviews."
+    ]
+  },
+  "boundaries": {
+    "workspaceRoot": "C:/0_JN1_MEGIS",
+    "localOnly": true,
+    "otherProjectDirectoriesModified": false,
+    "engineeringArtifactsGenerated": false,
+    "releaseArtifactsGenerated": false
+  }
+}
