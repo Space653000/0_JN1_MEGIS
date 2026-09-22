@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-22T09:00:00+08:00",
-  "sourceCommit": "efd8021f398b55598997e5ce6ceb9d1736d3b599",
+  "verifiedAt": "2026-09-22T11:00:00+08:00",
+  "sourceCommit": "127ff0789e68b182fc269dd9b209efc8d76a8cb4",
   "status": "passed",
   "commands": [
     {
@@ -10,14 +10,14 @@
       "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
       "deferrals": 0,
-      "secretScanTrackedFiles": 306,
+      "secretScanTrackedFiles": 307,
       "secretScanFindings": 0,
       "artifactPolicyNegativeTests": 8,
-      "artifactPolicyTrackedFiles": 309,
+      "artifactPolicyTrackedFiles": 310,
       "artifactPolicyEvidenceJson": 35,
       "artifactPolicyGoldenBytes": 19333,
       "artifactPolicyHeavyArtifacts": 5,
-      "pythonTests": 266,
+      "pythonTests": 294,
       "maturityScanManifests": 1,
       "artifactSmokeRecords": 13,
       "frontendTests": 9
@@ -30,18 +30,19 @@
       "deferrals": 0
     },
     {
-      "command": ".venv/Scripts/python.exe scripts/verify_g3_val_002.py",
+      "command": ".venv/Scripts/python.exe scripts/verify_g3_mat_001.py",
       "status": "passed",
-      "rules": 24,
-      "fixtures": 72,
-      "fixtureFailures": 0,
-      "verifiedSources": 5,
-      "checksPassed": 8
+      "cases": 18,
+      "passedCases": 16,
+      "blockedBelowDraft": 2,
+      "recomputeCases": 2,
+      "checksPassed": 20,
+      "evaluatorVersion": "megis.maturity@1.0.0"
     },
     {
-      "command": ".venv/Scripts/python.exe -m pytest tests/test_g3_val_002.py",
+      "command": ".venv/Scripts/python.exe -m pytest tests/test_g3_mat_001.py",
       "status": "passed",
-      "testsPassed": 68,
+      "testsPassed": 28,
       "testsFailed": 0
     }
   ],

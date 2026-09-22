@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T09:00:00+08:00",
+  "updatedAt": "2026-09-22T11:00:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G3-MAT-001",
+  "currentWorkItem": "G3-BEN-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -1590,7 +1590,7 @@
       "id": "G3-BEN-001",
       "title": "建立 benchmark metrics",
       "gate": "G3",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G3-MAT-001"
       ],
@@ -2740,7 +2740,7 @@
       "id": "G3-MAT-001",
       "title": "Maturity evaluator",
       "gate": "G3",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G3-VAL-002"
       ],
@@ -2756,8 +2756,19 @@
       "acceptanceResults": [
         {
           "criterion": "v3 §1.4 table tests 通過且 evaluator 是 maturity 唯一寫入者",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "megis/maturity/evaluator.py",
+            "megis/maturity/__init__.py",
+            "schemas/v3/maturity-evaluation.schema.json",
+            "schemas/v3/maturity-corpus.schema.json",
+            "contracts/g3/golden/maturity-corpus.json",
+            "tests/test_g3_mat_001.py",
+            "scripts/verify_g3_mat_001.py",
+            "docs/G3_MATURITY.md",
+            "docs/CLASSIFICATION_AND_MATURITY.md",
+            "artifacts/g3-mat-001/verification.json"
+          ]
         }
       ],
       "verificationCommands": [
@@ -2765,9 +2776,20 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "megis/maturity/evaluator.py",
+        "megis/maturity/__init__.py",
+        "schemas/v3/maturity-evaluation.schema.json",
+        "schemas/v3/maturity-corpus.schema.json",
+        "contracts/g3/golden/maturity-corpus.json",
+        "tests/test_g3_mat_001.py",
+        "scripts/verify_g3_mat_001.py",
+        "docs/G3_MATURITY.md",
+        "docs/CLASSIFICATION_AND_MATURITY.md",
+        "artifacts/g3-mat-001/verification.json"
+      ],
+      "verification": "passed",
+      "commitSha": "127ff0789e68b182fc269dd9b209efc8d76a8cb4"
     },
     {
       "id": "G3-REV-001",

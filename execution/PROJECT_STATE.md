@@ -1,10 +1,10 @@
 # MEGIS Project State
 
 - Current gate: `G3 — 規則與驗證`
-- Current work item: `G3-MAT-001 — 建立 maturity evaluator`
-- Last green commit: `efd8021f398b55598997e5ce6ceb9d1736d3b599`
+- Current work item: `G3-BEN-001 — 建立 benchmark metrics`
+- Last green commit: `127ff0789e68b182fc269dd9b209efc8d76a8cb4`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-22T09:00:00+08:00`
+- Updated at: `2026-09-22T11:00:00+08:00`
 
 ## Active gate: G3
 
@@ -17,6 +17,8 @@ G3-SRC-001 已閉合（2026-09-21）：規則來源登錄與核對流程（`sche
 G3-VAL-001 已閉合（2026-09-21）：geometry / collision / clearance validators（`schemas/v3/validation-result.schema.json`、`megis/validation/`、`contracts/g3/golden/validation-corpus.json`）；15 個已知 pass/fail cases + `verify_g3_val_001.py` 17/17 checks 全綠，新增 `MEGIS-VAL-002／003`。
 
 G3-VAL-002 已閉合（2026-09-22）：CNC DFM rule pack（`contracts/g3/golden/cnc-dfm-rulepack.json`，24 條規則、72 個 positive/negative/boundary fixtures），以 rule schema 與來源登錄為基礎，全部 `in_review`、0 approved；release 治理閘門在來源未核准前拒絕放行（MEGIS-RUL-001）；68 tests + `verify_g3_val_002.py`（8/8 checks、72 fixtures、0 failure）全綠。
+
+G3-MAT-001 已閉合（2026-09-22）：maturity evaluator（`megis/maturity/`）實作 §1.4 狀態表（DRAFT→CONCEPT→PROTOTYPE→ENGINEERING_REVIEWED→RELEASED）並為 Design Run `maturity` 唯一寫入者；含 D6／禁止類別上限、輸入變更與 waiver 到期重算、64 位輸入摘要；18 個 table-driven cases（每狀態 positive/negative ＋重算＋上限）、28 tests + `verify_g3_mat_001.py` 20/20 checks 全綠。
 
 ## G1 閉合摘要
 
@@ -47,8 +49,8 @@ G3-VAL-002 已閉合（2026-09-22）：CNC DFM rule pack（`contracts/g3/golden/
 | G3-VAL-001 | done | schemas/v3/validation-result.schema.json、megis/validation/、contracts/g3/golden/validation-corpus.json；15 cases + verify_g3_val_001.py 17/17 checks |
 | G3-VAL-002 | done | contracts/g3/golden/cnc-dfm-rulepack.json、megis/rules/packs.py、tests/test_g3_val_002.py；24 rules、72 fixtures、68 tests + verify_g3_val_002.py allChecksPassed |
 | G3-SRC-001 | done | schemas/v3/rule-source.schema.json、config/rule-sources/sources.yaml、megis/rules/sources.py；13 tests + verify_g3_src_001.py 18/18 checks |
-| G3-MAT-001 | in_progress | Maturity evaluator（§1.4 table-driven tests，見 `execution/AGENT_CLAIM.json`） |
-| G3-BEN-001 | planned | benchmark metrics（defect ≥ 30、clean ≥ 10、precision/recall/FP/Wilson CI） |
+| G3-MAT-001 | done | megis/maturity/evaluator.py、schemas/v3/maturity-evaluation.schema.json、contracts/g3/golden/maturity-corpus.json；18 cases、28 tests + verify_g3_mat_001.py allChecksPassed |
+| G3-BEN-001 | in_progress | benchmark metrics（defect ≥ 30、clean ≥ 10、precision/recall/FP/Wilson CI，見 `execution/AGENT_CLAIM.json`） |
 | G3-REV-001 | planned | G3 自我審查（全新 session） |
 | G3-ACC-001 | planned | G3 acceptance 決策紀錄 |
 
