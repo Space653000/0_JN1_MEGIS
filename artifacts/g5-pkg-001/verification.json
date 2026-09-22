@@ -1,0 +1,213 @@
+{
+  "allChecksPassed": true,
+  "blueprintRef": "v3.0 G5-PKG-001 package manifest and content hashes (prototype package, L1 byte hash + L2 semantic fingerprint, fingerprint policy 1.0.0)",
+  "evidenceLevel": "E3",
+  "referenceDate": "2026-09-22",
+  "schemaVersion": "1.0.0",
+  "workItem": "G5-PKG-001",
+  "verifiedAt": "2026-09-22T16:10:00+08:00",
+  "packageBuilderVersion": "megis.package@1.0.0",
+  "fingerprintPolicyVersion": "1.0.0",
+  "engineeringArtifactGenerated": false,
+  "releaseArtifactGenerated": false,
+  "input": {
+    "manifestSchema": "schemas\\v3\\package-manifest.schema.json",
+    "corpusSchema": "schemas\\v3\\manifest-corpus.schema.json",
+    "corpus": "contracts\\g5\\golden\\manifest-corpus.json",
+    "testModule": "tests\\test_g5_pkg_001.py"
+  },
+  "summary": {
+    "tests": 25,
+    "corpusCases": 18,
+    "positiveCases": 7,
+    "negativeCases": 11,
+    "errorCodesCovered": {
+      "MEGIS-PKG-001": 5,
+      "MEGIS-PKG-002": 6
+    },
+    "fingerprintKinds": [
+      "stl_triangles",
+      "dxf_vectors",
+      "step_normalized_text",
+      "json_canonical",
+      "utf8_text_lf",
+      "binary_bytes"
+    ],
+    "baselineCiPythonTests": 446,
+    "baselineCiFrontendTests": 9
+  },
+  "checks": [
+    {
+      "name": "package manifest schema is self-consistent",
+      "passed": true,
+      "detail": {
+        "validator": "Draft202012Validator.check_schema",
+        "errors": []
+      }
+    },
+    {
+      "name": "input_hashes only pin path and byte_sha256 (no fabricated bytes)",
+      "passed": true,
+      "detail": {
+        "required": [
+          "path",
+          "byte_sha256"
+        ],
+        "additionalProperties": false,
+        "builderEmitsFabricatedByteCount": false
+      }
+    },
+    {
+      "name": "built manifest conforms to the schema",
+      "passed": true,
+      "detail": {
+        "schemaErrors": []
+      }
+    },
+    {
+      "name": "build is deterministic across runs",
+      "passed": true,
+      "detail": {
+        "sameInputs": true,
+        "manifestSemanticFingerprintStable": true
+      }
+    },
+    {
+      "name": "runtime-only fields are excluded from the manifest fingerprint",
+      "passed": true,
+      "detail": {
+        "changedField": "generated_at",
+        "fingerprintUnchanged": true,
+        "excludedRuntimeFields": [
+          "generated_at",
+          "generatedAt",
+          "verified_at",
+          "verifiedAt",
+          "durationSeconds"
+        ]
+      }
+    },
+    {
+      "name": "every artifact is pinned with L1 byte sha256 and L2 semantic fingerprint",
+      "passed": true,
+      "detail": {
+        "kindsCovered": [
+          "binary_stl",
+          "dxf",
+          "step",
+          "json",
+          "text"
+        ]
+      }
+    },
+    {
+      "name": "corpus is schema conformant",
+      "passed": true,
+      "detail": {
+        "schema": "schemas\\v3\\manifest-corpus.schema.json",
+        "errors": []
+      }
+    },
+    {
+      "name": "corpus covers the table-driven acceptance contract",
+      "passed": true,
+      "detail": {
+        "cases": 18
+      }
+    },
+    {
+      "name": "every valid corpus case passes",
+      "passed": true,
+      "detail": {
+        "positiveCases": 7,
+        "failed": 0
+      }
+    },
+    {
+      "name": "every tampered or mis-declared corpus case returns the expected error code",
+      "passed": true,
+      "detail": {
+        "negativeCases": 11,
+        "MEGIS-PKG-001": 5,
+        "MEGIS-PKG-002": 6,
+        "unexpectedCode": 0
+      }
+    },
+    {
+      "name": "L1 byte hash catches tampering for every fingerprint kind",
+      "passed": true,
+      "detail": {
+        "flipStepByte": "MEGIS-PKG-001",
+        "appendStlByte": "MEGIS-PKG-001",
+        "truncateDxf": "MEGIS-PKG-001",
+        "flipJson": "MEGIS-PKG-001"
+      }
+    },
+    {
+      "name": "declared-artifact-missing is rejected",
+      "passed": true,
+      "detail": {
+        "errorCode": "MEGIS-PKG-002"
+      }
+    },
+    {
+      "name": "production-ready declarations are not allowed in a prototype package",
+      "passed": true,
+      "detail": {
+        "errorCode": "MEGIS-PKG-002"
+      }
+    },
+    {
+      "name": "RELEASED maturity is blocked for PROTOTYPE_PACKAGE",
+      "passed": true,
+      "detail": {
+        "errorCode": "MEGIS-PKG-002"
+      }
+    },
+    {
+      "name": "non-PROTOTYPE package kind is rejected",
+      "passed": true,
+      "detail": {
+        "errorCode": "MEGIS-PKG-002"
+      }
+    },
+    {
+      "name": "unregistered fingerprint policy is rejected",
+      "passed": true,
+      "detail": {
+        "errorCode": "MEGIS-PKG-002"
+      }
+    },
+    {
+      "name": "verify recomputes and matches every artifact ledger entry",
+      "passed": true,
+      "detail": {
+        "checkedArtifacts": 5,
+        "manifestFingerprintMatched": true
+      }
+    },
+    {
+      "name": "no engineering or release artifact is generated by this work item",
+      "passed": true,
+      "detail": {
+        "engineeringArtifactGenerated": false,
+        "releaseArtifactGenerated": false,
+        "outputs": [
+          "schemas/v3/package-manifest.schema.json",
+          "schemas/v3/manifest-corpus.schema.json",
+          "contracts/g5/golden/manifest-corpus.json",
+          "megis/package/manifest.py",
+          "megis/package/verify.py",
+          "tests/test_g5_pkg_001.py",
+          "docs/G5_PACKAGE_MANIFEST.md"
+        ]
+      }
+    }
+  ],
+  "boundaries": {
+    "workspaceRoot": "C:/0_JN1_MEGIS",
+    "localOnly": true,
+    "otherProjectDirectoriesModified": false,
+    "pushedTo": "https://github.com/Space653000/0_JN1_MEGIS.git"
+  }
+}

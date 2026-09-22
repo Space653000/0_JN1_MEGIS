@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/package-manifest.schema.json",
+  "title": "MEGIS Package Manifest",
+  "description": "V3 Design Run package manifest (G5-PKG-001). Pins every artifact with an L1 byte hash and an L2 semantic fingerprint, records input hashes, versions, runtime identity, gates, maturity and AI involvement.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "package_kind",
+    "classification",
+    "design_id",
+    "revision",
+    "generated_at",
+    "package_builder",
+    "fingerprint_policy_version",
+    "input_hashes",
+    "artifact_hashes",
+    "versions",
+    "runtime",
+    "random_seed",
+    "executed_validations",
+    "gates",
+    "assumptions",
+    "unknowns",
+    "human_signoffs",
+    "maturity",
+    "envelope_ref",
+    "dna_ref",
+    "module_versions",
+    "ai_involvement",
+    "manifestSemanticFingerprint"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "package_kind": { "const": "PROTOTYPE_PACKAGE" },
+    "classification": { "const": "DESIGN_RUN" },
+    "design_id": { "type": "string", "minLength": 1 },
+    "revision": { "type": "string", "minLength": 1 },
+    "generated_at": { "type": "string" },
+    "package_builder": { "const": "megis.package@1.0.0" },
+    "fingerprint_policy_version": { "const": "1.0.0" },
+    "input_hashes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "byte_sha256"],
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "byte_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "artifact_hashes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "bytes", "byte_sha256", "semantic_fingerprint", "fingerprint_kind"],
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "bytes": { "type": "integer", "minimum": 0 },
+          "byte_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "semantic_fingerprint": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "fingerprint_kind": {
+            "type": "string",
+            "enum": [
+              "stl_triangles",
+              "dxf_vectors",
+              "step_normalized_text",
+              "json_canonical",
+              "utf8_text_lf",
+              "binary_bytes"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    },
+    "versions": {
+      "type": "object",
+      "required": ["schema", "engine", "libraries", "rules", "models", "solvers"],
+      "properties": {
+        "schema": { "type": "string", "minLength": 1 },
+        "engine": { "type": "string", "minLength": 1 },
+        "libraries": { "type": "object", "additionalProperties": { "type": "string", "minLength": 1 } },
+        "rules": { "type": "string", "minLength": 1 },
+        "models": { "type": "string", "minLength": 1 },
+        "solvers": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "runtime": {
+      "type": "object",
+      "required": ["os", "python", "machine", "emulation"],
+      "properties": {
+        "os": { "type": "string", "minLength": 1 },
+        "python": { "type": "string", "minLength": 1 },
+        "machine": { "type": "string", "minLength": 1 },
+        "emulation": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "random_seed": { "type": "string", "minLength": 1 },
+    "executed_validations": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "gates": {
+      "type": "object",
+      "required": ["passed", "failed", "waived", "skipped"],
+      "properties": {
+        "passed": { "type": "array", "items": { "type": "string" } },
+        "failed": { "type": "array", "items": { "type": "string" } },
+        "waived": { "type": "array", "items": { "type": "string" } },
+        "skipped": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "assumptions": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "human_signoffs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["signoff_id", "reviewer", "recorded_at"],
+        "properties": {
+          "signoff_id": { "type": "string", "minLength": 1 },
+          "reviewer": { "type": "string", "minLength": 1 },
+          "recorded_at": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "maturity": {
+      "type": "object",
+      "required": ["state", "achieved_index", "blocking_reasons", "inputs_digest", "evaluator_version"],
+      "properties": {
+        "state": {
+          "type": ["string", "null"],
+          "enum": [null, "DRAFT", "CONCEPT", "PROTOTYPE", "ENGINEERING_REVIEWED", "RELEASED"]
+        },
+        "achieved_index": { "type": "integer", "minimum": -1 },
+        "blocking_reasons": { "type": "array", "items": { "type": "string" } },
+        "inputs_digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "evaluator_version": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "envelope_ref": { "type": "string", "minLength": 1 },
+    "dna_ref": { "type": "string", "minLength": 1 },
+    "module_versions": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "minLength": 1 }
+    },
+    "ai_involvement": {
+      "type": "object",
+      "required": ["ai_used", "model", "prompt_versions", "llm_proposed_fields"],
+      "properties": {
+        "ai_used": { "type": "boolean" },
+        "model": { "type": ["string", "null"] },
+        "prompt_versions": { "type": "array", "items": { "type": "string" } },
+        "llm_proposed_fields": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "manifestSemanticFingerprint": {
+      "type": "object",
+      "required": ["fingerprintPolicyVersion", "excludedRuntimeFields", "semanticFingerprint"],
+      "properties": {
+        "fingerprintPolicyVersion": { "const": "1.0.0" },
+        "excludedRuntimeFields": { "type": "array", "items": { "type": "string" } },
+        "semanticFingerprint": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

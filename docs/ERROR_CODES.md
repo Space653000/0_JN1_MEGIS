@@ -29,6 +29,7 @@
 | MEGIS-RUL-003 | RUL | error | no | 規則不可豁免或豁免條件無效。 |
 | MEGIS-RUL-004 | RUL | error | no | 規則來源登錄無效或不存在。 |
 | MEGIS-PKG-001 | PKG | error | no | 套件指紋不符。 |
+| MEGIS-PKG-002 | PKG | error | no | 套件 manifest 內容不符。 |
 | MEGIS-JOB-001 | JOB | error | yes | 工作逾時。 |
 | MEGIS-AI-001 | AI | error | yes | AI 輸出格式無效。 |
 | MEGIS-IMP-001 | IMP | error | no | 輸入檔案超出限制。 |

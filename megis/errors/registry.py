@@ -70,6 +70,7 @@ _ERROR_CODES: list[ErrorCode] = [
     ErrorCode("MEGIS-RUL-003", ErrorDomain.RUL, 3, ErrorSeverity.ERROR, False, "規則不可豁免或豁免條件無效。", "rule waiver disallowed or invalid"),
     ErrorCode("MEGIS-RUL-004", ErrorDomain.RUL, 4, ErrorSeverity.ERROR, False, "規則來源登錄無效或不存在。", "rule source registry entry missing or invalid"),
     ErrorCode("MEGIS-PKG-001", ErrorDomain.PKG, 1, ErrorSeverity.ERROR, False, "套件指紋不符。", "package fingerprint mismatch"),
+    ErrorCode("MEGIS-PKG-002", ErrorDomain.PKG, 2, ErrorSeverity.ERROR, False, "套件 manifest 內容不符。", "package manifest declarative mismatch (missing artifact or disallowed declaration)"),
     ErrorCode("MEGIS-JOB-001", ErrorDomain.JOB, 1, ErrorSeverity.ERROR, True, "工作逾時。", "job timeout"),
     ErrorCode("MEGIS-AI-001", ErrorDomain.AI, 1, ErrorSeverity.ERROR, True, "AI 輸出格式無效。", "schema-invalid AI model output"),
     ErrorCode("MEGIS-IMP-001", ErrorDomain.IMP, 1, ErrorSeverity.ERROR, False, "輸入檔案超出限制。", "import file exceeds size or structural limit"),

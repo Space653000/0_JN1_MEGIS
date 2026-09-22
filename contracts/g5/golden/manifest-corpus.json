@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G5-PKG-001",
+  "corpus_id": "manifest-g5-pkg-001@1.0.0",
+  "cases": [
+    {
+      "case_id": "valid-step-json-text",
+      "artifact_kinds": ["step", "json", "text"],
+      "tamper": null,
+      "dial": null,
+      "expect": { "valid": true, "error_code": null }
+    },
+    {
+      "case_id": "valid-all-kinds",
+      "artifact_kinds": ["step", "stl_binary", "dxf", "json", "text"],
+      "tamper": null,
+      "dial": null,
+      "expect": { "valid": true, "error_code": null }
+    },
+    {
+      "case_id": "valid-single-json",
+      "artifact_kinds": ["json"],
+      "tamper": null,
+      "dial": null,
+      "expect": { "valid": true, "error_code": null }
+    },
+    {
+      "case_id": "valid-single-text",
+      "artifact_kinds": ["text"],
+      "tamper": null,
+      "dial": null,
+      "expect": { "valid": true, "error_code": null }
+    },
+    {
+      "case_id": "valid-single-step",
+      "artifact_kinds": ["step"],
+      "tamper": null,
+      "dial": null,
+      "expect": { "valid": true, "error_code": null }
+    },
+    {
+      "case_id": "valid-single-stl",
+      "artifact_kinds": ["stl_binary"],
+      "tamper": null,
+      "dial": null,
+      "expect": { "valid": true, "error_code": null }
+    },
+    {
+      "case_id": "valid-single-dxf",
+      "artifact_kinds": ["dxf"],
+      "tamper": null,
+      "dial": null,
+      "expect": { "valid": true, "error_code": null }
+    },
+    {
+      "case_id": "tamper-flip-step-byte",
+      "artifact_kinds": ["step"],
+      "tamper": { "file": "base.step", "mode": "flip_byte" },
+      "dial": null,
+      "expect": { "valid": false, "error_code": "MEGIS-PKG-001" }
+    },
+    {
+      "case_id": "tamper-append-stl-byte",
+      "artifact_kinds": ["stl_binary"],
+      "tamper": { "file": "pcb.stl", "mode": "append_byte" },
+      "dial": null,
+      "expect": { "valid": false, "error_code": "MEGIS-PKG-001" }
+    },
+    {
+      "case_id": "tamper-truncate-dxf",
+      "artifact_kinds": ["dxf"],
+      "tamper": { "file": "cover.dxf", "mode": "truncate" },
+      "dial": null,
+      "expect": { "valid": false, "error_code": "MEGIS-PKG-001" }
+    },
+    {
+      "case_id": "tamper-json-flip",
+      "artifact_kinds": ["json"],
+      "tamper": { "file": "notes.json", "mode": "flip_byte" },
+      "dial": null,
+      "expect": { "valid": false, "error_code": "MEGIS-PKG-001" }
+    },
+    {
+      "case_id": "mutate-design-id-invalidates-manifest-fingerprint",
+      "artifact_kinds": ["text"],
+      "tamper": null,
+      "dial": { "action": "set_manifest_field", "field": "design_id", "value": "mutated-on-disk" },
+      "expect": { "valid": false, "error_code": "MEGIS-PKG-001" }
+    },
+    {
+      "case_id": "drop-required-field-is-declared-invalid",
+      "artifact_kinds": ["text"],
+      "tamper": null,
+      "dial": { "action": "drop_manifest_field", "field": "random_seed" },
+      "expect": { "valid": false, "error_code": "MEGIS-PKG-002" }
+    },
+    {
+      "case_id": "declared-artifact-missing-on-disk",
+      "artifact_kinds": ["json", "text"],
+      "tamper": null,
+      "dial": { "action": "rename_artifact_file" },
+      "expect": { "valid": false, "error_code": "MEGIS-PKG-002" }
+    },
+    {
+      "case_id": "production-ready-note-rejected",
+      "artifact_kinds": ["text"],
+      "tamper": null,
+      "dial": { "action": "production_ready_note" },
+      "expect": { "valid": false, "error_code": "MEGIS-PKG-002" }
+    },
+    {
+      "case_id": "released-maturity-blocked",
+      "artifact_kinds": ["step"],
+      "tamper": null,
+      "dial": { "action": "released_maturity" },
+      "expect": { "valid": false, "error_code": "MEGIS-PKG-002" }
+    },
+    {
+      "case_id": "non-prototype-package-kind-rejected",
+      "artifact_kinds": ["text"],
+      "tamper": null,
+      "dial": { "action": "set_package_kind" },
+      "expect": { "valid": false, "error_code": "MEGIS-PKG-002" }
+    },
+    {
+      "case_id": "unregistered-fingerprint-policy-rejected",
+      "artifact_kinds": ["json"],
+      "tamper": null,
+      "dial": { "action": "unregistered_fingerprint_policy" },
+      "expect": { "valid": false, "error_code": "MEGIS-PKG-002" }
+    }
+  ]
+}
