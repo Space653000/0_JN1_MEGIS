@@ -42,7 +42,7 @@ V3C 追溯（`V3C-REV-001`／`V3C-ACC-001`）已於 2026-09-21 閉合；G1 以 `
 - V3.0 盤點（2026-09-22，G6-AI-002 閉合）：AI Requirement draft 以 JSON Schema、intent SHA-256、exact evidence span 與 `llm_proposed` quarantine 約束；schema-invalid／無根據數值拒收為 `MEGIS-AI-002`，未確認值不進 confirmed IR（E3，`6694507`，`artifacts/g6-ai-002/verification.json`；3 recorded fixtures、7 checks、558 Python + 12 Frontend 全綠）；`G6-AI-003` in_progress。
 - V3.0 盤點（2026-09-22，G6-AI-003 閉合）：54 筆六類平衡 intent corpus 與 case-level KPI report 通過（E3，`555d10c`，`artifacts/g6-ai-003/verification.json`；9 checks、unsafe hallucination 0/41、injection resistance 9/9、570 Python + 12 Frontend 全綠）；explanation grounding 不在本工項虛報，明確 deferred 至 `G6-AI-004`（in_progress）。
 - V3.0 盤點（2026-09-22，G6-AI-004 閉合）：grounded explanation 將全部數值 token 綁定來源 SHA-256 與 JSON Pointer，只接受 IR／rule result／manifest；漏引、錯值、錯 pointer 與來源竄改 fail closed（E3，`d27d16e`，`artifacts/g6-ai-004/verification.json`；8 checks、4/4 example numbers grounded、15 tests、585 Python + 12 Frontend 全綠）；`G6-A11Y-001` in_progress。
-- V3.0 盤點（2026-09-22，G6-A11Y-001 自動化段）：axe-core 以 WCAG 2.2 A／AA tags 掃描五路由為 0 violations；8 組核心 palette 對比、skip link、route focus、行動選單焦點循環與 ARIA state 共 9 tests 全綠（`cf91984`，`artifacts/g6-a11y-001/verification.json`；585 Python + 21 Frontend 全綠）。真人鍵盤與螢幕閱讀器抽查尚無具名紀錄，因此工項維持 in_progress、`closureEligible: false`。
+- V3.0 盤點（2026-09-22，G6-A11Y-001 自動化段）：axe-core 以 WCAG 2.2 A／AA tags 掃描五路由為 0 violations；8 組核心 palette 對比、skip link、route focus、行動選單焦點循環與 ARIA state 共 9 tests 全綠（`cf91984`，`artifacts/g6-a11y-001/verification.json`；585 Python + 21 Frontend 全綠）。實際 Chrome 另完成 8 項代理自動化瀏覽器稽核（`artifacts/g6-a11y-001/browser-audit.json`），不視為真人簽錄；真人鍵盤與螢幕閱讀器抽查尚無具名紀錄，因此工項維持 in_progress、`closureEligible: false`。
 
 ## Owner
 

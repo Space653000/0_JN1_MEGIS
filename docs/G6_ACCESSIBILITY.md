@@ -41,6 +41,12 @@
 | `/review` | 勾選確認、返回、執行 | 禁用／啟用狀態與焦點順序正確 | pending |
 | `/progress` | 展開／收合驗收證據 | `aria-expanded` 與內容同步 | pending |
 
+## 實際瀏覽器代理稽核（passed，非人工證據）
+
+2026-09-22 以實際 Chrome、1536×729 viewport、`http://127.0.0.1:4173` 完成八項代理自動化稽核。`/progress` 最新控制面、landmarks、skip link target、目前頁 `aria-current`、驗收 disclosure，以及 `/design` 的 SPA route focus、choice semantics、桌面水平溢位均通過；結構化紀錄位於 `artifacts/g6-a11y-001/browser-audit.json`。
+
+此紀錄只補強 jsdom 沒有真實瀏覽器 layout 的缺口，不代表真人從頭到尾的鍵盤操作，也沒有啟用 NVDA、JAWS、Narrator 或 VoiceOver。因此下方兩張真人抽查表及 `closureEligible: false` 均保持不變。
+
 ## 真人螢幕閱讀器抽查表（pending）
 
 至少記錄 screen reader 名稱、版本、瀏覽器、作業系統、抽查者與日期。

@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G6-A11Y-001",
+  "evidenceType": "agent_automated_browser",
+  "evidenceLevel": "E3-partial",
+  "status": "passed",
+  "observedAt": "2026-09-22T23:30:00+08:00",
+  "sourceCommit": "37ce54c8fc32f5644beb3a52d34e1739f17c0174",
+  "environment": {
+    "browser": "Chrome",
+    "browserVersion": "not captured",
+    "viewport": {
+      "width": 1536,
+      "height": 729
+    },
+    "origin": "http://127.0.0.1:4173",
+    "networkScope": "loopback only"
+  },
+  "checks": [
+    {
+      "id": "progress-current-state",
+      "status": "passed",
+      "observed": "The rebuilt /progress page reported updated time 2026-09-22 21:34, current work item G6-A11Y-001, and in-progress acceptance state."
+    },
+    {
+      "id": "progress-landmarks",
+      "status": "passed",
+      "observed": "One header, one named navigation region, one main landmark, and one H1 were exposed."
+    },
+    {
+      "id": "skip-link-target",
+      "status": "passed",
+      "observed": "Activating the skip link set location.hash to #main-content and focused MAIN#main-content."
+    },
+    {
+      "id": "spa-route-focus",
+      "status": "passed",
+      "observed": "Activating the Design navigation control changed the path to /design and focused MAIN#main-content."
+    },
+    {
+      "id": "current-page-state",
+      "status": "passed",
+      "observed": "aria-current=page identified 施工進度 on /progress and 設計工作台 UI-0 on /design."
+    },
+    {
+      "id": "design-choice-semantics",
+      "status": "passed",
+      "observed": "The design page exposed a named 內部零件選擇 group and three choice buttons with explicit aria-pressed values."
+    },
+    {
+      "id": "desktop-horizontal-overflow",
+      "status": "passed",
+      "observed": "documentElement.scrollWidth did not exceed clientWidth at 1536x729 on /progress or /design."
+    },
+    {
+      "id": "progress-disclosure",
+      "status": "passed",
+      "observed": "The acceptance disclosure changed from collapsed 查看驗收條件 to expanded 收合驗收條件 and exposed the pending criterion."
+    }
+  ],
+  "manual": {
+    "keyboard": "pending",
+    "screenReader": "pending"
+  },
+  "closureEligible": false,
+  "boundaries": {
+    "humanEvidenceSimulated": false,
+    "screenReaderUsed": false,
+    "manualSignoffClaimed": false,
+    "engineeringArtifactsGenerated": false,
+    "otherProjectDirectoriesModified": false
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-09-22T21:34:00+08:00",
+  "verifiedAt": "2026-09-22T23:30:00+08:00",
   "status": "passed",
   "schemaVersion": "1.0.0",
   "commands": [
@@ -24,6 +24,18 @@
       "closureEligible": false,
       "status": "passed",
       "pinnedCommit": "cf919841813f1ab28171b215e1de78d4e44dc53b"
+    },
+    {
+      "command": "Chrome agent-automated accessibility audit against http://127.0.0.1:4173",
+      "workItem": "G6-A11Y-001",
+      "evidenceLevel": "E3-partial",
+      "viewport": "1536x729",
+      "checks": 8,
+      "failedChecks": 0,
+      "manualKeyboardStatus": "pending",
+      "manualScreenReaderStatus": "pending",
+      "closureEligible": false,
+      "status": "passed"
     },
     {
       "command": "node scripts/verify-control-plane.mjs",
@@ -58,7 +70,7 @@
       "status": "passed"
     }
   ],
-  "sourceCommit": "cf919841813f1ab28171b215e1de78d4e44dc53b",
+  "sourceCommit": "37ce54c8fc32f5644beb3a52d34e1739f17c0174",
   "boundaries": {
     "engineeringArtifactsGenerated": false,
     "otherProjectDirectoriesModified": false,
