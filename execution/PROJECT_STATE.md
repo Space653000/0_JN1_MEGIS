@@ -1,18 +1,20 @@
 # MEGIS Project State
 
 - Current gate: `G4 — 模組與限制條件組合`
-- Current work item: `G4-MOD-002 — PCB、USB-C 與 M3 composition`
-- Last green commit: `80081f74994773ad18ff7826b50cb842c686d404`
+- Current work item: `G4-IMP-001 — 建立 safe STEP 與 DXF metadata extraction`
+- Last green commit: `fddab2836de6daffadf8e73e9bde6e603e70092a`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-22T18:00:00+08:00`
+- Updated at: `2026-09-22T20:00:00+08:00`
 
 ## Active gate: G4
 
-G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 — 模組與限制條件組合 現在為 active gate，當前工項為 `G4-MOD-002 — PCB、USB-C 與 M3 composition`。
+G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 — 模組與限制條件組合 現在為 active gate，當前工項為 `G4-IMP-001 — 建立 safe STEP 與 DXF metadata extraction`。
 
 G4-MOD-001 已閉合（2026-09-22）：四級 capability 閉集合（metadata_only／layout_capable／geometry_capable／validated）與 §12 policy 表；`megis/module`、`schemas/v3/module.schema.json`、18 cases；28 tests + `verify_g4_mod_001.py` allChecksPassed（E3）。
 
 G4-GRF-001 已閉合（2026-09-22）：Relationship vocabulary 八型別閉集合（contains／mounts_to／fastens／opens_through／clears／aligns／covers／removable_along），每型別語意與必要驗證、參數不變量；`megis/relationship`、`schemas/v3/relationship.schema.json`、20 cases（8 positive／12 negative）；26 tests + `verify_g4_grf_001.py` allChecksPassed（E3）。
+
+G4-MOD-002 已閉合（2026-09-22）：Module composition（`megis/composition`）把 Module＋Relationship 落到 Fixture golden IR，只衍生 proven 的 mount／fastener／opening／clearance constraints；移除會清除或明確標示 dependent constraints、缺值絕不補虛構數字（`unsafeToDefault` unknown＋blocked kind）、Module 版本固定（idempotent／upgrade_blocked／allow_upgrade）。`schemas/v3/module-composition-corpus.schema.json`、20 cases；29 tests + `verify_g4_mod_002.py` allChecksPassed（E3）；baseline CI 389 Python + 9 Frontend 全綠。G4-IMP-001 接續 in_progress 並完成 AGENT_CLAIM 交接。
 
 G3-RUL-001 已閉合（2026-09-21）：rule schema（`schemas/v3/rule.schema.json`）、waiver schema（`schemas/v3/waiver.schema.json`）、生命週期狀態機與 waiver 到期／不可豁免邏輯（`megis/rules/`）、golden corpus（`contracts/g3/golden/rule-governance.json`）；14 tests + `verify_g3_rul_001.py` 18/18 checks 全綠，新增 `MEGIS-RUL-002／003`。
 

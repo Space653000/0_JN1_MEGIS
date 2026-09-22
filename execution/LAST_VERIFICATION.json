@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-22T18:00:00+08:00",
-  "sourceCommit": "80081f74994773ad18ff7826b50cb842c686d404",
+  "verifiedAt": "2026-09-22T20:00:00+08:00",
+  "sourceCommit": "fddab2836de6daffadf8e73e9bde6e603e70092a",
   "status": "passed",
   "commands": [
     {
@@ -10,14 +10,14 @@
       "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
       "deferrals": 0,
-      "secretScanTrackedFiles": 356,
+      "secretScanTrackedFiles": 365,
       "secretScanFindings": 0,
       "artifactPolicyNegativeTests": 8,
-      "artifactPolicyTrackedFiles": 359,
-      "artifactPolicyEvidenceJson": 41,
+      "artifactPolicyTrackedFiles": 368,
+      "artifactPolicyEvidenceJson": 42,
       "artifactPolicyGoldenBytes": 19333,
       "artifactPolicyHeavyArtifacts": 5,
-      "pythonTests": 360,
+      "pythonTests": 389,
       "maturityScanManifests": 1,
       "artifactSmokeRecords": 13,
       "frontendTests": 9
@@ -30,21 +30,29 @@
       "deferrals": 0
     },
     {
-      "command": "G4-GRF-001 implementation and closure traceability (@80081f74)",
+      "command": "G4-MOD-002 implementation and closure traceability (@e86e42c)",
       "status": "passed",
-      "implCommit": "80081f74994773ad18ff7826b50cb842c686d404",
+      "implCommit": "e86e42ce004f54839e122e308d1cd482f83318ac",
       "workItemStatus": "done",
       "evidenceLevel": "E3",
-      "controlPlaneCurrentAfter": "G4-MOD-002",
+      "controlPlaneCurrentAfter": "G4-IMP-001",
       "checks": {
         "corpusCases": 20,
-        "positiveCases": 8,
-        "negativeCases": 12,
-        "everyTypeHasPositiveAndNegativeEvidence": true,
+        "validCases": 12,
+        "errorCases": 8,
+        "composableTypes": [
+          "contains",
+          "mounts_to",
+          "fastens",
+          "opens_through",
+          "clears"
+        ],
         "pytestG4Green": true,
         "verifyScriptAllChecksPassed": true,
         "baselineCiGreen": true,
-        "closedVocabularyStable": true
+        "pythonTests": 389,
+        "frontendTests": 9,
+        "noFabricatedValues": true
       }
     }
   ],
@@ -52,7 +60,7 @@
     "workspaceRoot": "C:/0_JN1_MEGIS",
     "localOnly": true,
     "otherProjectDirectoriesModified": false,
-    "engineeringArtifactsGenerated": true,
+    "engineeringArtifactsGenerated": false,
     "engineeringArtifactsClassification": null,
     "releaseArtifactsGenerated": false
   }

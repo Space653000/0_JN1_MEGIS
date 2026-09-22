@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T18:00:00+08:00",
+  "updatedAt": "2026-09-22T20:00:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G4-MOD-002",
+  "currentWorkItem": "G4-IMP-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -1702,7 +1702,7 @@
       "id": "G4-MOD-002",
       "title": "PCB、USB-C 與 M3 composition",
       "gate": "G4",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G4-GRF-001"
       ],
@@ -1719,22 +1719,40 @@
       "acceptanceResults": [
         {
           "criterion": "PCB、USB-C 與 M3 模組可組合並保留限制條件",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "schemas/v3/module-composition-corpus.schema.json",
+            "contracts/g4/golden/module-composition-corpus.json",
+            "tests/test_g4_mod_002.py",
+            "artifacts/g4-mod-002/verification.json",
+            "docs/G4_MODULE_COMPOSITION.md"
+          ]
         }
       ],
-      "verificationCommands": [],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe -m pytest tests/test_g4_mod_002.py",
+        ".venv/Scripts/python.exe scripts/verify_g4_mod_002.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "schemas/v3/module-composition-corpus.schema.json",
+        "megis/composition/module_graph.py",
+        "contracts/g4/golden/module-composition-corpus.json",
+        "tests/test_g4_mod_002.py",
+        "scripts/verify_g4_mod_002.py",
+        "artifacts/g4-mod-002/verification.json",
+        "docs/G4_MODULE_COMPOSITION.md"
+      ],
+      "verification": "passed",
+      "commitSha": "e86e42ce004f54839e122e308d1cd482f83318ac"
     },
     {
       "id": "G4-IMP-001",
       "title": "建立 safe STEP 與 DXF metadata extraction",
       "gate": "G4",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G4-MOD-002"
       ],
