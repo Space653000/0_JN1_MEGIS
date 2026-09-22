@@ -1,0 +1,1369 @@
+{
+  "schemaVersion": "1.0.0",
+  "corpus_id": "benchmark-g3-dev@1.0.0",
+  "corpus_version": 1,
+  "workItem": "G3-BEN-001",
+  "seed": 2026,
+  "runtime": "megis.benchmark@0.1.0",
+  "timeout_ms": 5000,
+  "cases": [
+    {
+      "case_id": "BEN-DEF-001",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "最小壁厚不足（0.5 < 0.8 mm）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CNC_MIN_WALL_001",
+          "inputs": {
+            "wall_thickness_mm": 0.5
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-002",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "盲孔攻牙深度不足（鑽深 < 螺紋＋餘量）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CNC_TAP_BLIND_001",
+          "inputs": {
+            "drill_depth_mm": 6.0,
+            "required_thread_plus_allowance_mm": 7.0
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-003",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "孔深／徑比超標（4 > 3）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CNC_HOLE_ASPECT_001",
+          "inputs": {
+            "hole_depth_mm": 12.0,
+            "hole_diameter_mm": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-004",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "內角半徑小於 1.2 x 刀具半徑",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CNC_INT_RADIUS_001",
+          "inputs": {
+            "internal_radius_mm": 0.8,
+            "tool_radius_mm": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-005",
+      "bucket": "boundary",
+      "severity_class": "defect",
+      "title_zh": "口袋深度比超標為 warning（5 > 4）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "warning",
+        "error_grade": false,
+        "expected_maturity_max": "PROTOTYPE",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CNC_DEPTH_RATIO_001",
+          "inputs": {
+            "pocket_depth_mm": 20.0,
+            "tool_diameter_mm": 4.0
+          }
+        }
+      ],
+      "maturity_input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "named_engineer_available": true
+      }
+    },
+    {
+      "case_id": "BEN-DEF-006",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "刀具進入開口不足（0.8 < 1.1 x 刀徑）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CNC_TOOL_ACCESS_001",
+          "inputs": {
+            "access_opening_mm": 8.0,
+            "tool_diameter_mm": 10.0
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-007",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "加工面方向數超限（4 > 3）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CNC_SETUP_COUNT_001",
+          "inputs": {
+            "setup_count": 4
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-008",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "最小鑽孔徑過小（0.3 < 0.5 mm）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CNC_MIN_HOLE_DIA_001",
+          "inputs": {
+            "hole_diameter_mm": 0.3
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-009",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "3 軸製程出現 internal undercut",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CNC_UNDERCUT_001",
+          "inputs": {
+            "undercut_count": 1
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-010",
+      "bucket": "boundary",
+      "severity_class": "defect",
+      "title_zh": "孔邊距接近下限但仍不足（warning）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "warning",
+        "error_grade": false,
+        "expected_maturity_max": "PROTOTYPE",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CNC_EDGE_DIST_001",
+          "inputs": {
+            "hole_edge_distance_mm": 1.2
+          }
+        }
+      ],
+      "maturity_input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "named_engineer_available": true
+      }
+    },
+    {
+      "case_id": "BEN-DEF-011",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "鋁材螺紋嚙合不足（1.5 < 2.0 D）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "FAS_ENGAGE_AL_001",
+          "inputs": {
+            "thread_engagement_mm": 3.0,
+            "fastener_diameter_mm": 2.0
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-012",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "boss 剩餘壁厚不足",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "FAS_BOSS_WALL_001",
+          "inputs": {
+            "boss_wall_thickness_mm": 1.2
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-013",
+      "bucket": "boundary",
+      "severity_class": "defect",
+      "title_zh": "沉頭深度不足為 warning",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "warning",
+        "error_grade": false,
+        "expected_maturity_max": "PROTOTYPE",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "FAS_CBORE_DEPTH_001",
+          "inputs": {
+            "cbore_depth_mm": 4.0,
+            "fastener_head_height_mm": 5.0
+          }
+        }
+      ],
+      "maturity_input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "named_engineer_available": true
+      }
+    },
+    {
+      "case_id": "BEN-DEF-014",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "M3 通孔過小（3.0 < 3.4 mm）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "FAS_CLEAR_HOLE_001",
+          "inputs": {
+            "clearance_hole_diameter_mm": 3.0
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-015",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "螺絲突出盲孔底部",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "FAS_SCREW_PROTRUDE_001",
+          "inputs": {
+            "screw_protrusion_mm": 0.5
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-016",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "PCB 邊距不足（1.0 < 1.5 mm）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "PCB_EDGE_CLEAR_001",
+          "inputs": {
+            "pcb_edge_gap_mm": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-017",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "standoff 高度不足（0.8 < 1.0）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "PCB_STANDOFF_001",
+          "inputs": {
+            "standoff_height_mm": 4.0,
+            "required_height_mm": 5.0
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-018",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "PCB 頂面餘隙不足（1.5 < 2.0 mm）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "PCB_TOP_CLEAR_001",
+          "inputs": {
+            "pcb_top_gap_mm": 1.5
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-019",
+      "bucket": "boundary",
+      "severity_class": "defect",
+      "title_zh": "standoff 間距超限（120 > 100 mm，warning）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "warning",
+        "error_grade": false,
+        "expected_maturity_max": "PROTOTYPE",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "PCB_STANDOFF_SPACING_001",
+          "inputs": {
+            "standoff_spacing_mm": 120.0
+          }
+        }
+      ],
+      "maturity_input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "named_engineer_available": true
+      }
+    },
+    {
+      "case_id": "BEN-DEF-020",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "USB-C 齊平開口不足（0.94 < 1.05）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CON_USBC_OPEN_001",
+          "inputs": {
+            "usbc_opening_width_mm": 8.0,
+            "usbc_shell_width_mm": 8.5
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-021",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "USB-C 內縮開口不足（0.95 < 1.05）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CON_USBC_RECESS_001",
+          "inputs": {
+            "usbc_recess_opening_mm": 9.0,
+            "usbc_plug_overmold_mm": 9.5
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-022",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "上蓋 +Z 移除路徑有干涉",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "ASM_COVER_REMOVE_001",
+          "inputs": {
+            "removal_path_interferences": 1
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-023",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "組立碰撞計數為 1",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "ASM_COLLISION_001",
+          "inputs": {
+            "collision_count": 1
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-024",
+      "bucket": "regression",
+      "severity_class": "defect",
+      "title_zh": "兩元件三軸體積重疊（碰撞）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "validation_input": {
+        "design_id": "bench-collision-overlap-024",
+        "components": [
+          {
+            "component_id": "a",
+            "box": {
+              "min": [0, 0, 0],
+              "max": [10, 10, 10]
+            }
+          },
+          {
+            "component_id": "b",
+            "box": {
+              "min": [5, 5, 5],
+              "max": [15, 15, 15]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "BEN-DEF-025",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "元件餘隙低於下限",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "validation_input": {
+        "design_id": "bench-clearance-low-025",
+        "components": [
+          {
+            "component_id": "base",
+            "box": {
+              "min": [0, 0, 0],
+              "max": [10, 10, 10]
+            }
+          },
+          {
+            "component_id": "top",
+            "box": {
+              "min": [0, 0, 13],
+              "max": [10, 10, 20]
+            }
+          }
+        ],
+        "clearances": [
+          {
+            "first_id": "base",
+            "second_id": "top",
+            "min_gap_mm": 4
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "BEN-DEF-026",
+      "bucket": "regression",
+      "severity_class": "defect",
+      "title_zh": "反轉幾何（inverted box）無效",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 1,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "validation_input": {
+        "design_id": "bench-geom-inverted-026",
+        "components": [
+          {
+            "component_id": "bad",
+            "box": {
+              "min": [10, 0, 0],
+              "max": [5, 5, 5]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "BEN-DEF-027",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "薄壁＋碰撞＋餘隙不足複合缺陷",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 3,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "validation_input": {
+        "design_id": "bench-mixed-027",
+        "components": [
+          {
+            "component_id": "a",
+            "box": {
+              "min": [0, 0, 0],
+              "max": [10, 10, 10]
+            }
+          },
+          {
+            "component_id": "b",
+            "box": {
+              "min": [5, 5, 5],
+              "max": [15, 15, 15]
+            }
+          }
+        ],
+        "clearances": [
+          {
+            "first_id": "a",
+            "second_id": "b",
+            "min_gap_mm": 2
+          }
+        ]
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CNC_MIN_WALL_001",
+          "inputs": {
+            "wall_thickness_mm": 0.5
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-028",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "USB-C 內縮＋PCB 邊距複合缺陷",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 2,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CON_USBC_RECESS_001",
+          "inputs": {
+            "usbc_recess_opening_mm": 9.0,
+            "usbc_plug_overmold_mm": 9.5
+          }
+        },
+        {
+          "rule_id": "PCB_EDGE_CLEAR_001",
+          "inputs": {
+            "pcb_edge_gap_mm": 1.0
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "BEN-DEF-029",
+      "bucket": "negative",
+      "severity_class": "defect",
+      "title_zh": "多組碰撞（三個 overlap pair）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 3,
+        "expected_max_severity": "error",
+        "error_grade": true,
+        "expected_maturity_max": "CONCEPT",
+        "expect_false_release": false
+      },
+      "validation_input": {
+        "design_id": "bench-multi-collision-029",
+        "components": [
+          {
+            "component_id": "a",
+            "box": {
+              "min": [0, 0, 0],
+              "max": [10, 10, 10]
+            }
+          },
+          {
+            "component_id": "b",
+            "box": {
+              "min": [5, 5, 5],
+              "max": [15, 15, 15]
+            }
+          },
+          {
+            "component_id": "c",
+            "box": {
+              "min": [8, 8, 8],
+              "max": [18, 18, 18]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "BEN-DEF-030",
+      "bucket": "boundary",
+      "severity_class": "defect",
+      "title_zh": "兩個 warning 複合（邊距＋深度比）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 2,
+        "expected_max_severity": "warning",
+        "error_grade": false,
+        "expected_maturity_max": "PROTOTYPE",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CNC_EDGE_DIST_001",
+          "inputs": {
+            "hole_edge_distance_mm": 1.2
+          }
+        },
+        {
+          "rule_id": "CNC_DEPTH_RATIO_001",
+          "inputs": {
+            "pocket_depth_mm": 20.0,
+            "tool_diameter_mm": 4.0
+          }
+        }
+      ],
+      "maturity_input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "named_engineer_available": true
+      }
+    },
+    {
+      "case_id": "BEN-CL-001",
+      "bucket": "golden",
+      "severity_class": "clean",
+      "title_zh": "分離元件無碰撞",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 0,
+        "expected_max_severity": "pass",
+        "error_grade": false,
+        "expected_maturity_max": "PROTOTYPE",
+        "expect_false_release": false
+      },
+      "validation_input": {
+        "design_id": "bench-clean-separated-001",
+        "components": [
+          {
+            "component_id": "a",
+            "box": {
+              "min": [0, 0, 0],
+              "max": [10, 10, 10]
+            }
+          },
+          {
+            "component_id": "b",
+            "box": {
+              "min": [20, 20, 20],
+              "max": [30, 30, 30]
+            }
+          }
+        ]
+      },
+      "maturity_input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "named_engineer_available": true
+      }
+    },
+    {
+      "case_id": "BEN-CL-002",
+      "bucket": "golden",
+      "severity_class": "clean",
+      "title_zh": "餘隙滿足下限（gap > min）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 0,
+        "expected_max_severity": "pass",
+        "error_grade": false,
+        "expected_maturity_max": "PROTOTYPE",
+        "expect_false_release": false
+      },
+      "validation_input": {
+        "design_id": "bench-clean-clearance-002",
+        "components": [
+          {
+            "component_id": "base",
+            "box": {
+              "min": [0, 0, 0],
+              "max": [10, 10, 10]
+            }
+          },
+          {
+            "component_id": "top",
+            "box": {
+              "min": [0, 0, 15],
+              "max": [10, 10, 20]
+            }
+          }
+        ],
+        "clearances": [
+          {
+            "first_id": "base",
+            "second_id": "top",
+            "min_gap_mm": 4
+          }
+        ]
+      },
+      "maturity_input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "named_engineer_available": true
+      }
+    },
+    {
+      "case_id": "BEN-CL-003",
+      "bucket": "boundary",
+      "severity_class": "clean",
+      "title_zh": "餘隙恰等於下限（邊界含入）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 0,
+        "expected_max_severity": "pass",
+        "error_grade": false,
+        "expected_maturity_max": "PROTOTYPE",
+        "expect_false_release": false
+      },
+      "validation_input": {
+        "design_id": "bench-clean-boundary-003",
+        "components": [
+          {
+            "component_id": "base",
+            "box": {
+              "min": [0, 0, 0],
+              "max": [10, 10, 10]
+            }
+          },
+          {
+            "component_id": "top",
+            "box": {
+              "min": [0, 0, 14],
+              "max": [10, 10, 20]
+            }
+          }
+        ],
+        "clearances": [
+          {
+            "first_id": "base",
+            "second_id": "top",
+            "min_gap_mm": 4
+          }
+        ]
+      },
+      "maturity_input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "named_engineer_available": true
+      }
+    },
+    {
+      "case_id": "BEN-CL-004",
+      "bucket": "regression",
+      "severity_class": "clean",
+      "title_zh": "面貼合不是碰撞（防回歸）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 0,
+        "expected_max_severity": "pass",
+        "error_grade": false,
+        "expected_maturity_max": "PROTOTYPE",
+        "expect_false_release": false
+      },
+      "validation_input": {
+        "design_id": "bench-clean-touching-004",
+        "components": [
+          {
+            "component_id": "a",
+            "box": {
+              "min": [0, 0, 0],
+              "max": [10, 10, 10]
+            }
+          },
+          {
+            "component_id": "b",
+            "box": {
+              "min": [10, 0, 0],
+              "max": [20, 10, 10]
+            }
+          }
+        ]
+      },
+      "maturity_input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "named_engineer_available": true
+      }
+    },
+    {
+      "case_id": "BEN-CL-005",
+      "bucket": "golden",
+      "severity_class": "clean",
+      "title_zh": "DFM 壁厚與加工面數合規",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 0,
+        "expected_max_severity": "pass",
+        "error_grade": false,
+        "expected_maturity_max": "PROTOTYPE",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CNC_MIN_WALL_001",
+          "inputs": {
+            "wall_thickness_mm": 1.2
+          }
+        },
+        {
+          "rule_id": "CNC_SETUP_COUNT_001",
+          "inputs": {
+            "setup_count": 2
+          }
+        }
+      ],
+      "maturity_input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "named_engineer_available": true
+      }
+    },
+    {
+      "case_id": "BEN-CL-006",
+      "bucket": "golden",
+      "severity_class": "clean",
+      "title_zh": "DFM 孔特徵合規（深徑比、最小孔徑、無 undercut）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 0,
+        "expected_max_severity": "pass",
+        "error_grade": false,
+        "expected_maturity_max": "PROTOTYPE",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CNC_HOLE_ASPECT_001",
+          "inputs": {
+            "hole_depth_mm": 6.0,
+            "hole_diameter_mm": 3.0
+          }
+        },
+        {
+          "rule_id": "CNC_MIN_HOLE_DIA_001",
+          "inputs": {
+            "hole_diameter_mm": 1.0
+          }
+        },
+        {
+          "rule_id": "CNC_UNDERCUT_001",
+          "inputs": {
+            "undercut_count": 0
+          }
+        }
+      ],
+      "maturity_input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "named_engineer_available": true
+      }
+    },
+    {
+      "case_id": "BEN-CL-007",
+      "bucket": "golden",
+      "severity_class": "clean",
+      "title_zh": "DFM 緊固件合規（嚙合、boss、沉頭、通孔、無突出）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 0,
+        "expected_max_severity": "pass",
+        "error_grade": false,
+        "expected_maturity_max": "PROTOTYPE",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "FAS_ENGAGE_AL_001",
+          "inputs": {
+            "thread_engagement_mm": 4.0,
+            "fastener_diameter_mm": 2.0
+          }
+        },
+        {
+          "rule_id": "FAS_BOSS_WALL_001",
+          "inputs": {
+            "boss_wall_thickness_mm": 2.0
+          }
+        },
+        {
+          "rule_id": "FAS_CBORE_DEPTH_001",
+          "inputs": {
+            "cbore_depth_mm": 5.5,
+            "fastener_head_height_mm": 5.0
+          }
+        },
+        {
+          "rule_id": "FAS_CLEAR_HOLE_001",
+          "inputs": {
+            "clearance_hole_diameter_mm": 3.5
+          }
+        },
+        {
+          "rule_id": "FAS_SCREW_PROTRUDE_001",
+          "inputs": {
+            "screw_protrusion_mm": 0.0
+          }
+        }
+      ],
+      "maturity_input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "named_engineer_available": true
+      }
+    },
+    {
+      "case_id": "BEN-CL-008",
+      "bucket": "golden",
+      "severity_class": "clean",
+      "title_zh": "DFM PCB 合規（邊距、standoff、頂面、間距）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 0,
+        "expected_max_severity": "pass",
+        "error_grade": false,
+        "expected_maturity_max": "PROTOTYPE",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "PCB_EDGE_CLEAR_001",
+          "inputs": {
+            "pcb_edge_gap_mm": 2.5
+          }
+        },
+        {
+          "rule_id": "PCB_STANDOFF_001",
+          "inputs": {
+            "standoff_height_mm": 6.0,
+            "required_height_mm": 5.0
+          }
+        },
+        {
+          "rule_id": "PCB_TOP_CLEAR_001",
+          "inputs": {
+            "pcb_top_gap_mm": 3.0
+          }
+        },
+        {
+          "rule_id": "PCB_STANDOFF_SPACING_001",
+          "inputs": {
+            "standoff_spacing_mm": 80.0
+          }
+        }
+      ],
+      "maturity_input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "named_engineer_available": true
+      }
+    },
+    {
+      "case_id": "BEN-CL-009",
+      "bucket": "golden",
+      "severity_class": "clean",
+      "title_zh": "DFM USB-C 合規（齊平與內縮開口）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 0,
+        "expected_max_severity": "pass",
+        "error_grade": false,
+        "expected_maturity_max": "PROTOTYPE",
+        "expect_false_release": false
+      },
+      "rule_checks": [
+        {
+          "rule_id": "CON_USBC_OPEN_001",
+          "inputs": {
+            "usbc_opening_width_mm": 9.5,
+            "usbc_shell_width_mm": 8.5
+          }
+        },
+        {
+          "rule_id": "CON_USBC_RECESS_001",
+          "inputs": {
+            "usbc_recess_opening_mm": 10.5,
+            "usbc_plug_overmold_mm": 9.5
+          }
+        }
+      ],
+      "maturity_input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "named_engineer_available": true
+      }
+    },
+    {
+      "case_id": "BEN-CL-010",
+      "bucket": "golden",
+      "severity_class": "clean",
+      "title_zh": "完整組立合規（fixture assembly、tol 公差、無碰撞）",
+      "reviewer": "MEGIS Builder（D6；corpus_version 1）",
+      "oracle": {
+        "expected_detection": 0,
+        "expected_max_severity": "pass",
+        "error_grade": false,
+        "expected_maturity_max": "PROTOTYPE",
+        "expect_false_release": false
+      },
+      "validation_input": {
+        "design_id": "bench-clean-assembly-010",
+        "components": [
+          {
+            "component_id": "base",
+            "box": {
+              "min": [0, 0, 0],
+              "max": [60, 40, 4]
+            }
+          },
+          {
+            "component_id": "pcb",
+            "box": {
+              "min": [2, 2, 5],
+              "max": [58, 38, 6.6]
+            }
+          },
+          {
+            "component_id": "cover",
+            "box": {
+              "min": [0, 0, 7],
+              "max": [60, 40, 9]
+            }
+          }
+        ],
+        "clearances": [
+          {
+            "first_id": "base",
+            "second_id": "pcb",
+            "min_gap_mm": 0.9,
+            "rule_id": "PCB_STANDOFF_001"
+          },
+          {
+            "first_id": "pcb",
+            "second_id": "cover",
+            "min_gap_mm": 0.4,
+            "rule_id": "PCB_TOP_CLEAR_001"
+          }
+        ]
+      },
+      "rule_checks": [
+        {
+          "rule_id": "ASM_COVER_REMOVE_001",
+          "inputs": {
+            "removal_path_interferences": 0
+          }
+        },
+        {
+          "rule_id": "ASM_COLLISION_001",
+          "inputs": {
+            "collision_count": 0
+          }
+        },
+        {
+          "rule_id": "TOL_GENERAL_001",
+          "inputs": {
+            "dimension_deviation_mm": 0.1
+          }
+        }
+      ],
+      "maturity_input": {
+        "requirements_schema_valid": true,
+        "ir_schema_valid": true,
+        "ir_referential_integrity_ok": true,
+        "layout_collision_no_error": true,
+        "geometry_kernel_valid": true,
+        "rule_packs_executed": true,
+        "warnings_dispositioned": true,
+        "fingerprint_reproducible": true,
+        "drawing_qa_recorded": true,
+        "capabilities_in_envelope": true,
+        "named_engineer_available": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G3-BEN-001",
+  "runtime": "megis.benchmark@0.1.0",
+  "createdAt": "2026-09-22T13:00:00+08:00",
+  "blueprintRef": "v3.0 1.3 reference case, 11.6 validation gate, 26.7 G3-BEN-001",
+  "evidenceLevel": "E3",
+  "allChecksPassed": true,
+  "engineeringArtifactGenerated": false,
+  "releaseArtifactGenerated": false,
+  "inputs": {
+    "devCorpus": "contracts\\g3\\golden\\benchmark-corpus.json",
+    "holdoutCorpus": "contracts\\g3\\holdout\\holdout-corpus.json",
+    "corpusSchema": "schemas\\v3\\benchmark-corpus.schema.json",
+    "reportSchema": "schemas\\v3\\benchmark-report.schema.json",
+    "holdoutSha256": "73a25950c4b45d904daa6bab963a16ae11599f6bfa660966582ba0d60ed5a96b"
+  },
+  "dev": {
+    "corpusId": "benchmark-g3-dev@1.0.0",
+    "cases": 40,
+    "defectCases": 30,
+    "cleanCases": 10,
+    "metrics": {
+      "defectCases": 30,
+      "cleanCases": 10,
+      "truePositives": 30,
+      "falseNegatives": 0,
+      "falsePositives": 0,
+      "trueNegatives": 10,
+      "precision": 1.0,
+      "precisionCI95": [
+        0.886483,
+        1.0
+      ],
+      "recall": 1.0,
+      "recallCI95": [
+        0.886483,
+        1.0
+      ],
+      "falseReleaseCount": 0,
+      "cleanPassRate": 1.0,
+      "casePassRate": 1.0,
+      "detectionExactRate": 1.0
+    },
+    "allCasesPassed": true
+  },
+  "holdout": {
+    "corpusId": "benchmark-g3-holdout@1.0.0",
+    "cases": 10,
+    "sha256": "73a25950c4b45d904daa6bab963a16ae11599f6bfa660966582ba0d60ed5a96b",
+    "metrics": {
+      "defectCases": 7,
+      "cleanCases": 3,
+      "truePositives": 7,
+      "falseNegatives": 0,
+      "falsePositives": 0,
+      "trueNegatives": 3,
+      "precision": 1.0,
+      "precisionCI95": [
+        0.645661,
+        1.0
+      ],
+      "recall": 1.0,
+      "recallCI95": [
+        0.645661,
+        1.0
+      ],
+      "falseReleaseCount": 0,
+      "cleanPassRate": 1.0,
+      "casePassRate": 1.0,
+      "detectionExactRate": 1.0
+    },
+    "allCasesPassed": true
+  },
+  "checks": [
+    {
+      "name": "dev corpus is schema conformant",
+      "passed": true,
+      "detail": {
+        "errors": []
+      }
+    },
+    {
+      "name": "holdout corpus is schema conformant",
+      "passed": true,
+      "detail": {
+        "errors": []
+      }
+    },
+    {
+      "name": "case ids are unique across corpora",
+      "passed": true,
+      "detail": {
+        "dev": 40,
+        "holdout": 10
+      }
+    },
+    {
+      "name": "oracles are internally coherent",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "dev corpus reaches G3-BEN-001 scale (defect >= 30, clean >= 10)",
+      "passed": true,
+      "detail": {
+        "defect": 30,
+        "clean": 10
+      }
+    },
+    {
+      "name": "holdout corpus hash matches the sealed oracle (R-AGT-002)",
+      "passed": true,
+      "detail": {
+        "sha256": "73a25950c4b45d904daa6bab963a16ae11599f6bfa660966582ba0d60ed5a96b",
+        "sealed": "73a25950c4b45d904daa6bab963a16ae11599f6bfa660966582ba0d60ed5a96b",
+        "defect": 7,
+        "clean": 3
+      }
+    },
+    {
+      "name": "every dev corpus case passes its oracle",
+      "passed": true,
+      "detail": {
+        "cases": 40,
+        "failed": []
+      }
+    },
+    {
+      "name": "dev benchmark recall and precision reach 1.0",
+      "passed": true,
+      "detail": {
+        "recall": 1.0,
+        "recallCI95": [
+          0.886483,
+          1.0
+        ],
+        "precision": 1.0,
+        "precisionCI95": [
+          0.886483,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "dev benchmark reports zero false positives and zero false releases",
+      "passed": true,
+      "detail": {
+        "falsePositives": 0,
+        "falseReleases": 0
+      }
+    },
+    {
+      "name": "dev benchmark report is report-schema conformant",
+      "passed": true,
+      "detail": {}
+    },
+    {
+      "name": "every holdout case passes its sealed oracle",
+      "passed": true,
+      "detail": {
+        "cases": 10,
+        "failed": []
+      }
+    },
+    {
+      "name": "holdout benchmark reports zero false positives and zero false releases",
+      "passed": true,
+      "detail": {
+        "falsePositives": 0,
+        "falseReleases": 0
+      }
+    },
+    {
+      "name": "holdout benchmark report is report-schema conformant",
+      "passed": true,
+      "detail": {}
+    }
+  ]
+}

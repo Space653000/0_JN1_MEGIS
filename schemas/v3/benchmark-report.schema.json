@@ -1,0 +1,299 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/benchmark-report.schema.json",
+  "title": "G3 Benchmark Report",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "workItem",
+    "corpus_id",
+    "corpus_version",
+    "seed",
+    "runtime",
+    "timeout_ms",
+    "passDefinition",
+    "metrics",
+    "cases"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "workItem": {
+      "const": "G3-BEN-001"
+    },
+    "corpus_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "corpus_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "seed": {
+      "type": "integer"
+    },
+    "runtime": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timeout_ms": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "passDefinition": {
+      "type": "string",
+      "minLength": 1
+    },
+    "metrics": {
+      "type": "object",
+      "required": [
+        "defectCases",
+        "cleanCases",
+        "truePositives",
+        "falseNegatives",
+        "falsePositives",
+        "trueNegatives",
+        "precision",
+        "precisionCI95",
+        "recall",
+        "recallCI95",
+        "falseReleaseCount",
+        "cleanPassRate",
+        "casePassRate",
+        "detectionExactRate"
+      ],
+      "properties": {
+        "defectCases": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cleanCases": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "truePositives": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "falseNegatives": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "falsePositives": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "trueNegatives": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "precision": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "precisionCI95": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "recall": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "recallCI95": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "falseReleaseCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cleanPassRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "casePassRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "detectionExactRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "case_id",
+          "bucket",
+          "severityClass",
+          "observedDetections",
+          "expectedDetection",
+          "observedMaxSeverity",
+          "expectedMaxSeverity",
+          "maturityState",
+          "maturityAchievedIndex",
+          "expectedMaturityMax",
+          "expectFalseRelease",
+          "falseRelease",
+          "errorGrade",
+          "passed",
+          "detections"
+        ],
+        "properties": {
+          "case_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "bucket": {
+            "type": "string",
+            "enum": [
+              "golden",
+              "negative",
+              "boundary",
+              "regression",
+              "holdout"
+            ]
+          },
+          "severityClass": {
+            "type": "string",
+            "enum": [
+              "defect",
+              "clean"
+            ]
+          },
+          "observedDetections": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "expectedDetection": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "observedMaxSeverity": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "info",
+              "warning",
+              "error"
+            ]
+          },
+          "expectedMaxSeverity": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "info",
+              "warning",
+              "error"
+            ]
+          },
+          "maturityState": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "DRAFT",
+                  "CONCEPT",
+                  "PROTOTYPE",
+                  "ENGINEERING_REVIEWED",
+                  "RELEASED"
+                ]
+              }
+            ]
+          },
+          "maturityAchievedIndex": {
+            "type": "integer",
+            "minimum": -1,
+            "maximum": 4
+          },
+          "expectedMaturityMax": {
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "CONCEPT",
+              "PROTOTYPE",
+              "ENGINEERING_REVIEWED",
+              "RELEASED"
+            ]
+          },
+          "expectFalseRelease": {
+            "type": "boolean"
+          },
+          "falseRelease": {
+            "type": "boolean"
+          },
+          "errorGrade": {
+            "type": "boolean"
+          },
+          "passed": {
+            "type": "boolean"
+          },
+          "detections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "source",
+                "severity",
+                "code"
+              ],
+              "properties": {
+                "source": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "info",
+                    "warning",
+                    "error"
+                  ]
+                },
+                "code": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
