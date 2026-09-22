@@ -16,14 +16,15 @@ V3.0 採 Gate-driven construction，不以日期或推測百分比宣稱完成�
 
 ## 目前施工狀態
 
-**G0～G5 已完成 Gate acceptance，G6 為 active Gate**。V3 必要工作圖共有 74 項，目前控制面為 **59 done、1 in progress、14 planned**；唯一在製項目是 `G6-AI-002 — Intent 到 Requirement 萃取`。
+**G0～G5 已完成 Gate acceptance，G6 為 active Gate**。V3 必要工作圖共有 74 項，目前控制面為 **60 done、1 in progress、13 planned**；唯一在製項目是 `G6-AI-003 — AI 評估語料與 KPI`。
 
 最近閉合的 G6 能力：
 
 - `G6-UI-001`：capability-driven guided flow，只呈現已驗證能力；UI 與 API 產生等價 Engineering IR。
 - `G6-QST-001`：deterministic question ordering 與 abstention；unsafe unknown 阻擋生成且不會消失。
 - `G6-AI-001`：provider-neutral adapter、AI 預設關閉、recorded local stub、timeout／呼叫／token／成本上限；故障或超限時帶 `MEGIS-AI-*` 錯誤退回表單。
-- 最新完整 baseline：540 個 Python tests、12 個 frontend tests，以及 control-plane、secret、artifact、toolchain、maturity、lint、typecheck、build 全綠。
+- `G6-AI-002`：schema-bound Requirement draft、exact evidence span、`llm_proposed` quarantine 與逐欄 confirmation；未確認值不得進入 confirmed IR。
+- 最新完整 baseline：558 個 Python tests、12 個 frontend tests，以及 control-plane、secret、artifact、toolchain、maturity、lint、typecheck、build 全綠。
 
 UI-0 是本機端使用者體驗原型，用來先確認施工進度中心與治具／電子外殼引導流程。它使用有版本的 `PrototypeViewModel` 展示資料，不是藍圖中的 G6 工程能力，也不會產生 STEP、工程圖面、BOM、Prototype Package 或可供製造的工程製品。
 
@@ -38,13 +39,12 @@ UI-0 已完成驗收，但其展示結果仍是合成資料。正式工程核心
 
 ## 待完成清單（依序）
 
-1. `G6-AI-002`：schema-bound Intent → Requirement 草稿、`llm_proposed`、`evidence_span` 與 confirmed 隔離。
-2. `G6-AI-003`：至少 50 筆 intent 的 AI KPI 語料與 injection／hallucination 驗證。
-3. `G6-AI-004`：只依 IR、規則結果與 manifest 的 grounded explanation。
-4. `G6-A11Y-001`：WCAG 2.2 AA 自動化與人工抽查。
-5. `G6-USE-001`：至少 5 位非 CAD 參與者的 usability test；需要真實人工證據。
-6. `G6-E2E-001`、`G6-REV-001`、`G6-ACC-001`：端到端、乾淨 checkout 審查與 Gate acceptance。
-7. G6 accepted 後依 Gate 依賴進入 G7 聲學、G8 機器人與 G9 強化。
+1. `G6-AI-003`：至少 50 筆 intent 的 AI KPI 語料與 injection／hallucination 驗證。
+2. `G6-AI-004`：只依 IR、規則結果與 manifest 的 grounded explanation。
+3. `G6-A11Y-001`：WCAG 2.2 AA 自動化與人工抽查。
+4. `G6-USE-001`：至少 5 位非 CAD 參與者的 usability test；需要真實人工證據。
+5. `G6-E2E-001`、`G6-REV-001`、`G6-ACC-001`：端到端、乾淨 checkout 審查與 Gate acceptance。
+6. G6 accepted 後依 Gate 依賴進入 G7 聲學、G8 機器人與 G9 強化。
 
 ## 為什麼目前網站沒有更多產品或功能？
 
@@ -59,7 +59,7 @@ UI-0 已完成驗收，但其展示結果仍是合成資料。正式工程核心
 | STEP/STL/DXF | G0 feasibility spike 可重建並重新載入 | classification 是 `FEASIBILITY_SPIKE`，`maturity: null`，不可當製造輸出 |
 | 工程規則與 maturity | G3 accepted；規則治理、validator、benchmark、maturity evaluator 已驗證 | 不會自動升級為 `ENGINEERING_REVIEWED` 或 `RELEASED` |
 | BOM、drawing、Prototype Package | G5 accepted；可重建且有 content hash | drawing 永久標示 draft／not for manufacturing |
-| AI 輔助 | adapter 已驗證，預設關閉且故障退回表單 | 尚未接真實 provider；Intent 萃取、KPI、grounded explanation 待施工 |
+| AI 輔助 | adapter 與 schema-bound Intent 萃取已驗證；預設關閉，故障退回表單，未確認值隔離 | 尚未接真實 provider；KPI 與 grounded explanation 待施工 |
 | Acoustic 產品線 | 僅有 schema-only golden case | G7 solver/thin slice 尚未施工 |
 | Robot Car 產品線 | 僅有 schema-only golden case | G8 assembly/safety thin slice 尚未施工，maturity 上限受安全政策限制 |
 
@@ -76,7 +76,7 @@ UI-0 已完成驗收，但其展示結果仍是合成資料。正式工程核心
 | G3 | 規則治理、validator、benchmark、maturity evaluator、review 與 sign-off | 無（Gate accepted） |
 | G4 | Module capability、relationship、composition、safe import、review 與 sign-off | 無（Gate accepted） |
 | G5 | Manifest、BOM、draft drawing、reproducibility、review 與 sign-off | 無（Gate accepted） |
-| G6 | Guided flow、Question Engine、optional AI adapter | Intent 萃取、AI KPI、grounded explanation、a11y、usability、E2E、review、acceptance |
+| G6 | Guided flow、Question Engine、optional AI adapter、schema-bound Intent 萃取 | AI KPI、grounded explanation、a11y、usability、E2E、review、acceptance |
 | G7～G9 | 藍圖與 acceptance criteria | Acoustic、Robot 與 hardening 尚未施工 |
 
 - [UI-0 施工計畫](docs/UI0_PLAN.md)
@@ -100,12 +100,13 @@ UI-0 已完成驗收，但其展示結果仍是合成資料。正式工程核心
 - [G2 Fixture Base](docs/G2_FIXTURE_BASE.md)
 - [G2 Fixture Assembly](docs/G2_FIXTURE_ASSEMBLY.md)
 - [G6 AI provider adapter 與離線 fallback](docs/G6_AI_PROVIDER_ADAPTER.md)
+- [G6 AI Intent 到 Requirement 萃取](docs/G6_AI_REQUIREMENT_EXTRACTION.md)
 - [V3 採用決策](docs/decisions/ADR-0001-adopt-v3-blueprint.md)
 - [Classification 與 maturity 政策](docs/CLASSIFICATION_AND_MATURITY.md)
 - [Artifact 儲存與 Git 大小預算政策](docs/ARTIFACT_POLICY.md)
 - [ADR-0011：既有 G0 重型製品精確白名單](docs/decisions/ADR-0011-legacy-heavy-artifact-allowlist.md)
 - [G1-ENV-001 完工進度報告](outputs/2026-09-19-G1-ENV-001-完工進度報告.md)
-- [V3 最新施工進度盤點與 GitHub／網頁同步報告](outputs/2026-09-22-G6-AI-001-完工與V3盤點報告.md)
+- [V3 最新施工進度盤點與 GitHub／網頁同步報告](outputs/2026-09-22-G6-AI-002-完工與V3盤點報告.md)
 - [決策索引](docs/DECISIONS.md)
 
 ## 本機啟動

@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T19:00:00+08:00",
+  "updatedAt": "2026-09-22T20:05:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G6-AI-002",
+  "currentWorkItem": "G6-AI-003",
   "gates": [
     {
       "id": "UI-0A",
@@ -3387,7 +3387,7 @@
       "id": "G6-AI-002",
       "title": "Intent 到 Requirement 萃取",
       "gate": "G6",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G6-AI-001"
       ],
@@ -3403,8 +3403,16 @@
       "acceptanceResults": [
         {
           "criterion": "schema-bound 輸出、llm_proposed、evidence span 與未確認值隔離測試通過",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "megis/ai/extraction.py",
+            "schemas/v3/ai-requirement-draft.schema.json",
+            "contracts/g6/golden/ai-requirement-fixtures.json",
+            "tests/test_g6_ai_002.py",
+            "scripts/verify_g6_ai_002.py",
+            "artifacts/g6-ai-002/verification.json",
+            "docs/G6_AI_REQUIREMENT_EXTRACTION.md"
+          ]
         }
       ],
       "verificationCommands": [
@@ -3412,15 +3420,23 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "megis/ai/extraction.py",
+        "schemas/v3/ai-requirement-draft.schema.json",
+        "contracts/g6/golden/ai-requirement-fixtures.json",
+        "tests/test_g6_ai_002.py",
+        "scripts/verify_g6_ai_002.py",
+        "artifacts/g6-ai-002/verification.json",
+        "docs/G6_AI_REQUIREMENT_EXTRACTION.md"
+      ],
+      "verification": "passed",
+      "commitSha": "66945078ea240ad8684b0c2cd1b4b7ebe402b826"
     },
     {
       "id": "G6-AI-003",
       "title": "AI 評估語料與 KPI",
       "gate": "G6",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G6-AI-002"
       ],

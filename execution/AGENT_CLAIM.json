@@ -1,8 +1,8 @@
 {
   "agent": "codex",
   "role": "builder",
-  "work_item": "G6-AI-002",
-  "claimed_at": "2026-09-22T19:00:00+08:00",
-  "expires_at": "2026-09-23T19:00:00+08:00",
-  "base_commit": "5d890bed54122be23ec9c81434ff33a9d492c3e3"
+  "work_item": "G6-AI-003",
+  "claimed_at": "2026-09-22T20:00:00+08:00",
+  "expires_at": "2026-09-23T20:00:00+08:00",
+  "base_commit": "66945078ea240ad8684b0c2cd1b4b7ebe402b826"
 }

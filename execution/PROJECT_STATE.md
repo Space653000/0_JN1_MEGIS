@@ -1,18 +1,19 @@
 # MEGIS Project State
 
 - Current gate: `G6 — 引導式介面工程整合`
-- Current work item: `G6-AI-002 — Intent 到 Requirement 萃取（in_progress）`
-- Last green commit: `5d890bed54122be23ec9c81434ff33a9d492c3e3`
+- Current work item: `G6-AI-003 — AI 評估語料與 KPI（in_progress）`
+- Last green commit: `66945078ea240ad8684b0c2cd1b4b7ebe402b826`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-22T19:00:00+08:00`
+- Updated at: `2026-09-22T20:05:00+08:00`
 
 ## Active gate: G6
 
-G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 已 accepted（`SO-0005`，2026-09-22，E4）。G5 已 accepted（`SO-0006`，2026-09-22，E4）。G6 — 引導式介面工程整合現在為 active gate；`G6-UI-001`、`G6-QST-001`、`G6-AI-001` 已閉合（2026-09-22，E3），下一個工項為 `G6-AI-002 — Intent 到 Requirement 萃取`（in_progress）。
+G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 已 accepted（`SO-0005`，2026-09-22，E4）。G5 已 accepted（`SO-0006`，2026-09-22，E4）。G6 — 引導式介面工程整合現在為 active gate；`G6-UI-001`、`G6-QST-001`、`G6-AI-001`、`G6-AI-002` 已閉合（2026-09-22，E3），下一個工項為 `G6-AI-003 — AI 評估語料與 KPI`（in_progress）。
 
 G6-UI-001 已閉合（2026-09-22）：capability-driven guided flow（`megis/guides/`、`schemas/v3/capability-manifest.schema.json`、`contracts/g6/golden/capability-manifest.json`、`apps/web/src/adapters/capability-guide-adapter.ts`）。介面只呈現後端已證明的能力，guided flow 從封閉問題集建立 schema 合法 Engineering IR；UI-form 與直接 API 路徑產出 byte-identical IR；unsafe unknown／超出能力的輸入以 `MEGIS-UI-001`／`MEGIS-UI-002`／`MEGIS-ENV-001` 阻擋而不自行預設；`tests/test_g6_ui_001.py` 11 tests + `scripts/verify_g6_ui_001.py` E3 allChecksPassed（golden fingerprint `7bfc576a...`），前端 guided-flow 測試（`prototype-flow.test.tsx` 6 tests）驗證越界／未知阻擋與合成標籤；baseline 509 Python + 12 Frontend 全綠（E3）。下一工項 `G6-QST-001`（in_progress）。
 G6-QST-001 已閉合（2026-09-22）：deterministic question ordering 與 abstention（`megis/guides/qst.py`、`schemas/v3/question-order-corpus.schema.json`、`contracts/g6/golden/question-order-corpus.json`）實現藍圖 §14 動態問題引擎 rules 1-8：unsafe_to_default 先問、impact 由架構到需求遞減、從已證實能力可推得的 connector／fastener／cover 永不追問、順序以凍結 golden corpus 固定為決定性；unsafe unknown（未提供尺寸或 PCB envelope 為 unknown）以 `MEGIS-UI-001` 阻擋生成並給出下一步，critical unknown 在 abstention 後仍留在 pending set；`tests/test_g6_qst_001.py` 14 tests + `scripts/verify_g6_qst_001.py` E3 allChecksPassed（12 checks、18 corpus cases：ordering／abstention／boundary／negative，8 blocked cases 皆 MEGIS-UI-001 且無 artifact）；本段驗證 baseline 523 Python + 12 Frontend + control-plane 全綠（E3）。實作 commit `9c1c671`。下一工項 `G6-AI-001`（in_progress）。
 G6-AI-001 已閉合（2026-09-22）：新增 `megis/ai/` provider-neutral seam、預設關閉的 `config/ai/provider.json`、recorded local stub、timeout／呼叫／token／成本上限與 deterministic form fallback；provider 故障回 `MEGIS-AI-001`、超限回 `MEGIS-AI-003`，並保留 `MEGIS-AI-002` 給 schema-invalid output。Audit 只保存 provider／model／prompt／schema 版本與 input SHA-256，不保存 raw intent 或 exception；package manifest 補上 provider 與 schema version。`tests/test_g6_ai_001.py` 17 tests、`scripts/verify_g6_ai_001.py` 9 checks、baseline 540 Python + 12 Frontend 全綠（E3）；實作 commit `5d890be` 已同步 GitHub。下一工項 `G6-AI-002`（in_progress）。
+G6-AI-002 已閉合（2026-09-22）：新增 schema-bound AI Requirement draft quarantine（`schemas/v3/ai-requirement-draft.schema.json`、`megis/ai/extraction.py`）。所有 proposal 固定為 `llm_proposed` 並綁定原文 SHA-256 與 exact `evidenceSpan`；數值必須在 span 中出現，尺寸必須明示 `mm`。JSON／schema／hash／span／單位錯誤一律 `MEGIS-AI-002` 拒收且不修補；confirmation ledger 只提升使用者逐欄確認值，未確認值不能覆寫表單或進入 confirmed IR。3 筆 recorded fixtures、18 tests、7 verifier checks 與 baseline 558 Python + 12 Frontend 全綠（E3）；實作 commit `6694507` 已同步 GitHub。下一工項 `G6-AI-003`（in_progress）。
 
 G5-ACC-001 已閉合（2026-09-22）：G5 gate acceptance 決策紀錄（E4，`execution/signoffs/SO-0006.yaml` + `artifacts/g5-acc-001/verification.json`），可追溯至 G5 審查與 CI；G5 gate 標為 accepted，G6 gate 轉 active，`G6-UI-001` 施工開始。
 

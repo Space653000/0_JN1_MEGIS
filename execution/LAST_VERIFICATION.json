@@ -1,36 +1,37 @@
 {
-  "verifiedAt": "2026-09-22T19:00:00+08:00",
+  "verifiedAt": "2026-09-22T20:05:00+08:00",
   "status": "passed",
   "schemaVersion": "1.0.0",
   "commands": [
     {
       "command": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
-      "pythonTests": 539,
+      "pythonTests": 558,
       "pythonFailed": 0,
       "frontendTests": 12,
       "frontendTestFiles": 3,
       "status": "passed"
     },
     {
-      "command": ".venv/Scripts/python.exe scripts/verify_g6_ai_001.py",
-      "workItem": "G6-AI-001",
+      "command": ".venv/Scripts/python.exe scripts/verify_g6_ai_002.py",
+      "workItem": "G6-AI-002",
       "evidenceLevel": "E3",
-      "checks": 9,
+      "recordedFixtureCases": 3,
+      "checks": 7,
       "allChecksPassed": true,
       "status": "passed",
-      "pinnedCommit": "5d890bed54122be23ec9c81434ff33a9d492c3e3"
+      "pinnedCommit": "66945078ea240ad8684b0c2cd1b4b7ebe402b826"
     },
     {
       "command": "node scripts/verify-control-plane.mjs",
       "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
       "deferrals": 0,
-      "currentWorkItemAfter": "G6-AI-002",
+      "currentWorkItemAfter": "G6-AI-003",
       "status": "passed"
     },
     {
       "command": "node scripts/verify-secrets.mjs",
-      "trackedFiles": 453,
+      "trackedFiles": 461,
       "potentialSecrets": 0,
       "status": "passed"
     },
@@ -39,21 +40,24 @@
       "status": "passed"
     },
     {
-      "command": "Invoke-WebRequest http://127.0.0.1:4173/progress and virtual:project-progress",
+      "command": "live Vite progress-state hot reload verification",
       "httpStatus": 200,
-      "currentWorkItem": "G6-AI-002",
-      "completedWorkItem": "G6-AI-001",
+      "updatedAt": "2026-09-22T20:05:00+08:00",
+      "currentWorkItem": "G6-AI-003",
+      "completedWorkItem": "G6-AI-002",
       "completedWorkItemStatus": "done",
+      "serverRestartRequired": false,
       "status": "passed"
     }
   ],
-  "sourceCommit": "5d890bed54122be23ec9c81434ff33a9d492c3e3",
+  "sourceCommit": "66945078ea240ad8684b0c2cd1b4b7ebe402b826",
   "boundaries": {
     "engineeringArtifactsGenerated": false,
     "otherProjectDirectoriesModified": false,
     "engineeringArtifactsClassification": null,
     "releaseArtifactsGenerated": false,
     "externalProviderCalled": false,
+    "unconfirmedValuesEnteredIr": false,
     "workspaceRoot": "C:/0_JN1_MEGIS",
     "localOnly": true
   }
