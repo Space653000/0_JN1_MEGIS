@@ -2,7 +2,7 @@
 
 - Current gate: `G6 — 引導式介面工程整合`
 - Current work item: `G6-A11Y-001 — 無障礙驗證（in_progress）`
-- Last green commit: `473dc17fcfb0742002cc67b757466d6396c29cd6`
+- Last green commit: `1714669f8ce2c60d69211e338eaccb9368a61bbd`
 - Control-plane schema: `1.1.0`
 - Updated at: `2026-09-23T04:42:00+08:00`
 
