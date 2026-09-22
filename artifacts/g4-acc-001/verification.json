@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G4-ACC-001",
+  "verifiedAt": "2026-09-22T16:05:00+08:00",
+  "blueprintRef": "v3.0 §5.7、§6.3、§8.1、附錄 A.3/A.5",
+  "evidenceLevel": "E4",
+  "gate": "G4",
+  "gateStatus": "accepted",
+  "workItems": {
+    "total": 6,
+    "done": 6,
+    "ids": [
+      "G4-MOD-001",
+      "G4-GRF-001",
+      "G4-MOD-002",
+      "G4-IMP-001",
+      "G4-REV-001",
+      "G4-ACC-001"
+    ]
+  },
+  "reviewPassed": {
+    "report": "execution/reviews/2026-09-22-G4-REV-001-review.md",
+    "conclusion": "passed",
+    "blockingFindings": 0,
+    "reviewedCommit": "eef0afcae87731a83497c81ff7277cfa5a67495c",
+    "reviewDocsCommit": "d22c9a365e0c9013b47031889637573b0654c03e"
+  },
+  "ciEvidence": [
+    {
+      "runId": null,
+      "headSha": "eef0afcae87731a83497c81ff7277cfa5a67495c",
+      "conclusion": "local baseline-ci passed",
+      "detail": "421 Python + 9 Frontend tests, artifact policy, secret scan, control plane valid"
+    },
+    {
+      "runId": null,
+      "headSha": "eef0afcae87731a83497c81ff7277cfa5a67495c",
+      "conclusion": "clean checkout review passed",
+      "detail": "115 G4 tests + 3 verify_g4_*.py scripts (90 checks) + control-plane verifier all green"
+    }
+  ],
+  "controlPlane": {
+    "command": "node scripts/verify-control-plane.mjs",
+    "status": "passed",
+    "workItems": 74,
+    "gates": 14,
+    "deferrals": 0,
+    "activeGateAfterAcceptance": "G5"
+  },
+  "decision": {
+    "decision": "approved",
+    "signoff": "execution/signoffs/SO-0005.yaml",
+    "recordedBy": "agent",
+    "recordedAt": "2026-09-22T16:05:00+08:00",
+    "signatureReference": "d22c9a365e0c9013b47031889637573b0654c03e",
+    "userVeto": null
+  },
+  "checks": {
+    "allG4WorkItemsDone": true,
+    "reviewPassed": true,
+    "ciGreenOnReviewCommit": true,
+    "signoffPresent": true,
+    "traceableToReviewAndCi": true,
+    "engineeringArtifactsGenerated": false,
+    "releaseArtifactsGenerated": false
+  },
+  "residualRisks": [
+    "R-G0-001",
+    "R-G0-002",
+    "R-G0-003"
+  ],
+  "resolvedRisks": []
+}
