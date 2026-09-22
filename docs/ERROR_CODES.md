@@ -32,6 +32,9 @@
 | MEGIS-JOB-001 | JOB | error | yes | 工作逾時。 |
 | MEGIS-AI-001 | AI | error | yes | AI 輸出格式無效。 |
 | MEGIS-IMP-001 | IMP | error | no | 輸入檔案超出限制。 |
+| MEGIS-IMP-002 | IMP | error | no | 檔案副檔名與內容不符。 |
+| MEGIS-IMP-003 | IMP | error | no | 匯入檔案無法解析。 |
+| MEGIS-IMP-004 | IMP | error | yes | 匯入處理逾時或超出實體數量上限。 |
 | MEGIS-SYS-001 | SYS | fatal | no | 本機工具鏈版本不符。 |
 
 v2 legacy `GeometryErrorCode` 映射（severity／retryable／訊息由 `megis/errors/registry.py` 統一管理）：

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v3/import-report.schema.json",
+  "title": "Safe STEP/DXF Import Report (G4-IMP-001)",
+  "description": "metadata extracted from an untrusted STEP or DXF file by an isolated subprocess worker. Only proveable information from blueprint section 12 is allowed: bounding box, solid/shell count, candidate holes / planar sections, file unit, parser warnings. Material, loads, supplier, electrical/acoustic properties and mount intent are never auto-extracted.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "workItem",
+    "importFormat",
+    "sourcePath",
+    "derivedFromImport",
+    "capabilityLevel",
+    "boundingBoxMm",
+    "solids",
+    "shells",
+    "faces",
+    "edges",
+    "candidateHoles",
+    "candidatePlanarSections",
+    "fileUnit",
+    "parserWarnings"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "workItem": {
+      "const": "G4-IMP-001"
+    },
+    "importFormat": {
+      "type": "string",
+      "enum": ["STEP", "DXF"]
+    },
+    "sourcePath": {
+      "type": "string",
+      "minLength": 1
+    },
+    "derivedFromImport": {
+      "const": true
+    },
+    "capabilityLevel": {
+      "type": ["string", "null"]
+    },
+    "boundingBoxMm": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "required": ["xmin", "ymin", "zmin", "xmax", "ymax", "zmax"],
+          "properties": {
+            "xmin": { "type": "number" },
+            "ymin": { "type": "number" },
+            "zmin": { "type": "number" },
+            "xmax": { "type": "number" },
+            "ymax": { "type": "number" },
+            "zmax": { "type": "number" }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "solids": { "type": ["integer", "null"], "minimum": 0 },
+    "shells": { "type": ["integer", "null"], "minimum": 0 },
+    "faces": { "type": ["integer", "null"], "minimum": 0 },
+    "edges": { "type": ["integer", "null"], "minimum": 0 },
+    "candidateHoles": { "type": ["integer", "null"], "minimum": 0 },
+    "candidatePlanarSections": { "type": ["integer", "null"], "minimum": 0 },
+    "fileUnit": { "type": ["string", "null"] },
+    "parserWarnings": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

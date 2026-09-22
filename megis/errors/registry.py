@@ -73,6 +73,9 @@ _ERROR_CODES: list[ErrorCode] = [
     ErrorCode("MEGIS-JOB-001", ErrorDomain.JOB, 1, ErrorSeverity.ERROR, True, "工作逾時。", "job timeout"),
     ErrorCode("MEGIS-AI-001", ErrorDomain.AI, 1, ErrorSeverity.ERROR, True, "AI 輸出格式無效。", "schema-invalid AI model output"),
     ErrorCode("MEGIS-IMP-001", ErrorDomain.IMP, 1, ErrorSeverity.ERROR, False, "輸入檔案超出限制。", "import file exceeds size or structural limit"),
+    ErrorCode("MEGIS-IMP-002", ErrorDomain.IMP, 2, ErrorSeverity.ERROR, False, "檔案副檔名與內容不符。", "import file extension does not match its content"),
+    ErrorCode("MEGIS-IMP-003", ErrorDomain.IMP, 3, ErrorSeverity.ERROR, False, "匯入檔案無法解析。", "import parser rejected or failed to parse the file"),
+    ErrorCode("MEGIS-IMP-004", ErrorDomain.IMP, 4, ErrorSeverity.ERROR, True, "匯入處理逾時或超出實體數量上限。", "import worker timed out or exceeded the entity budget"),
     ErrorCode("MEGIS-SYS-001", ErrorDomain.SYS, 1, ErrorSeverity.FATAL, False, "本機工具鏈版本不符。", "toolchain or environment version mismatch"),
 ]
 

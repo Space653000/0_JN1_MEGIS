@@ -1,0 +1,224 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G4-IMP-001",
+  "referenceDate": "2026-09-22",
+  "cases": [
+    {
+      "case_id": "imp-step-mm-valid",
+      "name": "metric STEP box extracts provable metadata",
+      "input": {
+        "format": "STEP",
+        "sample": { "kind": "valid" }
+      },
+      "expect": {
+        "valid": true,
+        "boundingBoxMm": {
+          "xmin": 0.0,
+          "ymin": 0.0,
+          "zmin": 0.0,
+          "xmax": 10.0,
+          "ymax": 20.0,
+          "zmax": 30.0
+        },
+        "solids": 1,
+        "shells": 1,
+        "edges": 1,
+        "candidateHoles": 1,
+        "candidatePlanarSections": 1,
+        "fileUnit": "millimetre"
+      }
+    },
+    {
+      "case_id": "imp-step-inch-valid",
+      "name": "imperial STEP reports inch unit",
+      "input": {
+        "format": "STEP",
+        "sample": { "kind": "valid" }
+      },
+      "expect": {
+        "valid": true,
+        "solids": 1,
+        "candidateHoles": 1,
+        "fileUnit": "inch"
+      }
+    },
+    {
+      "case_id": "imp-step-metre-valid",
+      "name": "metre STEP reports metre unit",
+      "input": {
+        "format": "STEP",
+        "sample": { "kind": "valid" }
+      },
+      "expect": {
+        "valid": true,
+        "solids": 1,
+        "fileUnit": "metre"
+      }
+    },
+    {
+      "case_id": "imp-step-zero-entities",
+      "name": "empty STEP is valid without geometry",
+      "input": {
+        "format": "STEP",
+        "sample": { "kind": "zero_entities" }
+      },
+      "expect": {
+        "valid": true,
+        "solids": 0,
+        "candidateHoles": 0,
+        "candidatePlanarSections": 0,
+        "fileUnit": null
+      }
+    },
+    {
+      "case_id": "imp-dxf-inch-valid",
+      "name": "imperial DXF extracts candidate hole",
+      "input": {
+        "format": "DXF",
+        "sample": { "kind": "valid" }
+      },
+      "expect": {
+        "valid": true,
+        "edges": 2,
+        "candidateHoles": 1,
+        "candidatePlanarSections": 0,
+        "fileUnit": "inch"
+      }
+    },
+    {
+      "case_id": "imp-dxf-mm-valid",
+      "name": "metric DXF reports millimetre unit",
+      "input": {
+        "format": "DXF",
+        "sample": { "kind": "valid" }
+      },
+      "expect": {
+        "valid": true,
+        "edges": 2,
+        "candidateHoles": 1,
+        "candidatePlanarSections": 0,
+        "fileUnit": "millimetre"
+      }
+    },
+    {
+      "case_id": "imp-step-oversized",
+      "name": "STEP over size budget is rejected",
+      "input": {
+        "format": "STEP",
+        "sample": { "kind": "oversized", "maxBytes": 10 }
+      },
+      "expect": {
+        "valid": false,
+        "errorCode": "MEGIS-IMP-001"
+      }
+    },
+    {
+      "case_id": "imp-dxf-oversized",
+      "name": "DXF over size budget is rejected",
+      "input": {
+        "format": "DXF",
+        "sample": { "kind": "oversized", "maxBytes": 10 }
+      },
+      "expect": {
+        "valid": false,
+        "errorCode": "MEGIS-IMP-001"
+      }
+    },
+    {
+      "case_id": "imp-step-truncated",
+      "name": "truncated STEP fails structural integrity",
+      "input": {
+        "format": "STEP",
+        "sample": { "kind": "truncated" }
+      },
+      "expect": {
+        "valid": false,
+        "errorCode": "MEGIS-IMP-003"
+      }
+    },
+    {
+      "case_id": "imp-dxf-truncated",
+      "name": "DXF missing EOF fails structural integrity",
+      "input": {
+        "format": "DXF",
+        "sample": { "kind": "truncated" }
+      },
+      "expect": {
+        "valid": false,
+        "errorCode": "MEGIS-IMP-003"
+      }
+    },
+    {
+      "case_id": "imp-step-deeply-nested",
+      "name": "dense STEP exceeds entity budget",
+      "input": {
+        "format": "STEP",
+        "sample": { "kind": "deeply_nested" }
+      },
+      "expect": {
+        "valid": false,
+        "errorCode": "MEGIS-IMP-004"
+      }
+    },
+    {
+      "case_id": "imp-dxf-deeply-nested",
+      "name": "dense DXF exceeds entity budget",
+      "input": {
+        "format": "DXF",
+        "sample": { "kind": "deeply_nested" }
+      },
+      "expect": {
+        "valid": false,
+        "errorCode": "MEGIS-IMP-004"
+      }
+    },
+    {
+      "case_id": "imp-step-wrong-extension",
+      "name": "STEP labelled as DXF is rejected",
+      "input": {
+        "format": "STEP",
+        "sample": { "kind": "wrong_extension" }
+      },
+      "expect": {
+        "valid": false,
+        "errorCode": "MEGIS-IMP-002"
+      }
+    },
+    {
+      "case_id": "imp-dxf-wrong-extension",
+      "name": "DXF labelled as STEP is rejected",
+      "input": {
+        "format": "DXF",
+        "sample": { "kind": "wrong_extension" }
+      },
+      "expect": {
+        "valid": false,
+        "errorCode": "MEGIS-IMP-002"
+      }
+    },
+    {
+      "case_id": "imp-step-bad-magic",
+      "name": "STEP without ISO magic is rejected",
+      "input": {
+        "format": "STEP",
+        "sample": { "kind": "bad_magic" }
+      },
+      "expect": {
+        "valid": false,
+        "errorCode": "MEGIS-IMP-002"
+      }
+    },
+    {
+      "case_id": "imp-dxf-bad-magic",
+      "name": "DXF without SECTION magic is rejected",
+      "input": {
+        "format": "DXF",
+        "sample": { "kind": "bad_magic" }
+      },
+      "expect": {
+        "valid": false,
+        "errorCode": "MEGIS-IMP-002"
+      }
+    }
+  ]
+}

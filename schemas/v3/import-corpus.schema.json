@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/v3/import-corpus.schema.json",
+  "title": "Safe Import Corpus (G4-IMP-001)",
+  "description": "Table-driven positive and negative cases for the safe STEP / DXF metadata extraction pipeline. Samples are described declaratively and regenerated at verification time (never stored as binary), covering valid files plus oversized, truncated, wrong-extension, deeply nested and zero-entity hostile samples.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "workItem",
+    "referenceDate",
+    "cases"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "workItem": {
+      "const": "G4-IMP-001"
+    },
+    "referenceDate": {
+      "type": "string"
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 16,
+      "items": {
+        "type": "object",
+        "required": [
+          "case_id",
+          "name",
+          "input",
+          "expect"
+        ],
+        "properties": {
+          "case_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "input": {
+            "type": "object",
+            "required": [
+              "format",
+              "sample"
+            ],
+            "properties": {
+              "format": {
+                "type": "string",
+                "enum": ["STEP", "DXF"]
+              },
+              "sample": {
+                "type": "object",
+                "required": [
+                  "kind"
+                ],
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "valid",
+                      "oversized",
+                      "truncated",
+                      "wrong_extension",
+                      "deeply_nested",
+                      "zero_entities",
+                      "bad_magic"
+                    ]
+                  },
+                  "maxBytes": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "truncateTo": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "nestedDepth": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "expect": {
+            "type": "object",
+            "required": [
+              "valid"
+            ],
+            "properties": {
+              "valid": {
+                "type": "boolean"
+              },
+              "errorCode": {
+                "type": "string",
+                "pattern": "^MEGIS-IMP-[0-9]{3}$"
+              },
+              "boundingBoxMm": {
+                "type": "object"
+              },
+              "solids": {
+                "type": ["integer", "null"]
+              },
+              "shells": {
+                "type": ["integer", "null"]
+              },
+              "edges": {
+                "type": ["integer", "null"]
+              },
+              "candidateHoles": {
+                "type": "integer"
+              },
+              "candidatePlanarSections": {
+                "type": "integer"
+              },
+              "fileUnit": {
+                "type": ["string", "null"]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
