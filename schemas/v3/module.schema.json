@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/module.schema.json",
+  "title": "MEGIS Module",
+  "description": "Module document carrying geometry, interface, clearance, rule and provenance metadata (blueprint 4.16 / G4-MOD-001).",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "module_id",
+    "version",
+    "capability_level",
+    "interfaces",
+    "clearance_envelopes",
+    "metadata",
+    "rule_refs",
+    "datasheet_refs"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "module_id": {
+      "type": "string",
+      "pattern": "^mod\\.[a-z][a-z0-9_]*$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Modules use pure SemVer MAJOR.MINOR.PATCH without pre-release markers."
+    },
+    "capability_level": {
+      "type": "string",
+      "enum": [
+        "metadata_only",
+        "layout_capable",
+        "geometry_capable",
+        "validated"
+      ]
+    },
+    "interfaces": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_-]*$"
+      }
+    },
+    "clearance_envelopes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "interface_id",
+          "envelope_ref"
+        ],
+        "properties": {
+          "interface_id": {
+            "type": "string"
+          },
+          "envelope_ref": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "geometry_generator_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "value",
+          "provenance"
+        ],
+        "properties": {
+          "value": {},
+          "provenance": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "rule_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "datasheet_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "capability_level": {
+            "const": "geometry_capable"
+          }
+        },
+        "required": [
+          "capability_level"
+        ]
+      },
+      "then": {
+        "required": [
+          "geometry_generator_ref"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "capability_level": {
+            "const": "validated"
+          }
+        },
+        "required": [
+          "capability_level"
+        ]
+      },
+      "then": {
+        "required": [
+          "geometry_generator_ref"
+        ]
+      }
+    }
+  ],
+  "additionalProperties": false
+}

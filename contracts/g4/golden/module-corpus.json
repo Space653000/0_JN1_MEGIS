@@ -1,0 +1,465 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G4-MOD-001",
+  "referenceDate": "2026-09-22",
+  "cases": [
+    {
+      "case_id": "base-metadata-only-positive",
+      "name": "Base module metadata_only",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "module_id": "mod.base",
+        "version": "1.0.0",
+        "capability_level": "metadata_only",
+        "interfaces": [],
+        "clearance_envelopes": [],
+        "metadata": {
+          "source": {
+            "value": "project_fixture",
+            "provenance": ["proj.spec@2026-09-22"]
+          }
+        },
+        "rule_refs": [],
+        "datasheet_refs": []
+      },
+      "expect": {
+        "valid": true,
+        "capabilityLevel": "metadata_only",
+        "index": 0,
+        "geometryGeneratorRequired": false
+      }
+    },
+    {
+      "case_id": "cover-layout-capable-positive",
+      "name": "Cover module layout_capable",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "module_id": "mod.cover",
+        "version": "1.0.0",
+        "capability_level": "layout_capable",
+        "interfaces": ["mount_face"],
+        "clearance_envelopes": [],
+        "metadata": {
+          "clearance_gap_mm": {
+            "value": 1.0,
+            "provenance": ["spec.layout@2026-09-22"]
+          }
+        },
+        "rule_refs": [],
+        "datasheet_refs": []
+      },
+      "expect": {
+        "valid": true,
+        "capabilityLevel": "layout_capable",
+        "index": 1,
+        "geometryGeneratorRequired": false
+      }
+    },
+    {
+      "case_id": "pcb-geometry-capable-positive",
+      "name": "PCB module geometry_capable",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "module_id": "mod.pcb",
+        "version": "1.0.0",
+        "capability_level": "geometry_capable",
+        "interfaces": ["board_outline"],
+        "clearance_envelopes": [],
+        "geometry_generator_ref": "cad.pcb@1.0.0",
+        "metadata": {
+          "board_thickness_mm": {
+            "value": 1.6,
+            "provenance": ["datasheet.pcb@2026-09-22"]
+          }
+        },
+        "rule_refs": ["rp.cnc_dfm@1.0.0"],
+        "datasheet_refs": ["ds.pcb_rev_c@1.0.0"]
+      },
+      "expect": {
+        "valid": true,
+        "capabilityLevel": "geometry_capable",
+        "index": 2,
+        "geometryGeneratorRequired": true
+      }
+    },
+    {
+      "case_id": "usbc-validated-positive",
+      "name": "USB-C module validated",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "module_id": "mod.usbc",
+        "version": "1.0.0",
+        "capability_level": "validated",
+        "interfaces": ["usb_type_c", "solder_pads"],
+        "clearance_envelopes": [
+          {
+            "interface_id": "usb_type_c",
+            "envelope_ref": "env.usbc_cavity@1.0.0"
+          }
+        ],
+        "geometry_generator_ref": "cad.usbc@1.0.0",
+        "metadata": {
+          "receptacle_pitch_mm": {
+            "value": 0.5,
+            "provenance": ["datasheet.usbc@2026-09-22"]
+          }
+        },
+        "rule_refs": ["rp.enclosure_clearance@1.0.0"],
+        "datasheet_refs": ["ds.usbc_24pin@1.0.0"]
+      },
+      "expect": {
+        "valid": true,
+        "capabilityLevel": "validated",
+        "index": 3,
+        "geometryGeneratorRequired": true
+      }
+    },
+    {
+      "case_id": "m3-fastener-validated-positive",
+      "name": "M3 fastener module validated with provenance",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "module_id": "mod.m3_fastener",
+        "version": "1.0.0",
+        "capability_level": "validated",
+        "interfaces": ["thread"],
+        "clearance_envelopes": [
+          {
+            "interface_id": "thread",
+            "envelope_ref": "env.m3_pilot@1.0.0"
+          }
+        ],
+        "geometry_generator_ref": "cad.m3@1.0.0",
+        "metadata": {
+          "nominal_diameter_mm": {
+            "value": 3.0,
+            "provenance": ["datasheet.iso4762@2026-09-22"]
+          },
+          "pitch_mm": {
+            "value": 0.5,
+            "provenance": ["datasheet.iso4762@2026-09-22"]
+          }
+        },
+        "rule_refs": ["rp.cnc_dfm@1.0.0", "rp.enclosure_clearance@1.0.0"],
+        "datasheet_refs": ["ds.iso4762_m3@1.0.0"]
+      },
+      "expect": {
+        "valid": true,
+        "capabilityLevel": "validated",
+        "index": 3,
+        "geometryGeneratorRequired": true
+      }
+    },
+    {
+      "case_id": "layout-clearance-envelope-positive",
+      "name": "layout_capable clears a declared interface",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "module_id": "mod.bracket",
+        "version": "1.0.0",
+        "capability_level": "layout_capable",
+        "interfaces": ["pilot_hole"],
+        "clearance_envelopes": [
+          {
+            "interface_id": "pilot_hole",
+            "envelope_ref": "env.bracket_pilot@1.0.0"
+          }
+        ],
+        "metadata": {
+          "clearance_note": {
+            "value": "pilot per M3 press fit",
+            "provenance": ["spec.layout@2026-09-22"]
+          }
+        },
+        "rule_refs": [],
+        "datasheet_refs": []
+      },
+      "expect": {
+        "valid": true,
+        "capabilityLevel": "layout_capable",
+        "index": 1,
+        "geometryGeneratorRequired": false
+      }
+    },
+    {
+      "case_id": "invalid-level-negative",
+      "name": "Unknown capability level rejected by schema",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "module_id": "mod.bad",
+        "version": "1.0.0",
+        "capability_level": "fully_machined",
+        "interfaces": [],
+        "clearance_envelopes": [],
+        "metadata": {
+          "source": {
+            "value": "project_fixture",
+            "provenance": []
+          }
+        },
+        "rule_refs": [],
+        "datasheet_refs": []
+      },
+      "expect": {
+        "valid": false,
+        "capabilityLevel": "invalid",
+        "index": -1,
+        "geometryGeneratorRequired": false,
+        "schemaErrorContains": ["/capability_level"]
+      }
+    },
+    {
+      "case_id": "geometry-capable-missing-generator-negative",
+      "name": "geometry_capable without geometry generator rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "module_id": "mod.pcb_bad",
+        "version": "1.0.0",
+        "capability_level": "geometry_capable",
+        "interfaces": ["board_outline"],
+        "clearance_envelopes": [],
+        "metadata": {},
+        "rule_refs": [],
+        "datasheet_refs": []
+      },
+      "expect": {
+        "valid": false,
+        "capabilityLevel": "geometry_capable",
+        "index": 2,
+        "geometryGeneratorRequired": true,
+        "schemaErrorContains": ["/geometry_generator_ref"]
+      }
+    },
+    {
+      "case_id": "validated-missing-generator-negative",
+      "name": "validated without geometry generator rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "module_id": "mod.usbc_bad",
+        "version": "1.0.0",
+        "capability_level": "validated",
+        "interfaces": ["usb_type_c"],
+        "clearance_envelopes": [],
+        "metadata": {},
+        "rule_refs": [],
+        "datasheet_refs": []
+      },
+      "expect": {
+        "valid": false,
+        "capabilityLevel": "validated",
+        "index": 3,
+        "geometryGeneratorRequired": true,
+        "schemaErrorContains": ["/geometry_generator_ref"]
+      }
+    },
+    {
+      "case_id": "non-semver-version-negative",
+      "name": "Non SemVer version rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "module_id": "mod.badver",
+        "version": "1.0",
+        "capability_level": "metadata_only",
+        "interfaces": [],
+        "clearance_envelopes": [],
+        "metadata": {},
+        "rule_refs": [],
+        "datasheet_refs": []
+      },
+      "expect": {
+        "valid": false,
+        "capabilityLevel": "metadata_only",
+        "index": 0,
+        "geometryGeneratorRequired": false,
+        "schemaErrorContains": ["/version"]
+      }
+    },
+    {
+      "case_id": "missing-module-id-negative",
+      "name": "Missing module_id rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "version": "1.0.0",
+        "capability_level": "metadata_only",
+        "interfaces": [],
+        "clearance_envelopes": [],
+        "metadata": {},
+        "rule_refs": [],
+        "datasheet_refs": []
+      },
+      "expect": {
+        "valid": false,
+        "capabilityLevel": "metadata_only",
+        "index": 0,
+        "geometryGeneratorRequired": false,
+        "schemaErrorContains": ["/module_id"]
+      }
+    },
+    {
+      "case_id": "duplicate-interfaces-negative",
+      "name": "Duplicate interface ids rejected semantically",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "module_id": "mod.dup",
+        "version": "1.0.0",
+        "capability_level": "layout_capable",
+        "interfaces": ["mount_face", "mount_face"],
+        "clearance_envelopes": [],
+        "metadata": {},
+        "rule_refs": [],
+        "datasheet_refs": []
+      },
+      "expect": {
+        "valid": false,
+        "capabilityLevel": "layout_capable",
+        "index": 1,
+        "geometryGeneratorRequired": false,
+        "semanticErrorContains": ["/interfaces/1", "duplicate interface"]
+      }
+    },
+    {
+      "case_id": "unknown-interface-in-clearance-negative",
+      "name": "Clearance envelope referencing unknown interface rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "module_id": "mod.dangling",
+        "version": "1.0.0",
+        "capability_level": "layout_capable",
+        "interfaces": ["mount_face"],
+        "clearance_envelopes": [
+          {
+            "interface_id": "ghost_interface",
+            "envelope_ref": "env.ghost@1.0.0"
+          }
+        ],
+        "metadata": {},
+        "rule_refs": [],
+        "datasheet_refs": []
+      },
+      "expect": {
+        "valid": false,
+        "capabilityLevel": "layout_capable",
+        "index": 1,
+        "geometryGeneratorRequired": false,
+        "semanticErrorContains": ["/clearance_envelopes/0/interface_id", "unknown interface"]
+      }
+    },
+    {
+      "case_id": "metadata-only-with-generator-negative",
+      "name": "geometry generator at metadata_only rejected semantically",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "module_id": "mod.premature",
+        "version": "1.0.0",
+        "capability_level": "metadata_only",
+        "interfaces": [],
+        "clearance_envelopes": [],
+        "geometry_generator_ref": "cad.premature@1.0.0",
+        "metadata": {},
+        "rule_refs": [],
+        "datasheet_refs": []
+      },
+      "expect": {
+        "valid": false,
+        "capabilityLevel": "metadata_only",
+        "index": 0,
+        "geometryGeneratorRequired": false,
+        "semanticErrorContains": ["/geometry_generator_ref", "below geometry_capable"]
+      }
+    },
+    {
+      "case_id": "unknown-field-negative",
+      "name": "Unknown top-level field rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "module_id": "mod.extra",
+        "version": "1.0.0",
+        "capability_level": "metadata_only",
+        "interfaces": [],
+        "clearance_envelopes": [],
+        "metadata": {},
+        "rule_refs": [],
+        "datasheet_refs": [],
+        "invented_engineering_value": 9.99
+      },
+      "expect": {
+        "valid": false,
+        "capabilityLevel": "metadata_only",
+        "index": 0,
+        "geometryGeneratorRequired": false,
+        "schemaErrorContains": ["/invented_engineering_value"]
+      }
+    },
+    {
+      "case_id": "missing-schema-version-negative",
+      "name": "Module without schemaVersion rejected",
+      "input": {
+        "module_id": "mod.noschema",
+        "version": "1.0.0",
+        "capability_level": "metadata_only",
+        "interfaces": [],
+        "clearance_envelopes": [],
+        "metadata": {},
+        "rule_refs": [],
+        "datasheet_refs": []
+      },
+      "expect": {
+        "valid": false,
+        "capabilityLevel": "metadata_only",
+        "index": 0,
+        "geometryGeneratorRequired": false,
+        "schemaErrorContains": ["/schemaVersion"]
+      }
+    },
+    {
+      "case_id": "non-string-rule-ref-negative",
+      "name": "Non string rule reference rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "module_id": "mod.badrule",
+        "version": "1.0.0",
+        "capability_level": "validated",
+        "interfaces": [],
+        "clearance_envelopes": [],
+        "geometry_generator_ref": "cad.badrule@1.0.0",
+        "metadata": {},
+        "rule_refs": [123],
+        "datasheet_refs": []
+      },
+      "expect": {
+        "valid": false,
+        "capabilityLevel": "validated",
+        "index": 3,
+        "geometryGeneratorRequired": true,
+        "schemaErrorContains": ["/rule_refs/0"]
+      }
+    },
+    {
+      "case_id": "empty-metadata-provenance-negative",
+      "name": "Metadata entry missing provenance is rejected",
+      "input": {
+        "schemaVersion": "1.0.0",
+        "module_id": "mod.unprovenanced",
+        "version": "1.0.0",
+        "capability_level": "geometry_capable",
+        "interfaces": [],
+        "clearance_envelopes": [],
+        "geometry_generator_ref": "cad.unprovenanced@1.0.0",
+        "metadata": {
+          "wall_thickness_mm": {
+            "value": 1.5
+          }
+        },
+        "rule_refs": [],
+        "datasheet_refs": []
+      },
+      "expect": {
+        "valid": false,
+        "capabilityLevel": "geometry_capable",
+        "index": 2,
+        "geometryGeneratorRequired": true,
+        "schemaErrorContains": ["/metadata/wall_thickness_mm", "/provenance"]
+      }
+    }
+  ]
+}

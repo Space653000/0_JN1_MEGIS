@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/module-corpus.schema.json",
+  "title": "Module Capability Corpus",
+  "description": "Table-driven positive and negative cases for G4-MOD-001 module capability levels.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "workItem",
+    "referenceDate",
+    "cases"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "workItem": {
+      "const": "G4-MOD-001"
+    },
+    "referenceDate": {
+      "type": "string"
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 16,
+      "items": {
+        "type": "object",
+        "required": [
+          "case_id",
+          "name",
+          "input",
+          "expect"
+        ],
+        "properties": {
+          "case_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "input": {
+            "type": "object"
+          },
+          "expect": {
+            "type": "object",
+            "required": [
+              "valid",
+              "capabilityLevel",
+              "index",
+              "geometryGeneratorRequired"
+            ],
+            "properties": {
+              "valid": {
+                "type": "boolean"
+              },
+              "capabilityLevel": {
+                "type": "string",
+                "enum": [
+                  "metadata_only",
+                  "layout_capable",
+                  "geometry_capable",
+                  "validated",
+                  "invalid"
+                ]
+              },
+              "index": {
+                "type": "integer",
+                "minimum": -1,
+                "maximum": 3
+              },
+              "geometryGeneratorRequired": {
+                "type": "boolean"
+              },
+              "schemaErrorContains": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "semanticErrorContains": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

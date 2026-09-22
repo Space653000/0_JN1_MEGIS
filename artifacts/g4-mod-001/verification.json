@@ -1,0 +1,391 @@
+{
+  "allChecksPassed": true,
+  "blueprintRef": "v3.0 4.16 module fields and levels, 12 capability restrictions, 26.7 G4-MOD-001",
+  "evidenceLevel": "E3",
+  "referenceDate": "2026-09-22",
+  "schemaVersion": "1.0.0",
+  "workItem": "G4-MOD-001",
+  "verifiedAt": "2026-09-22T15:30:00+08:00",
+  "moduleVersion": "megis.module@1.0.0",
+  "engineeringArtifactGenerated": false,
+  "releaseArtifactGenerated": false,
+  "input": {
+    "corpus": "contracts\\g4\\golden\\module-corpus.json",
+    "corpusSchema": "schemas\\v3\\module-corpus.schema.json",
+    "moduleSchema": "schemas\\v3\\module.schema.json"
+  },
+  "summary": {
+    "cases": 18,
+    "positiveCases": 6,
+    "negativeCases": 12,
+    "capabilityLevels": [
+      "metadata_only",
+      "layout_capable",
+      "geometry_capable",
+      "validated"
+    ]
+  },
+  "checks": [
+    {
+      "name": "golden corpus is schema conformant",
+      "passed": true,
+      "detail": {
+        "errors": []
+      }
+    },
+    {
+      "name": "corpus covers at least 16 table-driven cases",
+      "passed": true,
+      "detail": {
+        "cases": 18
+      }
+    },
+    {
+      "name": "case base-metadata-only-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Base module metadata_only",
+        "expectValid": true,
+        "valid": true,
+        "schemaConformant": true,
+        "semanticConformant": true,
+        "capabilityLevel": "metadata_only",
+        "expectIndex": 0,
+        "achievedIndex": 0,
+        "geometryGeneratorRequired": false
+      }
+    },
+    {
+      "name": "case cover-layout-capable-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Cover module layout_capable",
+        "expectValid": true,
+        "valid": true,
+        "schemaConformant": true,
+        "semanticConformant": true,
+        "capabilityLevel": "layout_capable",
+        "expectIndex": 1,
+        "achievedIndex": 1,
+        "geometryGeneratorRequired": false
+      }
+    },
+    {
+      "name": "case pcb-geometry-capable-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "PCB module geometry_capable",
+        "expectValid": true,
+        "valid": true,
+        "schemaConformant": true,
+        "semanticConformant": true,
+        "capabilityLevel": "geometry_capable",
+        "expectIndex": 2,
+        "achievedIndex": 2,
+        "geometryGeneratorRequired": true
+      }
+    },
+    {
+      "name": "case usbc-validated-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "USB-C module validated",
+        "expectValid": true,
+        "valid": true,
+        "schemaConformant": true,
+        "semanticConformant": true,
+        "capabilityLevel": "validated",
+        "expectIndex": 3,
+        "achievedIndex": 3,
+        "geometryGeneratorRequired": true
+      }
+    },
+    {
+      "name": "case m3-fastener-validated-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "M3 fastener module validated with provenance",
+        "expectValid": true,
+        "valid": true,
+        "schemaConformant": true,
+        "semanticConformant": true,
+        "capabilityLevel": "validated",
+        "expectIndex": 3,
+        "achievedIndex": 3,
+        "geometryGeneratorRequired": true
+      }
+    },
+    {
+      "name": "case layout-clearance-envelope-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "layout_capable clears a declared interface",
+        "expectValid": true,
+        "valid": true,
+        "schemaConformant": true,
+        "semanticConformant": true,
+        "capabilityLevel": "layout_capable",
+        "expectIndex": 1,
+        "achievedIndex": 1,
+        "geometryGeneratorRequired": false
+      }
+    },
+    {
+      "name": "case invalid-level-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Unknown capability level rejected by schema",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": false,
+        "semanticConformant": false,
+        "capabilityLevel": "fully_machined",
+        "expectIndex": -1,
+        "achievedIndex": -1,
+        "geometryGeneratorRequired": false
+      }
+    },
+    {
+      "name": "case geometry-capable-missing-generator-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "geometry_capable without geometry generator rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": false,
+        "semanticConformant": false,
+        "capabilityLevel": "geometry_capable",
+        "expectIndex": 2,
+        "achievedIndex": 2,
+        "geometryGeneratorRequired": true
+      }
+    },
+    {
+      "name": "case validated-missing-generator-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "validated without geometry generator rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": false,
+        "semanticConformant": false,
+        "capabilityLevel": "validated",
+        "expectIndex": 3,
+        "achievedIndex": 3,
+        "geometryGeneratorRequired": true
+      }
+    },
+    {
+      "name": "case non-semver-version-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Non SemVer version rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": false,
+        "semanticConformant": false,
+        "capabilityLevel": "metadata_only",
+        "expectIndex": 0,
+        "achievedIndex": 0,
+        "geometryGeneratorRequired": false
+      }
+    },
+    {
+      "name": "case missing-module-id-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Missing module_id rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": false,
+        "semanticConformant": false,
+        "capabilityLevel": "metadata_only",
+        "expectIndex": 0,
+        "achievedIndex": 0,
+        "geometryGeneratorRequired": false
+      }
+    },
+    {
+      "name": "case duplicate-interfaces-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Duplicate interface ids rejected semantically",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": true,
+        "semanticConformant": false,
+        "capabilityLevel": "layout_capable",
+        "expectIndex": 1,
+        "achievedIndex": 1,
+        "geometryGeneratorRequired": false
+      }
+    },
+    {
+      "name": "case unknown-interface-in-clearance-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Clearance envelope referencing unknown interface rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": true,
+        "semanticConformant": false,
+        "capabilityLevel": "layout_capable",
+        "expectIndex": 1,
+        "achievedIndex": 1,
+        "geometryGeneratorRequired": false
+      }
+    },
+    {
+      "name": "case metadata-only-with-generator-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "geometry generator at metadata_only rejected semantically",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": true,
+        "semanticConformant": false,
+        "capabilityLevel": "metadata_only",
+        "expectIndex": 0,
+        "achievedIndex": 0,
+        "geometryGeneratorRequired": false
+      }
+    },
+    {
+      "name": "case unknown-field-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Unknown top-level field rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": false,
+        "semanticConformant": false,
+        "capabilityLevel": "metadata_only",
+        "expectIndex": 0,
+        "achievedIndex": 0,
+        "geometryGeneratorRequired": false
+      }
+    },
+    {
+      "name": "case missing-schema-version-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Module without schemaVersion rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": false,
+        "semanticConformant": false,
+        "capabilityLevel": "metadata_only",
+        "expectIndex": 0,
+        "achievedIndex": 0,
+        "geometryGeneratorRequired": false
+      }
+    },
+    {
+      "name": "case non-string-rule-ref-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Non string rule reference rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": false,
+        "semanticConformant": false,
+        "capabilityLevel": "validated",
+        "expectIndex": 3,
+        "achievedIndex": 3,
+        "geometryGeneratorRequired": true
+      }
+    },
+    {
+      "name": "case empty-metadata-provenance-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Metadata entry missing provenance is rejected",
+        "expectValid": false,
+        "valid": false,
+        "schemaConformant": false,
+        "semanticConformant": false,
+        "capabilityLevel": "geometry_capable",
+        "expectIndex": 2,
+        "achievedIndex": 2,
+        "geometryGeneratorRequired": true
+      }
+    },
+    {
+      "name": "closed four-level vocabulary has monotonic ordering",
+      "passed": true,
+      "detail": {
+        "levels": [
+          "metadata_only",
+          "layout_capable",
+          "geometry_capable",
+          "validated"
+        ]
+      }
+    },
+    {
+      "name": "policy for metadata_only matches blueprint",
+      "passed": true,
+      "detail": {
+        "layout": false,
+        "geometry": false,
+        "maturity_cap": "DRAFT",
+        "validation": []
+      }
+    },
+    {
+      "name": "policy for layout_capable matches blueprint",
+      "passed": true,
+      "detail": {
+        "layout": true,
+        "geometry": false,
+        "maturity_cap": "CONCEPT",
+        "validation": [
+          "collision",
+          "clearance"
+        ]
+      }
+    },
+    {
+      "name": "policy for geometry_capable matches blueprint",
+      "passed": true,
+      "detail": {
+        "layout": true,
+        "geometry": true,
+        "maturity_cap": "PROTOTYPE",
+        "validation": [
+          "geometry_rules"
+        ]
+      }
+    },
+    {
+      "name": "policy for validated matches blueprint",
+      "passed": true,
+      "detail": {
+        "layout": true,
+        "geometry": true,
+        "maturity_cap": "PROTOTYPE",
+        "validation": [
+          "all_applicable_rules",
+          "golden"
+        ]
+      }
+    },
+    {
+      "name": "geometry_generator_required only from geometry_capable",
+      "passed": true,
+      "detail": {
+        "metadata_only": false,
+        "layout_capable": false,
+        "geometry_capable": true,
+        "validated": true
+      }
+    },
+    {
+      "name": "geometry_capable index gate is enforced",
+      "passed": true,
+      "detail": {
+        "gateIndex": 2
+      }
+    }
+  ]
+}
