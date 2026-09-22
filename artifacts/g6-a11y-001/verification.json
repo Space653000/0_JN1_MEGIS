@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G6-A11Y-001",
+  "evidenceLevel": "E3-partial",
+  "status": "in_progress",
+  "verifiedAt": "2026-09-22T21:30:00+08:00",
+  "automated": {
+    "status": "passed",
+    "axeCoreVersion": "4.10.3",
+    "standardTags": [
+      "wcag2a",
+      "wcag2aa",
+      "wcag21aa",
+      "wcag22aa"
+    ],
+    "routesChecked": [
+      "/progress",
+      "/design",
+      "/review",
+      "/results",
+      "/roadmap"
+    ],
+    "axeViolations": 0,
+    "contrastPairsChecked": 8,
+    "keyboardContractTests": [
+      "skip link",
+      "route focus transfer",
+      "aria-current",
+      "mobile Escape return",
+      "mobile Tab wrap",
+      "choice aria-pressed"
+    ],
+    "commands": {
+      "test": {
+        "status": "passed",
+        "exitCode": 0
+      },
+      "lint": {
+        "status": "passed",
+        "exitCode": 0
+      },
+      "typecheck": {
+        "status": "passed",
+        "exitCode": 0
+      },
+      "build": {
+        "status": "passed",
+        "exitCode": 0
+      }
+    }
+  },
+  "manual": {
+    "keyboard": {
+      "status": "pending",
+      "evidence": null
+    },
+    "screenReader": {
+      "status": "pending",
+      "evidence": null
+    }
+  },
+  "closureEligible": false,
+  "closureReason": "Blueprint requires real manual keyboard and screen-reader spot checks in addition to automation.",
+  "boundaries": {
+    "humanEvidenceSimulated": false,
+    "externalAssetsLoaded": false,
+    "engineeringArtifactsGenerated": false
+  }
+}
