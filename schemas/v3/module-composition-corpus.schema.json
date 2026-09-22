@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/module-composition-corpus.schema.json",
+  "title": "Module Composition Corpus (G4-MOD-002)",
+  "description": "Table-driven positive and negative cases for PCB / USB-C / M3 composition: add produces derived constraints, remove clears or marks dependent constraints, incomplete metadata is never filled with fabricated values, and module versions stay pinned.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "workItem",
+    "referenceDate",
+    "cases"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "workItem": {
+      "const": "G4-MOD-002"
+    },
+    "referenceDate": {
+      "type": "string"
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 16,
+      "items": {
+        "type": "object",
+        "required": [
+          "case_id",
+          "name",
+          "input",
+          "expect"
+        ],
+        "properties": {
+          "case_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "input": {
+            "type": "object",
+            "required": [
+              "operation",
+              "ir"
+            ],
+            "properties": {
+              "operation": {
+                "type": "string",
+                "enum": [
+                  "add_module",
+                  "remove_module"
+                ]
+              },
+              "ir": {
+                "type": "object"
+              },
+              "module": {
+                "type": "object"
+              },
+              "relationship": {
+                "type": "object"
+              },
+              "module_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "component_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "allow_upgrade": {
+                "type": "boolean"
+              },
+              "setup": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "operation",
+                    "module",
+                    "relationship"
+                  ],
+                  "properties": {
+                    "operation": {
+                      "const": "add_module"
+                    },
+                    "module": {
+                      "type": "object"
+                    },
+                    "relationship": {
+                      "type": "object"
+                    },
+                    "component_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "allow_upgrade": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          },
+          "expect": {
+            "type": "object",
+            "required": [
+              "valid"
+            ],
+            "properties": {
+              "valid": {
+                "type": "boolean"
+              },
+              "changed": {
+                "type": "boolean"
+              },
+              "addedComponentIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "addedInterfaceIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "addedRelationshipIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "addedConstraintIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "addedUnknownIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "blockedConstraintKinds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "fabricatedValuesUsed": {
+                "type": "boolean"
+              },
+              "upgradeBlocked": {
+                "type": "boolean"
+              },
+              "pinnedModules": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "removedComponentIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "removedInterfaceIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "removedRelationshipIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "removedConstraintIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "removedUnknownIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "markedConstraintIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "errorContains": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

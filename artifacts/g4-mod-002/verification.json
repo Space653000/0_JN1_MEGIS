@@ -1,0 +1,253 @@
+{
+  "allChecksPassed": true,
+  "blueprintRef": "v3.0 4.16 composition intents, 12 module composition / constraints / version pinning, 26.9 G4-MOD-002",
+  "evidenceLevel": "E3",
+  "referenceDate": "2026-09-22",
+  "schemaVersion": "1.0.0",
+  "workItem": "G4-MOD-002",
+  "verifiedAt": "2026-09-22T19:00:00+08:00",
+  "compositionVersion": "megis.composition@1.0.0",
+  "engineeringArtifactGenerated": false,
+  "releaseArtifactGenerated": false,
+  "input": {
+    "corpus": "contracts\\g4\\golden\\module-composition-corpus.json",
+    "corpusSchema": "schemas\\v3\\module-composition-corpus.schema.json",
+    "baseIr": "contracts\\g1\\golden\\reference-fixture.json"
+  },
+  "summary": {
+    "cases": 20,
+    "passedCases": 20,
+    "failedCases": 0,
+    "operations": {
+      "add_module": 18,
+      "remove_module": 2
+    },
+    "composableTypes": [
+      "contains",
+      "mounts_to",
+      "fastens",
+      "opens_through",
+      "clears"
+    ]
+  },
+  "checks": [
+    {
+      "name": "golden corpus is schema conformant",
+      "passed": true,
+      "detail": {
+        "errors": []
+      }
+    },
+    {
+      "name": "corpus covers at least 16 table-driven cases",
+      "passed": true,
+      "detail": {
+        "cases": 20
+      }
+    },
+    {
+      "name": "case pcb-mounts-to-base-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "PCB module mounts to fixture base",
+        "valid": true
+      }
+    },
+    {
+      "name": "case usbc-opens-through-cover-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "USB-C module opens through the cover wall",
+        "valid": true
+      }
+    },
+    {
+      "name": "case m3-fastens-to-base-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "M3 fastener module fastens the base",
+        "valid": true
+      }
+    },
+    {
+      "name": "case pcb-clears-cover-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "PCB module clears the cover wall",
+        "valid": true
+      }
+    },
+    {
+      "name": "case enclosure-contains-pcb-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Enclosure module contains the reference PCB",
+        "valid": true
+      }
+    },
+    {
+      "name": "case pcb-mounts-unproven-engagement-blocked matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "PCB mount blocks its constraint when engagement length is unproven",
+        "valid": true
+      }
+    },
+    {
+      "name": "case usbc-opens-unproven-gap-blocked matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "USB-C opening blocks its constraint when clearance gap is unproven",
+        "valid": true
+      }
+    },
+    {
+      "name": "case pcb-and-usbc-assembly-positive matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Compose USB-C into a graph that already holds the PCB",
+        "valid": true
+      }
+    },
+    {
+      "name": "case pcb-recompose-same-version-idempotent matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Recomposing the same pinned version is idempotent",
+        "valid": true
+      }
+    },
+    {
+      "name": "case pcb-upgrade-blocked matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "A newer module version is blocked without allow_upgrade",
+        "valid": true
+      }
+    },
+    {
+      "name": "case pcb-upgrade-allowed matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "allow_upgrade replaces the pinned version and re-materialises",
+        "valid": true
+      }
+    },
+    {
+      "name": "case pcb-remove-decompose matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Removing the PCB module clears every dependent entity",
+        "valid": true
+      }
+    },
+    {
+      "name": "case pcb-remove-unknown-error matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Removing a module that was never composed is rejected",
+        "valid": false,
+        "errors": [
+          "/components: unknown module mod.ghost; nothing composed to remove"
+        ]
+      }
+    },
+    {
+      "name": "case unsupported-intent-aligns-error matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "A valid but unsupported intent type is rejected",
+        "valid": false,
+        "errors": [
+          "/relationship/type: aligns is not a supported composition intent type"
+        ]
+      }
+    },
+    {
+      "name": "case relationship-source-mismatch-error matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Relationship source must equal the resolved component id",
+        "valid": false,
+        "errors": [
+          "/relationship/source: expected COMP-PCB for module mod.pcb, got COMP-OTHER"
+        ]
+      }
+    },
+    {
+      "name": "case target-missing-error matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Composition target must exist in the IR",
+        "valid": false,
+        "errors": [
+          "/relationship/target: composition target COMP-NOPE must exist in the IR and differ from the source"
+        ]
+      }
+    },
+    {
+      "name": "case self-target-error matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "A relationship that targets itself is rejected",
+        "valid": false,
+        "errors": [
+          "relationship:  /target: relationship cannot relate an entity to itself"
+        ]
+      }
+    },
+    {
+      "name": "case component-id-collision-error matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "Composing into an existing foreign component id is rejected",
+        "valid": false,
+        "errors": [
+          "/components/COMP-FIXTURE-BASE: component id already exists and is not composed from mod.pcb"
+        ]
+      }
+    },
+    {
+      "name": "case module-validation-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "An invalid Module document is rejected before composition",
+        "valid": false,
+        "errors": [
+          "module:  /geometry_generator_ref: capability below geometry_capable must not carry a geometry generator"
+        ]
+      }
+    },
+    {
+      "name": "case relationship-validation-negative matches golden expectation",
+      "passed": true,
+      "detail": {
+        "name": "An invalid Relationship document is rejected before composition",
+        "valid": false,
+        "errors": [
+          "relationship:  /parameters/clearance_gap_mm: clearance_gap_mm is a required property"
+        ]
+      }
+    },
+    {
+      "name": "composition intent vocabulary is closed over G4-GRF subset",
+      "passed": true,
+      "detail": {
+        "types": [
+          "contains",
+          "mounts_to",
+          "fastens",
+          "opens_through",
+          "clears"
+        ]
+      }
+    },
+    {
+      "name": "no fabricated engineering value in any add case",
+      "passed": true,
+      "detail": {
+        "fabricatedBlocks": 0
+      }
+    }
+  ]
+}

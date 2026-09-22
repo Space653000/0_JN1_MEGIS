@@ -1,0 +1,1675 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G4-MOD-002",
+  "referenceDate": "2026-09-22",
+  "cases": [
+    {
+      "case_id": "pcb-mounts-to-base-positive",
+      "name": "PCB module mounts to fixture base",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.pcb",
+          "version": "1.0.0",
+          "capability_level": "geometry_capable",
+          "interfaces": [
+            "board_outline"
+          ],
+          "clearance_envelopes": [],
+          "geometry_generator_ref": "cad.pcb@1.0.0",
+          "metadata": {
+            "board_thickness_mm": {
+              "value": 1.6,
+              "provenance": [
+                "datasheet.pcb@2026-09-22"
+              ]
+            }
+          },
+          "rule_refs": [
+            "rp.pcb_dfm@1.0.0"
+          ],
+          "datasheet_refs": [
+            "ds.pcb_rev_c@1.0.0"
+          ]
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.pcb_mounts_base",
+          "type": "mounts_to",
+          "source": "COMP-PCB",
+          "target": "COMP-FIXTURE-BASE",
+          "parameters": {
+            "fastener_ref": {
+              "value": "mod.m3_fastener@2.0.0",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "boss_ref": {
+              "value": "face.base_mount_boss",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "engagement_length_mm": {
+              "value": 4.0,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            },
+            "hole_alignment_tolerance_mm": {
+              "value": 0.1,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            }
+          },
+          "provenance": [
+            "spec.pcb@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": true,
+        "changed": true,
+        "addedComponentIds": [
+          "COMP-PCB"
+        ],
+        "addedInterfaceIds": [
+          "INT-COMP-PCB-COMP-FIXTURE-BASE-MOUNT"
+        ],
+        "addedRelationshipIds": [
+          "REL-COMP-PCB-COMP-FIXTURE-BASE-MOUNTS"
+        ],
+        "addedConstraintIds": [
+          "CON-COMP-PCB-MOUNT"
+        ],
+        "addedUnknownIds": [],
+        "blockedConstraintKinds": [],
+        "fabricatedValuesUsed": false,
+        "upgradeBlocked": false,
+        "pinnedModules": [
+          [
+            "mod.pcb",
+            "1.0.0"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "usbc-opens-through-cover-positive",
+      "name": "USB-C module opens through the cover wall",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.usbc",
+          "version": "1.0.0",
+          "capability_level": "layout_capable",
+          "interfaces": [
+            "usbc_receptacle"
+          ],
+          "clearance_envelopes": [],
+          "metadata": {
+            "receptacle_depth_mm": {
+              "value": 8.0,
+              "provenance": [
+                "datasheet.usbc@2026-09-22"
+              ]
+            }
+          },
+          "rule_refs": [],
+          "datasheet_refs": [
+            "ds.usbc@1.0.0"
+          ]
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.usbc_opens_wall",
+          "type": "opens_through",
+          "source": "COMP-USBC",
+          "target": "COMP-FIXTURE-COVER",
+          "parameters": {
+            "opening_ref": {
+              "value": "opening.cover_usbc",
+              "provenance": [
+                "spec.enclosure@2026-09-22"
+              ]
+            },
+            "interface_envelope_ref": {
+              "value": "env.usbc_cavity@1.0.0",
+              "provenance": [
+                "datasheet.usbc@2026-09-22"
+              ]
+            },
+            "clearance_gap_mm": {
+              "value": 0.5,
+              "provenance": [
+                "datasheet.usbc@2026-09-22"
+              ]
+            }
+          },
+          "provenance": [
+            "spec.enclosure@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": true,
+        "changed": true,
+        "addedComponentIds": [
+          "COMP-USBC"
+        ],
+        "addedInterfaceIds": [
+          "INT-COMP-USBC-COMP-FIXTURE-COVER-OPENING"
+        ],
+        "addedRelationshipIds": [
+          "REL-COMP-USBC-COMP-FIXTURE-COVER-OPENINGS"
+        ],
+        "addedConstraintIds": [
+          "CON-COMP-USBC-OPENING"
+        ],
+        "addedUnknownIds": [],
+        "blockedConstraintKinds": [],
+        "fabricatedValuesUsed": false,
+        "upgradeBlocked": false,
+        "pinnedModules": [
+          [
+            "mod.usbc",
+            "1.0.0"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "m3-fastens-to-base-positive",
+      "name": "M3 fastener module fastens the base",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.m3_fastener",
+          "version": "2.0.0",
+          "capability_level": "metadata_only",
+          "interfaces": [],
+          "clearance_envelopes": [],
+          "metadata": {
+            "source": {
+              "value": "iso4762_catalog",
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            }
+          },
+          "rule_refs": [],
+          "datasheet_refs": [
+            "ds.iso4762@2.0.0"
+          ]
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.m3_fastens_base",
+          "type": "fastens",
+          "source": "COMP-M3-FASTENER",
+          "target": "COMP-FIXTURE-BASE",
+          "parameters": {
+            "screw_length_mm": {
+              "value": 6.0,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            },
+            "through_hole_ref": {
+              "value": "hole.base_through",
+              "provenance": [
+                "spec.base@2026-09-22"
+              ]
+            },
+            "thread_ref": {
+              "value": "thread.base_thread_insert",
+              "provenance": [
+                "spec.base@2026-09-22"
+              ]
+            }
+          },
+          "provenance": [
+            "datasheet.iso4762@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": true,
+        "changed": true,
+        "addedComponentIds": [
+          "COMP-M3-FASTENER"
+        ],
+        "addedInterfaceIds": [
+          "INT-COMP-M3-FASTENER-COMP-FIXTURE-BASE-MOUNT"
+        ],
+        "addedRelationshipIds": [
+          "REL-COMP-M3-FASTENER-COMP-FIXTURE-BASE-FASTENERS"
+        ],
+        "addedConstraintIds": [
+          "CON-COMP-M3-FASTENER-FASTENER"
+        ],
+        "addedUnknownIds": [],
+        "blockedConstraintKinds": [],
+        "fabricatedValuesUsed": false,
+        "upgradeBlocked": false,
+        "pinnedModules": [
+          [
+            "mod.m3_fastener",
+            "2.0.0"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "pcb-clears-cover-positive",
+      "name": "PCB module clears the cover wall",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.pcb",
+          "version": "1.0.0",
+          "capability_level": "geometry_capable",
+          "interfaces": [
+            "board_outline"
+          ],
+          "clearance_envelopes": [],
+          "geometry_generator_ref": "cad.pcb@1.0.0",
+          "metadata": {
+            "board_thickness_mm": {
+              "value": 1.6,
+              "provenance": [
+                "datasheet.pcb@2026-09-22"
+              ]
+            }
+          },
+          "rule_refs": [],
+          "datasheet_refs": [
+            "ds.pcb_rev_c@1.0.0"
+          ]
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.pcb_clears_cover",
+          "type": "clears",
+          "source": "COMP-PCB",
+          "target": "COMP-FIXTURE-COVER",
+          "parameters": {
+            "minimum_distance_mm": {
+              "value": 2.0,
+              "provenance": [
+                "spec.layout@2026-09-22"
+              ]
+            }
+          },
+          "provenance": [
+            "spec.layout@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": true,
+        "changed": true,
+        "addedComponentIds": [
+          "COMP-PCB"
+        ],
+        "addedInterfaceIds": [],
+        "addedRelationshipIds": [
+          "REL-COMP-PCB-COMP-FIXTURE-COVER-CLEARANCES"
+        ],
+        "addedConstraintIds": [
+          "CON-COMP-PCB-CLEARANCE"
+        ],
+        "addedUnknownIds": [],
+        "blockedConstraintKinds": [],
+        "fabricatedValuesUsed": false,
+        "upgradeBlocked": false,
+        "pinnedModules": [
+          [
+            "mod.pcb",
+            "1.0.0"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "enclosure-contains-pcb-positive",
+      "name": "Enclosure module contains the reference PCB",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.enclosure",
+          "version": "1.0.0",
+          "capability_level": "layout_capable",
+          "interfaces": [
+            "cavity_wall"
+          ],
+          "clearance_envelopes": [],
+          "metadata": {},
+          "rule_refs": [],
+          "datasheet_refs": []
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.enclosure_contains_pcb",
+          "type": "contains",
+          "source": "COMP-ENCLOSURE",
+          "target": "COMP-FIXTURE-PCB",
+          "parameters": {
+            "envelope_ref": {
+              "value": "env.pcb@1.0.0",
+              "provenance": [
+                "spec.enclosure@2026-09-22"
+              ]
+            },
+            "cavity_ref": {
+              "value": "cavity.enclosure@1.0.0",
+              "provenance": [
+                "spec.enclosure@2026-09-22"
+              ]
+            }
+          },
+          "provenance": [
+            "spec.enclosure@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": true,
+        "changed": true,
+        "addedComponentIds": [
+          "COMP-ENCLOSURE"
+        ],
+        "addedInterfaceIds": [],
+        "addedRelationshipIds": [
+          "REL-COMP-ENCLOSURE-COMP-FIXTURE-PCB-CONTAINS"
+        ],
+        "addedConstraintIds": [],
+        "addedUnknownIds": [],
+        "blockedConstraintKinds": [],
+        "fabricatedValuesUsed": false,
+        "upgradeBlocked": false,
+        "pinnedModules": [
+          [
+            "mod.enclosure",
+            "1.0.0"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "pcb-mounts-unproven-engagement-blocked",
+      "name": "PCB mount blocks its constraint when engagement length is unproven",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.pcb",
+          "version": "1.0.0",
+          "capability_level": "geometry_capable",
+          "interfaces": [
+            "board_outline"
+          ],
+          "clearance_envelopes": [],
+          "geometry_generator_ref": "cad.pcb@1.0.0",
+          "metadata": {
+            "board_thickness_mm": {
+              "value": 1.6,
+              "provenance": [
+                "datasheet.pcb@2026-09-22"
+              ]
+            }
+          },
+          "rule_refs": [],
+          "datasheet_refs": []
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.pcb_mounts_unproven",
+          "type": "mounts_to",
+          "source": "COMP-PCB",
+          "target": "COMP-FIXTURE-BASE",
+          "parameters": {
+            "fastener_ref": {
+              "value": "mod.m3_fastener@2.0.0",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "boss_ref": {
+              "value": "face.base_mount_boss",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "engagement_length_mm": {
+              "value": 4.0,
+              "provenance": []
+            },
+            "hole_alignment_tolerance_mm": {
+              "value": 0.1,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            }
+          },
+          "provenance": [
+            "spec.pcb@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": true,
+        "changed": true,
+        "addedComponentIds": [
+          "COMP-PCB"
+        ],
+        "addedInterfaceIds": [
+          "INT-COMP-PCB-COMP-FIXTURE-BASE-MOUNT"
+        ],
+        "addedRelationshipIds": [
+          "REL-COMP-PCB-COMP-FIXTURE-BASE-MOUNTS"
+        ],
+        "addedConstraintIds": [],
+        "addedUnknownIds": [
+          "UNK-COMP-PCB-MOUNT"
+        ],
+        "blockedConstraintKinds": [
+          "mount"
+        ],
+        "fabricatedValuesUsed": false,
+        "upgradeBlocked": false,
+        "pinnedModules": [
+          [
+            "mod.pcb",
+            "1.0.0"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "usbc-opens-unproven-gap-blocked",
+      "name": "USB-C opening blocks its constraint when clearance gap is unproven",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.usbc",
+          "version": "1.0.0",
+          "capability_level": "layout_capable",
+          "interfaces": [
+            "usbc_receptacle"
+          ],
+          "clearance_envelopes": [],
+          "metadata": {},
+          "rule_refs": [],
+          "datasheet_refs": []
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.usbc_opens_unproven",
+          "type": "opens_through",
+          "source": "COMP-USBC",
+          "target": "COMP-FIXTURE-COVER",
+          "parameters": {
+            "opening_ref": {
+              "value": "opening.cover_usbc",
+              "provenance": [
+                "spec.enclosure@2026-09-22"
+              ]
+            },
+            "interface_envelope_ref": {
+              "value": "env.usbc_cavity@1.0.0",
+              "provenance": [
+                "datasheet.usbc@2026-09-22"
+              ]
+            },
+            "clearance_gap_mm": {
+              "value": 0.5,
+              "provenance": []
+            }
+          },
+          "provenance": [
+            "spec.enclosure@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": true,
+        "changed": true,
+        "addedComponentIds": [
+          "COMP-USBC"
+        ],
+        "addedInterfaceIds": [
+          "INT-COMP-USBC-COMP-FIXTURE-COVER-OPENING"
+        ],
+        "addedRelationshipIds": [
+          "REL-COMP-USBC-COMP-FIXTURE-COVER-OPENINGS"
+        ],
+        "addedConstraintIds": [],
+        "addedUnknownIds": [
+          "UNK-COMP-USBC-OPENING"
+        ],
+        "blockedConstraintKinds": [
+          "opening"
+        ],
+        "fabricatedValuesUsed": false,
+        "upgradeBlocked": false,
+        "pinnedModules": [
+          [
+            "mod.usbc",
+            "1.0.0"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "pcb-and-usbc-assembly-positive",
+      "name": "Compose USB-C into a graph that already holds the PCB",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "setup": [
+          {
+            "operation": "add_module",
+            "module": {
+              "schemaVersion": "1.0.0",
+              "module_id": "mod.pcb",
+              "version": "1.0.0",
+              "capability_level": "geometry_capable",
+              "interfaces": [
+                "board_outline"
+              ],
+              "clearance_envelopes": [],
+              "geometry_generator_ref": "cad.pcb@1.0.0",
+              "metadata": {},
+              "rule_refs": [],
+              "datasheet_refs": []
+            },
+            "relationship": {
+              "schemaVersion": "1.0.0",
+              "relationship_id": "rel.pcb_mounts_base",
+              "type": "mounts_to",
+              "source": "COMP-PCB",
+              "target": "COMP-FIXTURE-BASE",
+              "parameters": {
+                "fastener_ref": {
+                  "value": "mod.m3_fastener@2.0.0",
+                  "provenance": [
+                    "spec.pcb@2026-09-22"
+                  ]
+                },
+                "boss_ref": {
+                  "value": "face.base_mount_boss",
+                  "provenance": [
+                    "spec.pcb@2026-09-22"
+                  ]
+                },
+                "engagement_length_mm": {
+                  "value": 4.0,
+                  "provenance": [
+                    "datasheet.iso4762@2026-09-22"
+                  ]
+                },
+                "hole_alignment_tolerance_mm": {
+                  "value": 0.1,
+                  "provenance": [
+                    "datasheet.iso4762@2026-09-22"
+                  ]
+                }
+              },
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            }
+          }
+        ],
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.usbc",
+          "version": "1.0.0",
+          "capability_level": "layout_capable",
+          "interfaces": [
+            "usbc_receptacle"
+          ],
+          "clearance_envelopes": [],
+          "metadata": {},
+          "rule_refs": [],
+          "datasheet_refs": []
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.usbc_opens_wall",
+          "type": "opens_through",
+          "source": "COMP-USBC",
+          "target": "COMP-FIXTURE-COVER",
+          "parameters": {
+            "opening_ref": {
+              "value": "opening.cover_usbc",
+              "provenance": [
+                "spec.enclosure@2026-09-22"
+              ]
+            },
+            "interface_envelope_ref": {
+              "value": "env.usbc_cavity@1.0.0",
+              "provenance": [
+                "datasheet.usbc@2026-09-22"
+              ]
+            },
+            "clearance_gap_mm": {
+              "value": 0.5,
+              "provenance": [
+                "datasheet.usbc@2026-09-22"
+              ]
+            }
+          },
+          "provenance": [
+            "spec.enclosure@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": true,
+        "changed": true,
+        "addedComponentIds": [
+          "COMP-USBC"
+        ],
+        "addedInterfaceIds": [
+          "INT-COMP-USBC-COMP-FIXTURE-COVER-OPENING"
+        ],
+        "addedRelationshipIds": [
+          "REL-COMP-USBC-COMP-FIXTURE-COVER-OPENINGS"
+        ],
+        "addedConstraintIds": [
+          "CON-COMP-USBC-OPENING"
+        ],
+        "addedUnknownIds": [],
+        "blockedConstraintKinds": [],
+        "fabricatedValuesUsed": false,
+        "upgradeBlocked": false,
+        "pinnedModules": [
+          [
+            "mod.usbc",
+            "1.0.0"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "pcb-recompose-same-version-idempotent",
+      "name": "Recomposing the same pinned version is idempotent",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "setup": [
+          {
+            "operation": "add_module",
+            "module": {
+              "schemaVersion": "1.0.0",
+              "module_id": "mod.pcb",
+              "version": "1.0.0",
+              "capability_level": "geometry_capable",
+              "interfaces": [
+                "board_outline"
+              ],
+              "clearance_envelopes": [],
+              "geometry_generator_ref": "cad.pcb@1.0.0",
+              "metadata": {},
+              "rule_refs": [],
+              "datasheet_refs": []
+            },
+            "relationship": {
+              "schemaVersion": "1.0.0",
+              "relationship_id": "rel.pcb_mounts_base",
+              "type": "mounts_to",
+              "source": "COMP-PCB",
+              "target": "COMP-FIXTURE-BASE",
+              "parameters": {
+                "fastener_ref": {
+                  "value": "mod.m3_fastener@2.0.0",
+                  "provenance": [
+                    "spec.pcb@2026-09-22"
+                  ]
+                },
+                "boss_ref": {
+                  "value": "face.base_mount_boss",
+                  "provenance": [
+                    "spec.pcb@2026-09-22"
+                  ]
+                },
+                "engagement_length_mm": {
+                  "value": 4.0,
+                  "provenance": [
+                    "datasheet.iso4762@2026-09-22"
+                  ]
+                },
+                "hole_alignment_tolerance_mm": {
+                  "value": 0.1,
+                  "provenance": [
+                    "datasheet.iso4762@2026-09-22"
+                  ]
+                }
+              },
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            }
+          }
+        ],
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.pcb",
+          "version": "1.0.0",
+          "capability_level": "geometry_capable",
+          "interfaces": [
+            "board_outline"
+          ],
+          "clearance_envelopes": [],
+          "geometry_generator_ref": "cad.pcb@1.0.0",
+          "metadata": {},
+          "rule_refs": [],
+          "datasheet_refs": []
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.pcb_mounts_base",
+          "type": "mounts_to",
+          "source": "COMP-PCB",
+          "target": "COMP-FIXTURE-BASE",
+          "parameters": {
+            "fastener_ref": {
+              "value": "mod.m3_fastener@2.0.0",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "boss_ref": {
+              "value": "face.base_mount_boss",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "engagement_length_mm": {
+              "value": 4.0,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            },
+            "hole_alignment_tolerance_mm": {
+              "value": 0.1,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            }
+          },
+          "provenance": [
+            "spec.pcb@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": true,
+        "changed": false,
+        "addedComponentIds": [],
+        "addedInterfaceIds": [],
+        "addedRelationshipIds": [],
+        "addedConstraintIds": [],
+        "addedUnknownIds": [],
+        "blockedConstraintKinds": [],
+        "fabricatedValuesUsed": false,
+        "upgradeBlocked": false,
+        "pinnedModules": [
+          [
+            "mod.pcb",
+            "1.0.0"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "pcb-upgrade-blocked",
+      "name": "A newer module version is blocked without allow_upgrade",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "setup": [
+          {
+            "operation": "add_module",
+            "module": {
+              "schemaVersion": "1.0.0",
+              "module_id": "mod.pcb",
+              "version": "1.0.0",
+              "capability_level": "geometry_capable",
+              "interfaces": [
+                "board_outline"
+              ],
+              "clearance_envelopes": [],
+              "geometry_generator_ref": "cad.pcb@1.0.0",
+              "metadata": {},
+              "rule_refs": [],
+              "datasheet_refs": []
+            },
+            "relationship": {
+              "schemaVersion": "1.0.0",
+              "relationship_id": "rel.pcb_mounts_base",
+              "type": "mounts_to",
+              "source": "COMP-PCB",
+              "target": "COMP-FIXTURE-BASE",
+              "parameters": {
+                "fastener_ref": {
+                  "value": "mod.m3_fastener@2.0.0",
+                  "provenance": [
+                    "spec.pcb@2026-09-22"
+                  ]
+                },
+                "boss_ref": {
+                  "value": "face.base_mount_boss",
+                  "provenance": [
+                    "spec.pcb@2026-09-22"
+                  ]
+                },
+                "engagement_length_mm": {
+                  "value": 4.0,
+                  "provenance": [
+                    "datasheet.iso4762@2026-09-22"
+                  ]
+                },
+                "hole_alignment_tolerance_mm": {
+                  "value": 0.1,
+                  "provenance": [
+                    "datasheet.iso4762@2026-09-22"
+                  ]
+                }
+              },
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            }
+          }
+        ],
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.pcb",
+          "version": "1.1.0",
+          "capability_level": "geometry_capable",
+          "interfaces": [
+            "board_outline"
+          ],
+          "clearance_envelopes": [],
+          "geometry_generator_ref": "cad.pcb@1.1.0",
+          "metadata": {},
+          "rule_refs": [],
+          "datasheet_refs": []
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.pcb_mounts_base",
+          "type": "mounts_to",
+          "source": "COMP-PCB",
+          "target": "COMP-FIXTURE-BASE",
+          "parameters": {
+            "fastener_ref": {
+              "value": "mod.m3_fastener@2.0.0",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "boss_ref": {
+              "value": "face.base_mount_boss",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "engagement_length_mm": {
+              "value": 4.0,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            },
+            "hole_alignment_tolerance_mm": {
+              "value": 0.1,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            }
+          },
+          "provenance": [
+            "spec.pcb@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": true,
+        "changed": false,
+        "addedComponentIds": [],
+        "addedInterfaceIds": [],
+        "addedRelationshipIds": [],
+        "addedConstraintIds": [],
+        "addedUnknownIds": [],
+        "blockedConstraintKinds": [],
+        "fabricatedValuesUsed": false,
+        "upgradeBlocked": true,
+        "pinnedModules": [
+          [
+            "mod.pcb",
+            "1.0.0"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "pcb-upgrade-allowed",
+      "name": "allow_upgrade replaces the pinned version and re-materialises",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "allow_upgrade": true,
+        "setup": [
+          {
+            "operation": "add_module",
+            "module": {
+              "schemaVersion": "1.0.0",
+              "module_id": "mod.pcb",
+              "version": "1.0.0",
+              "capability_level": "geometry_capable",
+              "interfaces": [
+                "board_outline"
+              ],
+              "clearance_envelopes": [],
+              "geometry_generator_ref": "cad.pcb@1.0.0",
+              "metadata": {},
+              "rule_refs": [],
+              "datasheet_refs": []
+            },
+            "relationship": {
+              "schemaVersion": "1.0.0",
+              "relationship_id": "rel.pcb_mounts_base",
+              "type": "mounts_to",
+              "source": "COMP-PCB",
+              "target": "COMP-FIXTURE-BASE",
+              "parameters": {
+                "fastener_ref": {
+                  "value": "mod.m3_fastener@2.0.0",
+                  "provenance": [
+                    "spec.pcb@2026-09-22"
+                  ]
+                },
+                "boss_ref": {
+                  "value": "face.base_mount_boss",
+                  "provenance": [
+                    "spec.pcb@2026-09-22"
+                  ]
+                },
+                "engagement_length_mm": {
+                  "value": 4.0,
+                  "provenance": [
+                    "datasheet.iso4762@2026-09-22"
+                  ]
+                },
+                "hole_alignment_tolerance_mm": {
+                  "value": 0.1,
+                  "provenance": [
+                    "datasheet.iso4762@2026-09-22"
+                  ]
+                }
+              },
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            }
+          }
+        ],
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.pcb",
+          "version": "1.1.0",
+          "capability_level": "geometry_capable",
+          "interfaces": [
+            "board_outline"
+          ],
+          "clearance_envelopes": [],
+          "geometry_generator_ref": "cad.pcb@1.1.0",
+          "metadata": {},
+          "rule_refs": [],
+          "datasheet_refs": []
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.pcb_mounts_base",
+          "type": "mounts_to",
+          "source": "COMP-PCB",
+          "target": "COMP-FIXTURE-BASE",
+          "parameters": {
+            "fastener_ref": {
+              "value": "mod.m3_fastener@2.0.0",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "boss_ref": {
+              "value": "face.base_mount_boss",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "engagement_length_mm": {
+              "value": 4.0,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            },
+            "hole_alignment_tolerance_mm": {
+              "value": 0.1,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            }
+          },
+          "provenance": [
+            "spec.pcb@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": true,
+        "changed": true,
+        "addedComponentIds": [
+          "COMP-PCB"
+        ],
+        "addedInterfaceIds": [
+          "INT-COMP-PCB-COMP-FIXTURE-BASE-MOUNT"
+        ],
+        "addedRelationshipIds": [
+          "REL-COMP-PCB-COMP-FIXTURE-BASE-MOUNTS"
+        ],
+        "addedConstraintIds": [
+          "CON-COMP-PCB-MOUNT"
+        ],
+        "addedUnknownIds": [],
+        "blockedConstraintKinds": [],
+        "fabricatedValuesUsed": false,
+        "upgradeBlocked": false,
+        "pinnedModules": [
+          [
+            "mod.pcb",
+            "1.1.0"
+          ]
+        ]
+      }
+    },
+    {
+      "case_id": "pcb-remove-decompose",
+      "name": "Removing the PCB module clears every dependent entity",
+      "input": {
+        "operation": "remove_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "module_id": "mod.pcb",
+        "setup": [
+          {
+            "operation": "add_module",
+            "module": {
+              "schemaVersion": "1.0.0",
+              "module_id": "mod.pcb",
+              "version": "1.0.0",
+              "capability_level": "geometry_capable",
+              "interfaces": [
+                "board_outline"
+              ],
+              "clearance_envelopes": [],
+              "geometry_generator_ref": "cad.pcb@1.0.0",
+              "metadata": {},
+              "rule_refs": [],
+              "datasheet_refs": []
+            },
+            "relationship": {
+              "schemaVersion": "1.0.0",
+              "relationship_id": "rel.pcb_mounts_base",
+              "type": "mounts_to",
+              "source": "COMP-PCB",
+              "target": "COMP-FIXTURE-BASE",
+              "parameters": {
+                "fastener_ref": {
+                  "value": "mod.m3_fastener@2.0.0",
+                  "provenance": [
+                    "spec.pcb@2026-09-22"
+                  ]
+                },
+                "boss_ref": {
+                  "value": "face.base_mount_boss",
+                  "provenance": [
+                    "spec.pcb@2026-09-22"
+                  ]
+                },
+                "engagement_length_mm": {
+                  "value": 4.0,
+                  "provenance": [
+                    "datasheet.iso4762@2026-09-22"
+                  ]
+                },
+                "hole_alignment_tolerance_mm": {
+                  "value": 0.1,
+                  "provenance": [
+                    "datasheet.iso4762@2026-09-22"
+                  ]
+                }
+              },
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            }
+          }
+        ]
+      },
+      "expect": {
+        "valid": true,
+        "changed": true,
+        "removedComponentIds": [
+          "COMP-PCB"
+        ],
+        "removedInterfaceIds": [
+          "INT-COMP-PCB-COMP-FIXTURE-BASE-MOUNT"
+        ],
+        "removedRelationshipIds": [
+          "REL-COMP-PCB-COMP-FIXTURE-BASE-MOUNTS"
+        ],
+        "removedConstraintIds": [
+          "CON-COMP-PCB-MOUNT"
+        ],
+        "removedUnknownIds": [],
+        "markedConstraintIds": [
+          "CON-COMP-PCB-MOUNT"
+        ]
+      }
+    },
+    {
+      "case_id": "pcb-remove-unknown-error",
+      "name": "Removing a module that was never composed is rejected",
+      "input": {
+        "operation": "remove_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "module_id": "mod.ghost"
+      },
+      "expect": {
+        "valid": false,
+        "errorContains": [
+          "unknown module mod.ghost"
+        ]
+      }
+    },
+    {
+      "case_id": "unsupported-intent-aligns-error",
+      "name": "A valid but unsupported intent type is rejected",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.pcb",
+          "version": "1.0.0",
+          "capability_level": "geometry_capable",
+          "interfaces": [
+            "board_outline"
+          ],
+          "clearance_envelopes": [],
+          "geometry_generator_ref": "cad.pcb@1.0.0",
+          "metadata": {},
+          "rule_refs": [],
+          "datasheet_refs": []
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.pcb_aligns_base",
+          "type": "aligns",
+          "source": "COMP-PCB",
+          "target": "COMP-FIXTURE-BASE",
+          "parameters": {
+            "axis": {
+              "value": "z",
+              "provenance": [
+                "spec.layout@2026-09-22"
+              ]
+            },
+            "tolerance_mm": {
+              "value": 0.05,
+              "provenance": [
+                "spec.layout@2026-09-22"
+              ]
+            }
+          },
+          "provenance": [
+            "spec.layout@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": false,
+        "errorContains": [
+          "not a supported composition intent"
+        ]
+      }
+    },
+    {
+      "case_id": "relationship-source-mismatch-error",
+      "name": "Relationship source must equal the resolved component id",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.pcb",
+          "version": "1.0.0",
+          "capability_level": "geometry_capable",
+          "interfaces": [
+            "board_outline"
+          ],
+          "clearance_envelopes": [],
+          "geometry_generator_ref": "cad.pcb@1.0.0",
+          "metadata": {},
+          "rule_refs": [],
+          "datasheet_refs": []
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.pcb_mounts_wrong_source",
+          "type": "mounts_to",
+          "source": "COMP-OTHER",
+          "target": "COMP-FIXTURE-BASE",
+          "parameters": {
+            "fastener_ref": {
+              "value": "mod.m3_fastener@2.0.0",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "boss_ref": {
+              "value": "face.base_mount_boss",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "engagement_length_mm": {
+              "value": 4.0,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            },
+            "hole_alignment_tolerance_mm": {
+              "value": 0.1,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            }
+          },
+          "provenance": [
+            "spec.pcb@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": false,
+        "errorContains": [
+          "expected COMP-PCB for module mod.pcb"
+        ]
+      }
+    },
+    {
+      "case_id": "target-missing-error",
+      "name": "Composition target must exist in the IR",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.pcb",
+          "version": "1.0.0",
+          "capability_level": "geometry_capable",
+          "interfaces": [
+            "board_outline"
+          ],
+          "clearance_envelopes": [],
+          "geometry_generator_ref": "cad.pcb@1.0.0",
+          "metadata": {},
+          "rule_refs": [],
+          "datasheet_refs": []
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.pcb_mounts_missing_target",
+          "type": "mounts_to",
+          "source": "COMP-PCB",
+          "target": "COMP-NOPE",
+          "parameters": {
+            "fastener_ref": {
+              "value": "mod.m3_fastener@2.0.0",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "boss_ref": {
+              "value": "face.base_mount_boss",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "engagement_length_mm": {
+              "value": 4.0,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            },
+            "hole_alignment_tolerance_mm": {
+              "value": 0.1,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            }
+          },
+          "provenance": [
+            "spec.pcb@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": false,
+        "errorContains": [
+          "must exist in the IR and differ from the source"
+        ]
+      }
+    },
+    {
+      "case_id": "self-target-error",
+      "name": "A relationship that targets itself is rejected",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.pcb",
+          "version": "1.0.0",
+          "capability_level": "geometry_capable",
+          "interfaces": [
+            "board_outline"
+          ],
+          "clearance_envelopes": [],
+          "geometry_generator_ref": "cad.pcb@1.0.0",
+          "metadata": {},
+          "rule_refs": [],
+          "datasheet_refs": []
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.pcb_mounts_self",
+          "type": "mounts_to",
+          "source": "COMP-PCB",
+          "target": "COMP-PCB",
+          "parameters": {
+            "fastener_ref": {
+              "value": "mod.m3_fastener@2.0.0",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "boss_ref": {
+              "value": "face.base_mount_boss",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "engagement_length_mm": {
+              "value": 4.0,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            },
+            "hole_alignment_tolerance_mm": {
+              "value": 0.1,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            }
+          },
+          "provenance": [
+            "spec.pcb@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": false,
+        "errorContains": [
+          "cannot relate an entity to itself"
+        ]
+      }
+    },
+    {
+      "case_id": "component-id-collision-error",
+      "name": "Composing into an existing foreign component id is rejected",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "component_id": "COMP-FIXTURE-BASE",
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.pcb",
+          "version": "1.0.0",
+          "capability_level": "geometry_capable",
+          "interfaces": [
+            "board_outline"
+          ],
+          "clearance_envelopes": [],
+          "geometry_generator_ref": "cad.pcb@1.0.0",
+          "metadata": {},
+          "rule_refs": [],
+          "datasheet_refs": []
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.pcb_mounts_collision",
+          "type": "mounts_to",
+          "source": "COMP-FIXTURE-BASE",
+          "target": "COMP-FIXTURE-COVER",
+          "parameters": {
+            "fastener_ref": {
+              "value": "mod.m3_fastener@2.0.0",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "boss_ref": {
+              "value": "face.base_mount_boss",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "engagement_length_mm": {
+              "value": 4.0,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            },
+            "hole_alignment_tolerance_mm": {
+              "value": 0.1,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            }
+          },
+          "provenance": [
+            "spec.pcb@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": false,
+        "errorContains": [
+          "component id already exists and is not composed from mod.pcb"
+        ]
+      }
+    },
+    {
+      "case_id": "module-validation-negative",
+      "name": "An invalid Module document is rejected before composition",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.badmod",
+          "version": "1.0.0",
+          "capability_level": "metadata_only",
+          "interfaces": [],
+          "clearance_envelopes": [],
+          "geometry_generator_ref": "cad.bad@1.0.0",
+          "metadata": {},
+          "rule_refs": [],
+          "datasheet_refs": []
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.bad_mounts_base",
+          "type": "mounts_to",
+          "source": "COMP-BADMOD",
+          "target": "COMP-FIXTURE-BASE",
+          "parameters": {
+            "fastener_ref": {
+              "value": "mod.m3_fastener@2.0.0",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "boss_ref": {
+              "value": "face.base_mount_boss",
+              "provenance": [
+                "spec.pcb@2026-09-22"
+              ]
+            },
+            "engagement_length_mm": {
+              "value": 4.0,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            },
+            "hole_alignment_tolerance_mm": {
+              "value": 0.1,
+              "provenance": [
+                "datasheet.iso4762@2026-09-22"
+              ]
+            }
+          },
+          "provenance": [
+            "spec.pcb@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": false,
+        "errorContains": [
+          "/geometry_generator_ref: capability below geometry_capable must not carry a geometry generator"
+        ]
+      }
+    },
+    {
+      "case_id": "relationship-validation-negative",
+      "name": "An invalid Relationship document is rejected before composition",
+      "input": {
+        "operation": "add_module",
+        "ir": {
+          "source": "contracts/g1/golden/reference-fixture.json"
+        },
+        "module": {
+          "schemaVersion": "1.0.0",
+          "module_id": "mod.usbc",
+          "version": "1.0.0",
+          "capability_level": "layout_capable",
+          "interfaces": [
+            "usbc_receptacle"
+          ],
+          "clearance_envelopes": [],
+          "metadata": {},
+          "rule_refs": [],
+          "datasheet_refs": []
+        },
+        "relationship": {
+          "schemaVersion": "1.0.0",
+          "relationship_id": "rel.usbc_opens_bad",
+          "type": "opens_through",
+          "source": "COMP-USBC",
+          "target": "COMP-FIXTURE-COVER",
+          "parameters": {
+            "opening_ref": {
+              "value": "opening.cover_usbc",
+              "provenance": [
+                "spec.enclosure@2026-09-22"
+              ]
+            },
+            "interface_envelope_ref": {
+              "value": "env.usbc_cavity@1.0.0",
+              "provenance": [
+                "datasheet.usbc@2026-09-22"
+              ]
+            }
+          },
+          "provenance": [
+            "spec.enclosure@2026-09-22"
+          ]
+        }
+      },
+      "expect": {
+        "valid": false,
+        "errorContains": [
+          "/parameters/clearance_gap_mm"
+        ]
+      }
+    }
+  ]
+}
