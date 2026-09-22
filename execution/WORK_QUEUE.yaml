@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T20:25:00+08:00",
+  "updatedAt": "2026-09-22T20:42:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G6-AI-004",
+  "currentWorkItem": "G6-A11Y-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -3483,7 +3483,7 @@
       "id": "G6-AI-004",
       "title": "AI grounded explanation",
       "gate": "G6",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G6-AI-002"
       ],
@@ -3499,8 +3499,11 @@
       "acceptanceResults": [
         {
           "criterion": "解釋中的每個數值 100% 可追溯至 IR、規則結果或 manifest",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "artifacts/g6-ai-004/grounded-explanation.json",
+            "artifacts/g6-ai-004/verification.json"
+          ]
         }
       ],
       "verificationCommands": [
@@ -3508,15 +3511,23 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "schemas/v3/grounded-explanation.schema.json",
+        "megis/ai/explanation.py",
+        "tests/test_g6_ai_004.py",
+        "scripts/verify_g6_ai_004.py",
+        "artifacts/g6-ai-004/grounded-explanation.json",
+        "artifacts/g6-ai-004/verification.json",
+        "docs/G6_AI_GROUNDED_EXPLANATION.md"
+      ],
+      "verification": "passed",
+      "commitSha": "d27d16e17ed81eb0fb8ac4e8b0be83891df14d82"
     },
     {
       "id": "G6-A11Y-001",
       "title": "無障礙驗證",
       "gate": "G6",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G6-UI-001"
       ],
