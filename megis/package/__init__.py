@@ -34,6 +34,15 @@ from .drawing import (
     validate_drawing_schema,
     verify_draft_drawing,
 )
+from .repro import (
+    REPRO_ARTIFACT_NAMES,
+    REPRO_BYTE_STABLE,
+    REPRO_BUILDER_VERSION,
+    build_fingerprint_report,
+    compare_to_golden,
+    rebuild_prototype_outputs,
+    validate_golden,
+)
 
 __all__ = [
     "FINGERPRINT_POLICY_VERSION",
@@ -62,4 +71,11 @@ __all__ = [
     "qa_all_passed",
     "validate_drawing_schema",
     "verify_draft_drawing",
+    "REPRO_ARTIFACT_NAMES",
+    "REPRO_BYTE_STABLE",
+    "REPRO_BUILDER_VERSION",
+    "build_fingerprint_report",
+    "compare_to_golden",
+    "rebuild_prototype_outputs",
+    "validate_golden",
 ]

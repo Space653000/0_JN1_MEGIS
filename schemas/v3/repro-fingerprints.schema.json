@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/repro-fingerprints.schema.json",
+  "title": "MEGIS Clean-Environment Reproducibility Fingerprints",
+  "description": "Frozen golden fingerprints for the G5 prototype package clean rebuild (G5-REP-001). The semantic fingerprint is the reproducibility unit; byte_sha256 is only required for byte-stable artifacts (bom.csv, draft_drawing.svg, reference_case.stl).",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "corpusId",
+    "builderVersion",
+    "freezeNote",
+    "toolchain",
+    "artifacts",
+    "reportFingerprint"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "corpusId": { "const": "g5-repro-fingerprints@1.0.0" },
+    "builderVersion": { "const": "megis.repro@1.0.0" },
+    "freezeNote": { "type": "string", "minLength": 1 },
+    "frozenAt": { "type": "string", "format": "date-time" },
+    "toolchain": {
+      "type": "object",
+      "required": ["os", "python", "machine", "cadquery", "cadqueryOcp", "fingerprintPolicyVersion"],
+      "additionalProperties": false,
+      "properties": {
+        "os": { "type": "string", "minLength": 1 },
+        "python": { "type": "string", "minLength": 1 },
+        "machine": { "type": "string", "minLength": 1 },
+        "cadquery": { "type": "string", "minLength": 1 },
+        "cadqueryOcp": { "type": "string", "minLength": 1 },
+        "fingerprintPolicyVersion": { "const": "1.0.0" }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reference_case.step",
+        "reference_case.stl",
+        "reference_case_section_z10.dxf",
+        "bom.csv",
+        "draft_drawing.svg"
+      ],
+      "propertyNames": {
+        "enum": [
+          "reference_case.step",
+          "reference_case.stl",
+          "reference_case_section_z10.dxf",
+          "bom.csv",
+          "draft_drawing.svg"
+        ]
+      },
+      "properties": {
+        "reference_case.step": {
+          "type": "object",
+          "required": ["path", "bytes", "semanticFingerprint", "fingerprintKind"],
+          "additionalProperties": false,
+          "properties": {
+            "path": { "const": "reference_case.step" },
+            "bytes": { "type": "integer", "minimum": 0 },
+            "semanticFingerprint": { "$ref": "#/$defs/hash" },
+            "fingerprintKind": { "const": "step_normalized_text" }
+          }
+        },
+        "reference_case.stl": {
+          "type": "object",
+          "required": ["path", "bytes", "semanticFingerprint", "fingerprintKind", "byte_sha256"],
+          "additionalProperties": false,
+          "properties": {
+            "path": { "const": "reference_case.stl" },
+            "bytes": { "type": "integer", "minimum": 0 },
+            "semanticFingerprint": { "$ref": "#/$defs/hash" },
+            "fingerprintKind": { "const": "stl_triangles" },
+            "byte_sha256": { "$ref": "#/$defs/hash" }
+          }
+        },
+        "reference_case_section_z10.dxf": {
+          "type": "object",
+          "required": ["path", "bytes", "semanticFingerprint", "fingerprintKind"],
+          "additionalProperties": false,
+          "properties": {
+            "path": { "const": "reference_case_section_z10.dxf" },
+            "bytes": { "type": "integer", "minimum": 0 },
+            "semanticFingerprint": { "$ref": "#/$defs/hash" },
+            "fingerprintKind": { "const": "dxf_vectors" }
+          }
+        },
+        "bom.csv": {
+          "type": "object",
+          "required": ["path", "bytes", "semanticFingerprint", "fingerprintKind", "byte_sha256"],
+          "additionalProperties": false,
+          "properties": {
+            "path": { "const": "bom.csv" },
+            "bytes": { "type": "integer", "minimum": 0 },
+            "semanticFingerprint": { "$ref": "#/$defs/hash" },
+            "fingerprintKind": { "const": "utf8_text_lf" },
+            "byte_sha256": { "$ref": "#/$defs/hash" }
+          }
+        },
+        "draft_drawing.svg": {
+          "type": "object",
+          "required": ["path", "bytes", "semanticFingerprint", "fingerprintKind", "byte_sha256"],
+          "additionalProperties": false,
+          "properties": {
+            "path": { "const": "draft_drawing.svg" },
+            "bytes": { "type": "integer", "minimum": 0 },
+            "semanticFingerprint": { "$ref": "#/$defs/hash" },
+            "fingerprintKind": { "const": "utf8_text_lf" },
+            "byte_sha256": { "$ref": "#/$defs/hash" }
+          }
+        }
+      }
+    },
+    "reportFingerprint": { "$ref": "#/$defs/hash" }
+  },
+  "$defs": {
+    "hash": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

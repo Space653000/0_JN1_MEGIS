@@ -37,6 +37,7 @@ class ErrorDomain(StrEnum):
     PKG = "PKG"
     BOM = "BOM"
     DRW = "DRW"
+    REP = "REP"
     JOB = "JOB"
     AI = "AI"
     IMP = "IMP"
@@ -78,6 +79,7 @@ _ERROR_CODES: list[ErrorCode] = [
     ErrorCode("MEGIS-BOM-002", ErrorDomain.BOM, 2, ErrorSeverity.ERROR, False, "BOM 宣告內容或 IR 欄位不符。", "BOM declarative mismatch or invalid IR field (part set, material, revision)"),
     ErrorCode("MEGIS-DRW-001", ErrorDomain.DRW, 1, ErrorSeverity.ERROR, False, "草圖 SVG 指紋或尺寸與 IR 不符。", "draft drawing svg fingerprint or whitelist dimension drifted from the IR"),
     ErrorCode("MEGIS-DRW-002", ErrorDomain.DRW, 2, ErrorSeverity.ERROR, False, "草圖宣告內容不符。", "draft drawing declarative mismatch (title block, watermark, whitelist, QA drift)"),
+    ErrorCode("MEGIS-REP-001", ErrorDomain.REP, 1, ErrorSeverity.ERROR, False, "乾淨環境重建指紋不符，需 ADR。", "clean-environment rebuild fingerprint drift requires an ADR before acceptance"),
     ErrorCode("MEGIS-JOB-001", ErrorDomain.JOB, 1, ErrorSeverity.ERROR, True, "工作逾時。", "job timeout"),
     ErrorCode("MEGIS-AI-001", ErrorDomain.AI, 1, ErrorSeverity.ERROR, True, "AI 輸出格式無效。", "schema-invalid AI model output"),
     ErrorCode("MEGIS-IMP-001", ErrorDomain.IMP, 1, ErrorSeverity.ERROR, False, "輸入檔案超出限制。", "import file exceeds size or structural limit"),

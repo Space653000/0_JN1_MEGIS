@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0.0",
+  "corpusId": "g5-repro-fingerprints@1.0.0",
+  "builderVersion": "megis.repro@1.0.0",
+  "freezeNote": "Frozen by G5-REP-001. Any clean-environment semantic fingerprint drift raises MEGIS-REP-001 and requires an ADR before acceptance.",
+  "frozenAt": "2026-09-22T17:45:00+08:00",
+  "toolchain": {
+    "os": "Windows",
+    "python": "3.11.9",
+    "machine": "AMD64",
+    "cadquery": "2.8.0",
+    "cadqueryOcp": "7.9.3.1.1",
+    "fingerprintPolicyVersion": "1.0.0"
+  },
+  "artifacts": {
+    "reference_case.step": {
+      "path": "reference_case.step",
+      "bytes": 48862,
+      "semanticFingerprint": "62a380d7de5f92d59bfc4a82e24c79938c1d226669aa80c40ebb92829521c0ca",
+      "fingerprintKind": "step_normalized_text"
+    },
+    "reference_case.stl": {
+      "path": "reference_case.stl",
+      "bytes": 103084,
+      "semanticFingerprint": "c1ae023d8030b75e040c757b6a0dd0c2e32d7ac4d20b3f5dc815f4f0ab1d4331",
+      "fingerprintKind": "stl_triangles",
+      "byte_sha256": "e25f6ea7e8bbeff7025affc7f12d0cdaa2fbbb9138d64f089e5808d3a14e4935"
+    },
+    "reference_case_section_z10.dxf": {
+      "path": "reference_case_section_z10.dxf",
+      "bytes": 19535,
+      "semanticFingerprint": "20c24406f980fed8d413dc6cbe53b3d2fdce508a846597d398ce48290bfa21dc",
+      "fingerprintKind": "dxf_vectors"
+    },
+    "bom.csv": {
+      "path": "bom.csv",
+      "bytes": 306,
+      "semanticFingerprint": "33cc684883bf3d48adebb7ebd9cb757bbe70b38ca398c1b02873f9f881f249e9",
+      "fingerprintKind": "utf8_text_lf",
+      "byte_sha256": "33cc684883bf3d48adebb7ebd9cb757bbe70b38ca398c1b02873f9f881f249e9"
+    },
+    "draft_drawing.svg": {
+      "path": "draft_drawing.svg",
+      "bytes": 1751,
+      "semanticFingerprint": "2fc72ab63d635d74334bcfd408c6fa3dfdcf6262891eb602f402c28dcbe3e6fc",
+      "fingerprintKind": "utf8_text_lf",
+      "byte_sha256": "2fc72ab63d635d74334bcfd408c6fa3dfdcf6262891eb602f402c28dcbe3e6fc"
+    }
+  },
+  "reportFingerprint": "316e6ed58a75d49b3b0c6cd0950f3c1c656390c901423c24e3b0c1d7c100bc58"
+}
