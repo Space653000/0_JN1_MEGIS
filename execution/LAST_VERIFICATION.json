@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-22T21:50:00+08:00",
-  "sourceCommit": "7b4e6cf35a3c07fe77724943d3ef4eb710682d5e",
+  "verifiedAt": "2026-09-22T15:45:00+08:00",
+  "sourceCommit": "eef0afcae87731a83497c81ff7277cfa5a67495c",
   "status": "passed",
   "commands": [
     {
@@ -30,24 +30,26 @@
       "deferrals": 0
     },
     {
-      "command": "G4-IMP-001 implementation and closure traceability (@7b4e6cf)",
+      "command": "G4-REV-001 clean checkout self review (@eef0afc)",
       "status": "passed",
-      "implCommit": "7b4e6cf35a3c07fe77724943d3ef4eb710682d5e",
+      "reviewCommit": "eef0afcae87731a83497c81ff7277cfa5a67495c",
+      "reviewDir": ".runs/g4-rev-001-clean",
       "workItemStatus": "done",
       "evidenceLevel": "E3",
-      "controlPlaneCurrentAfter": "G4-REV-001",
+      "controlPlaneCurrentAfter": "G4-ACC-001",
       "checks": {
-        "corpusCases": 16,
-        "validCases": 6,
-        "errorCases": 10,
-        "pytestImportTests": 32,
-        "inchUnitDetected": true,
-        "structuralIntegrityRejected": true,
-        "entityBudgetInjectable": true,
-        "noFabricatedMetadata": true,
-        "baselineCiGreen": true,
-        "pythonTests": 421,
-        "frontendTests": 9
+        "pytestG4Tests": 115,
+        "pytestG4Failed": 0,
+        "verifyScripts": 3,
+        "verifyChecksTotal": 90,
+        "verifyScriptsAllPassed": true,
+        "mod001Checks": 27,
+        "grf001Checks": 39,
+        "mod002Checks": 24,
+        "importPytestTests": 32,
+        "importCorpusCases": 16,
+        "controlPlaneValid": true,
+        "blockingFindings": 0
       }
     }
   ],

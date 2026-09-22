@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T21:30:00+08:00",
+  "updatedAt": "2026-09-22T15:45:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G4-REV-001",
+  "currentWorkItem": "G4-ACC-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -3036,7 +3036,7 @@
       "id": "G4-REV-001",
       "title": "G4 自我審查",
       "gate": "G4",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G4-IMP-001"
       ],
@@ -3052,24 +3052,34 @@
       "acceptanceResults": [
         {
           "criterion": "全新 session 在乾淨 checkout 重跑 G4 全部驗證並出具 passed 報告",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "execution/reviews/2026-09-22-G4-REV-001-review.md",
+            "artifacts/g4-rev-001/verification.json"
+          ]
         }
       ],
       "verificationCommands": [
-        "node scripts/verify-control-plane.mjs"
+        "node scripts/verify-control-plane.mjs",
+        ".venv/Scripts/python.exe -m pytest tests/test_g4_grf_001.py tests/test_g4_mod_001.py tests/test_g4_mod_002.py tests/test_g4_imp_001.py",
+        ".venv/Scripts/python.exe scripts/verify_g4_mod_001.py",
+        ".venv/Scripts/python.exe scripts/verify_g4_grf_001.py",
+        ".venv/Scripts/python.exe scripts/verify_g4_mod_002.py"
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "execution/reviews/2026-09-22-G4-REV-001-review.md",
+        "artifacts/g4-rev-001/verification.json"
+      ],
+      "verification": "passed",
+      "commitSha": "d22c9a365e0c9013b47031889637573b0654c03e"
     },
     {
       "id": "G4-ACC-001",
       "title": "G4 acceptance 決策紀錄",
       "gate": "G4",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G4-REV-001"
       ],

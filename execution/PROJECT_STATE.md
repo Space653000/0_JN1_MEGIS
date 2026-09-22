@@ -1,14 +1,14 @@
 # MEGIS Project State
 
 - Current gate: `G4 — 模組與限制條件組合`
-- Current work item: `G4-REV-001 — G4 自我審查（in_progress）`
-- Last green commit: `7b4e6cf35a3c07fe77724943d3ef4eb710682d5e`
+- Current work item: `G4-ACC-001 — G4 acceptance 決策紀錄（in_progress）`
+- Last green commit: `eef0afcae87731a83497c81ff7277cfa5a67495c`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-22T21:30:00+08:00`
+- Updated at: `2026-09-22T15:45:00+08:00`
 
 ## Active gate: G4
 
-G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 — 模組與限制條件組合 現在為 active gate，G4-MOD-001／GRF-001／MOD-002／IMP-001 已閉合，下一個工項為 `G4-REV-001 — G4 自我審查`（in_progress）。
+G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 — 模組與限制條件組合 現在為 active gate，G4-MOD-001／GRF-001／MOD-002／IMP-001／REV-001 已閉合，下一個工項為 `G4-ACC-001 — G4 acceptance 決策紀錄`（in_progress）。
 
 G4-MOD-001 已閉合（2026-09-22）：四級 capability 閉集合（metadata_only／layout_capable／geometry_capable／validated）與 §12 policy 表；`megis/module`、`schemas/v3/module.schema.json`、18 cases；28 tests + `verify_g4_mod_001.py` allChecksPassed（E3）。
 
@@ -17,6 +17,7 @@ G4-GRF-001 已閉合（2026-09-22）：Relationship vocabulary 八型別閉集�
 G4-MOD-002 已閉合（2026-09-22）：Module composition（`megis/composition`）把 Module＋Relationship 落到 Fixture golden IR，只衍生 proven 的 mount／fastener／opening／clearance constraints；移除會清除或明確標示 dependent constraints、缺值絕不補虛構數字（`unsafeToDefault` unknown＋blocked kind）、Module 版本固定（idempotent／upgrade_blocked／allow_upgrade）。`schemas/v3/module-composition-corpus.schema.json`、20 cases；29 tests + `verify_g4_mod_002.py` allChecksPassed（E3）；baseline CI 389 Python + 9 Frontend 全綠。G4-IMP-001 接續 in_progress 並完成 AGENT_CLAIM 交接。
 
 G4-IMP-001 已閉合（2026-09-22）：safe STEP／DXF metadata extraction（`megis/importing`）。untrusted 檔案只在隔離 subprocess（`python -m megis.importing.worker`）內解析，父程序只回收單一 JSON；guard 在解析前攔截副檔名／magic／大小（`MEGIS-IMP-001/002`），worker 做結構完整性檢查並以可注入的 `max_entities` 與 `WORKER_TIMEOUT_SECONDS` 封頂（`MEGIS-IMP-003/004`）。只抽取 bounding box、solid/shell 計數、candidate holes／planar sections、file unit（含 inch）與 parser warnings；報告標示 `derivedFromImport` 且不提升 capability。`schemas/v3/import-report.schema.json`（`additionalProperties: false`）、`contracts/g4/golden/import-corpus.json`（16 cases）；`tests/test_g4_imp_001.py` 32 tests（public API、unit、corpus-driven、schema contract）；baseline CI 421 Python + 9 Frontend 全綠。下一工項 `G4-REV-001`（in_progress）。
+G4-REV-001 已閉合（2026-09-22）：G4 自我審查於工作區內 `.runs/g4-rev-001-clean` 乾淨 clone 固定 commit `eef0afc` 重跑 G4 全部驗證（115 tests、3 支驗證腳本 90 checks、control-plane verifier），審查報告 passed、無 blocking finding。`execution/reviews/2026-09-22-G4-REV-001-review.md` + `artifacts/g4-rev-001/verification.json`（E3）。下一工項 `G4-ACC-001`（in_progress）。
 
 G3-RUL-001 已閉合（2026-09-21）：rule schema（`schemas/v3/rule.schema.json`）、waiver schema（`schemas/v3/waiver.schema.json`）、生命週期狀態機與 waiver 到期／不可豁免邏輯（`megis/rules/`）、golden corpus（`contracts/g3/golden/rule-governance.json`）；14 tests + `verify_g3_rul_001.py` 18/18 checks 全綠，新增 `MEGIS-RUL-002／003`。
 
@@ -76,8 +77,8 @@ G3-ACC-001 已閉合（2026-09-22）：G3 gate acceptance 決策紀錄（E4，`e
 | G4-MOD-002 | done | schemas/v3/module-composition-corpus.schema.json、megis/composition/、contracts/g4/golden/module-composition-corpus.json（20 cases）、tests/test_g4_mod_002.py（29 tests）、scripts/verify_g4_mod_002.py（E3）、docs/G4_MODULE_COMPOSITION.md |
 | G4-IMP-001 | done | megis/importing/、schemas/v3/import-report.schema.json、schemas/v3/import-corpus.schema.json、contracts/g4/golden/import-corpus.json（16 cases）、tests/test_g4_imp_001.py（32 tests）、docs/G4_IMPORT_SAFETY.md |
 | G4-GRF-001 | done | schemas/v3/relationship.schema.json、megis/relationship/、contracts/g4/golden/relationship-corpus.json（20 cases）、tests/test_g4_grf_001.py（26 tests）、scripts/verify_g4_grf_001.py（E3）、artifacts/g4-grf-001/verification.json、docs/G4_RELATIONSHIP_VOCABULARY.md |
-| G4-REV-001 | planned | G4 自我審查 |
-| G4-ACC-001 | planned | G4 acceptance 決策紀錄 |
+| G4-REV-001 | done | execution/reviews/2026-09-22-G4-REV-001-review.md、artifacts/g4-rev-001/verification.json；乾淨 clone 重跑 115 tests + 3 支驗證腳本 90 checks 全綠 |
+| G4-ACC-001 | in_progress | G4 acceptance 決策紀錄 |
 
 ## Boundaries
 
