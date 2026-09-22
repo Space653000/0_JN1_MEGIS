@@ -2,7 +2,7 @@
   "schemaVersion": "1.1.0",
   "updatedAt": "2026-09-22T16:15:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G5-BOM-001",
+  "currentWorkItem": "G5-DRW-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -1854,7 +1854,7 @@
       "id": "G5-BOM-001",
       "title": "建立 BOM exporter",
       "gate": "G5",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G5-PKG-001"
       ],
@@ -1871,22 +1871,42 @@
       "acceptanceResults": [
         {
           "criterion": "BOM 內容、數量、來源與 hash 可重現",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "schemas/v3/bom.schema.json",
+            "contracts/g5/golden/bom-corpus.json",
+            "tests/test_g5_bom_001.py",
+            "artifacts/g5-bom-001/verification.json"
+          ]
         }
       ],
-      "verificationCommands": [],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe -m pytest tests/test_g5_bom_001.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+        "node scripts/verify-control-plane.mjs"
+      ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "schemas/v3/bom.schema.json",
+        "schemas/v3/bom-corpus.schema.json",
+        "contracts/g5/golden/bom-corpus.json",
+        "megis/package/bom.py",
+        "megis/package/__init__.py",
+        "tests/test_g5_bom_001.py",
+        "artifacts/g5-bom-001/verification.json",
+        "docs/G5_BOM_EXPORTER.md",
+        "megis/errors/registry.py",
+        "docs/ERROR_CODES.md"
+      ],
+      "verification": "passed",
+      "commitSha": "1e299e5d6d94e43a48c8135aba3e1fc7e5a52b5e"
     },
     {
       "id": "G5-DRW-001",
       "title": "建立 fixed-template draft drawing",
       "gate": "G5",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G5-BOM-001"
       ],

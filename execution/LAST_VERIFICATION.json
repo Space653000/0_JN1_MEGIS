@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-22T16:15:00+08:00",
-  "sourceCommit": "a88f61a92cebe35702a724eaa537e780454c744a",
+  "verifiedAt": "2026-09-22T16:45:00+08:00",
+  "sourceCommit": "1e299e5d6d94e43a48c8135aba3e1fc7e5a52b5e",
   "status": "passed",
   "commands": [
     {
@@ -10,14 +10,14 @@
       "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
       "deferrals": 0,
-      "secretScanTrackedFiles": 378,
+      "secretScanTrackedFiles": 395,
       "secretScanFindings": 0,
       "artifactPolicyNegativeTests": 8,
-      "artifactPolicyTrackedFiles": 381,
-      "artifactPolicyEvidenceJson": 42,
+      "artifactPolicyTrackedFiles": 398,
+      "artifactPolicyEvidenceJson": 45,
       "artifactPolicyGoldenBytes": 19333,
       "artifactPolicyHeavyArtifacts": 5,
-      "pythonTests": 446,
+      "pythonTests": 471,
       "maturityScanManifests": 1,
       "artifactSmokeRecords": 13,
       "frontendTests": 9
@@ -30,12 +30,12 @@
       "deferrals": 0
     },
     {
-      "command": "G5-PKG-001 close traceability (@a88f61a)",
+      "command": "G5-BOM-001 close traceability (@1e299e5)",
       "status": "passed",
-      "pkgCommit": "a88f61a92cebe35702a724eaa537e780454c744a",
+      "bomCommit": "1e299e5d6d94e43a48c8135aba3e1fc7e5a52b5e",
       "workItemStatus": "done",
       "evidenceLevel": "E3",
-      "controlPlaneCurrentAfter": "G5-BOM-001",
+      "controlPlaneCurrentAfter": "G5-DRW-001",
       "checks": {
         "verificationPresent": true,
         "acceptancePassed": true,
@@ -43,6 +43,7 @@
         "corpusPresent": true,
         "schemaPresent": true,
         "testsPresent": true,
+        "errorCodesRegistered": true,
         "blockingFindings": 0
       }
     }
