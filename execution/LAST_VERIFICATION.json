@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-22T11:00:00+08:00",
-  "sourceCommit": "127ff0789e68b182fc269dd9b209efc8d76a8cb4",
+  "verifiedAt": "2026-09-22T13:00:00+08:00",
+  "sourceCommit": "d86ffff824b6beb451d60d89e64e6c87606adeeb",
   "status": "passed",
   "commands": [
     {
@@ -10,14 +10,14 @@
       "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
       "deferrals": 0,
-      "secretScanTrackedFiles": 307,
+      "secretScanTrackedFiles": 319,
       "secretScanFindings": 0,
       "artifactPolicyNegativeTests": 8,
-      "artifactPolicyTrackedFiles": 310,
-      "artifactPolicyEvidenceJson": 35,
+      "artifactPolicyTrackedFiles": 322,
+      "artifactPolicyEvidenceJson": 36,
       "artifactPolicyGoldenBytes": 19333,
       "artifactPolicyHeavyArtifacts": 5,
-      "pythonTests": 294,
+      "pythonTests": 306,
       "maturityScanManifests": 1,
       "artifactSmokeRecords": 13,
       "frontendTests": 9
@@ -30,19 +30,27 @@
       "deferrals": 0
     },
     {
-      "command": ".venv/Scripts/python.exe scripts/verify_g3_mat_001.py",
+      "command": ".venv/Scripts/python.exe scripts/verify_g3_ben_001.py",
       "status": "passed",
-      "cases": 18,
-      "passedCases": 16,
-      "blockedBelowDraft": 2,
-      "recomputeCases": 2,
-      "checksPassed": 20,
-      "evaluatorVersion": "megis.maturity@1.0.0"
+      "devCases": 40,
+      "devDefect": 30,
+      "devClean": 10,
+      "devPrecision": 1.0,
+      "devRecall": 1.0,
+      "devFalsePositives": 0,
+      "devFalseReleases": 0,
+      "holdoutCases": 10,
+      "holdoutSha256": "73a25950c4b45d904daa6bab963a16ae11599f6bfa660966582ba0d60ed5a96b",
+      "holdoutMatchedSealed": true,
+      "holdoutFalsePositives": 0,
+      "holdoutFalseReleases": 0,
+      "checksPassed": 13,
+      "runtime": "megis.benchmark@0.1.0"
     },
     {
-      "command": ".venv/Scripts/python.exe -m pytest tests/test_g3_mat_001.py",
+      "command": ".venv/Scripts/python.exe -m pytest tests/test_g3_ben_001.py",
       "status": "passed",
-      "testsPassed": 28,
+      "testsPassed": 12,
       "testsFailed": 0
     }
   ],

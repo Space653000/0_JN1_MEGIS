@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T11:00:00+08:00",
+  "updatedAt": "2026-09-22T13:00:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G3-BEN-001",
+  "currentWorkItem": "G3-REV-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -1590,7 +1590,7 @@
       "id": "G3-BEN-001",
       "title": "建立 benchmark metrics",
       "gate": "G3",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G3-MAT-001"
       ],
@@ -1607,16 +1607,44 @@
       "acceptanceResults": [
         {
           "criterion": "正確性、可重現性與執行成本具有固定基準",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "megis/benchmark/__init__.py",
+            "megis/benchmark/metrics.py",
+            "schemas/v3/benchmark-corpus.schema.json",
+            "schemas/v3/benchmark-report.schema.json",
+            "contracts/g3/golden/benchmark-corpus.json",
+            "contracts/g3/holdout/holdout-corpus.json",
+            "tests/test_g3_ben_001.py",
+            "scripts/verify_g3_ben_001.py",
+            "docs/G3_BENCHMARK.md",
+            "docs/ACCEPTANCE.md",
+            "artifacts/g3-ben-001/verification.json"
+          ]
         }
       ],
-      "verificationCommands": [],
+      "verificationCommands": [
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+        ".venv/Scripts/python.exe -m pytest tests/test_g3_ben_001.py",
+        ".venv/Scripts/python.exe scripts/verify_g3_ben_001.py"
+      ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "megis/benchmark/__init__.py",
+        "megis/benchmark/metrics.py",
+        "schemas/v3/benchmark-corpus.schema.json",
+        "schemas/v3/benchmark-report.schema.json",
+        "contracts/g3/golden/benchmark-corpus.json",
+        "contracts/g3/holdout/holdout-corpus.json",
+        "tests/test_g3_ben_001.py",
+        "scripts/verify_g3_ben_001.py",
+        "docs/G3_BENCHMARK.md",
+        "docs/ACCEPTANCE.md",
+        "artifacts/g3-ben-001/verification.json"
+      ],
+      "verification": "passed",
+      "commitSha": "d86ffff824b6beb451d60d89e64e6c87606adeeb"
     },
     {
       "id": "G4-MOD-001",
@@ -2795,7 +2823,7 @@
       "id": "G3-REV-001",
       "title": "G3 自我審查",
       "gate": "G3",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G3-SRC-001",
         "G3-BEN-001"
