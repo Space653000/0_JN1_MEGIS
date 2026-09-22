@@ -1,0 +1,682 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G6-QST-001",
+  "referenceDate": "2026-09-22",
+  "corpusId": "megis-question-order-corpus@1.0.0",
+  "cases": [
+    {
+      "case_id": "qst-001",
+      "name": "fresh state orders unsafe-first and blocks missing dimensions",
+      "kind": "ordering",
+      "input": {
+        "answered": [],
+        "state": {}
+      },
+      "expect": {
+        "orderedIds": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT",
+          "Q-FIXTURE-PCB-ENVELOPE",
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY",
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": true,
+        "blockReasonContains": [
+          "缺少不安全的尺寸"
+        ],
+        "nextStepsContains": [
+          "請提供外形尺寸或上傳外形圖"
+        ],
+        "criticalRemaining": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT",
+          "Q-FIXTURE-PCB-ENVELOPE"
+        ]
+      }
+    },
+    {
+      "case_id": "qst-002",
+      "name": "answering dimensions removes them from the pending set",
+      "kind": "ordering",
+      "input": {
+        "answered": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT"
+        ],
+        "state": {
+          "width": 120,
+          "depth": 80,
+          "height": 20,
+          "pcbEnvelopeMode": "provided"
+        }
+      },
+      "expect": {
+        "orderedIds": [
+          "Q-FIXTURE-PCB-ENVELOPE",
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY",
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": false,
+        "criticalRemaining": []
+      }
+    },
+    {
+      "case_id": "qst-003",
+      "name": "answering the PCB envelope removes it from the pending set",
+      "kind": "ordering",
+      "input": {
+        "answered": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT",
+          "Q-FIXTURE-PCB-ENVELOPE"
+        ],
+        "state": {
+          "width": 120,
+          "depth": 80,
+          "height": 20,
+          "pcbEnvelopeMode": "provided"
+        }
+      },
+      "expect": {
+        "orderedIds": [
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY",
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": false,
+        "criticalRemaining": []
+      }
+    },
+    {
+      "case_id": "qst-004",
+      "name": "priority stage keeps only the purpose question pending",
+      "kind": "ordering",
+      "input": {
+        "answered": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT",
+          "Q-FIXTURE-PCB-ENVELOPE",
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY"
+        ],
+        "state": {
+          "width": 120,
+          "depth": 80,
+          "height": 20,
+          "pcbEnvelopeMode": "provided"
+        }
+      },
+      "expect": {
+        "orderedIds": [
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": false,
+        "criticalRemaining": []
+      }
+    },
+    {
+      "case_id": "qst-005",
+      "name": "fully answered flow has an empty pending set",
+      "kind": "ordering",
+      "input": {
+        "answered": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT",
+          "Q-FIXTURE-PCB-ENVELOPE",
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY",
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "state": {
+          "width": 120,
+          "depth": 80,
+          "height": 20,
+          "pcbEnvelopeMode": "provided"
+        }
+      },
+      "expect": {
+        "orderedIds": [],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": false,
+        "criticalRemaining": []
+      }
+    },
+    {
+      "case_id": "qst-006",
+      "name": "direct API keys produce the same ordering as UI keys",
+      "kind": "ordering",
+      "input": {
+        "answered": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT"
+        ],
+        "state": {
+          "width_mm": 120,
+          "depth_mm": 80,
+          "height_mm": 20,
+          "pcb_envelope_mode": "provided"
+        }
+      },
+      "expect": {
+        "orderedIds": [
+          "Q-FIXTURE-PCB-ENVELOPE",
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY",
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": false,
+        "criticalRemaining": []
+      }
+    },
+    {
+      "case_id": "qst-007",
+      "name": "missing width blocks generation with an actionable step",
+      "kind": "abstention",
+      "input": {
+        "answered": [
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT"
+        ],
+        "state": {
+          "depth": 80,
+          "height": 20,
+          "pcbEnvelopeMode": "provided"
+        }
+      },
+      "expect": {
+        "orderedIds": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-PCB-ENVELOPE",
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY",
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": true,
+        "blockReasonContains": [
+          "缺少不安全的尺寸"
+        ],
+        "nextStepsContains": [
+          "請提供外形尺寸或上傳外形圖"
+        ],
+        "criticalRemaining": [
+          "Q-FIXTURE-WIDTH"
+        ]
+      }
+    },
+    {
+      "case_id": "qst-008",
+      "name": "missing width via API keys blocks with the same reason",
+      "kind": "abstention",
+      "input": {
+        "answered": [
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT"
+        ],
+        "state": {
+          "depth_mm": 80,
+          "height_mm": 20,
+          "pcb_envelope_mode": "provided"
+        }
+      },
+      "expect": {
+        "orderedIds": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-PCB-ENVELOPE",
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY",
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": true,
+        "blockReasonContains": [
+          "缺少不安全的尺寸"
+        ],
+        "nextStepsContains": [
+          "請提供外形尺寸或上傳外形圖"
+        ],
+        "criticalRemaining": [
+          "Q-FIXTURE-WIDTH"
+        ]
+      }
+    },
+    {
+      "case_id": "qst-009",
+      "name": "an empty string dimension is treated as unanswered",
+      "kind": "abstention",
+      "input": {
+        "answered": [
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT"
+        ],
+        "state": {
+          "width": "",
+          "depth": 80,
+          "height": 20,
+          "pcbEnvelopeMode": "provided"
+        }
+      },
+      "expect": {
+        "orderedIds": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-PCB-ENVELOPE",
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY",
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": true,
+        "blockReasonContains": [
+          "缺少不安全的尺寸"
+        ],
+        "nextStepsContains": [
+          "請提供外形尺寸或上傳外形圖"
+        ],
+        "criticalRemaining": [
+          "Q-FIXTURE-WIDTH"
+        ]
+      }
+    },
+    {
+      "case_id": "qst-010",
+      "name": "abstaining on the unsafe PCB envelope blocks generation (UI keys)",
+      "kind": "abstention",
+      "input": {
+        "answered": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT"
+        ],
+        "state": {
+          "width": 120,
+          "depth": 80,
+          "height": 20,
+          "pcbEnvelopeMode": "unknown"
+        }
+      },
+      "expect": {
+        "orderedIds": [
+          "Q-FIXTURE-PCB-ENVELOPE",
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY",
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": true,
+        "blockReasonContains": [
+          "不會自行假設 PCB 外形範圍"
+        ],
+        "nextStepsContains": [
+          "請提供 PCB 外形範圍或上傳 PCB 外形圖"
+        ],
+        "criticalRemaining": [
+          "Q-FIXTURE-PCB-ENVELOPE"
+        ]
+      }
+    },
+    {
+      "case_id": "qst-011",
+      "name": "abstaining on the unsafe PCB envelope blocks generation (API keys)",
+      "kind": "abstention",
+      "input": {
+        "answered": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT"
+        ],
+        "state": {
+          "width_mm": 120,
+          "depth_mm": 80,
+          "height_mm": 20,
+          "pcb_envelope_mode": "unknown"
+        }
+      },
+      "expect": {
+        "orderedIds": [
+          "Q-FIXTURE-PCB-ENVELOPE",
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY",
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": true,
+        "blockReasonContains": [
+          "不會自行假設 PCB 外形範圍"
+        ],
+        "nextStepsContains": [
+          "請提供 PCB 外形範圍或上傳 PCB 外形圖"
+        ],
+        "criticalRemaining": [
+          "Q-FIXTURE-PCB-ENVELOPE"
+        ]
+      }
+    },
+    {
+      "case_id": "qst-012",
+      "name": "a required PCB envelope that is only reference-based blocks generation",
+      "kind": "abstention",
+      "input": {
+        "answered": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT"
+        ],
+        "state": {
+          "width": 120,
+          "depth": 80,
+          "height": 20,
+          "pcbRequired": true,
+          "pcbEnvelopeMode": "reference_only"
+        }
+      },
+      "expect": {
+        "orderedIds": [
+          "Q-FIXTURE-PCB-ENVELOPE",
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY",
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": true,
+        "blockReasonContains": [
+          "必要項目",
+          "不足以生成"
+        ],
+        "nextStepsContains": [
+          "請切換為已提供外形範圍（provided）"
+        ],
+        "criticalRemaining": [
+          "Q-FIXTURE-PCB-ENVELOPE"
+        ]
+      }
+    },
+    {
+      "case_id": "qst-013",
+      "name": "reference-only does not block but the critical unknown stays visible",
+      "kind": "boundary",
+      "input": {
+        "answered": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT"
+        ],
+        "state": {
+          "width": 120,
+          "depth": 80,
+          "height": 20,
+          "pcbEnvelopeMode": "reference_only"
+        }
+      },
+      "expect": {
+        "orderedIds": [
+          "Q-FIXTURE-PCB-ENVELOPE",
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY",
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": false,
+        "criticalRemaining": [
+          "Q-FIXTURE-PCB-ENVELOPE"
+        ]
+      }
+    },
+    {
+      "case_id": "qst-014",
+      "name": "a provided PCB envelope clears the critical remaining set",
+      "kind": "boundary",
+      "input": {
+        "answered": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT",
+          "Q-FIXTURE-PCB-ENVELOPE"
+        ],
+        "state": {
+          "width": 120,
+          "depth": 80,
+          "height": 20,
+          "pcbEnvelopeMode": "provided"
+        }
+      },
+      "expect": {
+        "orderedIds": [
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY",
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": false,
+        "criticalRemaining": []
+      }
+    },
+    {
+      "case_id": "qst-015",
+      "name": "derived questions are never asked even when unanswered",
+      "kind": "negative",
+      "input": {
+        "answered": [],
+        "state": {
+          "width": 120,
+          "depth": 80,
+          "height": 20,
+          "pcbEnvelopeMode": "provided"
+        }
+      },
+      "expect": {
+        "orderedIds": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT",
+          "Q-FIXTURE-PCB-ENVELOPE",
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY",
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": false,
+        "criticalRemaining": []
+      }
+    },
+    {
+      "case_id": "qst-016",
+      "name": "abstaining never lets the critical PCB unknown disappear",
+      "kind": "negative",
+      "input": {
+        "answered": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT",
+          "Q-FIXTURE-PCB-ENVELOPE"
+        ],
+        "state": {
+          "width": 120,
+          "depth": 80,
+          "height": 20,
+          "pcbEnvelopeMode": "unknown"
+        }
+      },
+      "expect": {
+        "orderedIds": [
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY",
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": true,
+        "blockReasonContains": [
+          "不會自行假設 PCB 外形範圍"
+        ],
+        "nextStepsContains": [
+          "請提供 PCB 外形範圍或上傳 PCB 外形圖"
+        ],
+        "criticalRemaining": [
+          "Q-FIXTURE-PCB-ENVELOPE"
+        ]
+      }
+    },
+    {
+      "case_id": "qst-017",
+      "name": "same-impact questions keep declaration order (PCB count before quantity)",
+      "kind": "negative",
+      "input": {
+        "answered": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT",
+          "Q-FIXTURE-PCB-ENVELOPE"
+        ],
+        "state": {
+          "width": 120,
+          "depth": 80,
+          "height": 20,
+          "pcbEnvelopeMode": "provided"
+        }
+      },
+      "expect": {
+        "orderedIds": [
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY",
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": false,
+        "criticalRemaining": []
+      }
+    },
+    {
+      "case_id": "qst-018",
+      "name": "a stray answered id is ignored without corrupting the order",
+      "kind": "negative",
+      "input": {
+        "answered": [
+          "Q-FIXTURE-WIDTH",
+          "Q-FIXTURE-DEPTH",
+          "Q-FIXTURE-HEIGHT",
+          "Q-FIXTURE-NOT-REAL"
+        ],
+        "state": {
+          "width": 120,
+          "depth": 80,
+          "height": 20,
+          "pcbEnvelopeMode": "provided"
+        }
+      },
+      "expect": {
+        "orderedIds": [
+          "Q-FIXTURE-PCB-ENVELOPE",
+          "Q-FIXTURE-PCB-COUNT",
+          "Q-FIXTURE-QUANTITY",
+          "Q-FIXTURE-PRIORITY",
+          "Q-FIXTURE-PURPOSE"
+        ],
+        "skippedDerived": [
+          "Q-FIXTURE-CONNECTOR",
+          "Q-FIXTURE-FASTENER",
+          "Q-FIXTURE-COVER"
+        ],
+        "blocked": false,
+        "criticalRemaining": []
+      }
+    }
+  ]
+}

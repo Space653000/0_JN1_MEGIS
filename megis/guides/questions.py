@@ -45,7 +45,7 @@ GUIDED_QUESTIONS: tuple[GuidedQuestion, ...] = (
         "number",
         {"maxMm": 120.0},
         (),
-        False,
+        True,
     ),
     GuidedQuestion(
         "Q-FIXTURE-DEPTH",
@@ -55,7 +55,7 @@ GUIDED_QUESTIONS: tuple[GuidedQuestion, ...] = (
         "number",
         {"maxMm": 80.0},
         (),
-        False,
+        True,
     ),
     GuidedQuestion(
         "Q-FIXTURE-HEIGHT",
@@ -65,7 +65,7 @@ GUIDED_QUESTIONS: tuple[GuidedQuestion, ...] = (
         "number",
         {"maxMm": 20.0},
         (),
-        False,
+        True,
     ),
     GuidedQuestion(
         "Q-FIXTURE-PCB-COUNT",

@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/question-order-corpus.schema.json",
+  "title": "Question Ordering Corpus",
+  "description": "Frozen deterministic question-ordering and abstention cases for G6-QST-001 (blueprint section 14 Dynamic Question Engine, rules 1-8).",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "workItem",
+    "referenceDate",
+    "corpusId",
+    "cases"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "workItem": {
+      "const": "G6-QST-001"
+    },
+    "referenceDate": {
+      "type": "string"
+    },
+    "corpusId": {
+      "const": "megis-question-order-corpus@1.0.0"
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 16,
+      "items": {
+        "type": "object",
+        "required": [
+          "case_id",
+          "name",
+          "kind",
+          "input",
+          "expect"
+        ],
+        "properties": {
+          "case_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "ordering",
+              "abstention",
+              "boundary",
+              "negative"
+            ]
+          },
+          "input": {
+            "type": "object",
+            "required": [
+              "answered"
+            ],
+            "properties": {
+              "answered": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "state": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            },
+            "additionalProperties": false
+          },
+          "expect": {
+            "type": "object",
+            "required": [
+              "orderedIds",
+              "skippedDerived",
+              "blocked",
+              "criticalRemaining"
+            ],
+            "properties": {
+              "orderedIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "skippedDerived": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "blockReasonContains": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "nextStepsContains": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "criticalRemaining": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
