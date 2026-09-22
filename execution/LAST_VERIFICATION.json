@@ -1,71 +1,59 @@
 {
-  "verifiedAt": "2026-09-22T18:20:00+08:00",
+  "verifiedAt": "2026-09-22T19:00:00+08:00",
   "status": "passed",
   "schemaVersion": "1.0.0",
   "commands": [
     {
-      "command": ".venv/Scripts/python.exe -m pytest -q",
-      "pythonTests": 523,
+      "command": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+      "pythonTests": 539,
       "pythonFailed": 0,
-      "status": "passed"
-    },
-    {
-      "command": "npm --prefix apps/web test -- --run",
       "frontendTests": 12,
-      "status": "passed",
-      "frontendTestFiles": 3
-    },
-    {
-      "command": "npm --prefix apps/web run lint",
+      "frontendTestFiles": 3,
       "status": "passed"
     },
     {
-      "command": "npm --prefix apps/web run typecheck",
-      "status": "passed"
+      "command": ".venv/Scripts/python.exe scripts/verify_g6_ai_001.py",
+      "workItem": "G6-AI-001",
+      "evidenceLevel": "E3",
+      "checks": 9,
+      "allChecksPassed": true,
+      "status": "passed",
+      "pinnedCommit": "5d890bed54122be23ec9c81434ff33a9d492c3e3"
     },
     {
-      "controlPlaneWorkItems": 74,
-      "deferrals": 0,
-      "status": "passed",
       "command": "node scripts/verify-control-plane.mjs",
+      "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
-      "currentWorkItemAfter": "G6-AI-001"
+      "deferrals": 0,
+      "currentWorkItemAfter": "G6-AI-002",
+      "status": "passed"
     },
     {
-      "checks": {
-        "rule6IrBinding": true,
-        "schemaConformant": true,
-        "rule2ImpactNonDecreasing": true,
-        "rule1UnsafeFirst": true,
-        "noArtifactVolume": 0,
-        "rule7GoldenMatchesLive": true,
-        "rule8BlockedCasesMEGIS_UI_001": true,
-        "allChecksPassed": true,
-        "rule5CriticalNeverDisappears": true,
-        "rule3DerivedNeverAsked": true,
-        "uiApiEquivalent": true,
-        "deterministic": true,
-        "everyCaseMatchesLiveEngine": true
-      },
-      "status": "passed",
-      "pinnedCommit": "9c1c67153ab96f6cacb22fbe4459ba7686c4f366",
-      "workItem": "G6-QST-001",
-      "command": "G6-QST-001 E3 verification (scripts/verify_g6_qst_001.py)",
-      "corpusCases": 18,
-      "evidenceLevel": "E3"
+      "command": "node scripts/verify-secrets.mjs",
+      "trackedFiles": 453,
+      "potentialSecrets": 0,
+      "status": "passed"
     },
     {
-      "command": "G6-QST-001 unit tests (tests/test_g6_qst_001.py)",
-      "tests": 14,
+      "command": "node scripts/verify-artifact-policy.mjs",
+      "status": "passed"
+    },
+    {
+      "command": "Invoke-WebRequest http://127.0.0.1:4173/progress and virtual:project-progress",
+      "httpStatus": 200,
+      "currentWorkItem": "G6-AI-002",
+      "completedWorkItem": "G6-AI-001",
+      "completedWorkItemStatus": "done",
       "status": "passed"
     }
   ],
-  "sourceCommit": "9c1c67153ab96f6cacb22fbe4459ba7686c4f366",
+  "sourceCommit": "5d890bed54122be23ec9c81434ff33a9d492c3e3",
   "boundaries": {
     "engineeringArtifactsGenerated": false,
     "otherProjectDirectoriesModified": false,
     "engineeringArtifactsClassification": null,
     "releaseArtifactsGenerated": false,
+    "externalProviderCalled": false,
     "workspaceRoot": "C:/0_JN1_MEGIS",
     "localOnly": true
   }

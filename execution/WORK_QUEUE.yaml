@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T18:20:00+08:00",
+  "updatedAt": "2026-09-22T19:00:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G6-AI-001",
+  "currentWorkItem": "G6-AI-002",
   "gates": [
     {
       "id": "UI-0A",
@@ -3338,7 +3338,7 @@
       "id": "G6-AI-001",
       "title": "AI provider adapter 與離線 fallback",
       "gate": "G6",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G6-QST-001"
       ],
@@ -3354,8 +3354,16 @@
       "acceptanceResults": [
         {
           "criterion": "AI 預設關閉，adapter 故障回傳 MEGIS-AI 錯誤並退回表單",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "megis/ai/",
+            "config/ai/provider.json",
+            "schemas/v3/ai-provider-config.schema.json",
+            "tests/test_g6_ai_001.py",
+            "scripts/verify_g6_ai_001.py",
+            "artifacts/g6-ai-001/verification.json",
+            "docs/G6_AI_PROVIDER_ADAPTER.md"
+          ]
         }
       ],
       "verificationCommands": [
@@ -3363,15 +3371,23 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "megis/ai/",
+        "config/ai/provider.json",
+        "schemas/v3/ai-provider-config.schema.json",
+        "tests/test_g6_ai_001.py",
+        "scripts/verify_g6_ai_001.py",
+        "artifacts/g6-ai-001/verification.json",
+        "docs/G6_AI_PROVIDER_ADAPTER.md"
+      ],
+      "verification": "passed",
+      "commitSha": "5d890bed54122be23ec9c81434ff33a9d492c3e3"
     },
     {
       "id": "G6-AI-002",
       "title": "Intent 到 Requirement 萃取",
       "gate": "G6",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G6-AI-001"
       ],

@@ -16,16 +16,14 @@ V3.0 採 Gate-driven construction，不以日期或推測百分比宣稱完成�
 
 ## 目前施工狀態
 
-**G0 與 G1 沿用既有驗收並以 V3 承接補強完成，G2 為 active Gate**。V3 必要工作圖共有 74 項，目前控制面為 **27 done、1 in progress、46 planned**；唯一在製項目是 `V3C-REV-001`（fresh-session reviewer 對 UI-0、G0、G1 已 accepted Gate 與 V3C remediation 的追溯審查，等待 G1 剩餘承接項閉合後才能標 done）。G0 的 `G0-REV-001`／`G0-ACC-001` 已 done（clean-checkout 重跑審查與 `SO-0001` Gate acceptance 簽核）。
+**G0～G5 已完成 Gate acceptance，G6 為 active Gate**。V3 必要工作圖共有 74 項，目前控制面為 **59 done、1 in progress、14 planned**；唯一在製項目是 `G6-AI-002 — Intent 到 Requirement 萃取`。
 
-最近完成的 V3 補強包括：
+最近閉合的 G6 能力：
 
-- `V3C-DET-001`：L1 byte hash、L2 semantic fingerprint、STEP/DXF/STL 正規化及跨 process replay。
-- `V3C-MAT-001`：五種 artifact classification、全庫 manifest scanner；非 `DESIGN_RUN` 的 `maturity` 必須為 `null`。
-- `V3C-ART-001` 實作：tracked file 1 MiB、evidence JSON 50 KiB、golden 200 KiB／總量 5 MiB 預算；五個既有 G0 重型製品由 ADR-0011 以 path、bytes、SHA-256 鎖定。
-- `G0-REV-001`／`G0-ACC-001`：在 V3 追溯審查要求下補上 clean-checkout 重跑審查報告與 `SO-0001` Gate acceptance 決策簽核（E3/E4）。
-- `G1-ERR-001`：V3 錯誤物件 schema 與 14 個 `MEGIS-<DOMAIN>-<NNN>` 碼登錄、v2 legacy `GeometryErrorCode` 4 值映射。
-- `G1-ENV-001`：機器可讀 `config/envelope/envelope.yaml`＋schema＋loader/guard；`SUPPORTED_ENVELOPE.md` 與機器檔一致性測試把守，超出已驗證範圍回 `MEGIS-ENV-001`，schema 禁止 `silent_clamp`。
+- `G6-UI-001`：capability-driven guided flow，只呈現已驗證能力；UI 與 API 產生等價 Engineering IR。
+- `G6-QST-001`：deterministic question ordering 與 abstention；unsafe unknown 阻擋生成且不會消失。
+- `G6-AI-001`：provider-neutral adapter、AI 預設關閉、recorded local stub、timeout／呼叫／token／成本上限；故障或超限時帶 `MEGIS-AI-*` 錯誤退回表單。
+- 最新完整 baseline：540 個 Python tests、12 個 frontend tests，以及 control-plane、secret、artifact、toolchain、maturity、lint、typecheck、build 全綠。
 
 UI-0 是本機端使用者體驗原型，用來先確認施工進度中心與治具／電子外殼引導流程。它使用有版本的 `PrototypeViewModel` 展示資料，不是藍圖中的 G6 工程能力，也不會產生 STEP、工程圖面、BOM、Prototype Package 或可供製造的工程製品。
 
@@ -36,31 +34,32 @@ UI-0 是本機端使用者體驗原型，用來先確認施工進度中心與治
 - UI-0C：引導式使用者體驗原型
 - UI-0D：自動化、瀏覽器與使用者驗收皆已通過
 
-UI-0 已完成驗收，但仍只是使用者體驗原型；G0 不會把其合成展示資料當作工程輸出。CadQuery 可行性已通過，FreeCAD 圖面路徑採固定模板 SVG fallback，COMSOL 在本機正式決策為非阻塞的 `out_of_scope`。G0 全數完成（11 項）。G1 工程契約、golden cases、migration、rollback、錯誤碼登錄（14 碼）與機器可讀 envelope 已固定；V3 目標 envelope 數值仍未核准，保留給 `G1-REQ-001` 研究（v3 §9.1）。G2 已完成 geometry contract、fixture base 與 assembly geometry。V3 新增要求尚未完成者均保留為未完成工作，不會用既有 V2 證據冒充 V3 合規。
+UI-0 已完成驗收，但其展示結果仍是合成資料。正式工程核心已完成至 G5：Engineering IR、支援 envelope、治具幾何、規則與驗證、maturity、Module composition、safe import、BOM、draft drawing、Prototype Package 與 clean-environment reproducibility 均有可重跑證據。G6 正把這些能力接入正式引導介面；尚未通過 G6 Gate acceptance 的能力不會提前宣稱完成。
 
 ## 待完成清單（依序）
 
-1. `G1-REQ-001`：參考案例參數研究與決定（v3 §9.1 公開來源研究，Reference Fixture 無未解決 critical unknown）。
-2. `G1-REV-001`：G1 自我審查（乾淨 checkout 重跑 G1 全部驗證並出具 passed 報告）。
-3. `G1-ACC-001`：G1 Gate acceptance 決策紀錄（可追溯至 G1 審查與 CI）。
-4. `V3C-REV-001`／`V3C-ACC-001`：G1 承接項全 done 後標 done，完成 V3 追溯審查與 Gate 簽核。
-5. 回到 `G2-CAD-004` 起，完成 G2 剩餘工程工作（自動驗證、export/reload pipeline 等）。
-6. 依序進入 G3 規則與驗證、G4 模組、G5 套件、G6 正式介面、G7 聲學、G8 機器人、G9 強化。
+1. `G6-AI-002`：schema-bound Intent → Requirement 草稿、`llm_proposed`、`evidence_span` 與 confirmed 隔離。
+2. `G6-AI-003`：至少 50 筆 intent 的 AI KPI 語料與 injection／hallucination 驗證。
+3. `G6-AI-004`：只依 IR、規則結果與 manifest 的 grounded explanation。
+4. `G6-A11Y-001`：WCAG 2.2 AA 自動化與人工抽查。
+5. `G6-USE-001`：至少 5 位非 CAD 參與者的 usability test；需要真實人工證據。
+6. `G6-E2E-001`、`G6-REV-001`、`G6-ACC-001`：端到端、乾淨 checkout 審查與 Gate acceptance。
+7. G6 accepted 後依 Gate 依賴進入 G7 聲學、G8 機器人與 G9 強化。
 
 ## 為什麼目前網站沒有更多產品或功能？
 
-`http://127.0.0.1:4173/` 現在是 **UI-0 使用者體驗原型**，不是完成版 MEGIS。頁面只能用固定、版本化的合成資料示範治具／電子外殼引導流程；結果必須持續標示 `Synthetic demo data` 與 `No engineering artifact generated`。真正的 Engineering IR、CadQuery adapter、組立幾何與驗證證據目前存在 repository 與自動測試中，尚未完成 G3～G6 的規則、maturity、package、job/API 與正式 UI 串接，因此不能提前放進首頁宣稱可用。
+`http://127.0.0.1:4173/progress` 直接讀取 `execution/WORK_QUEUE.yaml`，呈現正式控制面，而不是另外維護一份推測進度。設計、執行與結果頁仍保留 UI-0 的永久標示 `Synthetic demo data` 與 `No engineering artifact generated`；直到 G6 E2E、review 與 acceptance 完成前，不把前端畫面宣稱為完整工程產品。
 
 | 使用入口／能力 | 現況 | 誠實邊界 |
 |---|---|---|
-| `/` 引導式設計頁 | UI-0 demo 可操作 | 合成資料；不產生 STEP、drawing、BOM 或 release package |
-| `/progress` 施工進度中心 | 可操作 | 顯示控制面與驗證狀態，不是工程結果審查器 |
-| Supported envelope | 機器可讀 `envelope.yaml`＋文件一致性測試 | 僅 legacy Reference Fixture 已驗證；V3 target 待 G1-REQ-001 |
-| Fixture／電子外殼核心 | G2 已完成 base、cover、fasteners、USB-C cutout、PCB envelope 與 clearance 核心 | 目前由 tests/CLI 驗證，尚未接上正式 UI 與 package pipeline |
+| `/` 引導式設計頁 | capability-driven 問題與已驗證選項已接入 | 執行／結果展示仍保留合成標示；G6 尚未 accepted |
+| `/progress` 施工進度中心 | 直接顯示 74 項正式工作佇列 | 只顯示控制面與證據，不產生工程製品 |
+| Supported envelope | 機器可讀 `envelope.yaml`＋文件一致性與邊界測試 | 超界輸入回 `MEGIS-ENV-001`，不 silent clamp |
+| Fixture／電子外殼核心 | 幾何、規則、驗證、Module、BOM、drawing、package 已通過 G2～G5 | 正式 UI-to-package E2E 尚未完成 |
 | STEP/STL/DXF | G0 feasibility spike 可重建並重新載入 | classification 是 `FEASIBILITY_SPIKE`，`maturity: null`，不可當製造輸出 |
-| 工程規則與 maturity | 藍圖已定義、V3C-MAT scanner 生效 | G3 尚未施工，現在沒有正式 evaluator |
-| BOM、drawing、Prototype Package | 尚未施工 | 位於 G5，不提供假下載按鈕 |
-| 正式引導式工程介面 | 尚未施工 | 位於 G6，屆時才接真實 IR、jobs、驗證與 fallback |
+| 工程規則與 maturity | G3 accepted；規則治理、validator、benchmark、maturity evaluator 已驗證 | 不會自動升級為 `ENGINEERING_REVIEWED` 或 `RELEASED` |
+| BOM、drawing、Prototype Package | G5 accepted；可重建且有 content hash | drawing 永久標示 draft／not for manufacturing |
+| AI 輔助 | adapter 已驗證，預設關閉且故障退回表單 | 尚未接真實 provider；Intent 萃取、KPI、grounded explanation 待施工 |
 | Acoustic 產品線 | 僅有 schema-only golden case | G7 solver/thin slice 尚未施工 |
 | Robot Car 產品線 | 僅有 schema-only golden case | G8 assembly/safety thin slice 尚未施工，maturity 上限受安全政策限制 |
 
@@ -72,9 +71,13 @@ UI-0 已完成驗收，但仍只是使用者體驗原型；G0 不會把其合成
 |---|---|---|
 | UI-0 | 中文進度中心、引導式 demo、桌面與窄螢幕驗收 | 真實工程資料、下載、multi-user、cloud |
 | G0 | 鎖定工具鏈、CadQuery spike、FreeCAD fallback、Windows CI、fingerprint/classification/artifact policy、clean-checkout 審查與 `SO-0001` Gate 簽核 | 無（G0 11 項全 done） |
-| G1 | Engineering primitives、IR schema、Fixture/Acoustic/Robot golden inputs、V1→V2 migration/rollback、錯誤碼登錄 14 碼、機器可讀 envelope | `G1-REQ-001` 參考案例研究、`G1-REV-001`／`G1-ACC-001` 審查與簽核 |
-| G2 | Kernel-neutral geometry contract、fixture base 與 assembly | 正式 export/reload pipeline、negative geometry suite、review/acceptance |
-| G3～G9 | 藍圖、工作圖與 acceptance criteria 已建立；G3-REV/ACC 依 Gate 接序 | 規則、validators、maturity evaluator、modules、packages、正式 UI、Acoustic、Robot、hardening 均未完成 |
+| G1 | Engineering primitives、IR schema、三種 golden inputs、migration/rollback、錯誤碼、機器可讀 envelope、review 與 sign-off | 無（Gate accepted） |
+| G2 | Kernel-neutral geometry、fixture assembly、export/reload、negative corpus、review 與 sign-off | 無（Gate accepted） |
+| G3 | 規則治理、validator、benchmark、maturity evaluator、review 與 sign-off | 無（Gate accepted） |
+| G4 | Module capability、relationship、composition、safe import、review 與 sign-off | 無（Gate accepted） |
+| G5 | Manifest、BOM、draft drawing、reproducibility、review 與 sign-off | 無（Gate accepted） |
+| G6 | Guided flow、Question Engine、optional AI adapter | Intent 萃取、AI KPI、grounded explanation、a11y、usability、E2E、review、acceptance |
+| G7～G9 | 藍圖與 acceptance criteria | Acoustic、Robot 與 hardening 尚未施工 |
 
 - [UI-0 施工計畫](docs/UI0_PLAN.md)
 - [UI-0 可行性紀錄](docs/UI0_FEASIBILITY.md)
@@ -96,12 +99,13 @@ UI-0 已完成驗收，但仍只是使用者體驗原型；G0 不會把其合成
 - [G2 Geometry Capability Contract](docs/G2_GEOMETRY_CONTRACT.md)
 - [G2 Fixture Base](docs/G2_FIXTURE_BASE.md)
 - [G2 Fixture Assembly](docs/G2_FIXTURE_ASSEMBLY.md)
+- [G6 AI provider adapter 與離線 fallback](docs/G6_AI_PROVIDER_ADAPTER.md)
 - [V3 採用決策](docs/decisions/ADR-0001-adopt-v3-blueprint.md)
 - [Classification 與 maturity 政策](docs/CLASSIFICATION_AND_MATURITY.md)
 - [Artifact 儲存與 Git 大小預算政策](docs/ARTIFACT_POLICY.md)
 - [ADR-0011：既有 G0 重型製品精確白名單](docs/decisions/ADR-0011-legacy-heavy-artifact-allowlist.md)
 - [G1-ENV-001 完工進度報告](outputs/2026-09-19-G1-ENV-001-完工進度報告.md)
-- [V3 最新施工進度盤點與 GitHub／網頁同步報告](outputs/2026-09-19-MEGIS-V3-施工進度盤點與GitHub網頁同步報告.md)
+- [V3 最新施工進度盤點與 GitHub／網頁同步報告](outputs/2026-09-22-G6-AI-001-完工與V3盤點報告.md)
 - [決策索引](docs/DECISIONS.md)
 
 ## 本機啟動
