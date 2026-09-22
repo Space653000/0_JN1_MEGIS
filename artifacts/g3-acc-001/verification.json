@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G3-ACC-001",
+  "verifiedAt": "2026-09-22T14:30:00+08:00",
+  "blueprintRef": "v3.0 §5.7、§6.3、§8.1、附錄 A.3/A.5",
+  "evidenceLevel": "E4",
+  "gate": "G3",
+  "gateStatus": "accepted",
+  "workItems": {
+    "total": 8,
+    "done": 8,
+    "ids": [
+      "G3-RUL-001",
+      "G3-SRC-001",
+      "G3-VAL-001",
+      "G3-VAL-002",
+      "G3-MAT-001",
+      "G3-BEN-001",
+      "G3-REV-001",
+      "G3-ACC-001"
+    ]
+  },
+  "reviewPassed": {
+    "report": "execution/reviews/2026-09-22-G3-REV-001-review.md",
+    "conclusion": "passed",
+    "blockingFindings": 0,
+    "reviewedCommit": "8303595ac2a693ddda48647201062673720f1bb2",
+    "reviewDocsCommit": "ccf7b8129782303b4e09eaa2636c7be25d0aa90f"
+  },
+  "ciEvidence": [
+    {
+      "runId": null,
+      "headSha": "8303595ac2a693ddda48647201062673720f1bb2",
+      "conclusion": "local baseline-ci passed",
+      "detail": "306 Python + 9 Frontend tests, artifact policy, secret scan, control plane valid"
+    },
+    {
+      "runId": null,
+      "headSha": "8303595ac2a693ddda48647201062673720f1bb2",
+      "conclusion": "clean checkout review passed",
+      "detail": "159 G3 tests + 6 verify_g3_*.py scripts (95 checks) + control-plane verifier all green"
+    }
+  ],
+  "controlPlane": {
+    "command": "node scripts/verify-control-plane.mjs",
+    "status": "passed",
+    "workItems": 74,
+    "gates": 14,
+    "deferrals": 0,
+    "activeGateAfterAcceptance": "G4"
+  },
+  "decision": {
+    "decision": "approved",
+    "signoff": "execution/signoffs/SO-0004.yaml",
+    "recordedBy": "agent",
+    "recordedAt": "2026-09-22T14:30:00+08:00",
+    "signatureReference": "ccf7b8129782303b4e09eaa2636c7be25d0aa90f",
+    "userVeto": null
+  },
+  "checks": {
+    "allG3WorkItemsDone": true,
+    "reviewPassed": true,
+    "ciGreenOnReviewCommit": true,
+    "signoffPresent": true,
+    "traceableToReviewAndCi": true
+  },
+  "residualRisks": [
+    "R-G0-001",
+    "R-G0-002",
+    "R-G0-003"
+  ],
+  "resolvedRisks": [
+    "R-AGT-002（holdout 封存偏誤：metrics 已重跑對照封存 hash，10/10 passed，從審查角度解除）"
+  ]
+}
