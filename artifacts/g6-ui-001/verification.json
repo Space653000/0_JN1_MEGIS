@@ -6,7 +6,7 @@
   "referenceDate": "2026-09-22",
   "verifiedAt": "2026-09-22T20:10:00+08:00",
   "allChecksPassed": true,
-  "pinnedCommit": "abe895a34de1ed86acf21861303ffcd56bef7b78",
+  "pinnedCommit": "7870b413458944b437b6547cc3b530a350bdf0e0",
   "goldenPath": "C:\\0_JN1_MEGIS\\contracts\\g6\\golden\\capability-manifest.json",
   "goldenFingerprint": "7bfc576a849ac31998cdb1cc33a92af4b3f200e1c346482fb7adab2c2342ca25",
   "liveFingerprint": "7bfc576a849ac31998cdb1cc33a92af4b3f200e1c346482fb7adab2c2342ca25",
