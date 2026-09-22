@@ -24,6 +24,14 @@ CI 證據：GitHub Actions run `35326527366`（`398c82a`）與 run `35327571839`
 
 V3C 追溯（`V3C-REV-001`／`V3C-ACC-001`）已於 2026-09-21 閉合；G1 以 `SO-0002`、G2 以 `SO-0003` 完成新式 E4 簽核。
 
+## Holdout 封存（§18.1）
+
+依藍圖 §18.1 的「先封存、後施工」：G3-BEN-001 的 holdout oracle 於本 commit（`contracts/g3/holdout/holdout-corpus.json`，corpus_version 1）獨立封存，禁止在基準 metrics 實作後修改；修改 oracle 視同 golden 更新，需 ADR。
+
+- Holdout oracle SHA-256：`73a25950c4b45d904daa6bab963a16ae11599f6bfa660966582ba0d60ed5a96b`
+- Holdout 規模：10 cases（7 defect、3 clean）；corpus_id `benchmark-g3-holdout@1.0.0`
+- 封存時間：2026-09-22T12:00:00+08:00；此做法無法完全排除施工者偏誤，列為 `R-AGT-002`
+
 ## Owner
 
 MEGIS Builder；使用者保有否決權。

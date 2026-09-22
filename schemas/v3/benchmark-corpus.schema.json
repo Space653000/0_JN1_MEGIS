@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/benchmark-corpus.schema.json",
+  "title": "G3 Benchmark Corpus",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "corpus_id",
+    "corpus_version",
+    "workItem",
+    "seed",
+    "runtime",
+    "timeout_ms",
+    "cases"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "corpus_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "corpus_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "workItem": {
+      "const": "G3-BEN-001"
+    },
+    "seed": {
+      "type": "integer"
+    },
+    "runtime": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timeout_ms": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "case_id",
+          "bucket",
+          "severity_class",
+          "title_zh",
+          "reviewer",
+          "oracle"
+        ],
+        "properties": {
+          "case_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "bucket": {
+            "type": "string",
+            "enum": [
+              "golden",
+              "negative",
+              "boundary",
+              "regression",
+              "holdout"
+            ]
+          },
+          "severity_class": {
+            "type": "string",
+            "enum": [
+              "defect",
+              "clean"
+            ]
+          },
+          "title_zh": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reviewer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "oracle": {
+            "type": "object",
+            "required": [
+              "expected_detection",
+              "expected_max_severity",
+              "error_grade",
+              "expected_maturity_max",
+              "expect_false_release"
+            ],
+            "properties": {
+              "expected_detection": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "expected_max_severity": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "info",
+                  "warning",
+                  "error"
+                ]
+              },
+              "error_grade": {
+                "type": "boolean"
+              },
+              "expected_maturity_max": {
+                "type": "string",
+                "enum": [
+                  "DRAFT",
+                  "CONCEPT",
+                  "PROTOTYPE",
+                  "ENGINEERING_REVIEWED",
+                  "RELEASED"
+                ]
+              },
+              "expect_false_release": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": false
+          },
+          "validation_input": {
+            "type": "object"
+          },
+          "rule_checks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "rule_id",
+                "inputs"
+              ],
+              "properties": {
+                "rule_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "inputs": {
+                  "type": "object"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "maturity_input": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
