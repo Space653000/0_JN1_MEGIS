@@ -30,6 +30,9 @@
 | MEGIS-RUL-004 | RUL | error | no | 規則來源登錄無效或不存在。 |
 | MEGIS-PKG-001 | PKG | error | no | 套件指紋不符。 |
 | MEGIS-PKG-002 | PKG | error | no | 套件 manifest 內容不符。 |
+| MEGIS-PKG-003 | PKG | error | no | BOM 數量與 IR component quantity 不一致。 |
+| MEGIS-BOM-001 | BOM | error | no | BOM CSV 或指紋不符。 |
+| MEGIS-BOM-002 | BOM | error | no | BOM 宣告內容或 IR 欄位不符。 |
 | MEGIS-JOB-001 | JOB | error | yes | 工作逾時。 |
 | MEGIS-AI-001 | AI | error | yes | AI 輸出格式無效。 |
 | MEGIS-IMP-001 | IMP | error | no | 輸入檔案超出限制。 |

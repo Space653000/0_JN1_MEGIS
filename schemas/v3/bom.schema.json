@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/bom.schema.json",
+  "title": "MEGIS BOM Document",
+  "description": "V3 BOM exporter document (G5-BOM-001). Twelve fixed §13 columns, rows sorted by item ascending, deterministic UTF-8 / LF CSV and a content hash; quantity always matches the Engineering IR.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "documentType",
+    "classification",
+    "bom_builder",
+    "design_id",
+    "revision",
+    "columns",
+    "rows",
+    "csv",
+    "csvSemanticFingerprint",
+    "totals"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "documentType": { "const": "BOM" },
+    "classification": { "const": "DESIGN_RUN" },
+    "bom_builder": { "const": "megis.bom@1.0.0" },
+    "design_id": { "type": "string", "minLength": 1 },
+    "revision": { "type": "string", "minLength": 1 },
+    "columns": {
+      "type": "array",
+      "const": [
+        "item",
+        "part_id",
+        "description",
+        "quantity",
+        "material",
+        "finish",
+        "standard",
+        "size",
+        "module_ref",
+        "module_version",
+        "revision",
+        "provenance"
+      ]
+    },
+    "rows": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": [
+          "item",
+          "part_id",
+          "description",
+          "quantity",
+          "material",
+          "finish",
+          "standard",
+          "size",
+          "module_ref",
+          "module_version",
+          "revision",
+          "provenance"
+        ],
+        "properties": {
+          "item": { "type": "integer", "minimum": 1 },
+          "part_id": { "type": "string", "minLength": 1 },
+          "description": { "type": "string" },
+          "quantity": { "type": "integer", "minimum": 1 },
+          "material": { "type": "string" },
+          "finish": { "type": "string" },
+          "standard": { "type": "string" },
+          "size": { "type": "string" },
+          "module_ref": { "type": "string" },
+          "module_version": { "type": "string" },
+          "revision": { "type": "string", "minLength": 1 },
+          "provenance": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "csv": { "type": "string", "minLength": 20 },
+    "csvSemanticFingerprint": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "totals": {
+      "type": "object",
+      "required": ["rows", "totalQuantity"],
+      "properties": {
+        "rows": { "type": "integer", "minimum": 1 },
+        "totalQuantity": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

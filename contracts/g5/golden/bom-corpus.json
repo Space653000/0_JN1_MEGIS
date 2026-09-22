@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G5-BOM-001",
+  "corpus_id": "bom-corpus@1.0.0",
+  "cases": [
+    {
+      "case_id": "default-reference-fixture",
+      "dial": null,
+      "expect": { "valid": true, "error_code": null }
+    },
+    {
+      "case_id": "module-provenance-carry",
+      "dial": {
+        "action": "add_module_provenance",
+        "part_id": "COMP-FIXTURE-PCB",
+        "module_id": "mod.pcb",
+        "version": "1.2.0"
+      },
+      "expect": { "valid": true, "error_code": null }
+    },
+    {
+      "case_id": "reversed-components-order",
+      "dial": { "action": "reverse_components" },
+      "expect": { "valid": true, "error_code": null }
+    },
+    {
+      "case_id": "shared-material-resolved",
+      "dial": {
+        "action": "set_ir_material_id",
+        "part_id": "COMP-FIXTURE-COVER",
+        "material_id": "MAT-FIXTURE-AL6061"
+      },
+      "expect": { "valid": true, "error_code": null }
+    },
+    {
+      "case_id": "pcb-no-material-empty",
+      "dial": null,
+      "expect": { "valid": true, "error_code": null }
+    },
+    {
+      "case_id": "tamper-row-quantity-fails",
+      "dial": { "action": "tamper_row_quantity", "part_id": "COMP-FIXTURE-BASE", "quantity": 4 },
+      "expect": { "valid": false, "error_code": "MEGIS-PKG-003" }
+    },
+    {
+      "case_id": "drop-row-fails",
+      "dial": { "action": "drop_row", "part_id": "COMP-FIXTURE-PCB" },
+      "expect": { "valid": false, "error_code": "MEGIS-BOM-002" }
+    },
+    {
+      "case_id": "add-unknown-row-fails",
+      "dial": { "action": "add_row", "part_id": "COMP-NOPE" },
+      "expect": { "valid": false, "error_code": "MEGIS-BOM-002" }
+    },
+    {
+      "case_id": "tamper-csv-fails",
+      "dial": { "action": "tamper_csv" },
+      "expect": { "valid": false, "error_code": "MEGIS-BOM-001" }
+    },
+    {
+      "case_id": "revision-mismatch-fails",
+      "dial": { "action": "set_bom_revision", "revision": "C" },
+      "expect": { "valid": false, "error_code": "MEGIS-BOM-002" }
+    },
+    {
+      "case_id": "row-material-mismatch-fails",
+      "dial": { "action": "set_row_material", "part_id": "COMP-FIXTURE-BASE", "material": "AA 7075" },
+      "expect": { "valid": false, "error_code": "MEGIS-BOM-002" }
+    },
+    {
+      "case_id": "ir-dangling-material-fails",
+      "dial": { "action": "set_ir_material_id", "part_id": "COMP-FIXTURE-BASE", "material_id": "MAT-NOPE-000" },
+      "expect": { "valid": false, "error_code": "MEGIS-BOM-002" }
+    }
+  ]
+}

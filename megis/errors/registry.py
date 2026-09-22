@@ -35,6 +35,7 @@ class ErrorDomain(StrEnum):
     VAL = "VAL"
     RUL = "RUL"
     PKG = "PKG"
+    BOM = "BOM"
     JOB = "JOB"
     AI = "AI"
     IMP = "IMP"
@@ -71,6 +72,9 @@ _ERROR_CODES: list[ErrorCode] = [
     ErrorCode("MEGIS-RUL-004", ErrorDomain.RUL, 4, ErrorSeverity.ERROR, False, "規則來源登錄無效或不存在。", "rule source registry entry missing or invalid"),
     ErrorCode("MEGIS-PKG-001", ErrorDomain.PKG, 1, ErrorSeverity.ERROR, False, "套件指紋不符。", "package fingerprint mismatch"),
     ErrorCode("MEGIS-PKG-002", ErrorDomain.PKG, 2, ErrorSeverity.ERROR, False, "套件 manifest 內容不符。", "package manifest declarative mismatch (missing artifact or disallowed declaration)"),
+    ErrorCode("MEGIS-PKG-003", ErrorDomain.PKG, 3, ErrorSeverity.ERROR, False, "BOM 數量與 IR component quantity 不一致。", "BOM quantity does not match the IR component quantity"),
+    ErrorCode("MEGIS-BOM-001", ErrorDomain.BOM, 1, ErrorSeverity.ERROR, False, "BOM CSV 或指紋不符。", "BOM csv does not match rows or the semantic fingerprint drifted"),
+    ErrorCode("MEGIS-BOM-002", ErrorDomain.BOM, 2, ErrorSeverity.ERROR, False, "BOM 宣告內容或 IR 欄位不符。", "BOM declarative mismatch or invalid IR field (part set, material, revision)"),
     ErrorCode("MEGIS-JOB-001", ErrorDomain.JOB, 1, ErrorSeverity.ERROR, True, "工作逾時。", "job timeout"),
     ErrorCode("MEGIS-AI-001", ErrorDomain.AI, 1, ErrorSeverity.ERROR, True, "AI 輸出格式無效。", "schema-invalid AI model output"),
     ErrorCode("MEGIS-IMP-001", ErrorDomain.IMP, 1, ErrorSeverity.ERROR, False, "輸入檔案超出限制。", "import file exceeds size or structural limit"),

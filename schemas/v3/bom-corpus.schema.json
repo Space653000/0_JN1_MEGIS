@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://megis.local/schemas/bom-corpus.schema.json",
+  "title": "MEGIS BOM Verification Corpus",
+  "description": "Table-driven corpus for G5-BOM-001: IR / BOM dial operations against the reference fixture and the expected verification outcome.",
+  "type": "object",
+  "required": ["schemaVersion", "workItem", "corpus_id", "cases"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "workItem": { "const": "G5-BOM-001" },
+    "corpus_id": { "type": "string", "minLength": 1 },
+    "cases": {
+      "type": "array",
+      "minItems": 12,
+      "items": {
+        "type": "object",
+        "required": ["case_id", "dial", "expect"],
+        "properties": {
+          "case_id": { "type": "string", "minLength": 1 },
+          "dial": {
+            "type": ["object", "null"],
+            "properties": {
+              "action": {
+                "type": "string",
+                "enum": [
+                  "add_module_provenance",
+                  "reverse_components",
+                  "set_ir_material_id",
+                  "tamper_row_quantity",
+                  "drop_row",
+                  "add_row",
+                  "tamper_csv",
+                  "set_bom_revision",
+                  "set_row_material"
+                ]
+              },
+              "part_id": { "type": "string" },
+              "module_id": { "type": "string" },
+              "version": { "type": "string" },
+              "material_id": { "type": "string" },
+              "material": { "type": "string" },
+              "quantity": { "type": "integer" },
+              "revision": { "type": "string" }
+            },
+            "required": ["action"],
+            "additionalProperties": false
+          },
+          "expect": {
+            "type": "object",
+            "required": ["valid", "error_code"],
+            "properties": {
+              "valid": { "type": "boolean" },
+              "error_code": {
+                "type": ["string", "null"],
+                "enum": [
+                  null,
+                  "MEGIS-BOM-001",
+                  "MEGIS-BOM-002",
+                  "MEGIS-PKG-003"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
