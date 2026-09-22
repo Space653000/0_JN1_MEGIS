@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-21T22:00:00+08:00",
+  "updatedAt": "2026-09-22T09:00:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G3-VAL-002",
+  "currentWorkItem": "G3-MAT-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -1531,7 +1531,7 @@
       "id": "G3-VAL-002",
       "title": "建立 CNC DFM rule pack",
       "gate": "G3",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G3-VAL-001",
         "G3-SRC-001"
@@ -1549,16 +1549,42 @@
       "acceptanceResults": [
         {
           "criterion": "CNC 規則對 golden cases 產生預期結果且來源可追溯",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "schemas/v3/rule-pack.schema.json",
+            "schemas/v3/rule.schema.json",
+            "schemas/v3/rule-source.schema.json",
+            "megis/rules/packs.py",
+            "megis/rules/lifecycle.py",
+            "megis/rules/sources.py",
+            "contracts/g3/golden/cnc-dfm-rulepack.json",
+            "tests/test_g3_val_002.py",
+            "scripts/verify_g3_val_002.py",
+            "docs/CNC_DFM_RULEPACK.md",
+            "docs/ERROR_CODES.md",
+            "artifacts/g3-val-002/verification.json"
+          ]
         }
       ],
       "verificationCommands": [],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "schemas/v3/rule-pack.schema.json",
+        "schemas/v3/rule.schema.json",
+        "schemas/v3/rule-source.schema.json",
+        "megis/rules/packs.py",
+        "megis/rules/lifecycle.py",
+        "megis/rules/sources.py",
+        "contracts/g3/golden/cnc-dfm-rulepack.json",
+        "tests/test_g3_val_002.py",
+        "scripts/verify_g3_val_002.py",
+        "docs/CNC_DFM_RULEPACK.md",
+        "docs/ERROR_CODES.md",
+        "artifacts/g3-val-002/verification.json"
+      ],
+      "verification": "passed",
+      "commitSha": "efd8021f398b55598997e5ce6ceb9d1736d3b599"
     },
     {
       "id": "G3-BEN-001",
@@ -2714,7 +2740,7 @@
       "id": "G3-MAT-001",
       "title": "Maturity evaluator",
       "gate": "G3",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G3-VAL-002"
       ],

@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-21T18:50:00+08:00",
-  "sourceCommit": "fafa3ec7b850655da48b605a6138e6a4be3120b7",
+  "verifiedAt": "2026-09-22T09:00:00+08:00",
+  "sourceCommit": "efd8021f398b55598997e5ce6ceb9d1736d3b599",
   "status": "passed",
   "commands": [
     {
@@ -10,7 +10,16 @@
       "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
       "deferrals": 0,
-      "pythonTests": 147,
+      "secretScanTrackedFiles": 306,
+      "secretScanFindings": 0,
+      "artifactPolicyNegativeTests": 8,
+      "artifactPolicyTrackedFiles": 309,
+      "artifactPolicyEvidenceJson": 35,
+      "artifactPolicyGoldenBytes": 19333,
+      "artifactPolicyHeavyArtifacts": 5,
+      "pythonTests": 266,
+      "maturityScanManifests": 1,
+      "artifactSmokeRecords": 13,
       "frontendTests": 9
     },
     {
@@ -21,23 +30,19 @@
       "deferrals": 0
     },
     {
-      "command": "clean checkout .runs/g2-rev-001-clean pytest G1+G2",
+      "command": ".venv/Scripts/python.exe scripts/verify_g3_val_002.py",
       "status": "passed",
-      "testsPassed": 92,
+      "rules": 24,
+      "fixtures": 72,
+      "fixtureFailures": 0,
+      "verifiedSources": 5,
+      "checksPassed": 8
+    },
+    {
+      "command": ".venv/Scripts/python.exe -m pytest tests/test_g3_val_002.py",
+      "status": "passed",
+      "testsPassed": 68,
       "testsFailed": 0
-    },
-    {
-      "command": "clean checkout verify_g2_cad_004.py",
-      "status": "passed",
-      "checksPassed": 30
-    },
-    {
-      "command": "clean checkout verify_g2_neg_001.py",
-      "status": "passed",
-      "checksPassed": 27,
-      "boundaryPassed": 10,
-      "negativeErrored": 14,
-      "silentSuccess": 0
     }
   ],
   "boundaries": {
