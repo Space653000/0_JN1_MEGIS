@@ -643,7 +643,7 @@ def compose_module(
             sorted(
                 [
                     _relationship_id_for(
-                        resolved_component_id, target, recipe_label(relationship_type)
+                        resolved_component_id, target, _recipe_label(relationship_type)
                     )
                 ]
             )
@@ -656,7 +656,7 @@ def compose_module(
     )
 
 
-def recipe_label(relationship_type: str) -> str:
+def _recipe_label(relationship_type: str) -> str:
     """Return the deterministic relationship suffix label for a composition type."""
     recipe = _CONSTRAINT_RECIPES[relationship_type]
     return (
