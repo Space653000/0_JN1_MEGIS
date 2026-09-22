@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-22T14:00:00+08:00",
-  "sourceCommit": "8303595ac2a693ddda48647201062673720f1bb2",
+  "verifiedAt": "2026-09-22T14:30:00+08:00",
+  "sourceCommit": "645b8141c7ce941197a2afec45bd3c1e4a54bb85",
   "status": "passed",
   "commands": [
     {
@@ -30,15 +30,19 @@
       "deferrals": 0
     },
     {
-      "command": "G3-REV-001 clean checkout review (@8303595)",
+      "command": "G3-ACC-001 gate acceptance traceability (@645b814)",
       "status": "passed",
-      "method": "clean clone .runs/g3-rev-001-clean",
-      "g3TestsPassed": 159,
-      "g3TestsFailed": 0,
-      "verifyScriptsPassed": 6,
-      "verifyScriptChecks": 95,
-      "holdoutShaMismatch": false,
-      "findings": []
+      "signoff": "execution/signoffs/SO-0004.yaml",
+      "reviewReport": "execution/reviews/2026-09-22-G3-REV-001-review.md",
+      "gateStatus": "accepted",
+      "activeGateAfter": "G4",
+      "checks": {
+        "allG3WorkItemsDone": true,
+        "reviewPassed": true,
+        "ciGreenOnReviewCommit": true,
+        "signoffPresent": true,
+        "traceableToReviewAndCi": true
+      }
     }
   ],
   "boundaries": {

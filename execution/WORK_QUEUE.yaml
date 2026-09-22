@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T14:00:00+08:00",
+  "updatedAt": "2026-09-22T14:30:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G3-ACC-001",
+  "currentWorkItem": "G4-MOD-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -61,7 +61,7 @@
     {
       "id": "G3",
       "title": "規則與驗證",
-      "status": "active",
+      "status": "accepted",
       "dependsOn": [
         "G2"
       ]
@@ -69,7 +69,7 @@
     {
       "id": "G4",
       "title": "模組與限制條件組合",
-      "status": "planned",
+      "status": "active",
       "dependsOn": [
         "G3"
       ]
@@ -1650,7 +1650,7 @@
       "id": "G4-MOD-001",
       "title": "建立 Module capability levels",
       "gate": "G4",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G3-ACC-001"
       ],
@@ -2880,7 +2880,7 @@
       "id": "G3-ACC-001",
       "title": "G3 acceptance 決策紀錄",
       "gate": "G3",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G3-REV-001"
       ],
@@ -2896,8 +2896,15 @@
       "acceptanceResults": [
         {
           "criterion": "gate_acceptance 決策紀錄可追溯至 G3 審查與 CI",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "artifacts/g3-acc-001/verification.json",
+            "execution/signoffs/SO-0004.yaml",
+            "execution/reviews/2026-09-22-G3-REV-001-review.md",
+            "artifacts/g3-rev-001/verification.json",
+            "execution/LAST_VERIFICATION.json",
+            "docs/ACCEPTANCE.md"
+          ]
         }
       ],
       "verificationCommands": [
@@ -2905,9 +2912,16 @@
       ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "artifacts/g3-acc-001/verification.json",
+        "execution/signoffs/SO-0004.yaml",
+        "execution/reviews/2026-09-22-G3-REV-001-review.md",
+        "artifacts/g3-rev-001/verification.json",
+        "execution/LAST_VERIFICATION.json",
+        "docs/ACCEPTANCE.md"
+      ],
+      "verification": "passed",
+      "commitSha": "645b8141c7ce941197a2afec45bd3c1e4a54bb85"
     },
     {
       "id": "G4-GRF-001",

@@ -1,14 +1,14 @@
 # MEGIS Project State
 
-- Current gate: `G3 — 規則與驗證`
-- Current work item: `G3-ACC-001 — G3 acceptance 決策紀錄`
-- Last green commit: `ccf7b8129782303b4e09eaa2636c7be25d0aa90f`
+- Current gate: `G4 — 模組與限制條件組合`
+- Current work item: `G4-MOD-001 — 建立 Module capability levels`
+- Last green commit: `645b8141c7ce941197a2afec45bd3c1e4a54bb85`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-22T14:00:00+08:00`
+- Updated at: `2026-09-22T14:30:00+08:00`
 
-## Active gate: G3
+## Active gate: G4
 
-G2 已 closed（`SO-0003`，2026-09-21）。G3 — 規則與驗證 現在為 active gate。
+G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 — 模組與限制條件組合 現在為 active gate，當前工項為 `G4-MOD-001 — 建立 Module capability levels`。
 
 G3-RUL-001 已閉合（2026-09-21）：rule schema（`schemas/v3/rule.schema.json`）、waiver schema（`schemas/v3/waiver.schema.json`）、生命週期狀態機與 waiver 到期／不可豁免邏輯（`megis/rules/`）、golden corpus（`contracts/g3/golden/rule-governance.json`）；14 tests + `verify_g3_rul_001.py` 18/18 checks 全綠，新增 `MEGIS-RUL-002／003`。
 
@@ -23,6 +23,8 @@ G3-MAT-001 已閉合（2026-09-22）：maturity evaluator（`megis/maturity/`）
 G3-BEN-001 已閉合（2026-09-22）：benchmark metrics（`megis/benchmark/`）實作偵測語意與 KPI（precision／recall／FP／false release／Wilson 95% CI）。dev corpus `contracts/g3/golden/benchmark-corpus.json`（40 cases：30 defect、10 clean）全數通過 oracle，recall 1.0、precision 1.0、FP 0、false release 0；holdout corpus（10 cases）SHA-256 仍為封存值 `73a25950...`（R-AGT-002），10/10 passed；12 tests + `verify_g3_ben_001.py` 13/13 checks 全綠，`artifacts/g3-ben-001/verification.json`（E3）。
 
 G3-REV-001 已閉合（2026-09-22）：G3 自我審查於工作區內 `.runs/g3-rev-001-clean` 乾淨 clone 固定 commit `8303595` 重跑 G3 全部驗證（159 tests、6 支驗證腳本 95 checks、control-plane verifier），審查報告 passed、無 blocking finding；holdout §18.1 封存 SHA 重算一致。`execution/reviews/2026-09-22-G3-REV-001-review.md` + `artifacts/g3-rev-001/verification.json`（E3）。
+
+G3-ACC-001 已閉合（2026-09-22）：G3 gate acceptance 決策紀錄（E4，`execution/signoffs/SO-0004.yaml` + `artifacts/g3-acc-001/verification.json`），可追溯至 G3 審查與 CI；G3 gate 標為 accepted，G4 gate 轉 active。
 
 ## G1 閉合摘要
 
@@ -56,7 +58,18 @@ G3-REV-001 已閉合（2026-09-22）：G3 自我審查於工作區內 `.runs/g3-
 | G3-MAT-001 | done | megis/maturity/evaluator.py、schemas/v3/maturity-evaluation.schema.json、contracts/g3/golden/maturity-corpus.json；18 cases、28 tests + verify_g3_mat_001.py allChecksPassed |
 | G3-BEN-001 | done | megis/benchmark/、schemas/v3/benchmark-corpus.schema.json、schemas/v3/benchmark-report.schema.json、contracts/g3/golden/benchmark-corpus.json、contracts/g3/holdout/holdout-corpus.json；40 cases、12 tests + verify_g3_ben_001.py allChecksPassed |
 | G3-REV-001 | done | execution/reviews/2026-09-22-G3-REV-001-review.md、artifacts/g3-rev-001/verification.json；乾淨 clone 重跑 159 tests + 6 支驗證腳本 95 checks 全綠 |
-| G3-ACC-001 | in_progress | G3 gate acceptance 決策紀錄（見 `execution/AGENT_CLAIM.json`） |
+| G3-ACC-001 | done | execution/signoffs/SO-0004.yaml、artifacts/g3-acc-001/verification.json；G3 gate accepted（E4） |
+
+## G4 work items
+
+| ID | Status | Evidence |
+|---|---|---|
+| G4-MOD-001 | in_progress | Module capability levels（見 `execution/AGENT_CLAIM.json`） |
+| G4-MOD-002 | planned | PCB、USB-C 與 M3 composition |
+| G4-IMP-001 | planned | 安全 STEP 與 DXF metadata extraction |
+| G4-GRF-001 | planned | Relationship vocabulary 語意 |
+| G4-REV-001 | planned | G4 自我審查 |
+| G4-ACC-001 | planned | G4 acceptance 決策紀錄 |
 
 ## Boundaries
 
