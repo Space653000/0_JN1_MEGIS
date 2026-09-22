@@ -34,6 +34,8 @@
       "schemaVersion": "1.0.0",
       "requiredChecks": 12,
       "templateStatus": "passed",
+      "recorderTests": 10,
+      "writeOnce": true,
       "failClosedWhenIncomplete": true
     },
     "commands": {
@@ -54,6 +56,10 @@
         "exitCode": 0
       },
       "manualContractTests": {
+        "status": "passed",
+        "exitCode": 0
+      },
+      "manualRecorderTests": {
         "status": "passed",
         "exitCode": 0
       },

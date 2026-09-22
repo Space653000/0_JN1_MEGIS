@@ -1,11 +1,11 @@
 {
-  "verifiedAt": "2026-09-23T04:42:00+08:00",
+  "verifiedAt": "2026-09-23T05:48:00+08:00",
   "status": "passed",
   "schemaVersion": "1.0.0",
   "commands": [
     {
       "command": "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
-      "pythonTests": 597,
+      "pythonTests": 607,
       "pythonFailed": 0,
       "frontendTests": 22,
       "frontendTestFiles": 4,
@@ -19,8 +19,10 @@
       "axeViolations": 0,
       "contrastPairs": 8,
       "manualContractTests": 12,
+      "manualRecorderTests": 10,
       "manualRequiredChecks": 12,
       "manualTemplateStatus": "passed",
+      "manualRecorderWriteOnce": true,
       "incompleteClosureExitCode": 1,
       "progressEvidenceDisclosureTests": 1,
       "inProgressPreparationContractTests": 1,
@@ -62,13 +64,13 @@
     },
     {
       "command": "node scripts/verify-secrets.mjs",
-      "trackedFiles": 492,
+      "trackedFiles": 495,
       "potentialSecrets": 0,
       "status": "passed"
     },
     {
       "command": "node scripts/verify-artifact-policy.mjs",
-      "trackedFiles": 495,
+      "trackedFiles": 498,
       "evidenceJsonCount": 61,
       "goldenTotalBytes": 19333,
       "status": "passed"
@@ -76,7 +78,7 @@
     {
       "command": "live Vite progress-state hot reload verification",
       "httpStatus": 200,
-      "updatedAt": "2026-09-23T04:42:00+08:00",
+      "updatedAt": "2026-09-23T05:45:00+08:00",
       "currentWorkItem": "G6-A11Y-001",
       "workItemStatus": "in_progress",
       "automatedEvidencePublished": true,
@@ -85,7 +87,7 @@
       "status": "passed"
     }
   ],
-  "sourceCommit": "1714669f8ce2c60d69211e338eaccb9368a61bbd",
+  "sourceCommit": "63938666b1103e25d2c742be6e3ec198b6d803fc",
   "boundaries": {
     "engineeringArtifactsGenerated": false,
     "otherProjectDirectoriesModified": false,

@@ -30,6 +30,7 @@ for (const [name, args] of commands) {
 
 const pythonCommands = [
   ["manualContractTests", ["-m", "pytest", "tests/test_g6_a11y_manual.py", "-q"]],
+  ["manualRecorderTests", ["-m", "pytest", "tests/test_g6_a11y_recorder.py", "-q"]],
   ["manualTemplateValidation", [
     "scripts/verify_g6_a11y_manual.py",
     "--output",
@@ -72,6 +73,8 @@ const evidence = {
       schemaVersion: "1.0.0",
       requiredChecks: 12,
       templateStatus: "passed",
+      recorderTests: 10,
+      writeOnce: true,
       failClosedWhenIncomplete: true,
     },
     commands: results,

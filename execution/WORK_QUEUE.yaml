@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-23T04:42:00+08:00",
+  "updatedAt": "2026-09-23T05:45:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
   "currentWorkItem": "G6-A11Y-001",
   "gates": [
@@ -3552,6 +3552,7 @@
       ],
       "verificationCommands": [
         "node scripts/verify_g6_a11y_001.mjs",
+        ".venv/Scripts/python.exe scripts/record_g6_a11y_manual.py --output artifacts/g6-a11y-001/manual-audit.json",
         ".venv/Scripts/python.exe scripts/verify_g6_a11y_manual.py --require-complete --input <human-evidence.json>",
         "npm --prefix apps/web test -- --run"
       ],
@@ -3562,7 +3563,9 @@
         "apps/web/src/pages/ProgressPage.tsx",
         "apps/web/src/pages/progress-page.test.tsx",
         "scripts/verify_g6_a11y_001.mjs",
+        "scripts/record_g6_a11y_manual.py",
         "scripts/verify_g6_a11y_manual.py",
+        "tests/test_g6_a11y_recorder.py",
         "tests/test_g6_a11y_manual.py",
         "schemas/v3/accessibility-manual-audit.schema.json",
         "contracts/g6/templates/accessibility-manual-audit.template.json",
@@ -3571,7 +3574,8 @@
         "artifacts/g6-a11y-001/browser-audit.json",
         "docs/G6_ACCESSIBILITY.md",
         "outputs/2026-09-22-G6-A11Y-001-自動化施工進度報告.md",
-        "outputs/2026-09-23-G6-A11Y-001-驗收引導網頁施工進度報告.md"
+        "outputs/2026-09-23-G6-A11Y-001-驗收引導網頁施工進度報告.md",
+        "outputs/2026-09-23-G6-A11Y-001-人工稽核紀錄器施工進度報告.md"
       ],
       "verification": "not_run",
       "commitSha": null

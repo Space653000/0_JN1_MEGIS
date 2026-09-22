@@ -2,7 +2,7 @@
 
 > 文件治理
 > - 目的：保存 WCAG 2.2 AA 自動化結果與真人鍵盤、螢幕閱讀器抽查紀錄。
-> - 目前內容：自動化範圍、已修正項目、人工抽查步驟與未完成邊界。
+> - 目前內容：自動化範圍、已修正項目、人工抽查紀錄器、驗證步驟與未完成邊界。
 > - Owner：MEGIS Builder；真人抽查者須具名，使用者保有否決權。
 > - 最後審查 commit：`1714669f8ce2c60d69211e338eaccb9368a61bbd`。
 
@@ -32,13 +32,21 @@
 
 抽查者、日期、瀏覽器版本與實際結果不得由 Agent 代填。
 
-人工紀錄必須由實際執行者複製 `contracts/g6/templates/accessibility-manual-audit.template.json` 後填寫，並保留 `evidenceType: human_manual_audit`。完成後執行：
+人工紀錄必須由實際執行者使用 write-once 紀錄器填寫。紀錄器要求先輸入具名 reviewer、環境版本及逐字 `YES` 接受個人執行聲明，再逐項收集 6 個鍵盤與 6 個螢幕閱讀器結果；只接受 `passed`／`failed`，且 `failed` 必須附人工觀察。它不提供覆寫參數，也不會替人產生或簽署紀錄。
+
+```powershell
+.\.venv\Scripts\python.exe scripts\record_g6_a11y_manual.py --output artifacts\g6-a11y-001\manual-audit.json
+```
+
+若輸出已存在，紀錄器會 fail closed；需要重測時應保留舊紀錄並指定新的版本化檔名，不得覆蓋歷史證據。實際執行者完成紀錄後再執行：
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\verify_g6_a11y_manual.py --require-complete --input <倉庫內的真人紀錄.json> --output artifacts\g6-a11y-001\manual-audit-verification.json
 ```
 
 驗證器要求 12 個固定檢查 ID、具名 reviewer、帶時區時間、瀏覽器／作業系統版本與個人執行聲明。重複／缺漏 ID、額外欄位、完成狀態含 pending、失敗卻無 notes、路徑超出工作區，全部 fail closed；驗證器不會補值或替人簽名。
+
+紀錄器本身已有 10 項自動化測試，驗證 12 個 section-qualified check、成功與失敗狀態、失敗備註、非 canonical 結果、拒絕聲明、工作區邊界及禁止覆寫。這些測試只證明收集工具的契約，不是人工稽核結果。
 
 `/progress` 的驗收 disclosure 會直接列出目前工項已備妥的支援證據與 `verificationCommands`。支援材料與 acceptance evidence 分區呈現：即使 schema、範本、測試與 verifier 均存在，只要人工紀錄仍 pending，頁面就必須顯示「待施工驗證」與「G6 尚未完成」，不得用檔案存在取代人工通過。
 

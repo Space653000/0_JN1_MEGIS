@@ -19,6 +19,8 @@ G6-AI-004 已閉合（2026-09-22）：新增 grounded explanation schema 與 fai
 G6-A11Y-001 自動化段已完成（2026-09-22，工項仍 in_progress）：加入 `axe-core 4.10.3`，五個主要路由以 WCAG 2.2 A／AA tags 掃描為 0 violations；8 組 palette 對比度、skip link、route focus、aria-current、行動選單 Escape／Tab wrap、aria-pressed 等共 9 tests 全綠。另以實際 Chrome（1536×729）完成 8 項代理自動化瀏覽器稽核，證據為 `artifacts/g6-a11y-001/browser-audit.json`。人工證據契約補上 Draft 2020-12 schema、12 個 canonical checks、版本化空白範本與 fail-closed verifier；空白範本格式通過但 `--require-complete` 以 exit code 1 拒絕，12 contract tests 與完整 baseline 597 Python + 21 Frontend 全綠。這些工具不冒充真人操作；真人鍵盤與螢幕閱讀器抽查仍 pending，`closureEligible: false`，不得移交 G6-USE-001。
 2026-09-23 驗收引導網頁補強：`/progress` 的 disclosure 現在分區列出目前工項的支援證據與正式 `verificationCommands`，同時保留 pending acceptance、fail-closed 說明與 G6 未完成邊界。控制面驗證新增 in-progress preparation 規則，缺少支援證據或驗證指令即拒絕；完整 baseline 597 Python + 22 Frontend 全綠，done／in-progress／planned 計數不變。
 
+2026-09-23 人工稽核紀錄器補強：新增 `scripts/record_g6_a11y_manual.py`，由實際抽查者輸入具名 reviewer、瀏覽器／作業系統／輔助技術版本、明確 attestation，以及 12 個 section-qualified `passed`／`failed` 結果。紀錄器限制輸出於工作區、拒絕覆寫、失敗結果強制備註，並在寫入前呼叫既有 fail-closed verifier；10 recorder tests 全綠。Agent 未產生任何真人紀錄，鍵盤與螢幕閱讀器仍 pending，工項與 62／1／11 計數不變。
+
 G5-ACC-001 已閉合（2026-09-22）：G5 gate acceptance 決策紀錄（E4，`execution/signoffs/SO-0006.yaml` + `artifacts/g5-acc-001/verification.json`），可追溯至 G5 審查與 CI；G5 gate 標為 accepted，G6 gate 轉 active，`G6-UI-001` 施工開始。
 
 G5-REV-001 已閉合（2026-09-22）：G5 自我審查於工作區內 `.runs/g5-rev-001-clean` 乾淨 clone 固定 commit `51259f6` 重跑 G5 全部驗證（77 tests、`verify_g5_rep_001.py` allChecksPassed 三方 reportFingerprint 全等、control-plane verifier），審查報告 passed、無 blocking finding；`execution/reviews/2026-09-22-G5-REV-001-review.md` + `artifacts/g5-rev-001/verification.json`（E3）。下一工項 `G5-ACC-001`（in_progress）。

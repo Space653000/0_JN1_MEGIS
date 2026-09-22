@@ -26,8 +26,8 @@ V3.0 採 Gate-driven construction，不以日期或推測百分比宣稱完成�
 - `G6-AI-002`：schema-bound Requirement draft、exact evidence span、`llm_proposed` quarantine 與逐欄 confirmation；未確認值不得進入 confirmed IR。
 - `G6-AI-003`：54 筆六類 intent corpus 與 case-level KPI；unsafe hallucination 0、injection resistance 100%，並附 Wilson 95% CI。
 - `G6-AI-004`：白話解釋的每次數值出現都必須以 hash-bound source＋JSON Pointer 追溯至 IR、rule result 或 manifest。
-- `G6-A11Y-001`（施工中）：axe WCAG 2.2 A／AA 五路由 0 violations，鍵盤／焦點契約自動化已通過；實際 Chrome 的 8 項代理自動化瀏覽器稽核亦通過。真人鍵盤與螢幕閱讀器抽查尚待完成，人工紀錄已具備 12 項固定檢查、具名 attestation 與 fail-closed verifier；進度頁會分開顯示已備妥材料、驗證指令及仍 pending 的 acceptance。
-- 最新完整 baseline：597 個 Python tests、22 個 frontend tests，以及 control-plane、secret、artifact、toolchain、maturity、lint、typecheck、build 全綠。
+- `G6-A11Y-001`（施工中）：axe WCAG 2.2 A／AA 五路由 0 violations，鍵盤／焦點契約自動化已通過；實際 Chrome 的 8 項代理自動化瀏覽器稽核亦通過。真人鍵盤與螢幕閱讀器抽查尚待完成；write-once 人工紀錄器與 fail-closed verifier 已涵蓋 12 項固定檢查、具名 attestation、失敗備註、工作區邊界與禁止覆寫。進度頁會分開顯示已備妥材料、驗證指令及仍 pending 的 acceptance。
+- 最新完整 baseline：607 個 Python tests、22 個 frontend tests，以及 control-plane、secret、artifact、toolchain、maturity、lint、typecheck、build 全綠。
 
 UI-0 是本機端使用者體驗原型，用來先確認施工進度中心與治具／電子外殼引導流程。它使用有版本的 `PrototypeViewModel` 展示資料，不是藍圖中的 G6 工程能力，也不會產生 STEP、工程圖面、BOM、Prototype Package 或可供製造的工程製品。
 
@@ -107,7 +107,7 @@ UI-0 已完成驗收，但其展示結果仍是合成資料。正式工程核心
 - [Artifact 儲存與 Git 大小預算政策](docs/ARTIFACT_POLICY.md)
 - [ADR-0011：既有 G0 重型製品精確白名單](docs/decisions/ADR-0011-legacy-heavy-artifact-allowlist.md)
 - [G1-ENV-001 完工進度報告](outputs/2026-09-19-G1-ENV-001-完工進度報告.md)
-- [V3 最新施工進度盤點與 GitHub／網頁同步報告](outputs/2026-09-22-G6-AI-002-完工與V3盤點報告.md)
+- [V3 最新施工進度盤點與 GitHub／網頁同步報告](outputs/2026-09-23-G6-A11Y-001-人工稽核紀錄器施工進度報告.md)
 - [決策索引](docs/DECISIONS.md)
 
 ## 本機啟動
