@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "verifiedAt": "2026-09-22T20:00:00+08:00",
-  "sourceCommit": "fddab2836de6daffadf8e73e9bde6e603e70092a",
+  "verifiedAt": "2026-09-22T21:50:00+08:00",
+  "sourceCommit": "7b4e6cf35a3c07fe77724943d3ef4eb710682d5e",
   "status": "passed",
   "commands": [
     {
@@ -10,14 +10,14 @@
       "controlPlaneWorkItems": 74,
       "controlPlaneGates": 14,
       "deferrals": 0,
-      "secretScanTrackedFiles": 365,
+      "secretScanTrackedFiles": 378,
       "secretScanFindings": 0,
       "artifactPolicyNegativeTests": 8,
-      "artifactPolicyTrackedFiles": 368,
+      "artifactPolicyTrackedFiles": 381,
       "artifactPolicyEvidenceJson": 42,
       "artifactPolicyGoldenBytes": 19333,
       "artifactPolicyHeavyArtifacts": 5,
-      "pythonTests": 389,
+      "pythonTests": 421,
       "maturityScanManifests": 1,
       "artifactSmokeRecords": 13,
       "frontendTests": 9
@@ -30,29 +30,24 @@
       "deferrals": 0
     },
     {
-      "command": "G4-MOD-002 implementation and closure traceability (@e86e42c)",
+      "command": "G4-IMP-001 implementation and closure traceability (@7b4e6cf)",
       "status": "passed",
-      "implCommit": "e86e42ce004f54839e122e308d1cd482f83318ac",
+      "implCommit": "7b4e6cf35a3c07fe77724943d3ef4eb710682d5e",
       "workItemStatus": "done",
       "evidenceLevel": "E3",
-      "controlPlaneCurrentAfter": "G4-IMP-001",
+      "controlPlaneCurrentAfter": "G4-REV-001",
       "checks": {
-        "corpusCases": 20,
-        "validCases": 12,
-        "errorCases": 8,
-        "composableTypes": [
-          "contains",
-          "mounts_to",
-          "fastens",
-          "opens_through",
-          "clears"
-        ],
-        "pytestG4Green": true,
-        "verifyScriptAllChecksPassed": true,
+        "corpusCases": 16,
+        "validCases": 6,
+        "errorCases": 10,
+        "pytestImportTests": 32,
+        "inchUnitDetected": true,
+        "structuralIntegrityRejected": true,
+        "entityBudgetInjectable": true,
+        "noFabricatedMetadata": true,
         "baselineCiGreen": true,
-        "pythonTests": 389,
-        "frontendTests": 9,
-        "noFabricatedValues": true
+        "pythonTests": 421,
+        "frontendTests": 9
       }
     }
   ],

@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T20:00:00+08:00",
+  "updatedAt": "2026-09-22T21:30:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G4-IMP-001",
+  "currentWorkItem": "G4-REV-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -1752,7 +1752,7 @@
       "id": "G4-IMP-001",
       "title": "建立 safe STEP 與 DXF metadata extraction",
       "gate": "G4",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G4-MOD-002"
       ],
@@ -1768,16 +1768,35 @@
       "acceptanceResults": [
         {
           "criterion": "匯入只擷取允許的 metadata 且拒絕不安全輸入",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "schemas/v3/import-report.schema.json",
+            "contracts/g4/golden/import-corpus.json",
+            "tests/test_g4_imp_001.py",
+            "docs/G4_IMPORT_SAFETY.md"
+          ]
         }
       ],
-      "verificationCommands": [],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe -m pytest tests/test_g4_imp_001.py",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1"
+      ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "megis/importing/guard.py",
+        "megis/importing/extract.py",
+        "megis/importing/policy.py",
+        "megis/importing/report.py",
+        "megis/importing/worker.py",
+        "schemas/v3/import-report.schema.json",
+        "schemas/v3/import-corpus.schema.json",
+        "contracts/g4/golden/import-corpus.json",
+        "tests/test_g4_imp_001.py",
+        "docs/G4_IMPORT_SAFETY.md"
+      ],
+      "verification": "passed",
+      "commitSha": "7b4e6cf35a3c07fe77724943d3ef4eb710682d5e"
     },
     {
       "id": "G5-PKG-001",
@@ -3017,7 +3036,7 @@
       "id": "G4-REV-001",
       "title": "G4 自我審查",
       "gate": "G4",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G4-IMP-001"
       ],
