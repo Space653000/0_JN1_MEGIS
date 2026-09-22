@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-22T17:45:00+08:00",
+  "updatedAt": "2026-09-22T18:20:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G6-QST-001",
+  "currentWorkItem": "G6-AI-001",
   "gates": [
     {
       "id": "UI-0A",
@@ -2070,7 +2070,7 @@
       "id": "G6-QST-001",
       "title": "建立 question ordering 與 abstention",
       "gate": "G6",
-      "status": "in_progress",
+      "status": "done",
       "dependsOn": [
         "G6-UI-001"
       ],
@@ -2088,16 +2088,36 @@
       "acceptanceResults": [
         {
           "criterion": "unsafe unknown 不會被預設且會產生可追溯問題",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "artifacts/g6-qst-001/verification.json",
+            "contracts/g6/golden/question-order-corpus.json",
+            "schemas/v3/question-order-corpus.schema.json",
+            "tests/test_g6_qst_001.py"
+          ]
         }
       ],
-      "verificationCommands": [],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe -m pytest tests/test_g6_qst_001.py",
+        ".venv/Scripts/python.exe scripts/verify_g6_qst_001.py",
+        "npm --prefix apps/web test -- --run",
+        "npm --prefix apps/web run lint",
+        "npm --prefix apps/web run typecheck",
+        "node scripts/verify-control-plane.mjs"
+      ],
       "rollbackBoundary": "commit",
       "blockedBy": [],
-      "evidence": [],
-      "verification": "not_run",
-      "commitSha": null
+      "evidence": [
+        "megis/guides/qst.py",
+        "megis/guides/questions.py",
+        "schemas/v3/question-order-corpus.schema.json",
+        "contracts/g6/golden/question-order-corpus.json",
+        "tests/test_g6_qst_001.py",
+        "scripts/verify_g6_qst_001.py",
+        "artifacts/g6-qst-001/verification.json"
+      ],
+      "verification": "passed",
+      "commitSha": "9c1c67153ab96f6cacb22fbe4459ba7686c4f366"
     },
     {
       "id": "G6-E2E-001",
@@ -3318,7 +3338,7 @@
       "id": "G6-AI-001",
       "title": "AI provider adapter 與離線 fallback",
       "gate": "G6",
-      "status": "planned",
+      "status": "in_progress",
       "dependsOn": [
         "G6-QST-001"
       ],

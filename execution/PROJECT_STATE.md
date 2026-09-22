@@ -1,16 +1,17 @@
 # MEGIS Project State
 
 - Current gate: `G6 — 引導式介面工程整合`
-- Current work item: `G6-QST-001 — 建立 question ordering 與 abstention（in_progress）`
-- Last green commit: `7870b413458944b437b6547cc3b530a350bdf0e0`
+- Current work item: `G6-AI-001 — AI provider adapter 與離線 fallback（in_progress）`
+- Last green commit: `9c1c67153ab96f6cacb22fbe4459ba7686c4f366`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-22T17:45:00+08:00`
+- Updated at: `2026-09-22T18:20:00+08:00`
 
 ## Active gate: G6
 
-G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 已 accepted（`SO-0005`，2026-09-22，E4）。G5 已 accepted（`SO-0006`，2026-09-22，E4）。G6 — 引導式介面工程整合 現在為 active gate；`G6-UI-001` 已閉合（2026-09-22，E3），下一個工項為 `G6-QST-001 — 建立 question ordering 與 abstention`（in_progress）。
+G2 已 closed（`SO-0003`，2026-09-21）。G3 已 accepted（`SO-0004`，2026-09-22，E4）。G4 已 accepted（`SO-0005`，2026-09-22，E4）。G5 已 accepted（`SO-0006`，2026-09-22，E4）。G6 — 引導式介面工程整合 現在為 active gate；`G6-UI-001` 已閉合（2026-09-22，E3）、`G6-QST-001` 已閉合（2026-09-22，E3），下一個工項為 `G6-AI-001 — AI provider adapter 與離線 fallback`（in_progress）。
 
 G6-UI-001 已閉合（2026-09-22）：capability-driven guided flow（`megis/guides/`、`schemas/v3/capability-manifest.schema.json`、`contracts/g6/golden/capability-manifest.json`、`apps/web/src/adapters/capability-guide-adapter.ts`）。介面只呈現後端已證明的能力，guided flow 從封閉問題集建立 schema 合法 Engineering IR；UI-form 與直接 API 路徑產出 byte-identical IR；unsafe unknown／超出能力的輸入以 `MEGIS-UI-001`／`MEGIS-UI-002`／`MEGIS-ENV-001` 阻擋而不自行預設；`tests/test_g6_ui_001.py` 11 tests + `scripts/verify_g6_ui_001.py` E3 allChecksPassed（golden fingerprint `7bfc576a...`），前端 guided-flow 測試（`prototype-flow.test.tsx` 6 tests）驗證越界／未知阻擋與合成標籤；baseline 509 Python + 12 Frontend 全綠（E3）。下一工項 `G6-QST-001`（in_progress）。
+G6-QST-001 已閉合（2026-09-22）：deterministic question ordering 與 abstention（`megis/guides/qst.py`、`schemas/v3/question-order-corpus.schema.json`、`contracts/g6/golden/question-order-corpus.json`）實現藍圖 §14 動態問題引擎 rules 1-8：unsafe_to_default 先問、impact 由架構到需求遞減、從已證實能力可推得的 connector／fastener／cover 永不追問、順序以凍結 golden corpus 固定為決定性；unsafe unknown（未提供尺寸或 PCB envelope 為 unknown）以 `MEGIS-UI-001` 阻擋生成並給出下一步，critical unknown 在 abstention 後仍留在 pending set；`tests/test_g6_qst_001.py` 14 tests + `scripts/verify_g6_qst_001.py` E3 allChecksPassed（12 checks、18 corpus cases：ordering／abstention／boundary／negative，8 blocked cases 皆 MEGIS-UI-001 且無 artifact）；本段驗證 baseline 523 Python + 12 Frontend + control-plane 全綠（E3）。實作 commit `9c1c671`。下一工項 `G6-AI-001`（in_progress）。
 
 G5-ACC-001 已閉合（2026-09-22）：G5 gate acceptance 決策紀錄（E4，`execution/signoffs/SO-0006.yaml` + `artifacts/g5-acc-001/verification.json`），可追溯至 G5 審查與 CI；G5 gate 標為 accepted，G6 gate 轉 active，`G6-UI-001` 施工開始。
 
@@ -111,6 +112,7 @@ G3-ACC-001 已閉合（2026-09-22）：G3 gate acceptance 決策紀錄（E4，`e
 | ID | Status | Evidence |
 |---|---|---|
 | G6-UI-001 | done | schemas/v3/capability-manifest.schema.json、contracts/g6/golden/capability-manifest.json、megis/guides/、apps/web/src/adapters/capability-guide-adapter.ts、tests/test_g6_ui_001.py（11 tests）、scripts/verify_g6_ui_001.py（E3 allChecksPassed）、artifacts/g6-ui-001/verification.json；baseline 509 Python + 12 Frontend 全綠 |
+| G6-QST-001 | done | megis/guides/qst.py、schemas/v3/question-order-corpus.schema.json、contracts/g6/golden/question-order-corpus.json（18 cases）、tests/test_g6_qst_001.py（14 tests）、scripts/verify_g6_qst_001.py（E3 allChecksPassed 12 checks）、artifacts/g6-qst-001/verification.json；baseline 523 Python + 12 Frontend 全綠；實作 commit 9c1c671 |
 
 ## Boundaries
 
