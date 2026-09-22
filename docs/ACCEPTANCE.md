@@ -44,7 +44,7 @@ V3C 追溯（`V3C-REV-001`／`V3C-ACC-001`）已於 2026-09-21 閉合；G1 以 `
 - V3.0 盤點（2026-09-22，G6-AI-004 閉合）：grounded explanation 將全部數值 token 綁定來源 SHA-256 與 JSON Pointer，只接受 IR／rule result／manifest；漏引、錯值、錯 pointer 與來源竄改 fail closed（E3，`d27d16e`，`artifacts/g6-ai-004/verification.json`；8 checks、4/4 example numbers grounded、15 tests、585 Python + 12 Frontend 全綠）；`G6-A11Y-001` in_progress。
 - V3.0 盤點（2026-09-22，G6-A11Y-001 自動化段）：axe-core 以 WCAG 2.2 A／AA tags 掃描五路由為 0 violations；8 組核心 palette 對比、skip link、route focus、行動選單焦點循環與 ARIA state 共 9 tests 全綠（`cf91984`，`artifacts/g6-a11y-001/verification.json`）。實際 Chrome 另完成 8 項代理自動化瀏覽器稽核（`artifacts/g6-a11y-001/browser-audit.json`），不視為真人簽錄。人工證據契約新增 12 個 canonical checks、具名 attestation、環境版本與 fail-closed verifier（`473dc17`）；空白範本格式通過但 `--require-complete` 正確拒絕，12 contract tests 與完整 baseline 597 Python + 21 Frontend 全綠。真人鍵盤與螢幕閱讀器抽查尚無具名紀錄，因此工項維持 in_progress、`closureEligible: false`。
 - V3.0 盤點（2026-09-23，G6-A11Y-001 驗收引導，`1714669`）：`/progress` 展開區分別列出支援證據、下一步 verifier 指令與 acceptance 狀態；新增控制面規則，唯一 in-progress 工項若沒有證據或驗證指令即失效。597 Python + 22 Frontend、axe、lint、typecheck、build 全綠；人工紀錄仍 pending，62 done／1 in progress／11 planned 不變。
-- V3.0 盤點（2026-09-23，G6-A11Y-001 人工紀錄器段）：新增互動式 write-once 紀錄器，強制實際抽查者具名、逐字接受 attestation、分別完成 6 個鍵盤與 6 個螢幕閱讀器檢查；只接受 `passed`／`failed`，失敗必須有 notes，越界路徑與既有輸出均拒絕。10 recorder tests 與 G6 verifier 全綠；未建立或代填真人證據，`closureEligible: false` 與 62／1／11 狀態不變。
+- V3.0 盤點（2026-09-23，G6-A11Y-001 人工紀錄器段，`50b50df`）：新增互動式 write-once 紀錄器，強制實際抽查者具名、逐字接受 attestation、分別完成 6 個鍵盤與 6 個螢幕閱讀器檢查；只接受 `passed`／`failed`，失敗必須有 notes，越界路徑與既有輸出均拒絕。10 recorder tests 與 G6 verifier 全綠；未建立或代填真人證據，`closureEligible: false` 與 62／1／11 狀態不變。
 
 ## Owner
 
