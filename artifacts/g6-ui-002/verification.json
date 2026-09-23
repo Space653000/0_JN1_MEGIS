@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G6-UI-002",
+  "evidenceLevel": "E3",
+  "verifiedAt": "2026-09-23T12:15:00+08:00",
+  "pinnedCommit": "9d3278cac8cf6d7e09c940b404059292f546373e",
+  "allChecksPassed": true,
+  "browserAudit": "artifacts/g6-ui-002/browser-audit.json",
+  "responseSha256": "71674fdfab545e3ec38b2b47203179b5403e8dc764412f64f1ca9171ccdda801",
+  "checks": [
+    {
+      "name": "guided maturity remains evidence-derived DRAFT",
+      "passed": true
+    },
+    {
+      "name": "guarded local HTTP endpoint returns canonical IR",
+      "passed": true
+    },
+    {
+      "name": "production React flow uses the HTTP adapter without synthetic fallback",
+      "passed": true
+    },
+    {
+      "name": "browser and direct HTTP response bytes are equivalent",
+      "passed": true
+    }
+  ],
+  "boundaries": {
+    "database": false,
+    "jobQueue": false,
+    "cad": false,
+    "package": false
+  }
+}

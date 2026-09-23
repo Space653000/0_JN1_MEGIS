@@ -16,7 +16,7 @@ V3.0 採 Gate-driven construction，不以日期或推測百分比宣稱完成�
 
 ## 目前施工狀態
 
-**G0～G5 已完成 Gate acceptance，G6 為 active Gate**。含補正項的正式工作圖共有 75 項，目前控制面為 **62 done、1 in progress、12 planned**；唯一在製項目是 `G6-UI-002 — 補正真實 HTTP IR 介面整合`。
+**G0～G5 已完成 Gate acceptance，G6 為 active Gate**。含補正項的正式工作圖共有 75 項，目前控制面為 **63 done、1 in progress、11 planned**；`G6-UI-002` 已閉合，唯一在製項目是 `G6-A11Y-001 — 無障礙驗證`。
 
 最近閉合的 G6 能力：
 
@@ -42,7 +42,7 @@ UI-0 已完成驗收，但其展示結果仍是合成資料。正式工程核心
 
 ## 待完成清單（依序）
 
-1. `G6-UI-002`：補正 maturity、真實 HTTP IR API、React adapter 與瀏覽器等價證據。
+1. `G6-A11Y-001`：針對新的真實 HTTP UI 重跑 WCAG 2.2 AA 自動化、瀏覽器、鍵盤與螢幕閱讀器抽查。
 2. `G6-A11Y-001`：在新 UI 上重跑 WCAG 2.2 AA 自動化與人工抽查。
 3. `G6-USE-001`：至少 5 位非 CAD 參與者的 usability test；需要真實人工證據。
 4. `G6-E2E-001`、`G6-REV-001`、`G6-ACC-001`：端到端、乾淨 checkout 審查與 Gate acceptance。

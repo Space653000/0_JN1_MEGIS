@@ -2,7 +2,7 @@
 
 > 文件治理
 > - 目的：修正 G6-UI-001 歷史證據未證明瀏覽器實際經 HTTP 使用 Python 工程核心的缺口。
-> - 目前內容：控制面、maturity 與本機 HTTP API contract 已完成；React adapter 與瀏覽器等價證據尚待施工。
+> - 目前內容：maturity、本機 HTTP API、React adapter 與瀏覽器／direct HTTP byte-equivalence 均已完成並具 E3 證據。
 > - Owner：MEGIS Builder；使用者保有否決權。
 > - 回滾邊界：控制面、maturity、HTTP API、web adapter 各自獨立 commit。
 > - 最後審查 commit：待本段控制面補正 commit。
@@ -51,3 +51,9 @@ Engineering IR schema 同步補回藍圖既有 maturity state `DRAFT`。測試�
 | POST | `/api/v1/ir-drafts` | 直接由 Python guided flow 產生 canonical Engineering IR bytes |
 
 安全邊界固定檢查 loopback bind、`Host`、`Origin`、JSON content type、64 KiB body 上限、5 秒 socket timeout 與 correlation ID。非信任 host／origin／route 使用 `MEGIS-SYS-002`，格式錯誤使用 `MEGIS-SCH-001`；所有錯誤均回傳結構化 error object。
+
+## React 與瀏覽器等價結果
+
+React production flow 已移除 `synthetic-demo` adapter，改由 `/api/v1/capabilities`、`/api/v1/questions` 與 `/api/v1/ir-drafts` 取得資料。Vite dev／preview 只把 `/api` 代理到 `127.0.0.1:4174`；API 離線、錯誤或逾時時停止建立 IR，不建立合成替代結果。
+
+實際 Chrome 操作以 120 × 80 × 20 mm、2 片 PCB 的同一輸入取得 `DRAFT 2.0.0`、4 個 components、2 個 unsafe unknowns 與 correlation ID。API 在 canonical response bytes 上回傳 `X-Content-SHA256`；瀏覽器顯示值與獨立 direct HTTP 請求重算值同為 `71674fdfab545e3ec38b2b47203179b5403e8dc764412f64f1ca9171ccdda801`。證據見 `artifacts/g6-ui-002/browser-audit.json` 與 `verification.json`。

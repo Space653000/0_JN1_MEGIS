@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G6-UI-002",
+  "observedAt": "2026-09-23T12:09:44+08:00",
+  "browser": "Chrome via Codex computer-use",
+  "page": "http://127.0.0.1:4173/review",
+  "correlationId": "g6ui2-browser-mudl2k8o",
+  "request": {
+    "width_mm": 120,
+    "depth_mm": 80,
+    "height_mm": 20,
+    "pcb_count": 2,
+    "connector": "USB-C",
+    "fastener": "M3",
+    "cover": "removable",
+    "quantity": "prototype",
+    "priority": "serviceability",
+    "purpose": "固定兩片 PCB，供桌上測試與 USB-C 連接",
+    "pcb_envelope_mode": "reference_only",
+    "pcb_required": false
+  },
+  "responseSha256": "71674fdfab545e3ec38b2b47203179b5403e8dc764412f64f1ca9171ccdda801",
+  "visibleEvidence": {
+    "maturity": "DRAFT",
+    "schemaVersion": "2.0.0",
+    "designId": "FIXTURE-GUIDED-001",
+    "componentCount": 4,
+    "unknownCount": 2,
+    "engineeringArtifactGenerated": false
+  }
+}

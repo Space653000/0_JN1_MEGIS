@@ -81,7 +81,7 @@ def test_ai_disabled_keeps_deterministic_form_to_ir_path_available() -> None:
     document = build_ir_draft(GuidedAnswers())
     assert result.mode == "form_fallback"
     assert document["designId"] == "FIXTURE-GUIDED-001"
-    assert document["maturity"] == "PROTOTYPE"
+    assert document["maturity"] == "DRAFT"
 
 
 def test_recorded_stub_receives_separated_instruction_and_untrusted_data() -> None:

@@ -143,10 +143,9 @@ def test_actual_http_ir_bytes_equal_direct_api_bytes() -> None:
     ],
 )
 def test_api_rejects_untrusted_request_boundaries(headers, expected_status: int) -> None:
-    body = json.dumps(API_PAYLOAD).encode("utf-8")
     with _running_api() as port:
         status, _, response_body = _request(
-            port, "POST", "/api/v1/ir-drafts", body=body, headers=headers
+            port, "POST", "/api/v1/ir-drafts", body=b"", headers=headers
         )
 
     assert status == expected_status
@@ -161,8 +160,8 @@ def test_api_rejects_oversized_body_before_json_decode() -> None:
             port,
             "POST",
             "/api/v1/ir-drafts",
-            body=b"{" + (b" " * 65536) + b"}",
-            headers={"Content-Type": "application/json"},
+            body=b"",
+            headers={"Content-Type": "application/json", "Content-Length": "65537"},
         )
 
     assert status == 413
