@@ -1,5 +1,12 @@
 {
   "schemaVersion": "1.0.0",
-  "updatedAt": "2026-09-16T20:28:02+08:00",
-  "blockers": []
+  "updatedAt": "2026-09-23T13:36:00+08:00",
+  "blockers": [
+    {
+      "id": "B-G6-A11Y-HUMAN-001",
+      "title": "具名真人完成鍵盤與螢幕閱讀器抽查",
+      "owner": "實際無障礙抽查者（具名）",
+      "fallback": "由實際執行者使用 write-once 紀錄器完成 6 個鍵盤與 6 個螢幕閱讀器檢查；Agent 證據不得取代真人簽錄。"
+    }
+  ]
 }

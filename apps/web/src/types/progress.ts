@@ -21,6 +21,7 @@ export interface WorkItem {
     evidence: string[];
   }>;
   verificationCommands?: string[];
+  blockedBy: string[];
   evidence: string[];
   verification: "not_run" | "passed" | "failed";
   commitSha: string | null;

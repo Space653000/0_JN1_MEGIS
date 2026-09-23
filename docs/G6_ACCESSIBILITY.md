@@ -14,6 +14,8 @@
 
 2026-09-23 新版 HTTP UI 另完成一輪實際 Chrome 代理鍵盤稽核：7 項可驗證情境通過，行動導覽因本輪未模擬 mobile viewport 而明確記為 `not_run`。結構化證據為 `artifacts/g6-a11y-001/browser-http-ui-audit.json`；它只證明 agent 操作的真實瀏覽器行為，不是具名真人簽錄，也未使用螢幕閱讀器。
 
+控制面已登錄 `B-G6-A11Y-HUMAN-001`：目前所有 Agent 可完成的自動化、瀏覽器代理稽核、schema、紀錄器與 fail-closed verifier 均已備妥；解除條件只能由具名實際抽查者完成 6 個鍵盤與 6 個螢幕閱讀器檢查。`/progress` 會直接顯示 blocker、責任者與解除方式。
+
 ## 自動化範圍
 
 - `axe-core 4.10.3`：`wcag2a`、`wcag2aa`、`wcag21aa`、`wcag22aa` 規則。

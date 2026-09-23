@@ -2,9 +2,9 @@
 
 - Current gate: `G6 — 引導式介面工程整合`
 - Current work item: `G6-A11Y-001 — 無障礙驗證（in_progress）`
-- Last green commit: `26f4e48e73d9196af4eda2df66c8c501c0b48777`
+- Last green commit: `35d99857da5d214c2542a533000031048247e7ae`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-23T12:47:00+08:00`
+- Updated at: `2026-09-23T13:36:00+08:00`
 
 ## Active gate: G6
 
@@ -30,6 +30,8 @@ G6-A11Y-001 自動化準備段已完成（2026-09-22；2026-09-23 因 G6-UI-002 
 2026-09-23 人工稽核紀錄器補強（`50b50df`）：新增 `scripts/record_g6_a11y_manual.py`，由實際抽查者輸入具名 reviewer、瀏覽器／作業系統／輔助技術版本、明確 attestation，以及 12 個 section-qualified `passed`／`failed` 結果。紀錄器限制輸出於工作區、拒絕覆寫、失敗結果強制備註，並在寫入前呼叫既有 fail-closed verifier；10 recorder tests 全綠。Agent 未產生任何真人紀錄，鍵盤與螢幕閱讀器仍 pending，工項與 62／1／11 計數不變。
 
 2026-09-23 新版 HTTP UI 代理瀏覽器稽核：以實際 Chrome 和鍵盤完成 `/progress` disclosure、桌面導覽與 route focus、`/design` 完整表單順序、`/review` DRAFT 確認與解鎖、loopback API 草稿流程、`/results` 工程邊界及 skip link。7 項通過，行動版瀏覽器情境明確記為 `not_run`（僅有自動契約覆蓋）。此證據為 agent browser audit，不是具名真人鍵盤或螢幕閱讀器簽錄，`G6-A11Y-001` 繼續 in_progress、`closureEligible: false`。
+
+2026-09-23 真人驗收 blocker 可視化：控制面新增 `B-G6-A11Y-HUMAN-001`，明確指定責任者為具名實際無障礙抽查者，解除方式為使用 write-once 紀錄器完成 6 個鍵盤與 6 個螢幕閱讀器檢查。`/progress` 直接呈現 blocker、owner 與解除條件；因控制面仍要求唯一 WIP，工項維持 `in_progress`，但不得誤認為 Agent 還能自行閉合。
 
 G5-ACC-001 已閉合（2026-09-22）：G5 gate acceptance 決策紀錄（E4，`execution/signoffs/SO-0006.yaml` + `artifacts/g5-acc-001/verification.json`），可追溯至 G5 審查與 CI；G5 gate 標為 accepted，G6 gate 轉 active，`G6-UI-001` 施工開始。
 

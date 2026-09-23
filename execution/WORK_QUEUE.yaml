@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-23T12:47:00+08:00",
-  "baselineCommit": "26f4e48e73d9196af4eda2df66c8c501c0b48777",
+  "updatedAt": "2026-09-23T13:36:00+08:00",
+  "baselineCommit": "35d99857da5d214c2542a533000031048247e7ae",
   "currentWorkItem": "G6-A11Y-001",
   "gates": [
     {
@@ -3653,7 +3653,9 @@
         "npm --prefix apps/web test -- --run"
       ],
       "rollbackBoundary": "commit",
-      "blockedBy": [],
+      "blockedBy": [
+        "B-G6-A11Y-HUMAN-001"
+      ],
       "evidence": [
         "apps/web/src/pages/accessibility.test.tsx",
         "apps/web/src/pages/ProgressPage.tsx",
@@ -3945,7 +3947,14 @@
       "commitSha": null
     }
   ],
-  "blockers": [],
+  "blockers": [
+    {
+      "id": "B-G6-A11Y-HUMAN-001",
+      "title": "具名真人完成鍵盤與螢幕閱讀器抽查",
+      "owner": "實際無障礙抽查者（具名）",
+      "fallback": "由實際執行者使用 write-once 紀錄器完成 6 個鍵盤與 6 個螢幕閱讀器檢查；Agent 證據不得取代真人簽錄。"
+    }
+  ],
   "risks": [
     {
       "id": "R-G0-001",

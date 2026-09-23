@@ -16,6 +16,10 @@ describe("Progress acceptance disclosure", () => {
     expect(screen.getByRole("heading", { name: current.title })).toBeInTheDocument();
     expect(screen.getAllByText("施工中").length).toBeGreaterThan(0);
     expect(screen.getAllByText(activeGate.title)).toHaveLength(2);
+    expect(screen.getByRole("heading", { name: "等待真人驗收" })).toBeInTheDocument();
+    expect(screen.getByText("具名真人完成鍵盤與螢幕閱讀器抽查")).toBeInTheDocument();
+    expect(screen.getByText(/實際無障礙抽查者/)).toBeInTheDocument();
+    expect(screen.getByText(/write-once 紀錄器/)).toBeInTheDocument();
     const disclosure = screen.getByRole("button", { name: "查看驗收條件" });
     expect(disclosure).toHaveAttribute("aria-expanded", "false");
     fireEvent.click(disclosure);

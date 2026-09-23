@@ -49,6 +49,7 @@ V3C 追溯（`V3C-REV-001`／`V3C-ACC-001`）已於 2026-09-21 閉合；G1 以 `
 - V3.0 盤點（2026-09-23，G6-UI-002 閉合，`9d3278c`）：guided maturity 改由共用 evaluator 計算為 `DRAFT`；127.0.0.1 HTTP API、React adapter、離線 fail-closed 與實際 Chrome 流程完成。瀏覽器與 direct HTTP 同輸入 canonical response SHA-256 均為 `71674fdf...a801`；E3 四項檢查全綠。工作圖更新為 63 done／1 in progress（G6-A11Y-001）／11 planned；database、job、CAD、package 均未越界施工。
 - V3.0 盤點（2026-09-23，G6-A11Y-001 新 UI 自動化重跑）：五路由 axe 為 0 violations，25 frontend tests、lint、typecheck、build、617 Python baseline 全綠；真人鍵盤與螢幕閱讀器證據仍 pending，`closureEligible: false`，工項維持 in_progress。
 - V3.0 盤點（2026-09-23，G6-A11Y-001 新版 HTTP UI 代理瀏覽器稽核）：實際 Chrome 以鍵盤完成 `/progress` disclosure、桌面導覽與 route focus、`/design` 全表單焦點順序、`/review` DRAFT 確認／按鈕解鎖、loopback API 草稿流程、`/results` 工程界線及 skip link，共 7 項通過；mobile viewport 未執行並明記 `not_run`。此紀錄不是具名真人或螢幕閱讀器證據，故 `closureEligible: false`、63 done／1 in progress／11 planned 不變。
+- V3.0 盤點（2026-09-23，G6-A11Y-001 真人驗收 blocker 可視化）：新增 `B-G6-A11Y-HUMAN-001`，由控制面與 `/progress` 明示具名真人責任者及 write-once 解除流程。Agent 可完成部分已備妥，但藍圖要求的 6 個鍵盤及 6 個螢幕閱讀器真人檢查仍未簽錄；工項維持 in_progress，後續 G6-USE-001、G6-E2E-001、G6 review／acceptance 依賴鏈均不得提前。
 
 ## Owner
 
