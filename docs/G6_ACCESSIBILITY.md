@@ -4,13 +4,15 @@
 > - 目的：保存 WCAG 2.2 AA 自動化結果與真人鍵盤、螢幕閱讀器抽查紀錄。
 > - 目前內容：自動化範圍、已修正項目、人工抽查紀錄器、驗證步驟與未完成邊界。
 > - Owner：MEGIS Builder；真人抽查者須具名，使用者保有否決權。
-> - 最後審查 commit：`50b50df2e1a13f006326406b1a50c2d0e125db96`。
+> - 最後審查 commit：`26f4e48e73d9196af4eda2df66c8c501c0b48777`（最後綠色基線）。
 
 ## 目前狀態
 
 `G6-A11Y-001` 目前為 `in_progress`；依賴的 `G6-UI-002` 已完成。既有 schema、紀錄器與 verifier 保留，但舊 UI 的自動化與 Chrome 稽核只算歷史證據；必須針對新的真實 HTTP UI 重跑自動化、瀏覽器及真人鍵盤／螢幕閱讀器抽查。在完整新證據形成前不得標記完成，也不得解鎖 G6-USE-001。
 
 2026-09-23 新 UI 自動化重跑已通過：五路由 axe WCAG 2.2 A／AA 為 0 violations，25 個 frontend tests、lint、typecheck、build 與 617 個 Python baseline tests 全綠。此結果只更新自動化證據；真人鍵盤與螢幕閱讀器兩類紀錄仍為 pending，因此 `closureEligible` 必須維持 `false`。
+
+2026-09-23 新版 HTTP UI 另完成一輪實際 Chrome 代理鍵盤稽核：7 項可驗證情境通過，行動導覽因本輪未模擬 mobile viewport 而明確記為 `not_run`。結構化證據為 `artifacts/g6-a11y-001/browser-http-ui-audit.json`；它只證明 agent 操作的真實瀏覽器行為，不是具名真人簽錄，也未使用螢幕閱讀器。
 
 ## 自動化範圍
 
@@ -66,6 +68,10 @@
 2026-09-22 以實際 Chrome、1536×729 viewport、`http://127.0.0.1:4173` 完成八項代理自動化稽核。`/progress` 最新控制面、landmarks、skip link target、目前頁 `aria-current`、驗收 disclosure，以及 `/design` 的 SPA route focus、choice semantics、桌面水平溢位均通過；結構化紀錄位於 `artifacts/g6-a11y-001/browser-audit.json`。
 
 此紀錄只補強 jsdom 沒有真實瀏覽器 layout 的缺口，不代表真人從頭到尾的鍵盤操作，也沒有啟用 NVDA、JAWS、Narrator 或 VoiceOver。因此下方兩張真人抽查表及 `closureEligible: false` 均保持不變。
+
+2026-09-23 再以新版真實 HTTP UI 走查 `http://127.0.0.1:4173`：鍵盤展開 `/progress` 驗收條件；由桌面導覽進入 `/design` 並確認焦點落在 `main`；Tab 依序抵達所有表單控制項及送出按鈕；在 `/review` 用 Space 勾選 DRAFT 邊界後解鎖結果；經 `127.0.0.1:4174` API 抵達 `/results`，確認 `DRAFT IR only`、`No engineering artifact generated`、correlation ID、response SHA-256、4 components 與 2 unknowns；最後驗證 skip link 把焦點送到 `main#main-content`。結構化紀錄位於 `artifacts/g6-a11y-001/browser-http-ui-audit.json`。
+
+本輪沒有模擬 mobile viewport，因此 `mobile-navigation` 保持 `not_run`，不得從桌面結果推論行動版瀏覽器已通過；行動導覽目前只有自動化契約測試。以上紀錄仍不取代下方真人鍵盤與螢幕閱讀器抽查。
 
 ## 真人螢幕閱讀器抽查表（pending）
 

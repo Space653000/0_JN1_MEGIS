@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "1.0.0",
+  "workItem": "G6-A11Y-001",
+  "evidenceType": "agent_browser_audit",
+  "evidenceLevel": "E3-partial",
+  "status": "passed",
+  "observedAt": "2026-09-23T12:47:00+08:00",
+  "uiBaselineCommit": "26f4e48e73d9196af4eda2df66c8c501c0b48777",
+  "environment": {
+    "browser": "Chrome",
+    "browserVersion": "not captured",
+    "origin": "http://127.0.0.1:4173",
+    "apiOrigin": "http://127.0.0.1:4174",
+    "networkScope": "loopback only"
+  },
+  "checks": [
+    {
+      "id": "progress-disclosure-keyboard",
+      "status": "passed",
+      "observed": "Tab reached 查看驗收條件; Enter changed aria-expanded from collapsed to expanded and exposed the pending criterion, prepared evidence, and verification commands."
+    },
+    {
+      "id": "desktop-navigation-focus",
+      "status": "passed",
+      "observed": "Shift+Tab traversed the desktop navigation to 設計工作台; Enter navigated from /progress to /design and focus moved to main#main-content."
+    },
+    {
+      "id": "design-form-keyboard-order",
+      "status": "passed",
+      "observed": "Starting at main, Tab reached width, depth, height, three component choices, purpose, quantity, priority, PCB status, and 建立並檢視 IR 草稿 in a complete operable sequence."
+    },
+    {
+      "id": "design-form-accessible-names",
+      "status": "passed",
+      "observed": "The accessibility tree exposed names for width, depth, height, component choices, purpose, quantity, priority, PCB status, and the submit action."
+    },
+    {
+      "id": "review-draft-boundary-keyboard",
+      "status": "passed",
+      "observed": "The review page focused main after navigation; Tab reached the DRAFT acknowledgement checkbox, Space checked it, and 檢視 IR 結果 changed from disabled to enabled."
+    },
+    {
+      "id": "real-api-draft-flow",
+      "status": "passed",
+      "observed": "Enter submitted the form through the loopback API and reached /review, /run, and /results. The result exposed DRAFT IR only and No engineering artifact generated, correlation ID, response SHA-256, four components, and two unresolved unknowns."
+    },
+    {
+      "id": "skip-link-focus",
+      "status": "passed",
+      "observed": "Keyboard traversal reached 跳至主要內容; Enter changed the URL fragment to #main-content and focused main#main-content."
+    },
+    {
+      "id": "mobile-navigation",
+      "status": "not_run",
+      "observed": "Covered by automated contract tests only; this desktop agent-browser pass did not emulate a mobile viewport and therefore makes no browser-pass claim."
+    }
+  ],
+  "manual": {
+    "keyboard": "pending",
+    "screenReader": "pending"
+  },
+  "closureEligible": false,
+  "closureReason": "Agent-operated browser observations do not satisfy the blueprint requirement for named human keyboard and screen-reader spot checks.",
+  "boundaries": {
+    "humanEvidence": false,
+    "humanEvidenceSimulated": false,
+    "screenReaderUsed": false,
+    "manualSignoffClaimed": false,
+    "engineeringArtifactsGenerated": false,
+    "otherProjectDirectoriesModified": false
+  }
+}

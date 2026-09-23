@@ -48,6 +48,7 @@ V3C 追溯（`V3C-REV-001`／`V3C-ACC-001`）已於 2026-09-21 閉合；G1 以 `
 - V3.0 盤點（2026-09-23，G6-UI-002 控制面補正）：獨立反向審查確認 G6-UI-001 的 route equivalence 只比較同程序 Python 函式，React 仍使用 `synthetic-demo` adapter，且 guided IR 帶 critical unknown 卻直接宣告 `PROTOTYPE`。依不重開 done item 原則新增 corrective work item；A11Y 改回 planned 並依賴新 UI。工作圖為 75 項、62 done／1 in progress／12 planned；本段不宣稱功能完成。
 - V3.0 盤點（2026-09-23，G6-UI-002 閉合，`9d3278c`）：guided maturity 改由共用 evaluator 計算為 `DRAFT`；127.0.0.1 HTTP API、React adapter、離線 fail-closed 與實際 Chrome 流程完成。瀏覽器與 direct HTTP 同輸入 canonical response SHA-256 均為 `71674fdf...a801`；E3 四項檢查全綠。工作圖更新為 63 done／1 in progress（G6-A11Y-001）／11 planned；database、job、CAD、package 均未越界施工。
 - V3.0 盤點（2026-09-23，G6-A11Y-001 新 UI 自動化重跑）：五路由 axe 為 0 violations，25 frontend tests、lint、typecheck、build、617 Python baseline 全綠；真人鍵盤與螢幕閱讀器證據仍 pending，`closureEligible: false`，工項維持 in_progress。
+- V3.0 盤點（2026-09-23，G6-A11Y-001 新版 HTTP UI 代理瀏覽器稽核）：實際 Chrome 以鍵盤完成 `/progress` disclosure、桌面導覽與 route focus、`/design` 全表單焦點順序、`/review` DRAFT 確認／按鈕解鎖、loopback API 草稿流程、`/results` 工程界線及 skip link，共 7 項通過；mobile viewport 未執行並明記 `not_run`。此紀錄不是具名真人或螢幕閱讀器證據，故 `closureEligible: false`、63 done／1 in progress／11 planned 不變。
 
 ## Owner
 

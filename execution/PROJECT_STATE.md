@@ -2,9 +2,9 @@
 
 - Current gate: `G6 — 引導式介面工程整合`
 - Current work item: `G6-A11Y-001 — 無障礙驗證（in_progress）`
-- Last green commit: `9d3278cac8cf6d7e09c940b404059292f546373e`
+- Last green commit: `26f4e48e73d9196af4eda2df66c8c501c0b48777`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-23T12:20:00+08:00`
+- Updated at: `2026-09-23T12:47:00+08:00`
 
 ## Active gate: G6
 
@@ -28,6 +28,8 @@ G6-A11Y-001 自動化準備段已完成（2026-09-22；2026-09-23 因 G6-UI-002 
 2026-09-23 驗收引導網頁補強：`/progress` 的 disclosure 現在分區列出目前工項的支援證據與正式 `verificationCommands`，同時保留 pending acceptance、fail-closed 說明與 G6 未完成邊界。控制面驗證新增 in-progress preparation 規則，缺少支援證據或驗證指令即拒絕；完整 baseline 597 Python + 22 Frontend 全綠，done／in-progress／planned 計數不變。
 
 2026-09-23 人工稽核紀錄器補強（`50b50df`）：新增 `scripts/record_g6_a11y_manual.py`，由實際抽查者輸入具名 reviewer、瀏覽器／作業系統／輔助技術版本、明確 attestation，以及 12 個 section-qualified `passed`／`failed` 結果。紀錄器限制輸出於工作區、拒絕覆寫、失敗結果強制備註，並在寫入前呼叫既有 fail-closed verifier；10 recorder tests 全綠。Agent 未產生任何真人紀錄，鍵盤與螢幕閱讀器仍 pending，工項與 62／1／11 計數不變。
+
+2026-09-23 新版 HTTP UI 代理瀏覽器稽核：以實際 Chrome 和鍵盤完成 `/progress` disclosure、桌面導覽與 route focus、`/design` 完整表單順序、`/review` DRAFT 確認與解鎖、loopback API 草稿流程、`/results` 工程邊界及 skip link。7 項通過，行動版瀏覽器情境明確記為 `not_run`（僅有自動契約覆蓋）。此證據為 agent browser audit，不是具名真人鍵盤或螢幕閱讀器簽錄，`G6-A11Y-001` 繼續 in_progress、`closureEligible: false`。
 
 G5-ACC-001 已閉合（2026-09-22）：G5 gate acceptance 決策紀錄（E4，`execution/signoffs/SO-0006.yaml` + `artifacts/g5-acc-001/verification.json`），可追溯至 G5 審查與 CI；G5 gate 標為 accepted，G6 gate 轉 active，`G6-UI-001` 施工開始。
 

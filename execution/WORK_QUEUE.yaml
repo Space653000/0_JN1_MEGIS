@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-23T12:20:00+08:00",
-  "baselineCommit": "9d3278cac8cf6d7e09c940b404059292f546373e",
+  "updatedAt": "2026-09-23T12:47:00+08:00",
+  "baselineCommit": "26f4e48e73d9196af4eda2df66c8c501c0b48777",
   "currentWorkItem": "G6-A11Y-001",
   "gates": [
     {
@@ -3668,10 +3668,12 @@
         "artifacts/g6-a11y-001/verification.json",
         "artifacts/g6-a11y-001/manual-audit-template-verification.json",
         "artifacts/g6-a11y-001/browser-audit.json",
+        "artifacts/g6-a11y-001/browser-http-ui-audit.json",
         "docs/G6_ACCESSIBILITY.md",
         "outputs/2026-09-22-G6-A11Y-001-自動化施工進度報告.md",
         "outputs/2026-09-23-G6-A11Y-001-驗收引導網頁施工進度報告.md",
-        "outputs/2026-09-23-G6-A11Y-001-人工稽核紀錄器施工進度報告.md"
+        "outputs/2026-09-23-G6-A11Y-001-人工稽核紀錄器施工進度報告.md",
+        "outputs/2026-09-23-G6-A11Y-001-新版HTTP-UI代理瀏覽器稽核進度報告.md"
       ],
       "verification": "not_run",
       "commitSha": null
