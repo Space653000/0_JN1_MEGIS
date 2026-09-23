@@ -2,7 +2,7 @@
 
 > 文件治理
 > - 目的：修正 G6-UI-001 歷史證據未證明瀏覽器實際經 HTTP 使用 Python 工程核心的缺口。
-> - 目前內容：施工中；目前只完成控制面補正，尚未宣告功能通過。
+> - 目前內容：控制面補正與 guided IR maturity 不變量已完成；HTTP API 與 React adapter 尚待施工。
 > - Owner：MEGIS Builder；使用者保有否決權。
 > - 回滾邊界：控制面、maturity、HTTP API、web adapter 各自獨立 commit。
 > - 最後審查 commit：待本段控制面補正 commit。
@@ -32,3 +32,9 @@ SQLite／持久化會在完整 job lifecycle 的需求與 migration、backup、r
 ## 驗收次序
 
 `control-plane reconciliation → maturity invariant → HTTP contract → React adapter → browser equivalence → baseline → review`。
+
+## Maturity 補正結果
+
+Guided IR 不再由 builder 直接寫死為 `PROTOTYPE`。`evaluate_guided_maturity()` 現在把實際已具備與尚未具備的證據交給共用 evaluator：requirements／IR schema 已通過，但 critical unknown、layout、geometry、rules、drawing QA 與 package reproducibility 尚未閉合，因此結果固定為 `DRAFT`。
+
+Engineering IR schema 同步補回藍圖既有 maturity state `DRAFT`。測試驗證 reference-only 與 provided PCB 模式在未有執行證據前都不得升至 `PROTOTYPE`，且輸入改變會改變 evaluator digest。

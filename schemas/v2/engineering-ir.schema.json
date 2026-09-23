@@ -13,7 +13,7 @@
     "schemaVersion": { "const": "2.0.0" },
     "designId": { "$ref": "https://megis.local/schemas/v2/primitives.schema.json#/$defs/entityId" },
     "revision": { "type": "string", "pattern": "^[A-Z](?:[0-9]+)?$" },
-    "maturity": { "enum": ["CONCEPT", "PROTOTYPE", "ENGINEERING_REVIEWED", "RELEASED"] },
+    "maturity": { "enum": ["DRAFT", "CONCEPT", "PROTOTYPE", "ENGINEERING_REVIEWED", "RELEASED"] },
     "unitSystem": { "$ref": "https://megis.local/schemas/v2/primitives.schema.json#/$defs/unitSystem" },
     "coordinateSystem": { "$ref": "https://megis.local/schemas/v2/primitives.schema.json#/$defs/coordinateSystem" },
     "requirements": { "type": "array", "items": { "$ref": "#/$defs/requirement" } },

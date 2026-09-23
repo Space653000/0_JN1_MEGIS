@@ -2095,8 +2095,12 @@
       "acceptanceResults": [
         {
           "criterion": "guided IR maturity is computed from evidence and never claims PROTOTYPE while critical unknowns remain",
-          "status": "pending",
-          "evidence": []
+          "status": "passed",
+          "evidence": [
+            "megis/guides/flow.py",
+            "schemas/v2/engineering-ir.schema.json",
+            "tests/test_g6_ui_002.py"
+          ]
         },
         {
           "criterion": "capabilities, questions and canonical IR are served by a guarded 127.0.0.1 HTTP API",
@@ -2126,6 +2130,8 @@
       "evidence": [
         "MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v3.0-claude-code.md",
         "megis/guides/flow.py",
+        "schemas/v2/engineering-ir.schema.json",
+        "tests/test_g6_ui_002.py",
         "apps/web/src/adapters/capability-guide-adapter.ts",
         "docs/G6_UI_HTTP_CORRECTION.md",
         "outputs/2026-09-23-G6-UI-002-控制面補正施工進度報告.md"

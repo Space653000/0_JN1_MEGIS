@@ -18,6 +18,7 @@ from megis.contracts.serialization import serialize_engineering_ir
 from megis.contracts.validation import validate_engineering_ir
 from megis.envelope import load_envelope
 from megis.errors import MegisError
+from megis.maturity import MaturityEvaluation, MaturityInput, evaluate_design_run
 
 GUIDED_DESIGN_ID = "FIXTURE-GUIDED-001"
 RECORDED_AT = "2026-09-22T00:00:00Z"
@@ -149,9 +150,55 @@ def validate_answers(answers: GuidedAnswers, *, envelope: Any | None = None) -> 
         )
 
 
+def evaluate_guided_maturity(answers: GuidedAnswers) -> MaturityEvaluation:
+    """Evaluate only the evidence the guided IR-draft stage actually has.
+
+    A schema-valid draft is not a generated prototype.  This stage has not run
+    layout/collision, geometry, rule packs, drawing QA, or package
+    reproducibility.  It also retains the maximum-load critical unknown (and,
+    for the reference-only path, the PCB-envelope unknown), so the shared
+    evaluator must keep it at DRAFT.
+    """
+
+    critical_unknowns = ["/maximumLoad"]
+    if answers.pcb_envelope_mode == "reference_only":
+        critical_unknowns.append("/components[pcb]/dimensions")
+    return evaluate_design_run(
+        MaturityInput(
+            requirements_schema_valid=True,
+            ir_schema_valid=True,
+            ir_referential_integrity_ok=True,
+            unresolved_unsafe_to_default=bool(critical_unknowns),
+            layout_collision_no_error=False,
+            critical_unknowns=tuple(critical_unknowns),
+            capabilities_in_envelope=True,
+            design_params={
+                "width_mm": answers.width_mm,
+                "depth_mm": answers.depth_mm,
+                "height_mm": answers.height_mm,
+                "pcb_count": answers.pcb_count,
+                "connector": answers.connector,
+                "fastener": answers.fastener,
+                "cover": answers.cover,
+                "quantity": answers.quantity,
+                "priority": answers.priority,
+                "purpose": answers.purpose,
+                "pcb_envelope_mode": answers.pcb_envelope_mode,
+                "pcb_required": answers.pcb_required,
+            },
+        )
+    )
+
+
 def build_ir_draft(answers: GuidedAnswers) -> dict[str, Any]:
     """Build and validate a schema-bound Engineering IR draft document."""
     validate_answers(answers)
+    maturity_evaluation = evaluate_guided_maturity(answers)
+    if maturity_evaluation.state is None:
+        raise MegisError(
+            "MEGIS-SCH-001",
+            engineer_detail={"reason": "guided IR does not satisfy DRAFT maturity"},
+        )
 
     base_dims = [
         {
@@ -344,7 +391,7 @@ def build_ir_draft(answers: GuidedAnswers) -> dict[str, Any]:
         "schemaVersion": "2.0.0",
         "designId": GUIDED_DESIGN_ID,
         "revision": "A",
-        "maturity": "PROTOTYPE",
+        "maturity": maturity_evaluation.state,
         "unitSystem": {"length": "mm", "angle": "deg", "mass": "kg", "time": "s"},
         "coordinateSystem": {
             "handedness": "right",
@@ -450,6 +497,7 @@ __all__ = [
     "build_ir_draft",
     "build_ir_via_api",
     "build_ir_via_ui",
+    "evaluate_guided_maturity",
     "ir_equivalent",
     "ui_state_to_answers",
     "validate_answers",

@@ -116,7 +116,7 @@ def test_build_ir_draft_is_schema_valid() -> None:
     document = build_ir_draft(GuidedAnswers())
     validate_engineering_ir(document)
     assert document["designId"] == "FIXTURE-GUIDED-001"
-    assert document["maturity"] == "PROTOTYPE"
+    assert document["maturity"] == "DRAFT"
     assert {component["componentType"] for component in document["components"]} == {
         "fixture_base",
         "cover",
