@@ -16,17 +16,17 @@ V3.0 採 Gate-driven construction，不以日期或推測百分比宣稱完成�
 
 ## 目前施工狀態
 
-**G0～G5 已完成 Gate acceptance，G6 為 active Gate**。V3 必要工作圖共有 74 項，目前控制面為 **62 done、1 in progress、11 planned**；唯一在製項目是 `G6-A11Y-001 — 無障礙驗證`。
+**G0～G5 已完成 Gate acceptance，G6 為 active Gate**。含補正項的正式工作圖共有 75 項，目前控制面為 **62 done、1 in progress、12 planned**；唯一在製項目是 `G6-UI-002 — 補正真實 HTTP IR 介面整合`。
 
 最近閉合的 G6 能力：
 
-- `G6-UI-001`：capability-driven guided flow，只呈現已驗證能力；UI 與 API 產生等價 Engineering IR。
+- `G6-UI-001`：保留 capability-driven guided flow 的歷史閉合證據；後續稽核發現其「API」只由同程序 Python 函式模擬，React 仍使用合成 adapter，因此由 `G6-UI-002` 補正真實 HTTP 整合。
 - `G6-QST-001`：deterministic question ordering 與 abstention；unsafe unknown 阻擋生成且不會消失。
 - `G6-AI-001`：provider-neutral adapter、AI 預設關閉、recorded local stub、timeout／呼叫／token／成本上限；故障或超限時帶 `MEGIS-AI-*` 錯誤退回表單。
 - `G6-AI-002`：schema-bound Requirement draft、exact evidence span、`llm_proposed` quarantine 與逐欄 confirmation；未確認值不得進入 confirmed IR。
 - `G6-AI-003`：54 筆六類 intent corpus 與 case-level KPI；unsafe hallucination 0、injection resistance 100%，並附 Wilson 95% CI。
 - `G6-AI-004`：白話解釋的每次數值出現都必須以 hash-bound source＋JSON Pointer 追溯至 IR、rule result 或 manifest。
-- `G6-A11Y-001`（施工中）：axe WCAG 2.2 A／AA 五路由 0 violations，鍵盤／焦點契約自動化已通過；實際 Chrome 的 8 項代理自動化瀏覽器稽核亦通過。真人鍵盤與螢幕閱讀器抽查尚待完成；write-once 人工紀錄器與 fail-closed verifier 已涵蓋 12 項固定檢查、具名 attestation、失敗備註、工作區邊界與禁止覆寫。進度頁會分開顯示已備妥材料、驗證指令及仍 pending 的 acceptance。
+- `G6-A11Y-001`（planned，材料已備妥）：既有 axe、鍵盤／焦點契約、Chrome 代理稽核、write-once 人工紀錄器與 fail-closed verifier 均保留；因 UI 即將由合成 adapter 改為真實 HTTP adapter，新 UI 固定後必須重跑，真人抽查仍 pending。
 - 最新完整 baseline：607 個 Python tests、22 個 frontend tests，以及 control-plane、secret、artifact、toolchain、maturity、lint、typecheck、build 全綠。
 
 UI-0 是本機端使用者體驗原型，用來先確認施工進度中心與治具／電子外殼引導流程。它使用有版本的 `PrototypeViewModel` 展示資料，不是藍圖中的 G6 工程能力，也不會產生 STEP、工程圖面、BOM、Prototype Package 或可供製造的工程製品。
@@ -42,10 +42,11 @@ UI-0 已完成驗收，但其展示結果仍是合成資料。正式工程核心
 
 ## 待完成清單（依序）
 
-1. `G6-A11Y-001`：WCAG 2.2 AA 自動化與人工抽查。
-2. `G6-USE-001`：至少 5 位非 CAD 參與者的 usability test；需要真實人工證據。
-3. `G6-E2E-001`、`G6-REV-001`、`G6-ACC-001`：端到端、乾淨 checkout 審查與 Gate acceptance。
-4. G6 accepted 後依 Gate 依賴進入 G7 聲學、G8 機器人與 G9 強化。
+1. `G6-UI-002`：補正 maturity、真實 HTTP IR API、React adapter 與瀏覽器等價證據。
+2. `G6-A11Y-001`：在新 UI 上重跑 WCAG 2.2 AA 自動化與人工抽查。
+3. `G6-USE-001`：至少 5 位非 CAD 參與者的 usability test；需要真實人工證據。
+4. `G6-E2E-001`、`G6-REV-001`、`G6-ACC-001`：端到端、乾淨 checkout 審查與 Gate acceptance。
+5. G6 accepted 後依 Gate 依賴進入 G7 聲學、G8 機器人與 G9 強化。
 
 ## 為什麼目前網站沒有更多產品或功能？
 

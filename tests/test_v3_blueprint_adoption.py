@@ -102,7 +102,7 @@ def test_v3_required_work_item_manifest_matches_queue() -> None:
         )
     )
 
-    assert len(required["requiredWorkItemIds"]) == 74
+    assert len(required["requiredWorkItemIds"]) == 75
     assert set(required["requiredWorkItemIds"]) == {
         item["id"] for item in queue["workItems"]
     }
@@ -115,7 +115,7 @@ def test_verifier_accepts_current_v3_migration_state(tmp_path: Path) -> None:
     result = _run_verifier(tmp_path)
 
     assert result.returncode == 0, result.stderr
-    assert "74 work items" in result.stdout
+    assert "75 work items" in result.stdout
 
 
 def test_control_plane_schema_1_1_is_backward_compatible() -> None:

@@ -2,7 +2,7 @@
 
 > 文件治理
 > - 目的：集中索引 Gate、commit、review、CI 與 sign-off。
-> - 目前內容：UX-0／G0～G5 驗收基線與 V3C 追溯審查結果；G5 以 `SO-0006`（E4）accepted、G6 active；G6-UI-001（`7870b41`）、G6-QST-001（`9c1c671`）、G6-AI-001～004 已閉合（E3），G6-A11Y-001 in_progress。
+> - 目前內容：UX-0／G0～G5 驗收基線與 V3C 追溯審查結果；G5 以 `SO-0006`（E4）accepted、G6 active；歷史 G6-UI-001（`7870b41`）、G6-QST-001（`9c1c671`）、G6-AI-001～004 已閉合（E3），G6-UI-002 corrective item in_progress。
 > - Owner：MEGIS Builder；使用者保有否決權
 > - 最後審查 commit：`d27d16e17ed81eb0fb8ac4e8b0be83891df14d82`
 
@@ -20,7 +20,7 @@
 | G3 | accepted | G3-RUL-001～G3-ACC-001 全數閉合；`G4` active | 規則／驗證 gate 全數閉合；`G3-ACC-001` gate acceptance 已簽核（`SO-0004`，E4，2026-09-22），G4 — 模組與限制條件組合 已啟動 |
 | G4 | accepted | G4-MOD-001～G4-ACC-001 全數閉合（G4-REV-001 @ `eef0afc`，E3；G4-ACC-001 `SO-0005`，E4） | G4 gate_acceptance 已簽核，G5 — 原型套件與可重現性 已啟動 |
 | G5 | accepted | G5-PKG-001～G5-ACC-001 全數閉合（G5-REV-001 @ `51259f6`，E3；G5-ACC-001 `SO-0006`，E4） | G5 gate_acceptance 已簽核，G6 — 引導式介面工程整合 已啟動 |
-| G6 | active | G6-UI-001（`7870b41`）、G6-QST-001（`9c1c671`）、G6-AI-001（`5d890be`）、G6-AI-002（`6694507`）、G6-AI-003（`555d10c`）、G6-AI-004（`d27d16e`）已閉合（E3） | G6-A11Y-001 自動化已通過（`cf91984`），真人鍵盤／螢幕閱讀器抽查 pending；G6 尚未 Gate acceptance |
+| G6 | active | G6-UI-001（`7870b41`）、G6-QST-001（`9c1c671`）、G6-AI-001（`5d890be`）、G6-AI-002（`6694507`）、G6-AI-003（`555d10c`）、G6-AI-004（`d27d16e`）保留歷史閉合（E3） | G6-UI-002 正補正真實 HTTP IR 整合；G6-A11Y-001 歷史自動化已通過但待新 UI 重跑，真人抽查 pending；G6 尚未 Gate acceptance |
 
 審查證據：`execution/reviews/2026-09-18-V3C-REV-001-accepted-gates-retrospective.md`、`execution/reviews/2026-09-21-G1-REV-001-review.md` 與 `execution/reviews/2026-09-21-G2-REV-001-review.md`。
 CI 證據：GitHub Actions run `35326527366`（`398c82a`）與 run `35327571839`（`4fa15e2`）皆 green；G2 另以本機 baseline-ci（147 Python + 9 Frontend）與乾淨 checkout（92 G1+G2 tests + 4 個 G2 驗證腳本）全綠佐證。
@@ -45,6 +45,7 @@ V3C 追溯（`V3C-REV-001`／`V3C-ACC-001`）已於 2026-09-21 閉合；G1 以 `
 - V3.0 盤點（2026-09-22，G6-A11Y-001 自動化段）：axe-core 以 WCAG 2.2 A／AA tags 掃描五路由為 0 violations；8 組核心 palette 對比、skip link、route focus、行動選單焦點循環與 ARIA state 共 9 tests 全綠（`cf91984`，`artifacts/g6-a11y-001/verification.json`）。實際 Chrome 另完成 8 項代理自動化瀏覽器稽核（`artifacts/g6-a11y-001/browser-audit.json`），不視為真人簽錄。人工證據契約新增 12 個 canonical checks、具名 attestation、環境版本與 fail-closed verifier（`473dc17`）；空白範本格式通過但 `--require-complete` 正確拒絕，12 contract tests 與完整 baseline 597 Python + 21 Frontend 全綠。真人鍵盤與螢幕閱讀器抽查尚無具名紀錄，因此工項維持 in_progress、`closureEligible: false`。
 - V3.0 盤點（2026-09-23，G6-A11Y-001 驗收引導，`1714669`）：`/progress` 展開區分別列出支援證據、下一步 verifier 指令與 acceptance 狀態；新增控制面規則，唯一 in-progress 工項若沒有證據或驗證指令即失效。597 Python + 22 Frontend、axe、lint、typecheck、build 全綠；人工紀錄仍 pending，62 done／1 in progress／11 planned 不變。
 - V3.0 盤點（2026-09-23，G6-A11Y-001 人工紀錄器段，`50b50df`）：新增互動式 write-once 紀錄器，強制實際抽查者具名、逐字接受 attestation、分別完成 6 個鍵盤與 6 個螢幕閱讀器檢查；只接受 `passed`／`failed`，失敗必須有 notes，越界路徑與既有輸出均拒絕。10 recorder tests 與 G6 verifier 全綠；未建立或代填真人證據，`closureEligible: false` 與 62／1／11 狀態不變。
+- V3.0 盤點（2026-09-23，G6-UI-002 控制面補正）：獨立反向審查確認 G6-UI-001 的 route equivalence 只比較同程序 Python 函式，React 仍使用 `synthetic-demo` adapter，且 guided IR 帶 critical unknown 卻直接宣告 `PROTOTYPE`。依不重開 done item 原則新增 corrective work item；A11Y 改回 planned 並依賴新 UI。工作圖為 75 項、62 done／1 in progress／12 planned；本段不宣稱功能完成。
 
 ## Owner
 

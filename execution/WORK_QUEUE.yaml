@@ -1,8 +1,8 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-23T05:52:00+08:00",
+  "updatedAt": "2026-09-23T09:00:00+08:00",
   "baselineCommit": "ecd1e39248dd8f7f5a3527d27db25d6b42719ec5",
-  "currentWorkItem": "G6-A11Y-001",
+  "currentWorkItem": "G6-UI-002",
   "gates": [
     {
       "id": "UI-0A",
@@ -2067,6 +2067,73 @@
       "commitSha": "7870b413458944b437b6547cc3b530a350bdf0e0"
     },
     {
+      "id": "G6-UI-002",
+      "title": "補正真實 HTTP IR 介面整合",
+      "gate": "G6",
+      "status": "in_progress",
+      "dependsOn": [
+        "G6-UI-001",
+        "G6-QST-001"
+      ],
+      "inputs": [
+        "v3 blueprint sections 14, 22 and 26.9",
+        "G6-UI-001 historical evidence",
+        "adversarial plan review findings"
+      ],
+      "outputs": [
+        "truthful maturity evaluation for guided IR",
+        "127.0.0.1-only synchronous HTTP IR API",
+        "React adapter backed by the real HTTP API",
+        "browser-to-HTTP canonical IR equivalence evidence"
+      ],
+      "acceptance": [
+        "guided IR maturity is computed from evidence and never claims PROTOTYPE while critical unknowns remain",
+        "capabilities, questions and canonical IR are served by a guarded 127.0.0.1 HTTP API",
+        "the web flow uses the real API and fails closed when the API is unavailable without synthetic fallback",
+        "browser and direct HTTP requests for the same input return byte-equivalent canonical IR"
+      ],
+      "acceptanceResults": [
+        {
+          "criterion": "guided IR maturity is computed from evidence and never claims PROTOTYPE while critical unknowns remain",
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "capabilities, questions and canonical IR are served by a guarded 127.0.0.1 HTTP API",
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "the web flow uses the real API and fails closed when the API is unavailable without synthetic fallback",
+          "status": "pending",
+          "evidence": []
+        },
+        {
+          "criterion": "browser and direct HTTP requests for the same input return byte-equivalent canonical IR",
+          "status": "pending",
+          "evidence": []
+        }
+      ],
+      "verificationCommands": [
+        ".venv/Scripts/python.exe -m pytest tests/test_g6_ui_002.py",
+        ".venv/Scripts/python.exe scripts/verify_g6_ui_002.py",
+        "npm --prefix apps/web test -- --run",
+        "powershell -ExecutionPolicy Bypass -File scripts/run-baseline-ci.ps1",
+        "node scripts/verify-control-plane.mjs"
+      ],
+      "rollbackBoundary": "commit",
+      "blockedBy": [],
+      "evidence": [
+        "MEGIS_Blueprint/MEGIS_Mechanical Engineering Generative Intelligence System — v3.0-claude-code.md",
+        "megis/guides/flow.py",
+        "apps/web/src/adapters/capability-guide-adapter.ts",
+        "docs/G6_UI_HTTP_CORRECTION.md",
+        "outputs/2026-09-23-G6-UI-002-控制面補正施工進度報告.md"
+      ],
+      "verification": "not_run",
+      "commitSha": null
+    },
+    {
       "id": "G6-QST-001",
       "title": "建立 question ordering 與 abstention",
       "gate": "G6",
@@ -3530,9 +3597,9 @@
       "id": "G6-A11Y-001",
       "title": "無障礙驗證",
       "gate": "G6",
-      "status": "in_progress",
+      "status": "planned",
       "dependsOn": [
-        "G6-UI-001"
+        "G6-UI-002"
       ],
       "inputs": [
         "v3 blueprint requirements for G6-A11Y-001"
