@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+from hashlib import sha256
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import re
@@ -70,13 +71,15 @@ class MegisApiHandler(BaseHTTPRequestHandler):
             return False
         return True
 
-    def _headers(self, status: int, content_type: str, length: int, correlation_id: str) -> None:
+    def _headers(self, status: int, content_type: str, length: int, correlation_id: str, *, content_sha256: str | None = None) -> None:
         self.send_response(status)
         self.send_header("Content-Type", content_type)
         self.send_header("Content-Length", str(length))
         self.send_header("Cache-Control", "no-store")
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("X-Correlation-ID", correlation_id)
+        if content_sha256 is not None:
+            self.send_header("X-Content-SHA256", content_sha256)
         if self._origin() == ALLOWED_ORIGIN:
             self.send_header("Access-Control-Allow-Origin", ALLOWED_ORIGIN)
             self.send_header("Vary", "Origin")
@@ -88,7 +91,7 @@ class MegisApiHandler(BaseHTTPRequestHandler):
         self.wfile.write(payload)
 
     def _write_ir(self, payload: bytes, correlation_id: str) -> None:
-        self._headers(200, "application/json; charset=utf-8", len(payload), correlation_id)
+        self._headers(200, "application/json; charset=utf-8", len(payload), correlation_id, content_sha256=sha256(payload).hexdigest())
         self.wfile.write(payload)
 
     def _write_error(

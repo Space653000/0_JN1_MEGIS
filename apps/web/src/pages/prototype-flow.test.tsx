@@ -1,76 +1,61 @@
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
-
 import { initialPrototypeModel } from "../adapters/prototype-adapter";
-import type { DemoResult, PrototypeViewModel } from "../types/prototype";
+import { engineeringCatalogFixture, irDraftFixture } from "../test-fixtures";
+import type { PrototypeViewModel } from "../types/prototype";
 import { DesignPage } from "./DesignPage";
 import { ResultsPage } from "./ResultsPage";
 import { ReviewPage } from "./ReviewPage";
 
 afterEach(cleanup);
+function model(overrides: Partial<PrototypeViewModel["input"]> = {}): PrototypeViewModel { return { ...initialPrototypeModel, input: { ...initialPrototypeModel.input, ...overrides } }; }
 
-function withinEnvelope(overrides: Partial<PrototypeViewModel["input"]> = {}): PrototypeViewModel {
-  return {
-    ...initialPrototypeModel,
-    input: { ...initialPrototypeModel.input, width: 120, depth: 80, height: 20, ...overrides },
-  };
-}
-
-describe("Fixture prototype flow", () => {
-  it("renders data supplied by a replaceable model seam", () => {
-    const alternate: PrototypeViewModel = { ...initialPrototypeModel, input: { ...initialPrototypeModel.input, width: 240, pcbCount: 1 } };
-    render(<DesignPage model={alternate} setModel={vi.fn()} onNext={vi.fn()} />);
-    expect(screen.getByText("240 × 80 × 35 mm")).toBeInTheDocument();
-    expect(screen.getByText("1 片 PCB + USB-C")).toBeInTheDocument();
+describe("G6 real local API flow", () => {
+  it("renders the capability envelope supplied by the backend catalog", () => {
+    render(<DesignPage model={model()} setModel={vi.fn()} catalog={engineeringCatalogFixture} catalogError={null} onNext={vi.fn()}/>);
+    expect(screen.getByText(/已驗證外形上限：120 × 80 × 20 mm/)).toBeInTheDocument();
+    expect(screen.getByText("megis-capability-manifest@1.0.0")).toBeInTheDocument();
+    expect(screen.queryByText(/Synthetic demo data/)).not.toBeInTheDocument();
   });
 
-  it("requires explicit acknowledgement before prototype simulation", () => {
+  it("fails closed without a catalog and never invokes the submit handler", () => {
+    const onNext = vi.fn();
+    render(<DesignPage model={model()} setModel={vi.fn()} catalog={null} catalogError="無法連線至本機工程 API" onNext={onNext}/>);
+    const next = screen.getByRole("button", { name: /建立並檢視 IR 草稿/i });
+    expect(next).toBeDisabled();
+    expect(screen.getByRole("alert")).toHaveTextContent(/無法連線/);
+    expect(onNext).not.toHaveBeenCalled();
+  });
+
+  it("posts an in-range request with the selected PCB envelope mode", async () => {
+    const onNext = vi.fn().mockResolvedValue(undefined);
+    render(<DesignPage model={model()} setModel={vi.fn()} catalog={engineeringCatalogFixture} catalogError={null} onNext={onNext}/>);
+    fireEvent.click(screen.getByRole("button", { name: /建立並檢視 IR 草稿/i }));
+    await waitFor(() => expect(onNext).toHaveBeenCalledWith("reference_only"));
+  });
+
+  it("blocks dimensions outside the verified envelope", () => {
+    render(<DesignPage model={model({ width: 121 })} setModel={vi.fn()} catalog={engineeringCatalogFixture} catalogError={null} onNext={vi.fn()}/>);
+    expect(screen.getByRole("button", { name: /建立並檢視 IR 草稿/i })).toBeDisabled();
+    expect(screen.getByRole("alert")).toHaveTextContent(/尺寸超過/);
+  });
+
+  it("requires acknowledgement and displays API correlation and unknowns", () => {
     const onRun = vi.fn();
-    const model = { ...initialPrototypeModel, review: [{ id: "unknown", label: "PCB envelope", value: "Unknown", provenance: "unknown" as const, critical: true }] };
-    render(<ReviewPage model={model} onBack={vi.fn()} onRun={onRun} />);
-    const run = screen.getByRole("button", { name: /執行原型模擬/i });
+    render(<ReviewPage draft={irDraftFixture} onBack={vi.fn()} onRun={onRun}/>);
+    expect(screen.getByText("browser-test-1")).toBeInTheDocument();
+    expect(screen.getByText("請提供 PCB 板框與孔位")).toBeInTheDocument();
+    const run = screen.getByRole("button", { name: /檢視 IR 結果/i });
     expect(run).toBeDisabled();
-    fireEvent.click(screen.getByRole("checkbox"));
-    fireEvent.click(run);
+    fireEvent.click(screen.getByRole("checkbox")); fireEvent.click(run);
     expect(onRun).toHaveBeenCalledOnce();
   });
 
-  it("permanently labels synthetic results and exposes no artifact download", () => {
-    const result: DemoResult = { maturity: "使用者體驗原型", dimensions: "120 × 80 × 35 mm", material: "6061 鋁合金", process: "三軸 CNC", checks: [], bom: [] };
-    render(<ResultsPage result={result} onRestart={vi.fn()} />);
-    expect(screen.getByText(/Synthetic demo data/)).toBeInTheDocument();
+  it("renders DRAFT IR without artifact downloads", () => {
+    render(<ResultsPage draft={irDraftFixture} onRestart={vi.fn()}/>);
+    expect(screen.getAllByText("DRAFT").length).toBeGreaterThan(0);
     expect(screen.getByText(/No engineering artifact generated/)).toBeInTheDocument();
-    expect(screen.getByText(/STEP、圖面 PDF、BOM CSV/)).toBeInTheDocument();
+    expect(screen.getByText(/沒有 STEP、圖面、BOM CSV/)).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /download/i })).not.toBeInTheDocument();
-  });
-});
-
-describe("G6 guided flow (UI-001)", () => {
-  it("blocks next until a key PCB unknown is resolved", () => {
-    const onNext = vi.fn();
-    render(<DesignPage model={withinEnvelope()} setModel={vi.fn()} onNext={onNext} />);
-    const next = screen.getByRole("button", { name: /檢視假設/i });
-    fireEvent.click(next);
-    expect(onNext).toHaveBeenCalledOnce();
-    fireEvent.change(screen.getByLabelText("目前狀態"), { target: { value: "unknown" } });
-    expect(screen.getByText(/PCB 外形範圍尚未確認/)).toBeInTheDocument();
-    expect(next).toBeDisabled();
-    expect(screen.getByText(/關鍵未知項目不會消失/)).toBeInTheDocument();
-  });
-
-  it("blocks next when outer dimensions exceed the verified envelope", () => {
-    render(<DesignPage model={withinEnvelope({ width: 121 })} setModel={vi.fn()} onNext={vi.fn()} />);
-    expect(screen.getByText(/已驗證外形上限：120 × 80 × 20 mm/)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /檢視假設/i })).toBeDisabled();
-  });
-
-  it("enables next for an in-range draft and keeps the synthetic label visible", () => {
-    const onNext = vi.fn();
-    render(<DesignPage model={withinEnvelope()} setModel={vi.fn()} onNext={onNext} />);
-    const next = screen.getByRole("button", { name: /檢視假設/i });
-    expect(next).toBeEnabled();
-    expect(screen.getByText(/Synthetic demo data/)).toBeInTheDocument();
-    fireEvent.click(next);
-    expect(onNext).toHaveBeenCalledOnce();
   });
 });

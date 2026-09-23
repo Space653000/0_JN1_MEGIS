@@ -2033,7 +2033,7 @@
             "artifacts/g6-ui-001/verification.json",
             "contracts/g6/golden/capability-manifest.json",
             "tests/test_g6_ui_001.py",
-            "apps/web/src/adapters/capability-guide-adapter.ts"
+            "outputs/2026-09-22-G6-UI-001-完工進度報告.md"
           ]
         }
       ],
@@ -2053,7 +2053,7 @@
         "megis/guides/capabilities.py",
         "megis/guides/flow.py",
         "megis/guides/questions.py",
-        "apps/web/src/adapters/capability-guide-adapter.ts",
+        "outputs/2026-09-22-G6-UI-001-完工進度報告.md",
         "apps/web/src/types/guidance.ts",
         "apps/web/src/pages/DesignPage.tsx",
         "apps/web/src/pages/prototype-flow.test.tsx",
@@ -2140,7 +2140,7 @@
         "megis/api/server.py",
         "megis/errors/registry.py",
         "docs/ERROR_CODES.md",
-        "apps/web/src/adapters/capability-guide-adapter.ts",
+        "apps/web/src/adapters/engineering-api-adapter.ts",
         "docs/G6_UI_HTTP_CORRECTION.md",
         "outputs/2026-09-23-G6-UI-002-控制面補正施工進度報告.md"
       ],

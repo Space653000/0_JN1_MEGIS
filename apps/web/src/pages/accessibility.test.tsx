@@ -5,6 +5,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import { App } from "../App";
 import { initialPrototypeModel } from "../adapters/prototype-adapter";
 import { DesignPage } from "./DesignPage";
+import { engineeringCatalogFixture } from "../test-fixtures";
 
 afterEach(() => {
   cleanup();
@@ -61,7 +62,7 @@ describe("G6-A11Y-001 automated WCAG checks", () => {
   });
 
   it("announces selected choice-card state with aria-pressed", () => {
-    render(<DesignPage model={initialPrototypeModel} setModel={() => undefined} onNext={() => undefined} />);
+    render(<DesignPage model={initialPrototypeModel} setModel={() => undefined} catalog={engineeringCatalogFixture} catalogError={null} onNext={async () => undefined} />);
     expect(screen.getByRole("button", { name: /2 片 PCB/ })).toHaveAttribute("aria-pressed", "true");
     expect(screen.getByRole("button", { name: /1 片 PCB/ })).toHaveAttribute("aria-pressed", "false");
     expect(screen.getByRole("button", { name: /USB-C/ })).toHaveAttribute("aria-pressed", "true");

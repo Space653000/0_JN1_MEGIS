@@ -1,20 +1,28 @@
-export type DemoScope = "synthetic-demo";
-
 export interface CapabilityEnvelope {
   envelopeId: string;
+  label: string;
+  verified: true;
   outerDimensionsMm: { widthMm: number; depthMm: number; heightMm: number };
   minimumWallMm: number;
   materials: string[];
   machining: string[];
   fixture: { coverCount: number; fastenerCount: number };
+  unsupportedErrorCodes: string[];
 }
 
 export interface CapabilityManifest {
   schemaVersion: "1.0.0";
   corpusId: string;
-  dataScope: DemoScope;
   designTypes: Array<{ id: string; label: string; proven: true }>;
-  operations: Array<{ id: string; proven: true }>;
+  geometry: {
+    backendId: string;
+    backendVersion: string;
+    deterministic: true;
+    operations: Array<{ id: string; proven: true }>;
+    exportFormats: string[];
+  };
+  modules: { capabilityLevels: Array<{ level: string; uiDisplay: string; layoutAllowed: boolean; geometryAllowed: boolean; maturityCap: string; proven: true }> };
+  relationships: Array<{ type: string; meaning: string; requiredParameters: string[]; proven: true }>;
   envelope: CapabilityEnvelope;
   confidenceLabels: string[];
   maturityTiers: string[];
@@ -46,22 +54,25 @@ export interface GuidedAnswers {
   pcbEnvelopeMode: "reference_only" | "provided" | "unknown";
 }
 
-export interface GuidedFlowResult {
-  kind: "synthetic-draft";
-  schemaVersion: "1.0.0";
+export interface EngineeringIrDraft {
+  schemaVersion: "2.0.0";
   designId: string;
-  dataScope: DemoScope;
-  syntheticDemo: true;
-  engineeringArtifactGenerated: false;
-  blockReason: string | null;
-  draftFingerprint: string | null;
-  assumptions: string[];
-  unknowns: string[];
+  revision: string;
+  maturity: "DRAFT" | "CONCEPT" | "PROTOTYPE" | "ENGINEERING_REVIEWED" | "RELEASED";
+  requirements: Array<{ id: string; statement: string; priority: string }>;
+  components: Array<{ id: string; name: string; componentType: string; dimensions: Array<{ name: string; quantity: { nominal?: number; unit: string } }> }>;
+  assumptions: Array<{ id: string; field: string; status: string; rationale: string }>;
+  unknowns: Array<{ id: string; field: string; unsafeToDefault: boolean; question: string }>;
+  [key: string]: unknown;
 }
 
-export interface CapabilityGuideAdapter {
-  readonly manifest: CapabilityManifest;
-  loadManifest(): CapabilityManifest;
-  loadQuestions(): GuidedQuestion[];
-  buildIrDraft(answers: GuidedAnswers): GuidedFlowResult;
+export interface EngineeringCatalog {
+  manifest: CapabilityManifest;
+  questions: GuidedQuestion[];
+}
+
+export interface IrDraftResponse {
+  document: EngineeringIrDraft;
+  correlationId: string;
+  contentSha256: string;
 }

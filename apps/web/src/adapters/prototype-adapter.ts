@@ -1,9 +1,8 @@
-import type { DemoResult, PrototypeViewModel } from "../types/prototype";
+import type { PrototypeViewModel } from "../types/prototype";
 
 export interface PrototypeAdapter {
   load(): PrototypeViewModel;
   save(model: PrototypeViewModel): void;
-  createDemoResult(model: PrototypeViewModel): DemoResult;
 }
 
 const storageKey = "megis:ui0:prototype-view-model:0.1.0";
@@ -14,7 +13,7 @@ export const initialPrototypeModel: PrototypeViewModel = {
   input: {
     width: 120,
     depth: 80,
-    height: 35,
+    height: 20,
     pcbCount: 2,
     connector: "USB-C",
     fastener: "M3",
@@ -57,24 +56,5 @@ export const browserPrototypeAdapter: PrototypeAdapter = {
   },
   save(model) {
     window.localStorage.setItem(storageKey, JSON.stringify(buildReview(model)));
-  },
-  createDemoResult(model) {
-    const { input } = model;
-    return {
-      maturity: "使用者體驗原型",
-      dimensions: `${input.width} × ${input.depth} × ${input.height} mm`,
-      material: "6061 鋁合金",
-      process: "三軸 CNC",
-      checks: [
-        { name: "支援的外形範圍", state: "demo-pass", note: "尺寸位於 50–300 mm 展示範圍內" },
-        { name: "最小壁厚", state: "demo-pass", note: "展示值 2 mm；未執行幾何驗證" },
-        { name: "PCB 間隙", state: "needs-review", note: "缺少 PCB 外形範圍與安裝孔位" },
-      ],
-      bom: [
-        { item: "底座——展示記錄", quantity: 1, note: "未產生 CAD 製品" },
-        { item: "可拆上蓋——展示記錄", quantity: 1, note: "未產生 CAD 製品" },
-        { item: "M3 緊固件——展示記錄", quantity: 4, note: "數量為合成資料" },
-      ],
-    };
   },
 };

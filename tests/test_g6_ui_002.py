@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from contextlib import contextmanager
 from http.client import HTTPConnection
+from hashlib import sha256
 import json
 from threading import Thread
 
@@ -122,6 +123,7 @@ def test_actual_http_ir_bytes_equal_direct_api_bytes() -> None:
 
     assert status == 200
     assert headers["X-Correlation-ID"] == "test-http-equivalence"
+    assert headers["X-Content-SHA256"] == sha256(response_body).hexdigest()
     assert response_body == build_ir_via_api(API_PAYLOAD).encode("utf-8")
     assert json.loads(response_body)["maturity"] == "DRAFT"
 

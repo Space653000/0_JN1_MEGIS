@@ -24,13 +24,13 @@ describe("Progress acceptance disclosure", () => {
     expect(screen.getByRole("heading", { name: "完成條件與責任邊界" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "已備妥的支援證據" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "下一步驗證指令" })).toBeInTheDocument();
-    for (const path of current.evidence) expect(screen.getByText(path)).toBeInTheDocument();
+    for (const path of current.evidence) expect(screen.getAllByText(path).length).toBeGreaterThan(0);
     for (const command of current.verificationCommands ?? []) expect(screen.getByText(command)).toBeInTheDocument();
     for (const result of current.acceptanceResults) {
       expect(screen.getAllByText(result.criterion).length).toBeGreaterThan(0);
       if (result.status === "passed") {
         expect(screen.getAllByText("已通過").length).toBeGreaterThan(0);
-        for (const path of result.evidence) expect(screen.getByText(path)).toBeInTheDocument();
+        for (const path of result.evidence) expect(screen.getAllByText(path).length).toBeGreaterThan(0);
       } else {
         expect(screen.getAllByText("待施工驗證").length).toBeGreaterThan(0);
         expect(screen.getAllByText(/支援材料已備妥，但完整人工驗收證據尚未形成/).length).toBeGreaterThan(0);

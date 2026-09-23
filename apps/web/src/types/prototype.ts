@@ -28,11 +28,3 @@ export interface PrototypeViewModel {
   review: ReviewItem[];
 }
 
-export interface DemoResult {
-  maturity: "使用者體驗原型";
-  dimensions: string;
-  material: "6061 鋁合金";
-  process: "三軸 CNC";
-  checks: Array<{ name: string; state: "demo-pass" | "needs-review"; note: string }>;
-  bom: Array<{ item: string; quantity: number; note: string }>;
-}

@@ -1,16 +1,8 @@
 import { Check, LoaderCircle, ShieldAlert } from "lucide-react";
 import { useEffect, useState } from "react";
-
-const stages = ["整理原型檢視模型", "建立展示用限制摘要", "產生合成驗證記錄", "組合結果資訊架構"];
+const stages = ["確認 IR schema 版本", "整理 assumptions", "整理 unknowns", "準備唯讀結果畫面"];
 export function RunPage({ onComplete }: { onComplete: () => void }) {
   const [active, setActive] = useState(0);
-  useEffect(() => {
-    if (active >= stages.length) {
-      const done = window.setTimeout(onComplete, 500);
-      return () => window.clearTimeout(done);
-    }
-    const timer = window.setTimeout(() => setActive((value) => value + 1), 550);
-    return () => window.clearTimeout(timer);
-  }, [active, onComplete]);
-  return <section className="run-stage" aria-live="polite" aria-busy={active < stages.length}><div className="simulation-orbit" aria-hidden="true"><div className="orbit orbit-one"/><div className="orbit orbit-two"/><div className="run-core">{active < stages.length ? <LoaderCircle size={34} className="spin"/> : <Check size={38}/>}</div></div><p className="eyebrow">原型模擬 · 第 3／3 步</p><h1>{active < stages.length ? "正在組合展示資料" : "模擬完成"}</h1><p>這不是 CAD、求解器或工程驗證工作。</p><div className="run-list">{stages.map((stage, index) => <div className={index < active ? "complete" : index === active ? "active" : ""} key={stage}><span aria-hidden="true">{index < active ? <Check size={15}/> : index + 1}</span>{stage}</div>)}</div><div className="run-warning"><ShieldAlert size={18}/><span><strong>合成展示資料 · Synthetic demo data</strong>未產生任何工程製品 · No engineering artifact generated</span></div></section>;
+  useEffect(() => { const timer = window.setTimeout(active >= stages.length ? onComplete : () => setActive((value) => value + 1), active >= stages.length ? 250 : 300); return () => window.clearTimeout(timer); }, [active, onComplete]);
+  return <section className="run-stage" aria-live="polite" aria-busy={active < stages.length}><div className="simulation-orbit" aria-hidden="true"><div className="orbit orbit-one"/><div className="orbit orbit-two"/><div className="run-core">{active < stages.length ? <LoaderCircle size={34} className="spin"/> : <Check size={38}/>}</div></div><p className="eyebrow">IR 整理 · 第 3／3 步</p><h1>{active < stages.length ? "正在整理 API 草稿" : "整理完成"}</h1><p>不執行 CAD、求解器、規則引擎或工程驗證。</p><div className="run-list">{stages.map((stage,index) => <div className={index < active ? "complete" : index === active ? "active" : ""} key={stage}><span aria-hidden="true">{index < active ? <Check size={15}/> : index + 1}</span>{stage}</div>)}</div><div className="run-warning"><ShieldAlert size={18}/><span><strong>DRAFT IR only</strong>No engineering artifact generated</span></div></section>;
 }
