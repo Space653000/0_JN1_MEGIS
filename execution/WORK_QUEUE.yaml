@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.1.0",
-  "updatedAt": "2026-09-23T13:36:00+08:00",
-  "baselineCommit": "35d99857da5d214c2542a533000031048247e7ae",
+  "updatedAt": "2026-09-23T19:10:00+08:00",
+  "baselineCommit": "246637c1bcd00e5e50a1e1b752346b52ff2c5722",
   "currentWorkItem": "G6-A11Y-001",
   "gates": [
     {

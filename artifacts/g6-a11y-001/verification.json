@@ -4,7 +4,7 @@
   "evidenceLevel": "E3-partial",
   "status": "in_progress",
   "verifiedAt": "2026-09-23T12:30:00+08:00",
-  "pinnedCommit": "35d99857da5d214c2542a533000031048247e7ae",
+  "pinnedCommit": "246637c1bcd00e5e50a1e1b752346b52ff2c5722",
   "automated": {
     "status": "passed",
     "axeCoreVersion": "4.10.3",

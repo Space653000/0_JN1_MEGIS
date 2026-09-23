@@ -2,9 +2,9 @@
 
 - Current gate: `G6 — 引導式介面工程整合`
 - Current work item: `G6-A11Y-001 — 無障礙驗證（in_progress）`
-- Last green commit: `35d99857da5d214c2542a533000031048247e7ae`
+- Last green commit: `246637c1bcd00e5e50a1e1b752346b52ff2c5722`
 - Control-plane schema: `1.1.0`
-- Updated at: `2026-09-23T13:36:00+08:00`
+- Updated at: `2026-09-23T19:10:00+08:00`
 
 ## Active gate: G6
 
@@ -32,6 +32,8 @@ G6-A11Y-001 自動化準備段已完成（2026-09-22；2026-09-23 因 G6-UI-002 
 2026-09-23 新版 HTTP UI 代理瀏覽器稽核：以實際 Chrome 和鍵盤完成 `/progress` disclosure、桌面導覽與 route focus、`/design` 完整表單順序、`/review` DRAFT 確認與解鎖、loopback API 草稿流程、`/results` 工程邊界及 skip link。7 項通過，行動版瀏覽器情境明確記為 `not_run`（僅有自動契約覆蓋）。此證據為 agent browser audit，不是具名真人鍵盤或螢幕閱讀器簽錄，`G6-A11Y-001` 繼續 in_progress、`closureEligible: false`。
 
 2026-09-23 真人驗收 blocker 可視化：控制面新增 `B-G6-A11Y-HUMAN-001`，明確指定責任者為具名實際無障礙抽查者，解除方式為使用 write-once 紀錄器完成 6 個鍵盤與 6 個螢幕閱讀器檢查。`/progress` 直接呈現 blocker、owner 與解除條件；因控制面仍要求唯一 WIP，工項維持 `in_progress`，但不得誤認為 Agent 還能自行閉合。
+
+2026-09-23 全面盤點同步（`246637c`）：收尾上階段 blocker 可視化段落並 push；啟動 `http://127.0.0.1:4173/progress`；以完整 baseline（617 Python + 25 Frontend + control-plane／secret／artifact／toolchain／maturity 全綠）確認 `246637c` 為新綠色基線。`G6-A11Y-001` 仍為唯一 in_progress，等待具名真人鍵盤與螢幕閱讀器簽錄（`B-G6-A11Y-HUMAN-001`），後續 USE→E2E→REV→ACC 依賴鏈未提前。
 
 G5-ACC-001 已閉合（2026-09-22）：G5 gate acceptance 決策紀錄（E4，`execution/signoffs/SO-0006.yaml` + `artifacts/g5-acc-001/verification.json`），可追溯至 G5 審查與 CI；G5 gate 標為 accepted，G6 gate 轉 active，`G6-UI-001` 施工開始。
 
