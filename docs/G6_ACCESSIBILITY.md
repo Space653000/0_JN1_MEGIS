@@ -10,6 +10,8 @@
 
 `G6-A11Y-001` 目前為 `in_progress`；依賴的 `G6-UI-002` 已完成。既有 schema、紀錄器與 verifier 保留，但舊 UI 的自動化與 Chrome 稽核只算歷史證據；必須針對新的真實 HTTP UI 重跑自動化、瀏覽器及真人鍵盤／螢幕閱讀器抽查。在完整新證據形成前不得標記完成，也不得解鎖 G6-USE-001。
 
+2026-09-23 新 UI 自動化重跑已通過：五路由 axe WCAG 2.2 A／AA 為 0 violations，25 個 frontend tests、lint、typecheck、build 與 617 個 Python baseline tests 全綠。此結果只更新自動化證據；真人鍵盤與螢幕閱讀器兩類紀錄仍為 pending，因此 `closureEligible` 必須維持 `false`。
+
 ## 自動化範圍
 
 - `axe-core 4.10.3`：`wcag2a`、`wcag2aa`、`wcag21aa`、`wcag22aa` 規則。

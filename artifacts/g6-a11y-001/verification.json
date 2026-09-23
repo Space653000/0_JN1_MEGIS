@@ -3,7 +3,8 @@
   "workItem": "G6-A11Y-001",
   "evidenceLevel": "E3-partial",
   "status": "in_progress",
-  "verifiedAt": "2026-09-22T23:50:00+08:00",
+  "verifiedAt": "2026-09-23T12:30:00+08:00",
+  "pinnedCommit": "e9be4842949c92666b7606cc100cb87d4d805bcc",
   "automated": {
     "status": "passed",
     "axeCoreVersion": "4.10.3",
@@ -21,6 +22,8 @@
       "/roadmap"
     ],
     "axeViolations": 0,
+    "frontendTestsPassed": 25,
+    "fullPythonBaselinePassed": 617,
     "contrastPairsChecked": 8,
     "keyboardContractTests": [
       "skip link",

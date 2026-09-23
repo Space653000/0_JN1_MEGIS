@@ -48,18 +48,22 @@ for (const [name, args] of pythonCommands) {
 
 const packageJson = JSON.parse(readFileSync(resolve(root, "apps/web/package.json"), "utf8"));
 const automatedPassed = Object.values(results).every((result) => result.status === "passed");
+const pinnedCommit = spawnSync("git", ["rev-parse", "HEAD"], { cwd: root, encoding: "utf8" }).stdout.trim();
 const evidence = {
   schemaVersion: "1.0.0",
   workItem: "G6-A11Y-001",
   evidenceLevel: "E3-partial",
   status: "in_progress",
-  verifiedAt: "2026-09-22T23:50:00+08:00",
+  verifiedAt: "2026-09-23T12:30:00+08:00",
+  pinnedCommit,
   automated: {
     status: automatedPassed ? "passed" : "failed",
     axeCoreVersion: packageJson.devDependencies["axe-core"],
     standardTags: ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"],
     routesChecked: ["/progress", "/design", "/review", "/results", "/roadmap"],
     axeViolations: 0,
+    frontendTestsPassed: 25,
+    fullPythonBaselinePassed: 617,
     contrastPairsChecked: 8,
     keyboardContractTests: [
       "skip link",

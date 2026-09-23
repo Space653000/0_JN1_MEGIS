@@ -47,6 +47,7 @@ V3C 追溯（`V3C-REV-001`／`V3C-ACC-001`）已於 2026-09-21 閉合；G1 以 `
 - V3.0 盤點（2026-09-23，G6-A11Y-001 人工紀錄器段，`50b50df`）：新增互動式 write-once 紀錄器，強制實際抽查者具名、逐字接受 attestation、分別完成 6 個鍵盤與 6 個螢幕閱讀器檢查；只接受 `passed`／`failed`，失敗必須有 notes，越界路徑與既有輸出均拒絕。10 recorder tests 與 G6 verifier 全綠；未建立或代填真人證據，`closureEligible: false` 與 62／1／11 狀態不變。
 - V3.0 盤點（2026-09-23，G6-UI-002 控制面補正）：獨立反向審查確認 G6-UI-001 的 route equivalence 只比較同程序 Python 函式，React 仍使用 `synthetic-demo` adapter，且 guided IR 帶 critical unknown 卻直接宣告 `PROTOTYPE`。依不重開 done item 原則新增 corrective work item；A11Y 改回 planned 並依賴新 UI。工作圖為 75 項、62 done／1 in progress／12 planned；本段不宣稱功能完成。
 - V3.0 盤點（2026-09-23，G6-UI-002 閉合，`9d3278c`）：guided maturity 改由共用 evaluator 計算為 `DRAFT`；127.0.0.1 HTTP API、React adapter、離線 fail-closed 與實際 Chrome 流程完成。瀏覽器與 direct HTTP 同輸入 canonical response SHA-256 均為 `71674fdf...a801`；E3 四項檢查全綠。工作圖更新為 63 done／1 in progress（G6-A11Y-001）／11 planned；database、job、CAD、package 均未越界施工。
+- V3.0 盤點（2026-09-23，G6-A11Y-001 新 UI 自動化重跑）：五路由 axe 為 0 violations，25 frontend tests、lint、typecheck、build、617 Python baseline 全綠；真人鍵盤與螢幕閱讀器證據仍 pending，`closureEligible: false`，工項維持 in_progress。
 
 ## Owner
 
