@@ -47,6 +47,7 @@
 | MEGIS-IMP-003 | IMP | error | no | 匯入檔案無法解析。 |
 | MEGIS-IMP-004 | IMP | error | yes | 匯入處理逾時或超出實體數量上限。 |
 | MEGIS-SYS-001 | SYS | fatal | no | 本機工具鏈版本不符。 |
+| MEGIS-SYS-002 | SYS | error | no | 本機 API 拒絕不受信任的請求。 |
 
 v2 legacy `GeometryErrorCode` 映射（severity／retryable／訊息由 `megis/errors/registry.py` 統一管理）：
 

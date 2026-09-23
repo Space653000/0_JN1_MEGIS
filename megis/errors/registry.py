@@ -92,6 +92,7 @@ _ERROR_CODES: list[ErrorCode] = [
     ErrorCode("MEGIS-IMP-003", ErrorDomain.IMP, 3, ErrorSeverity.ERROR, False, "匯入檔案無法解析。", "import parser rejected or failed to parse the file"),
     ErrorCode("MEGIS-IMP-004", ErrorDomain.IMP, 4, ErrorSeverity.ERROR, True, "匯入處理逾時或超出實體數量上限。", "import worker timed out or exceeded the entity budget"),
     ErrorCode("MEGIS-SYS-001", ErrorDomain.SYS, 1, ErrorSeverity.FATAL, False, "本機工具鏈版本不符。", "toolchain or environment version mismatch"),
+    ErrorCode("MEGIS-SYS-002", ErrorDomain.SYS, 2, ErrorSeverity.ERROR, False, "本機 API 拒絕不受信任的請求。", "local API rejected an untrusted host, origin, method, or route"),
 ]
 
 ERROR_CODES: dict[str, ErrorCode] = {entry.code: entry for entry in _ERROR_CODES}

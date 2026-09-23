@@ -2,7 +2,7 @@
 
 > 文件治理
 > - 目的：修正 G6-UI-001 歷史證據未證明瀏覽器實際經 HTTP 使用 Python 工程核心的缺口。
-> - 目前內容：控制面補正與 guided IR maturity 不變量已完成；HTTP API 與 React adapter 尚待施工。
+> - 目前內容：控制面、maturity 與本機 HTTP API contract 已完成；React adapter 與瀏覽器等價證據尚待施工。
 > - Owner：MEGIS Builder；使用者保有否決權。
 > - 回滾邊界：控制面、maturity、HTTP API、web adapter 各自獨立 commit。
 > - 最後審查 commit：待本段控制面補正 commit。
@@ -38,3 +38,16 @@ SQLite／持久化會在完整 job lifecycle 的需求與 migration、backup、r
 Guided IR 不再由 builder 直接寫死為 `PROTOTYPE`。`evaluate_guided_maturity()` 現在把實際已具備與尚未具備的證據交給共用 evaluator：requirements／IR schema 已通過，但 critical unknown、layout、geometry、rules、drawing QA 與 package reproducibility 尚未閉合，因此結果固定為 `DRAFT`。
 
 Engineering IR schema 同步補回藍圖既有 maturity state `DRAFT`。測試驗證 reference-only 與 provided PCB 模式在未有執行證據前都不得升至 `PROTOTYPE`，且輸入改變會改變 evaluator digest。
+
+## 本機 HTTP API contract
+
+同步 API 使用 Python 標準函式庫，固定綁定 `127.0.0.1:4174`，不新增第三方 runtime dependency，也不建立 database／queue。端點如下：
+
+| Method | Path | 內容 |
+|---|---|---|
+| GET | `/api/v1/health` | 服務 readiness |
+| GET | `/api/v1/capabilities` | 直接由 `build_manifest()` 產生的完整 capability schema |
+| GET | `/api/v1/questions` | 直接由 `guided_questions()` 產生的 11 個問題 |
+| POST | `/api/v1/ir-drafts` | 直接由 Python guided flow 產生 canonical Engineering IR bytes |
+
+安全邊界固定檢查 loopback bind、`Host`、`Origin`、JSON content type、64 KiB body 上限、5 秒 socket timeout 與 correlation ID。非信任 host／origin／route 使用 `MEGIS-SYS-002`，格式錯誤使用 `MEGIS-SCH-001`；所有錯誤均回傳結構化 error object。
