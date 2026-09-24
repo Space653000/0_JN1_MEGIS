@@ -2,18 +2,17 @@
 
 > 文件治理
 > - 目的：單一頁面回答「現在做到哪裡、卡在哪裡」，供每次工作開場快速定位。
-> - 目前內容：2026-09-24 全面盤點（本地 repository ＋ GitHub）結果。
+> - 目前內容：2026-09-24 控制面與 GitHub 分支核對結果；後續提交以本段驗證紀錄為準。
 > - Owner：Claude Code（研究／規劃／審查角色，見 [CLAUDE_REVIEWER.md](CLAUDE_REVIEWER.md)）
 > - 資料來源：`execution/WORK_QUEUE.yaml`、`execution/PROJECT_STATE.md`、`docs/ACCEPTANCE.md`、`execution/BLOCKERS.yaml`、GitHub（`gh` CLI 查詢）。
 
 ## 0. 本次盤點最重要的發現：GitHub `main` 落後於實際進度
 
-- 本地與遠端目前檢出分支：**`codex/g1-req-001-research`**（本地與 `origin/codex/g1-req-001-research` 完全同步，commit `aeb2899`）。
-- GitHub **`main`** 分支停在 commit `2d74b37`（`chore: close G4-GRF-001 and start G4-MOD-002`，2026-09-22），**落後 `codex/g1-req-001-research` 46 個 commit**。
-- 這 46 個 commit 涵蓋：G4-MOD-002 之後全部內容 → G5 全部（PKG／BOM／DRW／REP／REV／ACC）→ G6 全部（UI-001／QST-001／AI-001～004／UI-002／A11Y-001 準備段）。
+- 2026-09-24 開工快照：本地與遠端施工分支 **`codex/g1-req-001-research`** 同為 `c1f02e8`；GitHub **`main`** 停在 `2d74b37`，落後施工分支 **54 個 commit**。交付後須重新比對 SHA。
+- 這些 commit 涵蓋 G4-MOD-002 之後的 G4、G5 全部、G6 UI／QST／AI／A11Y 準備段與 `.ai/` 治理入口。
 - **沒有開啟中的 Pull Request**（`gh pr list` 為空），兩分支之間沒有合併計畫在途。
-- 影響：任何人只看 `https://github.com/Space653000/0_JN1_MEGIS/tree/main` 會看到**遠遠落後的舊狀態**（大約停在 G4 中段），看不到 G5、G6 的全部工作與本次新增的 `.ai/` 文件。GitHub Actions 的 `Baseline CI` 只在 push 到 `main` 時觸發，因此 `codex/g1-req-001-research` 上的 46 個 commit **沒有任何一次由 GitHub Actions 驗證過**（`.github/workflows` 的 `on.push.branches` 只列 `main`）。
-- 本次盤點**不主動合併分支**（使用者要求「先不要施工」，合併／改變 main 屬於重大且不可逆的 repository 操作）。是否要把 `codex/g1-req-001-research` 合併／fast-forward 到 `main`，或改成用 PR 走一次 CI，需要使用者決定。
+- 影響：只看 GitHub `main` 會看到 G4 中段的舊狀態，看不到 G5、G6 與 `.ai/` 治理入口。`.github/workflows/baseline-ci.yml` 的 push trigger 只包含 `main`；施工分支尚須經 PR 或 `main` CI 驗證。
+- 本次同步以目前施工分支為目標；`main` 的整合方式待使用者另行指定。
 
 ## 1. 藍圖與治理文件
 
@@ -21,7 +20,7 @@
 |---|---|
 | v3 藍圖（生效版本） | 存在、完整，`README.md` 與 `docs/DECISIONS.md` 皆指向它 |
 | v1／v2 藍圖 | 封存保留，未刪除 |
-| `.ai/BLUEPRINT.md`、`.ai/ACCEPTANCE.md`、`.ai/STATUS.md`、`.ai/CLAUDE_REVIEWER.md`、`CLAUDE.md` | **本次盤點新增／改版** |
+| `.ai/BLUEPRINT.md`、`.ai/ACCEPTANCE.md`、`.ai/STATUS.md`、`.ai/CLAUDE_REVIEWER.md`、`.ai/CODEX_WORKER.md`、`AGENTS.md`、`CLAUDE.md` | 雙 Agent 角色與施工入口已建立／更新 |
 | ADR 數量 | 11（`docs/decisions/ADR-0001`～`ADR-0011`） |
 | 決策紀錄（sign-off） | 6（`SO-0001`～`SO-0006`），對應 UI-0／G0～G5 accepted |
 
@@ -43,7 +42,7 @@
 
 ## 3. 工作佇列統計（`execution/WORK_QUEUE.yaml`）
 
-- 總計 **75** 個工作項目：**62 已完成 `done`**、**1 施工中 `in_progress`**、**12 規劃中 `planned`**。
+- 總計 **75** 個工作項目：**63 已完成 `done`**、**1 施工中 `in_progress`**、**11 規劃中 `planned`**（2026-09-24 直接解析 `execution/WORK_QUEUE.yaml`）。
 
 ### G6 明細（唯一有 in_progress／planned 混合的 Gate）
 
@@ -69,13 +68,12 @@
 
 **這是目前整條施工鏈唯一的真正阻塞**：G6-A11Y-001 → G6-USE-001 → G6-E2E-001 → G6-REV-001 → G6-ACC-001 → G7／G8 全部依序卡在「需要具名真人參與」這一點上。
 
-## 5. 本次盤點發現、但刻意不修正的控制面小問題
+## 5. 控制面核對與基準
 
-（因使用者指示「現在先不要施工」，以下只記錄，不動手改）
-
-1. `execution/PROJECT_STATE.md` 標頭仍寫「目前工項：`G6-UI-002`（in_progress）」，但實際已 `done`、真正 in_progress 是 `G6-A11Y-001`。
-2. `execution/AGENT_CLAIM.json` 仍宣稱持有 `G6-UI-002` 的施工鎖（`claimed_at 2026-09-23T09:00`），該項目已完成，理論上應已釋放。
-3. `.git` 倉庫大小 2.3 MB，屬合理範圍，無異常膨脹。
+1. `execution/PROJECT_STATE.md` 標頭與 `execution/WORK_QUEUE.yaml` 均指向 `G6-A11Y-001`；前版快照所述 `G6-UI-002` 標頭問題已不再存在。`PROJECT_STATE.md` 歷史段落仍保留當時的施工過程。
+2. `execution/AGENT_CLAIM.json` 已指向 `G6-A11Y-001`，但 2026-09-24 14:15 (+08:00) 修改前 baseline 發現 claim 期限已過，`verify-control-plane.mjs` 因而拒絕執行。Codex 依藍圖 §5.5 續領該項 claim；不改變工項完成狀態。
+3. 本地另有 7 個未追蹤的 `G6-USE-001` 協定、schema、工具與測試檔；它們屬前置材料，尚未納入本次提交，也不是 ≥5 位真人測試證據。
+4. 續領 claim 後執行 `scripts/run-baseline-ci.ps1`：控制面、secret scan（516 tracked files／0 potential secrets）、artifact policy、工具鏈、629 個 Python tests（含未追蹤檔中的 12 個測試）、25 個前端測試、lint、typecheck、maturity、13 筆 artifact smoke 與 production build 均通過。此結果證明目前程式與文件修改未破壞基準，不代表真人驗收完成。
 
 ## 6. 本機工作目錄快照（Python／前端套件結構，供定位用）
 

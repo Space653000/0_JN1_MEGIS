@@ -58,11 +58,10 @@
 
 **因此 G6 Gate acceptance 的唯一路徑，是取得具名真人的無障礙抽查與可用性測試證據；這是流程設計上的人工關卡，不是本次盤點發現的問題。**
 
-## 6. 已知的控制面一致性問題（本次盤點發現，未修正）
+## 6. 控制面一致性核對（2026-09-24）
 
-- `execution/PROJECT_STATE.md` 標頭寫「目前工項：`G6-UI-002`（in_progress）」，但 `execution/WORK_QUEUE.yaml` 顯示 `G6-UI-002` 已 `done`、目前 `in_progress` 為 `G6-A11Y-001`。
-- `execution/AGENT_CLAIM.json` 仍宣稱持有 `G6-UI-002` 的 claim（`claimed_at: 2026-09-23T09:00`），該項目已完成，claim 應已釋放。
-- 依本次盤點指示「現在先不要施工」，本次**不修正**上述兩處，僅記錄於此與 [STATUS.md](STATUS.md)，留待下次施工時以 `chore: reconcile control plane` 修正（藍圖 §27.5 範本）。
+- `execution/PROJECT_STATE.md` 標頭、`execution/WORK_QUEUE.yaml` 與 `execution/AGENT_CLAIM.json` 均指向 `G6-A11Y-001`；前版所述 `G6-UI-002` 不一致已不再存在。
+- 修改前 baseline 發現 `AGENT_CLAIM.json` 期限已過；Codex 依藍圖 §5.5 記錄後續領，並重跑控制面與完整驗證。這不構成 `G6-A11Y-001` 的真人驗收證據。
 
 ## 7. 誰來判定「驗收通過」
 

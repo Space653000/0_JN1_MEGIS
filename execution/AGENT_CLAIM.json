@@ -2,7 +2,7 @@
   "agent": "codex",
   "role": "builder",
   "work_item": "G6-A11Y-001",
-  "claimed_at": "2026-09-23T12:20:00+08:00",
-  "expires_at": "2026-09-24T12:20:00+08:00",
-  "base_commit": "246637c1bcd00e5e50a1e1b752346b52ff2c5722"
+  "claimed_at": "2026-09-24T14:15:00+08:00",
+  "expires_at": "2026-09-25T14:15:00+08:00",
+  "base_commit": "c1f02e8f1f1ce337584e4595a2a9129ee746dd82"
 }

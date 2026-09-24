@@ -1,5 +1,9 @@
 # MEGIS repository instructions
 
+## Codex entry
+
+Codex is the builder for implementation, edits, tests, and fixes. Before every construction task, read `.ai/CODEX_WORKER.md`, then `.ai/BLUEPRINT.md`, `.ai/ACCEPTANCE.md`, and `.ai/STATUS.md` in that order. Check the live execution control plane before choosing work; `.ai/STATUS.md` is a human-readable snapshot and may lag the queue. Claude Code owns blueprint planning, independent review, and acceptance support; the user retains final acceptance authority.
+
 ## Language
 
 - User-facing text and reports use Traditional Chinese.
@@ -18,7 +22,8 @@
 - Run the relevant baseline before edits and verification after edits.
 - Keep WIP to one vertical work item.
 - Use concise English commit messages in `type: summary` format.
-- Never push, force-push, delete remote data, or publish a site without explicit user authorization.
+- After verified construction, update `.ai/STATUS.md`, commit, and push the current GitHub branch as the user directed on 2026-09-24. Verify the remote commit after push.
+- Never force-push, delete remote data, change `main`, or publish a site without explicit user authorization for that action.
 
 ## UI-0 boundary
 
